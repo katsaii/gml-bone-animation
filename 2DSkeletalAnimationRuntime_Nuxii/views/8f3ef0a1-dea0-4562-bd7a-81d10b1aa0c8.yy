@@ -8,8 +8,8 @@
         "3ef0190b-9dbe-489b-9452-dd843ba30fe2",
         "cf6e6a50-9f31-425e-a061-c4c566d4edf5",
         "6c98d69b-f8ab-4a80-8229-da115f153166",
-        "0fac8b81-1c17-4d83-95de-bb12fbf39f90",
-        "fe24a297-27ae-40ac-bd78-dde89e3f5e5b"
+        "db39266e-acbf-4c37-9474-1f26934617a2",
+        "711a0c3c-4449-47c0-8257-ebc9ef8c2aae"
     ],
     "filterType": "GMScript",
     "folderName": "Hierarchy",

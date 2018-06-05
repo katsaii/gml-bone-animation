@@ -6,9 +6,7 @@ enum SK_CONSTRAINT_TRANSFORM{
 	translateMixFinal,scaleMixFinal,shearMixFinal,rotateMixFinal,
 	sizeof
 }
-gml_pragma("global",@"
-	sk_struct_type_add(sk_type_constraint_transform,SK_CONSTRAINT_TRANSFORM.sizeof,sk_construct_constraint_transform,sk_destruct_constraint_transform);
-");
+gml_pragma("global","sk_struct_type_add(sk_type_constraint_transform,SK_CONSTRAINT_TRANSFORM.sizeof,sk_construct_constraint_transform,sk_destruct_constraint_transform);");
 /// @desc creates a structure
 /// @param name
 var sk_structure = sk_struct_create(sk_type_constraint_transform,argument0);

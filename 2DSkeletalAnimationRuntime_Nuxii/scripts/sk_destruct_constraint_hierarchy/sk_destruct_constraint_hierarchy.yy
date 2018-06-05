@@ -1,5 +1,5 @@
 {
-    "id": "fe24a297-27ae-40ac-bd78-dde89e3f5e5b",
+    "id": "711a0c3c-4449-47c0-8257-ebc9ef8c2aae",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_destruct_constraint_hierarchy",

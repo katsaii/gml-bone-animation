@@ -231,14 +231,6 @@
             }
         },
         {
-            "Key": "0fac8b81-1c17-4d83-95de-bb12fbf39f90",
-            "Value": {
-                "id": "3efe0df0-a42e-4866-b2a4-95defc13d81f",
-                "resourcePath": "scripts\\sk_construct_constraint_hierarchy\\sk_construct_constraint_hierarchy.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "10296b88-afa8-4043-960f-b6288d750249",
             "Value": {
                 "id": "4cc4f60e-943b-4e1d-b59e-fa979c7fc434",
@@ -363,14 +355,6 @@
             "Value": {
                 "id": "deded541-8867-4352-afe1-8ccc051cc178",
                 "resourcePath": "scripts\\sk_armature_find_skin\\sk_armature_find_skin.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "1c1da8bd-0ece-4b3f-b20d-c37433bcebbe",
-            "Value": {
-                "id": "9966804d-4856-4dfa-8ed3-dd09f69013dc",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_setToDefaultParent\\sk_constraint_hierarchy_setToDefaultParent.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -575,10 +559,26 @@
             }
         },
         {
+            "Key": "29ebc796-e079-4e4b-9c7c-cb294e5b96a9",
+            "Value": {
+                "id": "4a2ac137-311d-460a-9ad2-88bd3ed0fbc3",
+                "resourcePath": "scripts\\sk_constraint_hierarchy_set_finalTuple\\sk_constraint_hierarchy_set_finalTuple.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2a152425-a230-49b3-af20-ad946f8cc022",
             "Value": {
                 "id": "7f2c4bff-92bd-4d77-8b44-506928b744f7",
                 "resourcePath": "scripts\\sk_armature_find_constraint_transform\\sk_armature_find_constraint_transform.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "2a7f8822-7969-4325-a4d3-9d7d291ad855",
+            "Value": {
+                "id": "6f1fd15f-f125-4f57-b30a-992880c87ee5",
+                "resourcePath": "scripts\\sk_constraint_hierarchy_set_setupTuple\\sk_constraint_hierarchy_set_setupTuple.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -599,27 +599,11 @@
             }
         },
         {
-            "Key": "2c61781c-bd19-4076-b11c-d5d67b8fb201",
-            "Value": {
-                "id": "b23e143b-7c23-4ab0-97cb-190459a4901c",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_set_defaultParent\\sk_constraint_hierarchy_set_defaultParent.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "2ca51856-0f03-408c-a00a-8d11e67efaed",
             "Value": {
                 "id": "b66497ad-31c9-426c-b6b0-3fd994d50cd7",
                 "resourcePath": "datafiles_yy\\Skeletons\\Spine\\Other\\Hero\\hero.png.yy",
                 "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "2ca92217-666e-4b41-980b-04919598b342",
-            "Value": {
-                "id": "e5b7a080-6e78-4e6e-83af-6a2bff1b311d",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_parents_add\\sk_constraint_hierarchy_parents_add.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -1327,14 +1311,6 @@
             }
         },
         {
-            "Key": "61f211fa-0603-415b-aea8-d5c474164900",
-            "Value": {
-                "id": "f4b23c43-a6da-458d-9df2-02a077a98bee",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_set_setupParent\\sk_constraint_hierarchy_set_setupParent.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "6236108d-5228-4a77-be0a-978cc53f9305",
             "Value": {
                 "id": "62e7642e-159f-410d-a00c-49e30bc60a5f",
@@ -1348,14 +1324,6 @@
                 "id": "eb27fa3c-1b8b-4152-b65f-7360969c9519",
                 "resourcePath": "views\\63261063-16fa-4c50-88e2-240d054b73fa.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "6348b535-5d4b-4240-995d-b44286f35c49",
-            "Value": {
-                "id": "b0ea1774-4081-4b4f-a4d0-3718b3dd7174",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_set_finalParent\\sk_constraint_hierarchy_set_finalParent.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -1551,6 +1519,14 @@
             }
         },
         {
+            "Key": "711a0c3c-4449-47c0-8257-ebc9ef8c2aae",
+            "Value": {
+                "id": "d60a0a4d-6008-4d96-9e4e-12a45b56a271",
+                "resourcePath": "scripts\\sk_destruct_constraint_hierarchy\\sk_destruct_constraint_hierarchy.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "715025ae-5683-4e1a-b856-a283ae08f2f4",
             "Value": {
                 "id": "2a8202a2-5c05-4f71-98f4-77cca94496ab",
@@ -1615,6 +1591,14 @@
             }
         },
         {
+            "Key": "781f9d31-4d5e-4424-8871-a512daa54d7d",
+            "Value": {
+                "id": "af0cedee-bff8-4a10-9974-aab84be4c0b2",
+                "resourcePath": "scripts\\sk_constraint_hierarchy_tuple_find\\sk_constraint_hierarchy_tuple_find.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "78a3fb39-b451-4a65-bd15-9f2a3272127f",
             "Value": {
                 "id": "649c205c-ae17-479d-8f25-83b843e84411",
@@ -1628,14 +1612,6 @@
                 "id": "654b84cd-4193-4f8c-90a5-80121f07f09e",
                 "resourcePath": "views\\797f09cc-21d6-4a66-900e-62df01f65d39.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "7a58074b-846b-4921-aa7b-97f75dd21de1",
-            "Value": {
-                "id": "4c9a1dcc-cbc4-427a-b4fb-b54085cd47f4",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_setToSetupParent\\sk_constraint_hierarchy_setToSetupParent.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -1660,14 +1636,6 @@
                 "id": "fff55e48-938b-4703-8e0a-fb1d637a4001",
                 "resourcePath": "views\\7b6df09b-59f1-46ac-8664-4ea5665615f5.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "7e3252c7-2e3d-4943-a9e3-e6121f3413e6",
-            "Value": {
-                "id": "5b5bdf82-10b4-4116-8b9f-7cfef1b69071",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_set_child\\sk_constraint_hierarchy_set_child.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -2359,14 +2327,6 @@
             }
         },
         {
-            "Key": "c4c8fc30-0651-4ede-8a14-c09ccb749ecf",
-            "Value": {
-                "id": "3318dd81-2265-4734-a5c7-b58c35932804",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_parents_clear\\sk_constraint_hierarchy_parents_clear.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "c5a5f3b1-e1af-42aa-8c04-db73171ccff2",
             "Value": {
                 "id": "67d0d833-0f62-4741-bf96-51e781e8a132",
@@ -2379,6 +2339,14 @@
             "Value": {
                 "id": "da6aef11-7786-44e9-b089-49caf38da384",
                 "resourcePath": "scripts\\sk_bone_updateWorldTransform\\sk_bone_updateWorldTransform.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c6de21b5-7b8c-4a46-9407-dc61f5088aba",
+            "Value": {
+                "id": "b2d8662b-f3ea-4737-b95b-8d7bccd533dd",
+                "resourcePath": "scripts\\sk_constraint_hierarchy_setToSetupMix\\sk_constraint_hierarchy_setToSetupMix.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2572,6 +2540,14 @@
                 "id": "3d29e800-73c3-4f54-9fa0-53f3a47aca46",
                 "resourcePath": "views\\db30e92f-434b-4547-b3f9-15d7780cc7d3.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "db39266e-acbf-4c37-9474-1f26934617a2",
+            "Value": {
+                "id": "2e0d02ef-c1bb-4b77-b766-37412396cb08",
+                "resourcePath": "scripts\\sk_construct_constraint_hierarchy\\sk_construct_constraint_hierarchy.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -2943,14 +2919,6 @@
             }
         },
         {
-            "Key": "fe24a297-27ae-40ac-bd78-dde89e3f5e5b",
-            "Value": {
-                "id": "b2b5d34a-5d58-43fc-8487-53d6284fa28d",
-                "resourcePath": "scripts\\sk_destruct_constraint_hierarchy\\sk_destruct_constraint_hierarchy.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "fe6c0945-f077-4390-8a6f-da292e687ca0",
             "Value": {
                 "id": "5bc91ced-dc94-47a1-8b4a-0c55b95f294e",
@@ -3041,17 +3009,13 @@
         "b201eee3-0321-4bc3-845f-1376e7c5654c",
         "7fed2d2b-bccb-4dd8-b38a-c2a5349cdfcb",
         "eed44b81-1a0b-4a80-8a0a-46f788c3cee9",
-        "7e3252c7-2e3d-4943-a9e3-e6121f3413e6",
-        "2c61781c-bd19-4076-b11c-d5d67b8fb201",
-        "61f211fa-0603-415b-aea8-d5c474164900",
-        "6348b535-5d4b-4240-995d-b44286f35c49",
-        "c4c8fc30-0651-4ede-8a14-c09ccb749ecf",
-        "2ca92217-666e-4b41-980b-04919598b342",
-        "1c1da8bd-0ece-4b3f-b20d-c37433bcebbe",
-        "7a58074b-846b-4921-aa7b-97f75dd21de1",
+        "2a7f8822-7969-4325-a4d3-9d7d291ad855",
+        "29ebc796-e079-4e4b-9c7c-cb294e5b96a9",
+        "781f9d31-4d5e-4424-8871-a512daa54d7d",
+        "c6de21b5-7b8c-4a46-9407-dc61f5088aba",
         "6c8b073c-084d-4b7c-8492-9ce205e77c5f",
-        "0fac8b81-1c17-4d83-95de-bb12fbf39f90",
-        "fe24a297-27ae-40ac-bd78-dde89e3f5e5b",
+        "db39266e-acbf-4c37-9474-1f26934617a2",
+        "711a0c3c-4449-47c0-8257-ebc9ef8c2aae",
         "381ce2ce-4b1d-4adc-a46d-ae42adba8663",
         "406a9f01-c962-4dd9-82c2-bf78ca44d344",
         "44724389-71a9-481e-8798-6d2975ff8b0d",

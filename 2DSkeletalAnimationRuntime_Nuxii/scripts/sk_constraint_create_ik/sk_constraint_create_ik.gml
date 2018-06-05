@@ -7,9 +7,7 @@ enum SK_CONSTRAINT_IK{
 }
 #macro sk_bendDir_positive 1
 #macro sk_bendDir_negative -1
-gml_pragma("global",@"
-	sk_struct_type_add(sk_type_constraint_ik,SK_CONSTRAINT_IK.sizeof,-1,-1);
-");
+gml_pragma("global","sk_struct_type_add(sk_type_constraint_ik,SK_CONSTRAINT_IK.sizeof,-1,-1);");
 /// @desc creates a structure
 /// @param name
 var sk_structure = sk_struct_create(sk_type_constraint_ik,argument0);
