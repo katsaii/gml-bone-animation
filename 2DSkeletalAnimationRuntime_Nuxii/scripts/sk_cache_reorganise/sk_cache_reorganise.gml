@@ -12,12 +12,7 @@ for(sk_tuple_id = 0; sk_tuple_id < sk_tuple_last; sk_tuple_id+=sk_tuple_itemOffs
 	var sk_tuple_shift = sk_tuple[| sk_tuple_id+sk_tuple_itemOffset_offset];
 	var sk_tuple_value_index = ds_list_find_index(argument0,sk_tuple_value);
 	if(sk_tuple_value_index!=-1){
-		if(is_real(sk_tuple_shift)){
-			// shift value
-			sk_list_shift(argument0,sk_tuple_value_index,sk_tuple_shift);
-		} else {
-			// delete value
-			ds_list_delete(argument0,sk_tuple_value_index);
-		}
+		// shift value
+		sk_list_shift(argument0,sk_tuple_value_index,sk_tuple_shift);
 	}
 }

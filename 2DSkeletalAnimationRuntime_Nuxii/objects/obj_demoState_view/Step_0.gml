@@ -24,24 +24,24 @@ if(sk_struct_exists(v_armature,sk_type_armature)){
 	if(mouse_check_button_pressed(mb_left)){
 		v_anim_id++;
 		if(v_anim_id>=ds_list_size(v_armature[SK_ARMATURE.animations])){
-			v_anim_id=0;
+			v_anim_id=-1;
 		}
 	}
 	if(mouse_check_button_pressed(mb_right)){
 		v_bone_id++;
 		if(v_bone_id>=ds_list_size(v_armature[SK_ARMATURE.bones])){
-			v_bone_id=0;
+			v_bone_id=-1;
 		}
 	}
 	var new_skin = false;
 	if(keyboard_check_pressed(vk_space)){
 		v_skin_id++;
 		if(v_skin_id>=ds_list_size(v_armature[SK_ARMATURE.skins])){
-			v_skin_id=0;
+			v_skin_id=-1;
 		}
 		new_skin = true;
 	}
-	v_rate += (mouse_wheel_up()-mouse_wheel_down())*0.001
+	v_rate += (mouse_wheel_up()-mouse_wheel_down())*0.001*(keyboard_check(vk_shift) ? 10 : 1);
 	
 	var v_bone = sk_armature_find_bone(v_armature,v_bone_id);
 	var v_skin = sk_armature_find_skin(v_armature,v_skin_id);

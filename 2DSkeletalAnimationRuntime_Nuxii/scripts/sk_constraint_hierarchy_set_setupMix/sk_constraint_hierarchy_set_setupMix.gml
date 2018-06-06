@@ -1,4 +1,4 @@
 /// @desc sets the setup tuple id
 /// @param constraint
 /// @param id
-argument0[@ SK_CONSTRAINT_HIERARCHY.tupleId] = argument1;
+argument0[@ SK_CONSTRAINT_HIERARCHY.tupleKey] = argument1;

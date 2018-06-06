@@ -32,6 +32,7 @@ if(file_exists(m_path_skel)){ \
 	switch(string_lower(m_skel_type)){ \
 		case "dragonbones": new_armature = sk_armature_build_dragonbones(raw,0); break; \
 		case "spine": new_armature = sk_armature_build_spine(raw,m_path_skel); break; \
+		case "spriter": new_armature = sk_armature_build_spriter(raw,0); break; \
 	} \
 } \
 if(sk_struct_exists(new_atlas,sk_type_atlas)){ \
@@ -68,6 +69,15 @@ var m_path_skel = PATH_PALIA+"Palia_Skeleton_ske.json";
 var m_atlas_scale = 1;
 var m_atlas_type = "dragonbones";
 var m_skel_type = "dragonbones";
+m_load_data;
+
+var PATH_SPRITER = "Skeletons/Spriter/BrashMonkey/Platformer/";
+var m_path_tex = PATH_SPRITER+"outJSON.png";
+var m_path_atlas = PATH_SPRITER+"outJSON.json";
+var m_path_skel = PATH_SPRITER+"outJSONskel.scon";
+var m_atlas_scale = 1;
+var m_atlas_type = "spriter";
+var m_skel_type = "spriter";
 m_load_data;
 
 var PATH_SPINEBOY = "Skeletons/Spine/Esoteric/Spineboy/";

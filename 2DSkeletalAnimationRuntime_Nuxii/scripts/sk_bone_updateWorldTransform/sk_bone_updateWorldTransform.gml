@@ -76,6 +76,11 @@ if(!sk_skew){
 		sk_transform &= ~sk_transformMode_scale;
 		sk_xscale *= point_distance(0,0,sk_pa,sk_pb);
 		sk_yscale *= point_distance(0,0,sk_pc,sk_pd);
+		if(sk_pa*sk_pd-sk_pb*sk_pc < 0){
+			// (?)spriter compatibility(?)
+			sk_yscale = -sk_yscale;
+			sk_rotation = -sk_rotation;
+		}
 	}
 	sk_appliedValid = false; // bad applied transformation
 }

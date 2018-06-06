@@ -223,6 +223,14 @@
             }
         },
         {
+            "Key": "0df4f3ec-cb3d-442b-ac87-4877f09d7abd",
+            "Value": {
+                "id": "3432d59b-7cd6-4303-88e8-14916a6cf1d3",
+                "resourcePath": "datafiles_yy\\Skeletons\\Spriter\\BrashMonkey\\Platformer\\outJSONskel.scon.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "0eff2262-9ea5-479a-bd08-2edb86635861",
             "Value": {
                 "id": "12b7f5aa-3ff3-420c-8e65-bb43010f6199",
@@ -268,6 +276,14 @@
                 "id": "ccb8f9dc-42a6-48e5-a146-10000b366730",
                 "resourcePath": "scripts\\sk_skin_create\\sk_skin_create.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "12f94da6-0bf9-474f-a6ad-392380351cdf",
+            "Value": {
+                "id": "b0a27977-3697-4833-8460-c46d09306220",
+                "resourcePath": "datafiles_yy\\Skeletons\\Spriter\\BrashMonkey\\Platformer\\outJSON.json.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -562,7 +578,7 @@
             "Key": "29ebc796-e079-4e4b-9c7c-cb294e5b96a9",
             "Value": {
                 "id": "4a2ac137-311d-460a-9ad2-88bd3ed0fbc3",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_set_finalTuple\\sk_constraint_hierarchy_set_finalTuple.yy",
+                "resourcePath": "scripts\\sk_constraint_hierarchy_set_finalMix\\sk_constraint_hierarchy_set_finalMix.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -578,7 +594,7 @@
             "Key": "2a7f8822-7969-4325-a4d3-9d7d291ad855",
             "Value": {
                 "id": "6f1fd15f-f125-4f57-b30a-992880c87ee5",
-                "resourcePath": "scripts\\sk_constraint_hierarchy_set_setupTuple\\sk_constraint_hierarchy_set_setupTuple.yy",
+                "resourcePath": "scripts\\sk_constraint_hierarchy_set_setupMix\\sk_constraint_hierarchy_set_setupMix.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1639,6 +1655,14 @@
             }
         },
         {
+            "Key": "7bccbd95-1cd5-4e28-9f26-bbaa6dfc03bd",
+            "Value": {
+                "id": "e1b23d92-f954-4eee-9a57-f7294a1b6d3f",
+                "resourcePath": "views\\7bccbd95-1cd5-4e28-9f26-bbaa6dfc03bd.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "7e53bac7-018a-4045-9688-60312cd6677b",
             "Value": {
                 "id": "dcbf8980-3d49-426e-9b06-0e6772ccfa50",
@@ -1804,6 +1828,14 @@
                 "id": "a7a47336-0e73-4da2-9882-6f7e08b40db7",
                 "resourcePath": "scripts\\sk_struct_type_add\\sk_struct_type_add.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "93a7b701-89d2-4b4b-a275-9e8275a4fb38",
+            "Value": {
+                "id": "343fa034-1559-47a3-8756-5e019a77a2a0",
+                "resourcePath": "views\\93a7b701-89d2-4b4b-a275-9e8275a4fb38.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -2140,6 +2172,14 @@
                 "id": "0e628e0b-bda4-4aca-af90-a8000fbf92ea",
                 "resourcePath": "views\\b5603f0f-f654-45b1-967a-1706b5133a82.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "b5e2c070-222a-40f3-9937-dc2577b7b10b",
+            "Value": {
+                "id": "8b3ca626-7187-490a-b7d5-1189ac11a96e",
+                "resourcePath": "datafiles_yy\\Skeletons\\Spriter\\BrashMonkey\\Platformer\\outJSON.png.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2695,6 +2735,14 @@
             }
         },
         {
+            "Key": "e6f2669c-4802-4071-a270-6e443475d9ab",
+            "Value": {
+                "id": "1b0f882e-d552-408e-9293-e2ce355768bb",
+                "resourcePath": "views\\e6f2669c-4802-4071-a270-6e443475d9ab.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "e74a1382-93e6-421b-b7a8-837cfcfba7d9",
             "Value": {
                 "id": "890690c7-8d3c-4654-9bfd-c8cae9b10c7c",
@@ -2723,6 +2771,14 @@
             "Value": {
                 "id": "14229039-a617-41a1-8da8-2be4eaf98980",
                 "resourcePath": "scripts\\sk_atlas_build_dragonbones\\sk_atlas_build_dragonbones.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e8791f4b-d73f-457f-90a1-fc191f28be3f",
+            "Value": {
+                "id": "8e6bc05c-7774-4a45-98e5-02232ff3ea9c",
+                "resourcePath": "scripts\\sk_armature_get_container\\sk_armature_get_container.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3121,6 +3177,7 @@
         "e76d2eb8-2c1b-4b20-a233-0aff237818e6",
         "c353590c-4953-4cbf-bfd0-797ceb1c3a4c",
         "18832725-240f-49f8-8067-25d7fdae5762",
+        "e8791f4b-d73f-457f-90a1-fc191f28be3f",
         "280e5738-9b00-4317-abde-8d84989cb8aa",
         "f2f76824-a397-4218-bc0d-f590abfd7e81",
         "557caf99-1de8-4e06-a056-00e7103301e9",

@@ -15,14 +15,14 @@ if(argument3>=0.5){
 	// get times
 	if(sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_HIERARCHY.kf_time]>sk_time){ return; } // keyframe has not been reached yet
 	// interpolate
-	var sk_tupleId = sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_HIERARCHY.kf_tupleId];
+	var sk_tupleId = sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_HIERARCHY.kf_tupleKey];
 	// apply
 	switch(sk_mix){
 		case sk_mixPose_mix: case sk_mixPose_add:
-			sk_body[@ SK_CONSTRAINT_HIERARCHY.tupleIdFinal] = sk_tupleId;
+			sk_body[@ SK_CONSTRAINT_HIERARCHY.tupleKeyFinal] = sk_tupleId;
 		break;
 		case sk_mixPose_overwrite:
-			sk_body[@ SK_CONSTRAINT_HIERARCHY.tupleId] = sk_tupleId;
+			sk_body[@ SK_CONSTRAINT_HIERARCHY.tupleKey] = sk_tupleId;
 		break;
 	}
 }
