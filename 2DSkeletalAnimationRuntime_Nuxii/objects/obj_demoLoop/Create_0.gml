@@ -1,4 +1,5 @@
 /// @desc initialise objects
+
 #macro draw_reset_colour draw_set_colour($203621)
 show_debug_overlay(true);
 gml_release_mode(true);

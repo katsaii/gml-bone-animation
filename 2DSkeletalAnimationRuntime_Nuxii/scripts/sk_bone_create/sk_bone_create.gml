@@ -15,6 +15,7 @@ enum SK_BONE{
 #macro sk_transformMode_noScale (sk_transformMode_rotate|sk_transformMode_translate|sk_transformMode_skew)
 #macro sk_transformMode_noScaleOrRotation (sk_transformMode_translate|sk_transformMode_skew)
 #macro sk_transformMode_none 0
+#macro sk_transformMode_ex_spriter (sk_transformMode_normal&(~sk_transformMode_skew)) /* spriter specific transformMode */
 gml_pragma("global","sk_struct_type_add(sk_type_bone,SK_BONE.sizeof,-1,-1);");
 /// @desc creates a structure
 /// @param name

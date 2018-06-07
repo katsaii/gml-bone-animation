@@ -30,7 +30,7 @@ for(sk_timeline_id = 0; sk_timeline_id < sk_timeline_count; sk_timeline_id++){
 		case sk_type_timeline_rotate:		sk_timeline_rotate_apply(sk_timelineData,sk_time,sk_mixPose,sk_alpha,sk_loop); break;
 		case sk_type_timeline_colour:		sk_timeline_colour_apply(sk_timelineData,sk_time,sk_mixPose,sk_alpha,sk_loop); break;
 		case sk_type_timeline_display:		sk_timeline_display_apply(sk_timelineData,sk_time,sk_mixPose,sk_alpha); break;
-		case sk_type_timeline_symbol:		sk_timeline_symbol_apply(sk_timelineData,sk_time,sk_mixPose,sk_alpha,sk_loop); break;
+		case sk_type_timeline_parent:		sk_timeline_parent_apply(sk_timelineData,sk_time,sk_mixPose,sk_alpha); break;
 		case sk_type_timeline_event:		sk_timeline_event_apply(sk_timelineData,sk_timeLast,sk_time,sk_alpha); break;
 		case sk_type_timeline_ik:			sk_timeline_ik_apply(sk_timelineData,sk_time,sk_mixPose,sk_alpha,sk_loop); break;
 		case sk_type_timeline_transform:	sk_timeline_transform_apply(sk_timelineData,sk_time,sk_mixPose,sk_alpha,sk_loop); break;

@@ -1,8 +1,8 @@
 {
-    "id": "d5b7c7f5-0d9d-4afe-be10-7aeb86fe3d84",
+    "id": "a03660b7-e26a-46e6-af4d-35f12930aee2",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_symbol_attachments_add",
+    "name": "sk_symbol_get_nested_slot",
     "IsCompatibility": false,
     "IsDnD": false
 }

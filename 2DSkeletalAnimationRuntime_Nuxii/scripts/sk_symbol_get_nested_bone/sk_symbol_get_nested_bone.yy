@@ -1,8 +1,8 @@
 {
-    "id": "8824c50b-ec08-49fe-a91c-f1b2796191c0",
+    "id": "6e36f297-9b91-474c-83c9-030637abe9f6",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_symbol_set_appliedPose",
+    "name": "sk_symbol_get_nested_bone",
     "IsCompatibility": false,
     "IsDnD": false
 }

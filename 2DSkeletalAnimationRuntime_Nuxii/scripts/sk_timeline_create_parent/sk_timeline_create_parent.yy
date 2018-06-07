@@ -1,8 +1,8 @@
 {
-    "id": "7728a742-e8e1-444d-88a0-243e71fc5b42",
+    "id": "787bbfe4-2f20-411f-9d57-cb121a135a58",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_symbol_set_transformMode",
+    "name": "sk_timeline_create_parent",
     "IsCompatibility": false,
     "IsDnD": false
 }
