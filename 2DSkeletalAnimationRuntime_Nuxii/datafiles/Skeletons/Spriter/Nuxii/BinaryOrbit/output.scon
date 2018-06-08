@@ -1,0 +1,251 @@
+{
+	"entity": [
+		{
+			"animation": [
+				{
+					"id": 0,
+					"interval": 100,
+					"length": 1000,
+					"mainline": {
+						"key": [
+							{
+								"bone_ref": [],
+								"id": 0,
+								"object_ref": [
+									{
+										"id": 0,
+										"key": 0,
+										"timeline": "0",
+										"z_index": "0"
+									},
+									{
+										"id": 1,
+										"key": 0,
+										"timeline": "1",
+										"z_index": "1"
+									}
+								]
+							},
+							{
+								"bone_ref": [],
+								"id": 1,
+								"object_ref": [
+									{
+										"id": 0,
+										"key": 1,
+										"timeline": "0",
+										"z_index": "0"
+									},
+									{
+										"id": 1,
+										"key": 1,
+										"timeline": "1",
+										"z_index": "1"
+									}
+								],
+								"time": 254
+							},
+							{
+								"bone_ref": [],
+								"id": 2,
+								"object_ref": [
+									{
+										"id": 0,
+										"key": 2,
+										"timeline": "1",
+										"z_index": "0"
+									},
+									{
+										"id": 1,
+										"key": 2,
+										"timeline": "0",
+										"z_index": "1"
+									}
+								],
+								"time": 499
+							},
+							{
+								"bone_ref": [],
+								"id": 3,
+								"object_ref": [
+									{
+										"id": 0,
+										"key": 2,
+										"timeline": "1",
+										"z_index": "0"
+									},
+									{
+										"id": 1,
+										"key": 3,
+										"timeline": "0",
+										"z_index": "1"
+									}
+								],
+								"time": 761
+							},
+							{
+								"bone_ref": [],
+								"id": 4,
+								"object_ref": [
+									{
+										"id": 0,
+										"key": 3,
+										"timeline": "1",
+										"z_index": "0"
+									},
+									{
+										"id": 1,
+										"key": 3,
+										"timeline": "0",
+										"z_index": "1"
+									}
+								],
+								"time": 762
+							}
+						]
+					},
+					"name": "NewAnimation",
+					"timeline": [
+						{
+							"id": 0,
+							"key": [
+								{
+									"id": 0,
+									"object": {
+										"file": 0,
+										"folder": 0,
+										"x": -200,
+										"y": 19.99999999999999
+									},
+									"spin": 0
+								},
+								{
+									"id": 1,
+									"object": {
+										"file": 0,
+										"folder": 0,
+										"scale_x": 0.5,
+										"scale_y": 0.5,
+										"x": 7.34979423868316,
+										"y": 14.477366255144027
+									},
+									"spin": 0,
+									"time": 254
+								},
+								{
+									"id": 2,
+									"object": {
+										"file": 0,
+										"folder": 0,
+										"x": 213,
+										"y": 9
+									},
+									"spin": 0,
+									"time": 499
+								},
+								{
+									"id": 3,
+									"object": {
+										"file": 0,
+										"folder": 0,
+										"scale_x": 1.5,
+										"scale_y": 1.5,
+										"x": -2.9800399201596974,
+										"y": 14.752495009980034
+									},
+									"spin": 0,
+									"time": 761
+								}
+							],
+							"name": "buffield"
+						},
+						{
+							"id": 1,
+							"key": [
+								{
+									"id": 0,
+									"object": {
+										"file": 1,
+										"folder": 0,
+										"x": 225,
+										"y": 5.500000000000014
+									},
+									"spin": 0
+								},
+								{
+									"id": 1,
+									"object": {
+										"file": 1,
+										"folder": 0,
+										"scale_x": 1.5,
+										"scale_y": 1.5,
+										"x": 7.6492985971944165,
+										"y": 8.045090180360726
+									},
+									"spin": 0,
+									"time": 254
+								},
+								{
+									"id": 2,
+									"object": {
+										"file": 1,
+										"folder": 0,
+										"x": -202,
+										"y": 10.499999999999995
+									},
+									"spin": 0,
+									"time": 499
+								},
+								{
+									"id": 3,
+									"object": {
+										"file": 1,
+										"folder": 0,
+										"scale_x": 0.5,
+										"scale_y": 0.5,
+										"x": 22.15369261477045,
+										"y": 7.8752495009980095
+									},
+									"spin": 0,
+									"time": 762
+								}
+							],
+							"name": "Capture"
+						}
+					]
+				}
+			],
+			"character_map": [],
+			"id": 0,
+			"name": "entity_000",
+			"obj_info": []
+		}
+	],
+	"folder": [
+		{
+			"file": [
+				{
+					"height": 328,
+					"id": 0,
+					"name": "img/buffield.png",
+					"pivot_x": 0.5,
+					"pivot_y": 0.5,
+					"width": 354
+				},
+				{
+					"height": 165,
+					"id": 1,
+					"name": "img/Capture.PNG",
+					"pivot_x": 0.5,
+					"pivot_y": 0.5,
+					"width": 242
+				}
+			],
+			"id": 0,
+			"name": "img"
+		}
+	],
+	"generator": "BrashMonkey Spriter",
+	"generator_version": "r11",
+	"scon_version": "1.0"
+}

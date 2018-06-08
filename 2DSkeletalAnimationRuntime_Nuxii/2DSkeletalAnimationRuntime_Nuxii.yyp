@@ -823,6 +823,14 @@
             }
         },
         {
+            "Key": "39ce7729-aba0-45bd-890e-fc70865c7e39",
+            "Value": {
+                "id": "6eba9e8c-e490-464f-848c-7bfcae051349",
+                "resourcePath": "views\\39ce7729-aba0-45bd-890e-fc70865c7e39.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "3a0704e7-de6b-4e34-8f02-2615494e7245",
             "Value": {
                 "id": "8239e2c2-b09d-4a4a-90e0-8a8bf1820f7c",
@@ -2071,6 +2079,22 @@
             }
         },
         {
+            "Key": "aefc0093-6eca-4b02-924b-6e05ef58b7a5",
+            "Value": {
+                "id": "cdbf4734-ab75-403a-abac-34cf5f2339c5",
+                "resourcePath": "datafiles_yy\\Skeletons\\Spriter\\Nuxii\\BinaryOrbit\\output.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "af99e10e-6a9a-4a07-8985-ae4878f0287b",
+            "Value": {
+                "id": "45ec7a93-55f3-43b8-ac25-625ea137992b",
+                "resourcePath": "datafiles_yy\\Skeletons\\Spriter\\Nuxii\\BinaryOrbit\\output.json.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "b01f0c14-4ada-4aa1-8e01-d14bceae9d5f",
             "Value": {
                 "id": "f2ffbf51-dfc3-484e-a9bc-f47014e0f8be",
@@ -2743,6 +2767,14 @@
             }
         },
         {
+            "Key": "ee739759-d400-498c-96d6-7843e01e9c09",
+            "Value": {
+                "id": "5e835bf5-55db-4593-830a-016d3fdf0728",
+                "resourcePath": "views\\ee739759-d400-498c-96d6-7843e01e9c09.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "eeb7bd96-67b0-4f4c-8c52-0703b386f18c",
             "Value": {
                 "id": "12736eee-f435-4f94-be12-13d9fce19e39",
@@ -2876,6 +2908,14 @@
                 "id": "42e000ce-5991-426b-bb3d-b5efd5329da6",
                 "resourcePath": "scripts\\sk_bone_updateWorldTransform_ext\\sk_bone_updateWorldTransform_ext.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "f98bbb91-6b3b-4d67-9c3f-f575ed721d3e",
+            "Value": {
+                "id": "3d9ac7be-c558-4fd0-a896-60064cbd8157",
+                "resourcePath": "datafiles_yy\\Skeletons\\Spriter\\Nuxii\\BinaryOrbit\\output.scon.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {

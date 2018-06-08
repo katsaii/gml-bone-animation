@@ -81,6 +81,15 @@ var m_atlas_type = "spriter";
 var m_skel_type = "spriter";
 m_load_data;
 
+var PATH_GARFIELD = "Skeletons/Spriter/Nuxii/BinaryOrbit/";
+var m_path_tex = PATH_GARFIELD+"output.png";
+var m_path_atlas = PATH_GARFIELD+"output.json";
+var m_path_skel = PATH_GARFIELD+"output.scon";
+var m_atlas_scale = 1;
+var m_atlas_type = "spriter";
+var m_skel_type = "spriter";
+m_load_data;
+
 var PATH_SPINEBOY = "Skeletons/Spine/Esoteric/Spineboy/";
 var m_path_tex = PATH_SPINEBOY+"spineboy.png";
 var m_path_atlas = PATH_SPINEBOY+"spineboy.atlas";
