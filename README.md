@@ -12,11 +12,9 @@ git clone git@github.com:NuxiiGit/GML2DSkeletalAnimation.git
 
 ### Supported Software
 
-```
-- [Spine](http://esotericsoftware.com/)
-- [DragonBones](http://dragonbones.com)
-- [Spriter](https://brashmonkey.com/)
-```
+-- [Spine](http://esotericsoftware.com/)
+-- [DragonBones](http://dragonbones.com)
+-- [Spriter](https://brashmonkey.com/)
 
 Alternatively, due to the decentralised nature of the runtime, you can use the features I offer without the use of external software by dynamically creating bones and other skeleton data at runtime without the need for an armature or texture atlas.
 
