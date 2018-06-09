@@ -11,5 +11,6 @@ for(sk_item_id = 0; sk_item_id < sk_item_count; sk_item_id++){
 		case sk_type_constraint_ik: sk_constraint_ik_apply(sk_itemData); break;
 		case sk_type_constraint_transform: sk_constraint_transform_apply(sk_itemData); break;
 		case sk_type_constraint_hierarchy: sk_constraint_hierarchy_apply(sk_itemData); break;
+		case sk_type_constraint_physics: sk_constraint_physics_apply(sk_itemData); break;
 	}
 }

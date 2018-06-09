@@ -1,10 +1,14 @@
 gml_pragma("global",@'
 	global.sk_globalVar_physicsConstraint_physicsState = noone;
+	global.sk_globalVar_physicsConstraint_xDisplacement = 0; // adding the displacement to the world coordinate can simulate external movement
+	global.sk_globalVar_physicsConstraint_yDisplacement = 0;
 	global.sk_globalVar_physicsConstraint_xGrav = 0;
-	global.sk_globalVar_physicsConstraint_yGrav = 0;
-	global.sk_globalVar_physicsConstraint_damping = 1;
+	global.sk_globalVar_physicsConstraint_yGrav = 0.2;
+	global.sk_globalVar_physicsConstraint_damping = 0.9;
 ');
 #macro sk_physics_boneState global.sk_globalVar_physicsConstraint_physicsState
+#macro sk_physics_external_xDisplacement global.sk_globalVar_physicsConstraint_xDisplacement
+#macro sk_physics_external_yDisplacement global.sk_globalVar_physicsConstraint_yDisplacement
 #macro sk_physics_global_xGravity global.sk_globalVar_physicsConstraint_xGrav
 #macro sk_physics_global_yGravity global.sk_globalVar_physicsConstraint_yGrav
 #macro sk_physics_global_dampingRatio global.sk_globalVar_physicsConstraint_damping
@@ -14,6 +18,8 @@ var sk_phys_boneState = sk_physics_boneState;
 if(ds_exists(sk_phys_boneState,ds_type_map)){
 	// use the current physics state to update the bones
 	var sk_phys_rigidBody = argument0[SK_CONSTRAINT_PHYSICS.rigid];
+	var sk_phys_xdisplacement = sk_physics_external_xDisplacement;
+	var sk_phys_ydisplacement = sk_physics_external_yDisplacement;
 	var sk_phys_xgrav = argument0[SK_CONSTRAINT_PHYSICS.XGravFinal]+sk_physics_global_xGravity;
 	var sk_phys_ygrav = argument0[SK_CONSTRAINT_PHYSICS.YGravFinal]+sk_physics_global_yGravity;
 	var sk_phys_damping = clamp(argument0[SK_CONSTRAINT_PHYSICS.dampingFinal]*sk_physics_global_dampingRatio,0,1);
@@ -40,6 +46,7 @@ if(ds_exists(sk_phys_boneState,ds_type_map)){
 			var sk_bone_determinant = (sk_bone_m00*sk_bone_m11)-(sk_bone_m01*sk_bone_m10);
 			var sk_bone_xscale = abs(point_distance(0,0,sk_bone_m00,sk_bone_m01));
 			var sk_bone_yscale = abs(point_distance(0,0,sk_bone_m10,sk_bone_m11));
+			var sk_bone_yshear = -angle_difference(-darctan2(sk_bone_m11,sk_bone_m10),-darctan2(sk_bone_m01,sk_bone_m00));
 			if(sk_bone_determinant<0){
 				// determinant is negative
 				sk_bone_yscale = -sk_bone_yscale;
@@ -56,8 +63,8 @@ if(ds_exists(sk_phys_boneState,ds_type_map)){
 			// apply VERLET to the physics state
 			var sk_phys_px = sk_bone_state[0];
 			var sk_phys_py = sk_bone_state[1];
-			var sk_phys_vx = (sk_phys_px-sk_bone_state[2])*sk_phys_damping;
-			var sk_phys_vy = (sk_phys_py-sk_bone_state[3])*sk_phys_damping;
+			var sk_phys_vx = (sk_phys_px-sk_phys_xdisplacement-sk_bone_state[2])*sk_phys_damping;
+			var sk_phys_vy = (sk_phys_py-sk_phys_ydisplacement-sk_bone_state[3])*sk_phys_damping;
 			sk_bone_state[@ 2] = sk_phys_px; // set previous position
 			sk_bone_state[@ 3] = sk_phys_py;
 			sk_phys_px += sk_phys_vx+sk_phys_xgrav;
@@ -66,18 +73,28 @@ if(ds_exists(sk_phys_boneState,ds_type_map)){
 			var sk_phys_dy = sk_phys_py-sk_phys_pivot_y;
 			var sk_phys_du = max(point_distance(0,0,sk_phys_dx,sk_phys_dy),0.01);
 			if(sk_phys_rigidBody||(sk_phys_du>sk_phys_joint_length)){
+				// constraint length
 				sk_phys_du = sk_phys_joint_length/sk_phys_du;
 				sk_phys_dx *= sk_phys_du;
 				sk_phys_dy *= sk_phys_du;
-				sk_phys_du = sk_phys_joint_length; // bob in constrained to the max length
+				sk_phys_du = sk_phys_joint_length;
 			}
-			sk_phys_px = sk_phys_pivot_x+sk_phys_dx;
+			sk_phys_px = sk_phys_pivot_x+sk_phys_dx; // set current position
 			sk_phys_py = sk_phys_pivot_y+sk_phys_dy;
-			sk_bone_state[@ 0] = sk_phys_px; // set current position
+			sk_bone_state[@ 0] = sk_phys_px;
 			sk_bone_state[@ 1] = sk_phys_py;
+			sk_phys_pivot_x = sk_phys_px;
+			sk_phys_pivot_y = sk_phys_py;
 			// update transformation
 			sk_bone_xscale *= sk_phys_du/sk_phys_joint_length;
 			var sk_bone_rotation = -darctan2(sk_phys_dy,sk_phys_dx);
+			var sk_bone_rotation_y = sk_bone_rotation+90;
+			sk_bone[@ SK_BONE.m00] = dcos(sk_bone_rotation)*sk_bone_xscale;
+			sk_bone[@ SK_BONE.m01] = -dsin(sk_bone_rotation)*sk_bone_xscale;
+			sk_bone[@ SK_BONE.m10] = dcos(sk_bone_rotation_y)*sk_bone_yscale;
+			sk_bone[@ SK_BONE.m11] = -dsin(sk_bone_rotation_y)*sk_bone_yscale;
+			// make applied transform invalid
+			sk_bone[@ SK_BONE.badApplied] = true;
 		}
 	}
 }

@@ -1351,6 +1351,14 @@
             }
         },
         {
+            "Key": "6313ae40-1a31-4ffa-a3be-d664acd53486",
+            "Value": {
+                "id": "277b351e-2fca-435d-815e-4c9ff978f91a",
+                "resourcePath": "scripts\\sk_cache_sort_constraint_physics\\sk_cache_sort_constraint_physics.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "63261063-16fa-4c50-88e2-240d054b73fa",
             "Value": {
                 "id": "eb27fa3c-1b8b-4152-b65f-7360969c9519",
@@ -1515,6 +1523,14 @@
             "Value": {
                 "id": "b3e6f0cc-b1c7-4a8a-81a0-c339a1f826b6",
                 "resourcePath": "scripts\\sk_symbol_get_nested_bone\\sk_symbol_get_nested_bone.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6f7c9e63-8130-489e-be7d-210f21c31d07",
+            "Value": {
+                "id": "e6efed1a-e40d-46d4-97dd-78cf46d8fe18",
+                "resourcePath": "scripts\\sk_armature_find_constraint_physics\\sk_armature_find_constraint_physics.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1915,6 +1931,14 @@
             "Value": {
                 "id": "4d8b8cce-494f-47e8-9e24-db1e899161b6",
                 "resourcePath": "scripts\\sk_armature_find_constraint_ik\\sk_armature_find_constraint_ik.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "99b3ab9d-3b91-498d-8884-353ea7796c96",
+            "Value": {
+                "id": "eb30eeaa-3dfe-44ea-bdf2-e20b91b1c148",
+                "resourcePath": "scripts\\sk_constraint_physics_system_add\\sk_constraint_physics_system_add.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3112,6 +3136,7 @@
         "384197dc-280a-4c8f-97a1-1a2ba542de71",
         "c5541321-9507-4e9d-ba76-bca5f3b55748",
         "38a3cc9c-c16c-4333-88a5-66390626e698",
+        "99b3ab9d-3b91-498d-8884-353ea7796c96",
         "b66e6ca3-8c9e-4538-a1a2-a476fee8ffe8",
         "653ae19c-8ad1-4237-8d16-320a43867bbc",
         "92c84c7f-d5e4-4870-b687-497dc4fab6aa",
@@ -3208,6 +3233,7 @@
         "993eb15e-93ba-430d-a9a7-c4f6518cbed2",
         "2a152425-a230-49b3-af20-ad946f8cc022",
         "599728f2-409f-42cf-b417-e449c142801d",
+        "6f7c9e63-8130-489e-be7d-210f21c31d07",
         "3031514b-9481-40d4-a54a-1a23ccaf1ed7",
         "4bebcbb8-5877-4680-937d-dbb764dae416",
         "a90dd4d0-c0d3-4543-b23a-91ef10b65efd",
@@ -3229,6 +3255,7 @@
         "5ffad707-8506-42dd-80a9-db53b8d21925",
         "c2a770c6-72e9-475d-8efe-00496625b866",
         "715025ae-5683-4e1a-b856-a283ae08f2f4",
+        "6313ae40-1a31-4ffa-a3be-d664acd53486",
         "42e18afb-2347-494e-8aea-f156f8447dba",
         "b1a014b4-0f19-4d20-ac56-790f664573bc",
         "058410e0-c6da-449b-a4d0-245c3bab638a",

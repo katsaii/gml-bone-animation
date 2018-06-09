@@ -5,6 +5,7 @@ if(sk_struct_exists(v_armature,sk_type_armature)&&sk_struct_exists(v_atlas,sk_ty
 	if(sk_struct_exists(v_anim,sk_type_animation)){
 		sk_animation_apply(v_anim,v_timeLast,v_time,sk_mixPose_mix,1);
 	}
+	sk_physics_boneState = v_phys;
 	sk_armature_updateWorldTransform(v_armature);
 	v_timeLast = v_time;
 	v_bufftex = vertex_bake_armature(v_armature,v_atlas,v_buffskel);

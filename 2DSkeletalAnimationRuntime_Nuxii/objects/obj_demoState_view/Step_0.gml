@@ -67,6 +67,7 @@ if(sk_struct_exists(v_armature,sk_type_armature)){
 		v_anim_name = sk_struct_get_name(v_anim);
 		global.current_animation = v_anim;
 	}
+	sk_physics_boneState = noone;
 	sk_armature_updateWorldTransform(v_armature);
 	if(sk_struct_exists(v_bone,sk_type_bone)){
 		v_bone[@ SK_BONE.XWorld] = (mouse_x-x)/v_xscale;
@@ -74,6 +75,7 @@ if(sk_struct_exists(v_armature,sk_type_armature)){
 		v_bone_name = sk_struct_get_name(v_bone);
 		sk_bone_updateAppliedTransform(v_bone);
 	}
+	sk_physics_boneState = v_phys;
 	sk_armature_updateWorldTransform(v_armature);
 	
 	v_timeLast = v_time;

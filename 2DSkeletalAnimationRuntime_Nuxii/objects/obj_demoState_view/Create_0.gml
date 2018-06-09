@@ -13,5 +13,7 @@ v_yscale = 1;
 
 v_init = true;
 
+v_phys = ds_map_create();
+
 x = room_width div 2;
 y = room_height div 2;

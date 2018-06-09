@@ -21,6 +21,7 @@ for(var sk_constraint_id = 0; sk_constraint_id < sk_constraint_count; sk_constra
 		case sk_type_constraint_ik: sk_cache_sort_constraint_ik(sk_updateOrder,sk_constraint); break;
 		case sk_type_constraint_transform: sk_cache_sort_constraint_transform(sk_updateOrder,sk_constraint); break;
 		case sk_type_constraint_hierarchy: sk_cache_sort_constraint_hierarchy(sk_updateOrder,sk_constraint); break;
+		case sk_type_constraint_physics: sk_cache_sort_constraint_physics(sk_updateOrder,sk_constraint); break;
 	}
 }
 // sort remaining bones

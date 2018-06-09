@@ -6,7 +6,8 @@
     "children": [
         "384197dc-280a-4c8f-97a1-1a2ba542de71",
         "c5541321-9507-4e9d-ba76-bca5f3b55748",
-        "38a3cc9c-c16c-4333-88a5-66390626e698"
+        "38a3cc9c-c16c-4333-88a5-66390626e698",
+        "99b3ab9d-3b91-498d-8884-353ea7796c96"
     ],
     "filterType": "GMScript",
     "folderName": "Setup",
