@@ -28,6 +28,19 @@ if(ds_exists(sk_phys_boneState,ds_type_map)){
 	var sk_phys_bone_count = ds_list_size(sk_phys_bones);
 	var sk_phys_pivot_x = 0;
 	var sk_phys_pivot_y = 0;
+	// if the end effector exists, perform backwards kinematics first
+	var sk_phys_effector = argument0[SK_CONSTRAINT_PHYSICS.boneEffector];
+	if(sk_struct_exists(sk_phys_effector,sk_type_bone)){
+		sk_phys_pivot_x = sk_phys_effector[SK_BONE.XWorld];
+		sk_phys_pivot_y = sk_phys_effector[SK_BONE.YWorld];
+		for(var sk_phys_bone_id = sk_phys_bone_count-1; sk_phys_bone_id > 0; sk_phys_bone_id--){
+			var sk_bone = sk_phys_bones[| sk_phys_bone_id];
+			if(sk_struct_exists(sk_bone,sk_type_bone)){
+				
+			}
+		}
+	}
+	// perform forward kinematics
 	for(var sk_phys_bone_id = 0; sk_phys_bone_id < sk_phys_bone_count; sk_phys_bone_id++){
 		var sk_bone = sk_phys_bones[| sk_phys_bone_id];
 		if(sk_struct_exists(sk_bone,sk_type_bone)){

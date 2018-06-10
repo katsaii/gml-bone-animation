@@ -810,7 +810,7 @@
             "Key": "384197dc-280a-4c8f-97a1-1a2ba542de71",
             "Value": {
                 "id": "abc5efe0-5789-4f1c-b3a5-84b5893fc132",
-                "resourcePath": "scripts\\sk_constraint_physics_set_state\\sk_constraint_physics_set_state.yy",
+                "resourcePath": "scripts\\sk_constraint_physics_set_rigid\\sk_constraint_physics_set_rigid.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2967,6 +2967,14 @@
             }
         },
         {
+            "Key": "f4d098d5-e753-4191-9b96-4a1954bddf70",
+            "Value": {
+                "id": "605a262a-5063-4b40-aba5-d52f61856a61",
+                "resourcePath": "scripts\\sk_constraint_physics_set_effector\\sk_constraint_physics_set_effector.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f4f656ca-258c-4044-b0b6-3b4c0aa21914",
             "Value": {
                 "id": "69f45f1a-9884-42f1-9069-a58aa7c68052",
@@ -3134,6 +3142,7 @@
         "711a0c3c-4449-47c0-8257-ebc9ef8c2aae",
         "3b79816a-55ef-4fad-8a76-36fcace30759",
         "384197dc-280a-4c8f-97a1-1a2ba542de71",
+        "f4d098d5-e753-4191-9b96-4a1954bddf70",
         "c5541321-9507-4e9d-ba76-bca5f3b55748",
         "38a3cc9c-c16c-4333-88a5-66390626e698",
         "99b3ab9d-3b91-498d-8884-353ea7796c96",

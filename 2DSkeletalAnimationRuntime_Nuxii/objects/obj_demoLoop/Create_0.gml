@@ -73,7 +73,7 @@ var m_skel_type = "dragonbones";
 m_load_data;
 
 var constraint = sk_constraint_create_physics("phys");
-sk_constraint_physics_set_state(constraint,false);
+sk_constraint_physics_set_rigid(constraint,false);
 sk_constraint_physics_system_add(constraint,sk_armature_find_bone(new_armature,"b_hair_strand"));
 sk_constraint_physics_system_add(constraint,sk_armature_find_bone(new_armature,"b_hair_fringe"));
 sk_armature_add_constraint(new_armature,constraint);
