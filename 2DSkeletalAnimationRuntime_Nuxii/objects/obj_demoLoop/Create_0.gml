@@ -73,11 +73,20 @@ var m_skel_type = "dragonbones";
 m_load_data;
 
 var constraint = sk_constraint_create_physics("phys");
-sk_constraint_physics_set_rigid(constraint,false);
-sk_constraint_physics_system_add(constraint,sk_armature_find_bone(new_armature,"b_hair_strand"));
-sk_constraint_physics_system_add(constraint,sk_armature_find_bone(new_armature,"b_hair_fringe"));
+sk_constraint_physics_set_rigid(constraint,true);
+var b2 = sk_bone_create("endeffector"); sk_bone_set_length(b2,1); sk_armature_add_bone(new_armature,b2);
+sk_constraint_physics_set_effectors(constraint,sk_armature_find_bone(new_armature,"b_hip"),b2);
+	var b = sk_bone_create("a"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(new_armature,b);
+		b = sk_bone_create("b"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(new_armature,b);
+		b = sk_bone_create("c"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(new_armature,b);
+		b = sk_bone_create("d"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(new_armature,b);
+		b = sk_bone_create("e"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(new_armature,b);
+		b = sk_bone_create("f"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(new_armature,b);
 sk_armature_add_constraint(new_armature,constraint);
 sk_armature_updateCache(new_armature);
+
+sk_animation_apply(sk_armature_find_animation(new_armature,"display_costume_top_classic"),0,0,sk_mixPose_overwrite,1);
+sk_animation_apply(sk_armature_find_animation(new_armature,"display_costume_bottom_classic"),0,0,sk_mixPose_overwrite,1);
 
 var PATH_SPRITER = "Skeletons/Spriter/BrashMonkey/Platformer/";
 var m_path_tex = PATH_SPRITER+"outJSON.png";

@@ -7,6 +7,9 @@ if(sk_struct_exists(argument1,sk_type_constraint_physics)){
 	for(var sk_bone_id = 0; sk_bone_id < sk_bone_count; sk_bone_id++){
 		sk_cache_sort_bone(argument0,sk_boneSystem[| sk_bone_id]);
 	}
+	// sort effectors
+	sk_cache_sort_bone(argument0,argument1[SK_CONSTRAINT_PHYSICS.boneAnchor]);
+	sk_cache_sort_bone(argument0,argument1[SK_CONSTRAINT_PHYSICS.boneEffector]);
 	// add final constraint to cache
 	ds_list_add(argument0,argument1);
 }

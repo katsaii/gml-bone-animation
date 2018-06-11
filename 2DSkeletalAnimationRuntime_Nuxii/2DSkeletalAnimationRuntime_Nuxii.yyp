@@ -2970,7 +2970,7 @@
             "Key": "f4d098d5-e753-4191-9b96-4a1954bddf70",
             "Value": {
                 "id": "605a262a-5063-4b40-aba5-d52f61856a61",
-                "resourcePath": "scripts\\sk_constraint_physics_set_effector\\sk_constraint_physics_set_effector.yy",
+                "resourcePath": "scripts\\sk_constraint_physics_set_effectors\\sk_constraint_physics_set_effectors.yy",
                 "resourceType": "GMScript"
             }
         },
