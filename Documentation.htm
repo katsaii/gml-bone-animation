@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>2DSkeletalAnimation Script Documentation</title>
+		<style>
+		body{
+			background-color: #110010;
+			font-family: Arial, serif;
+			font-size: 14px;
+			white-space: pre-line;
+			display: inline;
+			color: #f1f1f1;
+		}
+		p{
+			margin-left: 5px;
+		}
+		a{
+			font-weight: bold;
+			text-decoration-line: none;
+			color: #ff43a4;
+		}
+		.title{
+			background-color: #ff43a4;
+			font-weight: bold;
+			font-size: 25px;
+			color: #f1f1f1;
+		}
+		.brief{
+			font-weight: bold;
+			font-style: italic;
+			margin-left: 20px;
+		}
+		.subtitle{
+			background-color: #281927;
+			font-size: 17px;
+			border-radius: 25px;
+			padding: 7px 14px 7px 14px;
+			margin-left: 5px;
+			display: inline-flex;
+		}
+		.subtitle::after{
+			content: ":";
+		}
+		.code{
+			background-color: #281927;
+			font-family: "Courier New", monospace;
+			border-radius: 10px;
+			border: 1px solid #dfdfe5;
+			padding: 7px 9px 7px 9px;
+			margin: 14px 100px 0px 55px;
+			display: block;
+		}
+		.returns::before{
+			content: "Returns: ";
+			font-weight: bold;
+			margin-left: 20px;
+		}
+		.footer{
+			background-color: #110010;
+			vertical-align: middle;
+			text-align: center;
+			position: fixed;
+			padding: 3px;
+			bottom: 1px;
+			width: 100%;
+		}
+		table {
+			width:70%; 
+			margin-left:15%; 
+			margin-right:15%;
+		}
+		table, td, th {
+			white-space: normal;
+			border-collapse: collapse;
+			border: 1px solid #ff43a4;
+			text-align: left;
+			color: #f1f1f1;
+		}
+		th {
+			background-color: #ff43a4;
+			text-align: center;
+		}
+		tr:nth-child(even) {
+			background-color: #661a41;
+		}
+		tr:nth-child(odd) {
+			background-color: #7f2152;
+		}		
+		</style>
+	</head>
+	<body>
+		<div id="test_scr">
+			<div class="title">scr_test</div>
+			<div class="brief">Does a thing!</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">scr_test(data, value, argument);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>data</td>
+					<td>An argument.</td>
+				</tr>
+				<tr>
+					<td>value</td>
+					<td>An argument.</td>
+				</tr>
+				<tr>
+					<td>argument</td>
+					<td>An argument.</td>
+				</tr>
+			</table>
+			<div class="returns">N/A</div>
+			<div class="subtitle">Description</div>
+			<p>This does what the thing does. For more information see <a href="#">scr_other_thing</a>.</p>
+			<div class="subtitle">Example</div>
+			<div class="code">// call the script
+			scr_test(10, 0.1, "arg");</div>
+			<p>The example code will do the thing previously stated, then do another thing not previously stated with these variables.</p>
+			
+			<div class="footer"><a href="#">return to top</a></div>
+		</div>
+	</body>
+</html>
