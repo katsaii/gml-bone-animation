@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>2DSkeletalAnimation Script Documentation</title>
+		<script type="text/javascript">
+			// update the tag
+            function js_find_tag(){
+				var js_searchBar = document.getElementById("js_search");
+				location.href = "#"+js_searchBar.value;
+				js_searchBar.value = ""; // reset value
+			}
+			// create event listener for the search bar
+			window.addEventListener("load",
+				function(){
+					document.getElementById("js_search").addEventListener("keypress",
+						function(e){
+							if(e.keyCode==13){
+								js_find_tag();
+							}
+						}
+					);
+					// create custom tags
+					document.createElement('documentation');
+				}
+			);
+        </script>
+		<style>
+			body{
+				background-color: #281927;
+				font-family: Arial, serif;
+				font-size: 14px;
+				color: #ddd0dc;
+			}
+			p{
+				margin-left: 5px;
+			}
+			a{
+				font-weight: bold;
+				text-decoration-line: none;
+				color: #ff43a4;
+			}
+			documentation::after{
+				content: " ";
+				display: block;
+				border-bottom: 2px solid #ddd0dc;
+			}
+			.title{
+				background-color: #c44687;
+				font-weight: bold;
+				font-size: 25px;
+				margin-bottom: 20px;
+				padding-left: 5px;
+				padding-bottom: 2px;
+			}
+			.brief{
+				font-weight: bold;
+				font-style: italic;
+				margin-left: 20px;
+			}
+			.subtitle{
+				background-color: #1c111b;
+				font-size: 17px;
+				border-radius: 25px;
+				padding: 7px 14px 7px 14px;
+				margin-left: 5px;
+				margin-top: 20px;
+				margin-bottom: 10px;
+				display: inline-flex;
+			}
+			.subtitle::after{
+				content: ":";
+			}
+			.code{
+				background-color: #1c111b;
+				font-family: "Courier New", monospace;
+				border-radius: 10px;
+				padding: 7px 9px 7px 9px;
+				margin-left: 55px;
+				margin-right: 100px;
+				display: block;
+				white-space: pre-line;
+			}
+			.returns::before{
+				content: "Returns: ";
+				font-weight: bold;
+				margin-left: 20px;
+			}
+			.footer{
+				background-color: #1c111b;
+				position: fixed;
+				padding: 1px 1px 1px 3px;
+				bottom: 0px;
+				width: 100%;
+				height: 30px;
+			}
+			table{
+				width:70%; 
+				margin-left:15%; 
+				margin-right:15%;
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+			table, td, th{
+				white-space: normal;
+				border-collapse: collapse;
+				border: 1px solid #c44687;
+				text-align: left;
+				color: #f1f1f1;
+			}
+			th{
+				background-color: #c44687;
+				text-align: center;
+			}
+			tr:nth-child(even){
+				background-color: #392d3d;
+			}
+			tr:nth-child(odd){
+				background-color: #2d2330;
+			}
+			input{
+				background-color: #ddd0dc;
+				color: #281927;
+				border-style: none;
+			}
+			button{
+				background-color: #589d62;
+				color: #281927;
+				border-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="footer">
+			<a href="#ref_home" style="font-size: 20px; margin-left: 5px; margin-right: 10px;">🏠</a>
+			<input type="text" id="js_search" placeholder="Search for a script name..." /><button type="submit" onclick="js_find_tag();">►</button>
+		</div>
+		<!--Content-->
+		<documentation id="ref_home">
+			<div class="title">Home 🏠</div>
+			<p><i>If you are lost and want to return to this page, press the home symbol at the bottom left hand of the screen. Alternatively, if you are looking for a specific script, please use the search box located adjacent to said home button.</i></p>
+			<p>Thank you for downloading this package! This runtime includes a vast range of scripts for constructing, accessing, managing, and rendering your own skeletal animations at runtime. Included in these scripts are proceedures for automatically decoding atlas and armature files from your favourite skeletal animation software into structures for use with your game.</p>
+			<img src="./Assets/jumbotron.gif" style="display: block; margin-left: auto; margin-right: auto; width: 30%;"/>
+			<div class="subtitle">Building and Rendering Your Skeletons</div>
+			<p>This section will help get you started by introducing you to the system and its components, as well as describing how to perform the basic loading and manipulation of your skeleton data:</p>
+			<ul>
+				<li><a href="#ref_overview">Overview</a></li>
+				<li><a href="#ref_updatingYourArmature">Updating Your Armature</a></li>
+				<li><a href="#ref_bakingSkeleton2VB">Baking Skeleton Data</a></li>
+				<li><a href="#ref_debugOverlay">Debug Overlay</a></li>
+			</ul>
+			<div class="subtitle">Advanced Use</div>
+			<p>If you want to get more familiar with the nitty-gritty of system, or learn some useful techniques for manipulating your skeleton data at runtime, this is the place for you. This section will go over the more overwhelming and powerful aspects of the runtime to help you get the most out of your animations:</p>
+			<ul>
+				<li><a href="#ref_structs">Structure Types</a></li>
+				<li><a href="#ref_animationState">Animation State</a></li>
+				<li><a href="#ref_proceeduralAnim">Proceedural Animation</a></li>
+				<li><a href="#ref_skeletalManipulation">Manipulating Skeleton Data</a></li>
+				<li><a href="#ref_usefulTechniques">Useful Techniques</a></li>
+			</ul>
+			<div class="subtitle">Links</div>
+			<p>If you're having trouble or want to keep up to date, please visit one of the following links:</p>
+			<ul>
+				<li><a target="_blank" href="https://twitter.com/TAT3XD">My Twitter</a></li>
+				<li><a target="_blank" href="https://forum.yoyogames.com/index.php?threads/2d-skeletal-animation-physics-integration.44898/">GMC Forum Post</a></li>
+				<li><a target="_blank" href="https://github.com/NuxiiGit/GML2DSkeletalAnimation">GitHub Project Repository</a></li>
+			</ul>
+		</documentation>
+		<documentation id="ref_overview">
+			<div class="title">Overview</div>
+		</documentation>
+		<documentation id="ref_updatingYourArmature">
+			<div class="title">Updating Your Armature</div>
+		</documentation>
+		<documentation id="ref_bakingSkeleton2VB">
+			<div class="title">Baking Skeleton Data</div>
+		</documentation>
+		<documentation id="ref_debugOverlay">
+			<div class="title">Debug Overlay</div>
+		</documentation>
+		<documentation id="ref_structs">
+			<div class="title">Structure Types</div>
+		</documentation>
+		<documentation id="ref_animationState">
+			<div class="title">Animation State</div>
+		</documentation>
+		<documentation id="ref_proceeduralAnim">
+			<div class="title">Proceedural Animation</div>
+		</documentation>
+		<documentation id="ref_skeletalManipulation">
+			<div class="title">Manipulating Skeleton Data</div>
+		</documentation>
+		<documentation id="ref_usefulTechniques">
+			<div class="title">Useful Techniques</div>
+		</documentation>
+		<documentation id="scr_test">
+			<div class="title">scr_test</div>
+			<div class="brief">Does a thing!</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">scr_test(data, value, argument);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>data</td>
+					<td>An argument.</td>
+				</tr>
+				<tr>
+					<td>value</td>
+					<td>An argument.</td>
+				</tr>
+				<tr>
+					<td>argument</td>
+					<td>An argument.</td>
+				</tr>
+			</table>
+			<div class="returns">N/A</div>
+			<div class="subtitle">Description</div>
+			<p>This does what the thing does. For more information see <a href="#scr_other_thing">scr_other_thing</a>.</p>
+			<div class="subtitle">Example</div>
+			<div class="code">// call the script
+			scr_test(10, 0.1, "arg");</div>
+			<p>The example code will do the thing previously stated, then do another thing not previously stated with these variables.</p>
+			<br/><br/><br/><br/><br/><br/><br/><br/>
+		</documentation>
+	</body>
+</html>

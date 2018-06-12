@@ -1,0 +1,80 @@
+In-Dev Version 0:
+21/05/2018 23:49 - Added support for non-shearing inheritance (similar to how Spriter inherits bone scale)
+21/05/2018 23:49 - Added a new type of image: The "Symbol", taking inspiration from flash animation programs.
+21/05/2018 17:58 - Converted system from ds_lists into a more robust and efficient hybrid of arrays and data structures.
+14/05/2018 21:46 - Updated DragonBones importer to version 5.6, which now includes IK constraint timelines.
+14/05/2018 21:46 - Fixed a bug with timelines where first frames were being mixed prematurely.
+14/05/2018 16:44 - Implemented limited support for Spine runtime.
+14/05/2018 16:44 - Revamped drawOrder timeline so its more robust and stores more information with minimal additional overhead.
+12/05/2018 21:51 - Implemented support for the libgdx texture atlas format (the .atlas files Spine uses!)
+12/05/2018 19:07 - Polished physics constraint code.
+12/05/2018 19:07 - Physics constraints now support rigid bodies and soft bodies.
+12/05/2018 19:07 - Revamped the way inheritance works, fixing various constraint issues.
+12/05/2018 00:39 - Added physics constraint which allows for jiggle bones that interact procedurally with animation movement.
+11/05/2018 21:24 - Added hierarchy constraint to automate the dynamic re-parenting of bones.
+11/05/2018 21:24 - Major cleanup and refactoring.
+04/05/2018 20:32 - Added individual procedures for handling dynamic re-parenting of bones.
+04/05/2018 20:32 - Fixed bugs with constraints not correcting applied transforms.
+04/05/2018 15:36 - Added procedure to correct applied transforms using world transform.
+04/05/2018 15:36 - Removed dynamic re-parenting from sk_bone_updateWorldTransform_ext, since it causes more problems than it solves.
+04/05/2018 15:36 - Cleanup.
+26/04/2018 22:05 - Minor efficiency improvements.
+26/04/2018 18:57 - Implemented binary search.
+26/04/2018 18:57 - Changed the way keyframes of a timeline are located, instead of getting the next frame, the current frame is obtained instead.
+26/04/2018 18:57 - Fixed bug with timelines where the first keyframe was never being obtained, meanign some events were unable to be thrown.
+26/04/2018 18:57 - Added attachment remaps and stacks to skin structures - these work in the same way as character maps in Spriter.
+25/04/2018 20:35 - Revamped the way events are stored, managed, and thrown during animations. See Appendix #6.
+25/04/2018 20:35 - Updated the dragonbones importer to import event and draw order timeline data.
+25/04/2018 00:54 - Implemented transform constraint timeline.
+25/04/2018 00:54 - Implemented draw order timeline.
+25/04/2018 00:54 - Implemented update order timeline.
+25/04/2018 00:54 - Fixed a bug with transformation constraints where they would transform incorrectly.
+25/04/2018 00:54 - Updated the way attachments are stored in slots, so they are only obtained when required from a nested ds_map.
+25/04/2018 00:54 - Added calling script attribute to custom events to define a script to call.
+23/04/2018 16:05 - General cleanup and improvements.
+22/04/2018 12:59 - Added custom "plane" attachments, which use a matrix instead of a region.
+22/04/2018 12:59 - Added point attachments.
+22/04/2018 12:59 - Added transformation constraints.
+22/04/2018 12:59 - Preparation for spriter support.
+18/04/2018 00:49 - Reconverted system from arrays to ds_lists. See Appendix #5.
+17/04/2018 17:23 - Added shear transforms.
+17/04/2018 17:23 - Revamped bone inheritance and transform modes.
+17/04/2018 17:23 - Major Preparation for point attachments and transform constraints.
+12/04/2018 14:05 - Minor preparation for mesh and clipping attachments, etc...
+12/04/2018 14:05 - Implemented the Spriter texture atlas format.
+11/04/2018 23:49 - Added support for cropped pages and pages not of a power of two. See Appendix #4.
+10/04/2018 23:13 - Added support for rotated regions in atlas' (90 degrees counter clockwise).
+02/04/2018 23:08 - Added slot attribute: attachmentFinal. See Appendix #3.
+02/04/2018 23:08 - Moved slots to the armature cache; cutting the minimum number of loops per process in half!
+02/04/2018 23:08 - Added Event timeline.
+02/04/2018 23:08 - Added IK weight and bend timelines.
+02/04/2018 23:08 - Decomposed the Atlas and Armature structures into a format where data is independent of where it is stored. See Appendix #2.
+02/04/2018 23:08 - Converted system from static data to dynamically defined data. See Appendix #1.
+02/04/2018 23:08 - [REDACTED] Converted system from ds_lists to arrays, this should hopefully result in a performance boost.
+26/03/2018 15:59 - Added support for un-inherited scales for single bone systems.
+26/03/2018 00:55 - Fixed a bug where IK constraints were getting erroneous solutions with non-uniform scales.
+
+Appendix:
+This allows you to create and remove bones and other skeleton data on the fly.
+
+This makes these structures become more of an organised store of data with a few nifty functions to make your life easier, compared to the previous where each were practically the foundation of the entire system.
+However, all this can even now be avoided if you desire by creating the skeleton data manually, for example: making a simple bone system that animates without requiring the overhead of the armature and atlas.
+
+This can be altered after calling 'sk_armature_updateWorldTransform' to set the visible attachment for this slot (this is overwritten every step so its not permanent; if you want permanent, consider setting the attachment to the slots display list using 'sk_slot_add_attachment').
+
+This does not include sprites created using sprite_add (and other sister functions).
+
+The reason for this is due to arrays seeming to offer no performance gain at the expense of convenience; I ran some benchmarks and everything points towards lists being faster than arrays at runtime and startup. Results: https://pastebin.com/9MgzJQtE
+
+Events are no longer managed manually by passing a ds_list to the animation proceedure; you now tell the event what script to execute like so:
+Code:
+var myEvent = sk_armature_find_event(myArmature,"myEvent");
+sk_event_setScript(myEvent,myScript);
+...and each time the event is thrown, it executes this script with the arguments being the data defined in your animation software:
+Code:
+argument0 <- boneData (this is a DragonBones specific attribute, but can be manipulated at runtime if you use an alternate piece of software)
+argument1 <- string
+argument2 <- real
+argument3 <- int
+argument4 <- sound
+...I believe this to be a more intuitive than constantly polling for a specific event by checking whether it exists within the supplied ds_list.
