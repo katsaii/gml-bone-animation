@@ -20,7 +20,7 @@
 						}
 					);
 					// create custom tags
-					document.createElement('documentation');
+					document.createElement("documentation");
 				}
 			);
         </script>
@@ -38,11 +38,6 @@
 				font-weight: bold;
 				text-decoration-line: none;
 				color: #ff43a4;
-			}
-			documentation::after{
-				content: " ";
-				display: block;
-				border-bottom: 2px solid #ddd0dc;
 			}
 			.title{
 				background-color: #c44687;
@@ -78,7 +73,6 @@
 				margin-left: 55px;
 				margin-right: 100px;
 				display: block;
-				white-space: pre-line;
 			}
 			.returns::before{
 				content: "Returns: ";
@@ -101,7 +95,6 @@
 				margin-bottom: 20px;
 			}
 			table, td, th{
-				white-space: normal;
 				border-collapse: collapse;
 				border: 1px solid #c44687;
 				text-align: left;
@@ -134,7 +127,9 @@
 			<a href="#ref_home" style="font-size: 20px; margin-left: 5px; margin-right: 10px;">🏠</a>
 			<input type="text" id="js_search" placeholder="Search for a script name..." /><button type="submit" onclick="js_find_tag();">►</button>
 		</div>
-		<!--Content-->
+		<!--
+			Documentation
+		-->
 		<documentation id="ref_home">
 			<div class="title">Home 🏠</div>
 			<p><i>If you are lost and want to return to this page, press the home symbol at the bottom left hand of the screen. Alternatively, if you are looking for a specific script, please use the search box located adjacent to said home button.</i></p>
@@ -176,6 +171,13 @@
 		</documentation>
 		<documentation id="ref_debugOverlay">
 			<div class="title">Debug Overlay</div>
+			<p>When you have finished building your Armature/Atlas for the first time, you may need to check whether all the data was loaded correctly. That's where the following scripts relating to debugging come in handy:</p>
+			<ul>
+				<li><a href="#sk_armature_draw_debug">sk_armature_draw_debug</a></li>
+				<li><a href="#sk_atlas_draw_debug">sk_atlas_draw_debug</a></li>
+				<li><a href="#sk_bone_draw_debug">sk_bone_draw_debug</a></li>
+			</ul>
+			<p>Additionally, these functions are particularly useful in the case of modding, since you can supply these debug views to the community so they know what they've done is correct.</p>
 		</documentation>
 		<documentation id="ref_structs">
 			<div class="title">Structure Types</div>
@@ -192,37 +194,324 @@
 		<documentation id="ref_usefulTechniques">
 			<div class="title">Useful Techniques</div>
 		</documentation>
-		<documentation id="scr_test">
-			<div class="title">scr_test</div>
-			<div class="brief">Does a thing!</div>
+		<!--
+			Scripts
+		-->
+		<documentation id="sk_struct_type_add">
+			<div class="title">sk_struct_type_add</div>
+			<div class="brief">Creates a structure type template for future construction of child types.</div>
 			<div class="subtitle">Syntax</div>
-			<div class="code">scr_test(data, value, argument);</div>
+			<div class="code">sk_struct_type_add(type, size, constructor, destructor);</div>
 			<table>
 				<tr>
 					<th>Argument</th>
 					<th>Description</th>
 				</tr>
 				<tr>
-					<td>data</td>
-					<td>An argument.</td>
+					<td>type</td>
+					<td>The name of the structure type.</td>
 				</tr>
 				<tr>
-					<td>value</td>
-					<td>An argument.</td>
+					<td>size</td>
+					<td>The number of indicies to allocate for storing data.</td>
 				</tr>
 				<tr>
-					<td>argument</td>
-					<td>An argument.</td>
+					<td>constructor</td>
+					<td>An index of the script that is called when constructing the structure with <a href="#sk_struct_create">sk_struct_create</a>.</td>
+				</tr>
+				<tr>
+					<td>destructor</td>
+					<td>An index of the script that is called when destroying the structure with <a href="#sk_struct_destroy">sk_struct_destroy</a>.</td>
 				</tr>
 			</table>
 			<div class="returns">N/A</div>
 			<div class="subtitle">Description</div>
-			<p>This does what the thing does. For more information see <a href="#scr_other_thing">scr_other_thing</a>.</p>
+			<p>This script can be used to define your own structure types for use with the runtime. These types will then be used as pseudo <i>class</i> templates when creating child structures.</p>
+			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
 			<div class="subtitle">Example</div>
-			<div class="code">// call the script
-			scr_test(10, 0.1, "arg");</div>
-			<p>The example code will do the thing previously stated, then do another thing not previously stated with these variables.</p>
-			<br/><br/><br/><br/><br/><br/><br/><br/>
+			<div class="code"><pre>
+enum vec2{
+    X,Y,
+    sizeof /* sizeof is used to allocate suitable space */
+}
+sk_struct_type_add("2Dvector",vec2.sizeof,-1,-1);
+var my_vector = sk_struct_create("2Dvector","position");
+my_vector[@ vec2.X] = x;
+my_vector[@ vec2.Y] = y;</pre></div>
+			<p>The example code will create a new structure type called "2Dvector". Afterwards, a new instance of "2Dvector" (called "position") is created and has its position changed.</p>
 		</documentation>
+		<documentation id="sk_struct_type_exists">
+			<div class="title">sk_struct_type_exists</div>
+			<div class="brief">Returns whether the supplied type exists.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">var result = sk_struct_type_exists(type);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>type</td>
+					<td>The name of the structure type.</td>
+				</tr>
+			</table>
+			<div class="returns">Boolean (True/False)</div>
+			<div class="subtitle">Description</div>
+			<p>This script can be used to check whether a structure type exists before accessing it.</p>
+			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
+			<div class="subtitle">Example</div>
+			<p><i>The following example assumes a structure type "2Dvector" exists prior.</i></p>
+			<div class="code"><pre>
+var my_vector = noone;
+if(sk_struct_type_exists("2Dvector")){
+    my_vector = sk_struct_create("2Dvector","position");
+    my_vector[@ vec2.X] = x;
+    my_vector[@ vec2.Y] = y;
+}</pre></div>
+			<p>The example code will check whether a structure type called "2Dvector" exists, and if it does, stores a new instance of that type in the variable "my_vector".</p>
+		</documentation>
+		<documentation id="sk_struct_create">
+			<div class="title">sk_struct_create</div>
+			<div class="brief">Creates a new structure instance and returns its reference.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">var struct = sk_struct_create(type, name);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>type</td>
+					<td>The name of the structure type.</td>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td>The name of the structure <i>(this is used to identify the structure in the future)</i>.</td>
+				</tr>
+			</table>
+			<div class="returns">struct (actually, its an array reference)</div>
+			<div class="subtitle">Description</div>
+			<p>This script is used to create a new instance of a supplied structure type.</p>
+			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
+			<div class="subtitle">Example</div>
+			<p><i>The following example assumes a structure type "2Dvector" exists prior.</i></p>
+			<div class="code"><pre>
+var my_vector = noone;
+if(sk_struct_type_exists("2Dvector")){
+    my_vector = sk_struct_create("2Dvector","position");
+    my_vector[@ vec2.X] = x;
+    my_vector[@ vec2.Y] = y;
+}</pre></div>
+			<p>The example code will check whether a structure type called "2Dvector" exists, and if it does, stores a new instance of that type in the variable "my_vector".</p>
+		</documentation>
+		<documentation id="sk_struct_destroy">
+			<div class="title">sk_struct_destroy</div>
+			<div class="brief">Makes the supplied structure unidentifiable, and frees the nested data attributed to it.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">sk_struct_destroy(struct);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>struct</td>
+					<td>The reference to the structure instance you want to dispose.</td>
+				</tr>
+			</table>
+			<div class="returns">N/A</div>
+			<div class="subtitle">Description</div>
+			<p>This script is used to call the destructor script on a specific structure instance; since [arrays] cannot be explicitly destroyed, you should always remove all previous references by setting your variable a value such as '0'.</p>
+			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
+			<div class="subtitle">Example</div>
+			<p><i>The following example assumes a structure type "2Dvector" exists prior.</i></p>
+			<div class="code"><pre>
+var my_vector = sk_struct_create("2Dvector","position");
+sk_struct_destroy(my_vector);
+my_vector = 0;</pre></div>
+			<p>The example code will create a new instance of "2Dvector". Afterwards, that same structure is promptly destroyed and its reference set to '0', so that its container can be garbage collected.</p>
+		</documentation>
+		<documentation id="sk_struct_exists">
+			<div class="title">sk_struct_exists</div>
+			<div class="brief">Returns whether the supplied structure instance exists.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">var result = sk_struct_exists(struct, type);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>struct</td>
+					<td>The reference to the structure instance.</td>
+				</tr>
+				<tr>
+					<td>type</td>
+					<td>The name of the structure type.</td>
+				</tr>
+			</table>
+			<div class="returns">Boolean (True/False)</div>
+			<div class="subtitle">Description</div>
+			<p>This script is used to check whether the supplied structure exists before accessing it.</p>
+			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
+			<div class="subtitle">Example</div>
+			<p><i>The following example assumes a structure type "2Dvector" exists prior.</i></p>
+			<div class="code"><pre>
+var is_a_vector = sk_struct_create("2Dvector","position");
+var is_not_a_vector = noone;
+show_message(sk_struct_exists(is_a_vector,"2Dvector"));
+show_message(sk_struct_exists(is_not_a_vector,"2Dvector"));
+</pre></div>
+			<p>The example code will produce two message boxes; the first will output true (1), and the second will output false (0).</p>
+		</documentation>
+		<documentation id="sk_struct_get_type">
+			<div class="title">sk_struct_get_type</div>
+			<div class="brief">Returns the type of the structure instance.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">var type = sk_struct_get_type(struct);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>struct</td>
+					<td>The reference to the structure instance.</td>
+				</tr>
+			</table>
+			<div class="returns">String</div>
+			<div class="subtitle">Description</div>
+			<p>This script is used to find the structure type of the supplied structure instance.</p>
+			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
+			<div class="subtitle">Example</div>
+			<p><i>The following example assumes a structure instance "my_structure" exists prior.</i></p>
+			<div class="code"><pre>
+var my_name = sk_struct_get_name(my_structure);
+var my_type = sk_struct_get_type(my_structure);</pre></div>
+			<p>The example code will store the name and type, of the pre-defined structure (located in the variable "my_structure"), in corresponding variables.</p>
+		</documentation>
+		<documentation id="sk_struct_get_name">
+			<div class="title">sk_struct_get_name</div>
+			<div class="brief">Returns the name of the structure instance.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">var name = sk_struct_get_name(struct);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>struct</td>
+					<td>The reference to the structure instance.</td>
+				</tr>
+			</table>
+			<div class="returns">String</div>
+			<div class="subtitle">Description</div>
+			<p>This script is used to find the name of the supplied structure instance.</p>
+			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
+			<div class="subtitle">Example</div>
+			<p><i>The following example assumes a structure instance "my_structure" exists prior.</i></p>
+			<div class="code"><pre>
+var my_name = sk_struct_get_name(my_structure);
+var my_type = sk_struct_get_type(my_structure);</pre></div>
+			<p>The example code will store the name and type, of the pre-defined structure (located in the variable "my_structure"), in corresponding variables.</p>
+		</documentation>
+		
+		<documentation id="sk_bone_create">
+			<div class="title">sk_bone_create</div>
+			<div class="brief">Creates a new bone structure and returns its reference.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">var bone = sk_bone_create(name);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td>The name of the structure.</td>
+				</tr>
+			</table>
+			<div class="returns">Bone</div>
+			<div class="subtitle">Description</div>
+			<p>This script can be used to create a new bone at runtime; these can be added to an armature using <a href="#sk_armature_add_bone">sk_armature_add_bone</a>.</p>
+			<p>This script also comes packaged with a selection of constants used for accessing and manipulating bone data:</p>
+			<table>
+				<tr>
+					<th>Constant(s) / SK_BONE.[...]</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>X, Y</td>
+					<td>The setup pose X and Y displacements of the bone.</td>
+				</tr>
+				<tr>
+					<td>XScale, YScale</td>
+					<td>The setup pose X and Y scales of the bone.</td>
+				</tr>
+				<tr>
+					<td>XShear, YShear</td>
+					<td>The setup pose X and Y shears of the bone.</td>
+				</tr>
+				<tr>
+					<td>rotation</td>
+					<td>The setup pose rotation of the bone.</td>
+				</tr>
+				<tr>
+					<td>XApplied, YApplied</td>
+					<td>The applied pose X and Y displacements of the bone.</td>
+				</tr>
+				<tr>
+					<td>XScaleApplied, YScaleApplied</td>
+					<td>The applied pose X and Y scales of the bone.</td>
+				</tr>
+				<tr>
+					<td>XShearApplied, YShearApplied</td>
+					<td>The applied pose X and Y shears of the bone.</td>
+				</tr>
+				<tr>
+					<td>rotationApplied</td>
+					<td>The applied pose rotation of the bone.</td>
+				</tr>
+				<tr>
+					<td>XWorld, YWorld</td>
+					<td>The world displacement of the bone.</td>
+				</tr>
+				<tr>
+					<td>m00, m01, m10, m11</td>
+					<td>The world 2x2 rotation matrix of the bone.</td>
+				</tr>
+				<tr>
+					<td>badApplied</td>
+					<td>A flag that represents whether the current applied pose is valid for the current world transform.</td>
+				</tr>
+				<tr>
+					<td>transformMode</td>
+					<td>The transformMode of the bone (see <a href="#sk_bone_set_transformMode">sk_bone_set_transformMode</a>).</td>
+				</tr>
+				<tr>
+					<td>length</td>
+					<td>The length of the bone (this is used for IK and other constraints).</td>
+				</tr>
+				<tr>
+					<td>parent</td>
+					<td>A reference to the bone's parent bone.</td>
+				</tr>
+				<tr>
+					<td>sizeof</td>
+					<td>The size of the bone structure.</td>
+				</tr>
+			</table>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+var my_bone = bone_create("b_arm");
+var bone_world_x = my_bone[SK_BONE.XWorld];
+var bone_world_y = my_bone[SK_BONE.YWorld];</pre></div>
+			<p>The example code create a new bone called "b_arm", and store it in the variable "my_bone". Afterwards, it's world position is obtained and stored in corresponding variables.</p>
+		</documentation>
+		
+		
+		
+		<br/><br/>
 	</body>
 </html>
