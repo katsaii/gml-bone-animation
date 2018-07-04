@@ -63,7 +63,7 @@ if(sk_struct_exists(v_armature,sk_type_armature)){
 	}	
 	sk_armature_setToSetupPose(v_armature);
 	if(sk_struct_exists(v_anim,sk_type_animation)){
-		sk_animation_apply(v_anim,v_timeLast,v_time,sk_mixPose_add,1);
+		sk_animation_apply(v_anim,v_timeLast,v_time,sk_mixPose_add,1,true);
 		v_anim_name = sk_struct_get_name(v_anim);
 		global.current_animation = v_anim;
 	}

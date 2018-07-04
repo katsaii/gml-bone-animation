@@ -9,7 +9,7 @@ enum SK_TIMELINE_ROTATE{
 		kf_tweenEasing,
 		kf_ENTRIES
 }
-gml_pragma("global","sk_struct_type_add(sk_type_timeline_rotate,SK_TIMELINE_ROTATE.sizeof,sk_construct_timeline,sk_destruct_timeline);");
+gml_pragma("global","sk_struct_type_add(sk_type_timeline_rotate,SK_TIMELINE_ROTATE.sizeof,sk_construct_timeline,sk_destruct_timeline,SK_TIMELINE_ROTATE.kf_ENTRIES);");
 /// @desc creates a structure
 /// @param name
 /// @param bone

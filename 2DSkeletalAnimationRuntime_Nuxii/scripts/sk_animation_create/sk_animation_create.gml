@@ -1,8 +1,7 @@
 #macro sk_type_animation "ofAnimation"
 enum SK_ANIMATION{
-	duration,
+	duration,looping,
 	timelines,
-	looping,
 	sizeof
 }
 #macro sk_mixPose_mix 0 /* interpolates between the current pose and next pose */

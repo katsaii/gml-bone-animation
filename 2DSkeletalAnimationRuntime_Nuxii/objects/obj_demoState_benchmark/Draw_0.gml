@@ -8,7 +8,7 @@ if(sk_struct_exists(v_armature,sk_type_armature)&&sk_struct_exists(v_atlas,sk_ty
 		var t = current_time;
 		var tl = t-delta_time*1000;
 		t *= 0.01;	tl *= 0.01;
-		sk_animation_apply(v_anim,tl,t,sk_mixPose_mix,1);
+		sk_animation_apply(v_anim,tl,t,sk_mixPose_mix,1,true);
 	}
 	sk_armature_updateWorldTransform(v_armature);
 	var v_bufftex = vertex_bake_armature(v_armature,v_atlas,v_buffskel);

@@ -3,8 +3,8 @@ gml_pragma("global",@'
 	global.sk_globalVar_physicsConstraint_xDisplacement = 0; // adding the displacement to the world coordinate can simulate external movement
 	global.sk_globalVar_physicsConstraint_yDisplacement = 0;
 	global.sk_globalVar_physicsConstraint_xGrav = 0;
-	global.sk_globalVar_physicsConstraint_yGrav = 0;
-	global.sk_globalVar_physicsConstraint_drive = 0;
+	global.sk_globalVar_physicsConstraint_yGrav = 0.25;
+	global.sk_globalVar_physicsConstraint_drive = 0.9;
 ');
 #macro sk_physics_boneState global.sk_globalVar_physicsConstraint_physicsState
 #macro sk_physics_external_xDisplacement global.sk_globalVar_physicsConstraint_xDisplacement

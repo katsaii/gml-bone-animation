@@ -1,5 +1,4 @@
 /// @desc initialise objects
-
 #macro draw_reset_colour draw_set_colour($203621)
 show_debug_overlay(true);
 gml_release_mode(true);
@@ -85,8 +84,12 @@ sk_constraint_physics_set_effectors(constraint,sk_armature_find_bone(new_armatur
 sk_armature_add_constraint(new_armature,constraint);
 sk_armature_updateCache(new_armature);
 
-sk_animation_apply(sk_armature_find_animation(new_armature,"display_costume_top_classic"),0,0,sk_mixPose_overwrite,1);
-sk_animation_apply(sk_armature_find_animation(new_armature,"display_costume_bottom_classic"),0,0,sk_mixPose_overwrite,1);
+sk_animation_apply(sk_armature_find_animation(new_armature,"display_costume_top_classic"),0,0,sk_mixPose_overwrite,1,false);
+sk_animation_apply(sk_armature_find_animation(new_armature,"display_costume_bottom_classic"),0,0,sk_mixPose_overwrite,1,false);
+
+animationState = sk_animationState_create("");
+sk_animationState_add_animation_from_armature(animationState,new_armature);
+sk_animationState_setMix(animationState,"anim_idle","anim_run",0.5);
 
 var PATH_SPRITER = "Skeletons/Spriter/BrashMonkey/Platformer/";
 var m_path_tex = PATH_SPRITER+"outJSON.png";

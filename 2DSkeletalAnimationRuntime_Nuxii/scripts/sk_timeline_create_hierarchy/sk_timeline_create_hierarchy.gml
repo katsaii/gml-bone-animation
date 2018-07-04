@@ -7,7 +7,7 @@ enum SK_TIMELINE_HIERARCHY{
 		kf_tupleKey = sk_timeline_keyframe_body,
 		kf_ENTRIES
 }
-gml_pragma("global","sk_struct_type_add(sk_type_timeline_hierarchy,SK_TIMELINE_HIERARCHY.sizeof,sk_construct_timeline,sk_destruct_timeline);");
+gml_pragma("global","sk_struct_type_add(sk_type_timeline_hierarchy,SK_TIMELINE_HIERARCHY.sizeof,sk_construct_timeline,sk_destruct_timeline,SK_TIMELINE_HIERARCHY.kf_ENTRIES);");
 /// @desc creates a structure
 /// @param name
 /// @param constraint
