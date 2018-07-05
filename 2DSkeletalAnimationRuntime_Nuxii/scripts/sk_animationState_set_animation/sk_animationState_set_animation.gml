@@ -4,6 +4,7 @@ gml_pragma("forceinline");
 /// @param name
 /// @param loop
 /// @param [offset]
-argument0[@ SK_ANIMATIONSTATE.animation_next] = argument[1];
-argument0[@ SK_ANIMATIONSTATE.animation_next_loop] = argument[2];
-argument0[@ SK_ANIMATIONSTATE.animation_next_time] = (argument_count==4) ? argument[3] : 0;
+var sk_animationState = argument[0];
+sk_animationState[@ SK_ANIMATIONSTATE.animation_next] = argument[1];
+sk_animationState[@ SK_ANIMATIONSTATE.animation_next_loop] = argument[2];
+sk_animationState[@ SK_ANIMATIONSTATE.animation_next_time] = (argument_count==4) ? argument[3] : -1;

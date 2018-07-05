@@ -12,12 +12,16 @@ if(sk_anim_next!=sk_anim_current){	// set new animation
 	argument0[@ SK_ANIMATIONSTATE.animation_previous_timeLast] = argument0[SK_ANIMATIONSTATE.animation_current_timeLast];
 	argument0[@ SK_ANIMATIONSTATE.animation_current] = sk_anim_next;
 	argument0[@ SK_ANIMATIONSTATE.animation_current_loop] = argument0[SK_ANIMATIONSTATE.animation_next_loop];
-	argument0[@ SK_ANIMATIONSTATE.animation_current_time] = argument0[SK_ANIMATIONSTATE.animation_next_time];
-	argument0[@ SK_ANIMATIONSTATE.animation_current_timeLast] = 0;
+	var sk_anim_next_time = argument0[SK_ANIMATIONSTATE.animation_next_time];
+	if(sk_anim_next_time>=0){
+		argument0[@ SK_ANIMATIONSTATE.animation_current_time] = argument0[SK_ANIMATIONSTATE.animation_next_time];
+		argument0[@ SK_ANIMATIONSTATE.animation_current_timeLast] = 0;
+	}
 	// reset mixing alpha
 	argument0[@ SK_ANIMATIONSTATE.mixAlpha] = 0;
 } else {
 	var sk_dt = argument1*argument0[SK_ANIMATIONSTATE.playbackRate];
+	if(sk_dt<0){ sk_dt = -sk_dt; }
 	// update time
 	argument0[@ SK_ANIMATIONSTATE.animation_previous_timeLast] = argument0[SK_ANIMATIONSTATE.animation_previous_time];
 	argument0[@ SK_ANIMATIONSTATE.animation_current_timeLast] = argument0[SK_ANIMATIONSTATE.animation_current_time];

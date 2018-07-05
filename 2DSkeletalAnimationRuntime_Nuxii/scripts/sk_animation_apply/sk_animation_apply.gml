@@ -27,7 +27,7 @@ if(sk_anim_duration>0){
 }
 var sk_loop = sk_anim[SK_ANIMATION.looping] ? sk_anim_duration : -1;
 var sk_mixPose = argument[3];
-var sk_executeEvents = (argument_count==6) ? argument[5] : true;
+var sk_executeEvents = (argument_count==7) ? (!argument[6]) : true;
 // iterate through timelines
 var sk_timeline_count = ds_list_size(sk_anim_timelines);
 var sk_timeline_id;

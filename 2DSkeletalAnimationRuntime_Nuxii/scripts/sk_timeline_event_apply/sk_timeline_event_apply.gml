@@ -9,6 +9,10 @@ if(argument3>=0.5){
 	if(!sk_struct_exists(sk_body,sk_type_event)){ return; }
 	var sk_timeLast = argument1;
 	var sk_time = argument2;
+	if(sk_timeLast==sk_time){
+		// don't call any events
+		return;
+	}
 	// determine whether to throw the event
 	var sk_keyframe_first = 0;
 	var sk_keyframe_last = ds_list_size(sk_keyframes)-SK_TIMELINE_EVENT.kf_ENTRIES; if(sk_keyframe_last<0){ return; }

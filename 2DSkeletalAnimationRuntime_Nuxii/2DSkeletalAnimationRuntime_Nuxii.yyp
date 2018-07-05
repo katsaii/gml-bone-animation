@@ -1727,6 +1727,14 @@
             }
         },
         {
+            "Key": "772b9f7b-f182-49c6-a6e4-3a4592af502a",
+            "Value": {
+                "id": "2b628ffa-f163-4255-b195-45325f9c9275",
+                "resourcePath": "objects\\obj_demoState_sandbox\\obj_demoState_sandbox.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "7790c2be-c243-4c4a-975d-096d25d33d67",
             "Value": {
                 "id": "044162b1-ad1a-4e16-8c25-d54427e5a3a6",
@@ -3151,6 +3159,14 @@
             }
         },
         {
+            "Key": "f5577afa-c719-4264-b7fa-75efbd6477ac",
+            "Value": {
+                "id": "ddef8e26-b85f-4812-a000-db114124c2f3",
+                "resourcePath": "scripts\\sk_animationState_draw_debug\\sk_animationState_draw_debug.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f5ee1bff-5ff8-435c-a273-5dc91c7f89a4",
             "Value": {
                 "id": "a205203f-5b24-458b-83fc-2da363dc8125",
@@ -3383,6 +3399,7 @@
         "82f22a8f-1dca-442b-bcb8-95b8d6f82273",
         "38c60597-b639-40be-a160-feeede5cefbc",
         "74e79c1b-3fb9-410e-a313-6250645d599a",
+        "f5577afa-c719-4264-b7fa-75efbd6477ac",
         "b1a7deee-ecca-494b-b36c-d07eb0d3a3f0",
         "8a9afa98-2a74-4dd1-b8bd-63759797ab6f",
         "1cecfc2f-af84-4587-aecb-df712b8574a8",
