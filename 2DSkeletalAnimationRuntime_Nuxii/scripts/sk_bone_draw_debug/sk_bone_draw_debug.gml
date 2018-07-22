@@ -42,19 +42,19 @@ var V_COLOUR = c_black;
 var V_ALPHA = 1;
 if(argument6&sk_debug_bones){
 	V_COLOUR = $00ff00;
-	var sk_bone_length = max(sk_bone[SK_BONE.length],1);
-	var sk_bone_width = max(sk_bone_length,5)*0.05;
+	var sk_bone_len = max(sk_bone[SK_BONE.length],1);
+	var sk_bone_width = max(sk_bone_len,5)*0.05;
 	// draw a bone in its familiar shape
-	var sk_bone_xlen = sk_bone_xworld+sk_bone_w00*sk_bone_length;
-	var sk_bone_ylen = sk_bone_yworld+sk_bone_w01*sk_bone_length;
+	var sk_bone_xlen = sk_bone_xworld+sk_bone_w00*sk_bone_len;
+	var sk_bone_ylen = sk_bone_yworld+sk_bone_w01*sk_bone_len;
 	if(argument6&sk_debug_simpleBones){
 		draw_vertex_colour(sk_bone_xworld,sk_bone_yworld,V_COLOUR,V_ALPHA);
 		draw_vertex_colour(sk_bone_xlen,sk_bone_ylen,V_COLOUR,V_ALPHA);
 	} else {
-		var sk_bone_xpositive = sk_bone_xworld+sk_bone_w00*sk_bone_length*0.2+sk_bone_w10*sk_bone_width;
-		var sk_bone_ypositive = sk_bone_yworld+sk_bone_w01*sk_bone_length*0.2+sk_bone_w11*sk_bone_width;
-		var sk_bone_xnegative = sk_bone_xworld+sk_bone_w00*sk_bone_length*0.2-sk_bone_w10*sk_bone_width;
-		var sk_bone_ynegative = sk_bone_yworld+sk_bone_w01*sk_bone_length*0.2-sk_bone_w11*sk_bone_width;
+		var sk_bone_xpositive = sk_bone_xworld+sk_bone_w00*sk_bone_len*0.2+sk_bone_w10*sk_bone_width;
+		var sk_bone_ypositive = sk_bone_yworld+sk_bone_w01*sk_bone_len*0.2+sk_bone_w11*sk_bone_width;
+		var sk_bone_xnegative = sk_bone_xworld+sk_bone_w00*sk_bone_len*0.2-sk_bone_w10*sk_bone_width;
+		var sk_bone_ynegative = sk_bone_yworld+sk_bone_w01*sk_bone_len*0.2-sk_bone_w11*sk_bone_width;
 		draw_vertex_colour(sk_bone_xworld,sk_bone_yworld,V_COLOUR,V_ALPHA);
 		draw_vertex_colour(sk_bone_xpositive,sk_bone_ypositive,V_COLOUR,V_ALPHA); // #1
 		draw_vertex_colour(sk_bone_xworld,sk_bone_yworld,V_COLOUR,V_ALPHA);
@@ -89,9 +89,9 @@ if(argument6&sk_debug_boneInheritance){
 	}
 }
 V_COLOUR = $ffffff;
-var sk_bone_length = max(sk_bone[SK_BONE.length],1);
-var sk_bone_xtext = sk_bone_xworld+sk_bone_w00*sk_bone_length*0.5;
-var sk_bone_ytext = sk_bone_yworld+sk_bone_w01*sk_bone_length*0.5;
+var sk_bone_len = max(sk_bone[SK_BONE.length],1);
+var sk_bone_xtext = sk_bone_xworld+sk_bone_w00*sk_bone_len*0.5;
+var sk_bone_ytext = sk_bone_yworld+sk_bone_w01*sk_bone_len*0.5;
 if(argument6&sk_debug_boneNames){	
 	draw_text(sk_bone_xtext,sk_bone_ytext,sk_struct_get_name(sk_bone));
 }

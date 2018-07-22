@@ -20,10 +20,16 @@ gml_pragma("global","sk_struct_type_add(sk_type_bone,SK_BONE.sizeof,-1,-1);");
 /// @desc creates a structure
 /// @param name
 var sk_structure = sk_struct_create(sk_type_bone,argument0);
-sk_bone_set_transformMode(sk_structure,sk_transformMode_normal);
-sk_bone_set_length(sk_structure,10);
-sk_bone_set_parent(sk_structure,noone);
-sk_bone_set_setupPose(sk_structure,0,0,1,1,0,0,0);
+sk_bone_transformMode(sk_structure,sk_transformMode_normal);
+sk_bone_length(sk_structure,10);
+sk_bone_parent(sk_structure,noone);
+sk_bone_x(sk_structure,0);
+sk_bone_y(sk_structure,0);
+sk_bone_xscale(sk_structure,1);
+sk_bone_yscale(sk_structure,1);
+sk_bone_xshear(sk_structure,0);
+sk_bone_yshear(sk_structure,0);
+sk_bone_rotation(sk_structure,0);
 sk_bone_setToSetupPose(sk_structure);
 sk_bone_updateWorldTransform(sk_structure);
 return sk_structure;

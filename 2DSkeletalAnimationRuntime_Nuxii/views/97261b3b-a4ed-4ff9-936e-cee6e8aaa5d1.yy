@@ -4,14 +4,12 @@
     "mvc": "1.1",
     "name": "97261b3b-a4ed-4ff9-936e-cee6e8aaa5d1",
     "children": [
-        "c47627ab-baff-4e23-a1c0-d98706f9ec58",
-        "851b051e-749f-48a3-824d-2840031545bd",
-        "e41f617d-9f18-443d-b80f-530290ce54c4",
-        "5bf5a313-ba48-41a4-ae79-93e182ed579d",
-        "096aa922-cd9a-4b0c-bcda-abba017bcc05"
+        "e401e6d5-7948-47de-9272-065c96fd3a27",
+        "75418c26-c4c0-4d20-9d6e-7a18a8c12a87",
+        "1f3b2cda-4d0e-4769-a946-9c48ff08fe87"
     ],
     "filterType": "GMScript",
-    "folderName": "Setup",
+    "folderName": "Properties",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

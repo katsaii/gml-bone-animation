@@ -8,17 +8,18 @@ var sk_display_last = ds_list_size(sk_displays);
 var sk_display_id;
 if(argument1){
 	// clear previous slot attachments
-	for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id+=sk_skin_record_length){
-		var sk_slot = sk_displays[| sk_display_id+sk_skin_record_slot];
+	for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id+=sk_tuple_skinRecord_ENTRIES){
+		var sk_slot = sk_displays[| sk_display_id+sk_tuple_skinRecord_slot];
 		if(sk_struct_exists(sk_slot,sk_type_slot)){
 			sk_slot_attachments_clear(sk_slot);
 		}
 	}
 }
 // add new attachments
-for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id+=sk_skin_record_length){
-	var sk_slot = sk_displays[| sk_display_id+sk_skin_record_slot];
-	var sk_attachment = sk_displays[| sk_display_id+sk_skin_record_attachment];
+for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id+=sk_tuple_skinRecord_ENTRIES){
+	var sk_slot = sk_displays[| sk_display_id+sk_tuple_skinRecord_slot];
+	var sk_attachment = sk_displays[| sk_display_id+sk_tuple_skinRecord_attachment];
+	var sk_attachmentKey = sk_displays[| sk_display_id+sk_tuple_skinRecord_attachmentKey];
 	// remap attachment
 	var sk_remap_count = ds_list_size(sk_remapStack);
 	var sk_attachment_input = sk_attachment;
@@ -33,6 +34,6 @@ for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id+=sk_skin_r
 	}
 	// add final attachment to slot
 	if(sk_struct_exists(sk_slot,sk_type_slot)){
-		sk_slot_attachments_add(sk_slot,sk_attachment,sk_displays[| sk_display_id+sk_skin_record_attachmentKey]);
+		sk_slot_attachments(sk_slot,sk_attachmentKey,sk_attachment);
 	}
 }

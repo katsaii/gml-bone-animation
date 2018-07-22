@@ -10,8 +10,11 @@ gml_pragma("global","sk_struct_type_add(sk_type_constraint_physics,SK_CONSTRAINT
 /// @desc creates a structure
 /// @param name
 var sk_structure = sk_struct_create(sk_type_constraint_physics,argument0);
-sk_constraint_physics_set_rigid(sk_structure,false);
-sk_constraint_physics_set_effectors(sk_structure,noone,noone);
-sk_constraint_physics_set_setupMix(sk_structure,0,0,1);
+sk_constraint_physics_rigid(sk_structure,false);
+sk_constraint_physics_bone_anchor(sk_structure,noone);
+sk_constraint_physics_bone_effector(sk_structure,noone);
+sk_constraint_physics_gravity_x(sk_structure,0);
+sk_constraint_physics_gravity_y(sk_structure,0);
+sk_constraint_physics_drive(sk_structure,1);
 sk_constraint_physics_setToSetupMix(sk_structure);
 return sk_structure;

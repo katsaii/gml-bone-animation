@@ -17,14 +17,14 @@ if(argument3>=0.5){
 	// interpolate
 	var sk_display = sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_DISPLAY.kf_attachmentKey];
 	// apply
-	var sk_slot_attachments = sk_body[SK_SLOT.availableAttachments];
+	var sk_attachments = sk_body[SK_SLOT.availableAttachments];
 	switch(sk_mix){
 		case sk_mixPose_mix: case sk_mixPose_add:
-			sk_body[@ SK_SLOT.attachmentFinal] = sk_slot_attachments[? sk_display];
+			sk_body[@ SK_SLOT.attachmentFinal] = sk_attachments[? sk_display];
 		break;
 		case sk_mixPose_overwrite:
 			sk_body[@ SK_SLOT.defaultAttachmentKey] = sk_display;
-			sk_body[@ SK_SLOT.attachment] = sk_slot_attachments[? sk_display];
+			sk_body[@ SK_SLOT.attachment] = sk_attachments[? sk_display];
 		break;
 	}
 }

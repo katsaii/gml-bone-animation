@@ -5,7 +5,8 @@ gml_release_mode(true);
 draw_set_font(font0);
 draw_reset_colour;
 
-#macro SANDBOX_ENABLED true
+#macro SANDBOX_ENABLED false
+#macro sandbox:SANDBOX_ENABLED true
 if(SANDBOX_ENABLED){
 	instance_create_layer(0,0,layer,obj_demoState_sandbox);
 	instance_destroy();

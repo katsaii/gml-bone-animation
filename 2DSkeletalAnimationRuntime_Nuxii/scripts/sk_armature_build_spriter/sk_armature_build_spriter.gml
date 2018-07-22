@@ -82,8 +82,8 @@ if(is_real(sp_objInfo)&&ds_exists(sp_objInfo,ds_type_list)){
 				case "bone":
 					#region // add bone
 					var sk_bone = sk_bone_create(string(sp_obj_record[? "name"]));
-					sk_bone_set_transformMode(sk_bone,sk_transformMode_ex_spriter); // spriter doesn't have skew transforms
-					sk_bone_set_length(sk_bone,real(sp_obj_record[? "w"]));
+					sk_bone_transformMode(sk_bone,sk_transformMode_ex_spriter); // spriter doesn't have skew transforms
+					sk_bone_length(sk_bone,sp_obj_record[? "w"]);
 					sk_armature_add_bone(sk_skel,sk_bone);
 					#endregion
 				break;
@@ -150,7 +150,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 							if(sk_armature_find_symbol(sk_skel,sk_symbol_name)==noone){
 								// symbol doesn't exist, create it
 								var sk_symbol = sk_symbol_create(sk_symbol_name);
-								sk_bone_set_transformMode(sk_symbol_get_nested_bone(sk_symbol),sk_transformMode_ex_spriter); // no skew transform
+								sk_bone_transformMode(sk_symbol_get_nested_bone(sk_symbol),sk_transformMode_ex_spriter); // no skew transform
 								sk_armature_add_symbol(sk_skel,sk_symbol);
 							}
 							#endregion

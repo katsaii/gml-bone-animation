@@ -13,7 +13,7 @@
         "f5ee1bff-5ff8-435c-a273-5dc91c7f89a4"
     ],
     "filterType": "GMScript",
-    "folderName": "Pragmatic",
+    "folderName": "Header",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

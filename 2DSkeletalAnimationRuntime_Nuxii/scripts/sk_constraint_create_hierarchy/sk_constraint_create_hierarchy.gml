@@ -12,6 +12,6 @@ gml_pragma("global","sk_struct_type_add(sk_type_constraint_hierarchy,SK_CONSTRAI
 /// @desc creates a structure
 /// @param name
 var sk_structure = sk_struct_create(sk_type_constraint_hierarchy,argument0);
-sk_constraint_hierarchy_set_setupMix(sk_structure,-1);
+sk_constraint_hierarchy_tupleKey(sk_structure,"-1");
 sk_constraint_hierarchy_setToSetupMix(sk_structure);
 return sk_structure;

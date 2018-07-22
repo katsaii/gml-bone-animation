@@ -10,7 +10,7 @@ switch(sk_struct_get_type(argument1)){
 	default: return; break;
 }
 var sk_displays = argument0[SK_SKIN.displays];
-var sk_id = max(ds_list_size(sk_displays) div sk_skin_record_length,0)*sk_skin_record_length; // make sure it is a multiple of the record length
-sk_displays[| sk_id+sk_skin_record_slot] = sk_slot;
-sk_displays[| sk_id+sk_skin_record_attachment] = argument2;
-sk_displays[| sk_id+sk_skin_record_attachmentKey] = argument3;
+var sk_id = max(ds_list_size(sk_displays) div sk_tuple_skinRecord_ENTRIES,0)*sk_tuple_skinRecord_ENTRIES; // make sure it is a multiple of the record length
+sk_displays[| sk_id+sk_tuple_skinRecord_slot] = sk_slot;
+sk_displays[| sk_id+sk_tuple_skinRecord_attachment] = argument2;
+sk_displays[| sk_id+sk_tuple_skinRecord_attachmentKey] = argument3;

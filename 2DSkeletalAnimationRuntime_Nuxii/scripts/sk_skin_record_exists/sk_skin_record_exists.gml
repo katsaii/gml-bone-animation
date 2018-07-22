@@ -9,11 +9,11 @@ switch(sk_struct_get_type(argument1)){
 }
 var sk_displays = argument0[SK_SKIN.displays];
 var sk_display_last = ds_list_size(sk_displays);
-for(var sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id+=sk_skin_record_length){
+for(var sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id+=sk_tuple_skinRecord_ENTRIES){
 	if(
-		(sk_displays[| sk_display_id+sk_skin_record_slot]==sk_slot)&&
-		(sk_displays[| sk_display_id+sk_skin_record_attachmentKey]==argument2)
-	){
+		(sk_displays[| sk_display_id+sk_tuple_skinRecord_slot]==sk_slot)&&
+		(sk_displays[| sk_display_id+sk_tuple_skinRecord_attachmentKey]==argument2)
+	){	// record exists
 		return true;
 	}
 }
