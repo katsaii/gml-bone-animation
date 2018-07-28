@@ -303,16 +303,11 @@ if(is_real(sp_events)&&ds_exists(sp_events,ds_type_map)){
 			var sk_event_string = is_string(sp_event_record[? "string"]) ? sp_event_record[? "string"] : "";
 			var sk_event_float = real(sp_event_record[? "float"]);
 			var sk_event_int = int64(sp_event_record[? "int"]);
-			// create a new attachment and add it to the skin
+			// create a new event and add it to the armature
 			var sk_event = sk_event_create(string(sp_event_name));
-			sk_event_set_data(
-				sk_event,
-				noone,
-				sk_event_string,
-				sk_event_float,
-				sk_event_int,
-				-1
-			);
+			sk_event_data_string(sk_event,sk_event_string);
+			sk_event_data_real(sk_event,sk_event_float);
+			sk_event_data_int(sk_event,sk_event_int);
 			sk_armature_add_event(sk_skel,sk_event);
 			#endregion
 		}
