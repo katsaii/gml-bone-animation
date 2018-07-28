@@ -1,8 +1,8 @@
 {
-    "id": "0eff2262-9ea5-479a-bd08-2edb86635861",
+    "id": "fd9f3c8c-f651-44f7-a5c8-0161586e5a22",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_armature_add_animation",
+    "name": "sk_armature_find",
     "IsCompatibility": false,
     "IsDnD": false
 }

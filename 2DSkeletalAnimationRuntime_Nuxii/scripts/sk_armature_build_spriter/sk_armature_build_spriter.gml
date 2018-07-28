@@ -59,7 +59,7 @@ if(is_real(sp_folders)&&ds_exists(sp_folders,ds_type_list)){
 						sk_attachment_plane_x(sk_attachment,-(sk_attachment_pivot_x-0.5)*sk_attachment_pivot_w); // attachments are drawn with a default origin at their centre
 						sk_attachment_plane_y(sk_attachment,-(sk_attachment_pivot_y-0.5)*sk_attachment_pivot_h);
 						sk_attachment_plane_matrix(sk_attachment,1,1,0,0,0);
-						sk_armature_add_attachment(sk_skel,sk_attachment);
+						sk_armature_add(sk_skel,sk_attachment);
 						#endregion
 					}
 				}
@@ -79,7 +79,7 @@ if(is_real(sp_objInfo)&&ds_exists(sp_objInfo,ds_type_list)){
 					var sk_bone = sk_bone_create(string(sp_obj_record[? "name"]));
 					sk_bone_transformMode(sk_bone,sk_transformMode_ex_spriter); // spriter doesn't have skew transforms
 					sk_bone_length(sk_bone,sp_obj_record[? "w"]);
-					sk_armature_add_bone(sk_skel,sk_bone);
+					sk_armature_add(sk_skel,sk_bone);
 					#endregion
 				break;
 			}
@@ -88,10 +88,9 @@ if(is_real(sp_objInfo)&&ds_exists(sp_objInfo,ds_type_list)){
 }
 // create a default hierarchy constraint
 var sk_bone_hierarchy = sk_constraint_create_hierarchy("spriter_bone_hierarchy");
-sk_armature_add_constraint(sk_skel,sk_bone_hierarchy);
+sk_armature_add(sk_skel,sk_bone_hierarchy);
 // create a default skin and define remap data
-var sk_defaultSkin = sk_skin_create("default");
-sk_armature_add_skin(sk_skel,sk_defaultSkin);
+var sk_defaultSkin = sk_armature_get_defaultSkin(sk_skel);
 if(is_real(sp_characterMaps)&&ds_exists(sp_characterMaps,ds_type_list)){
 	var sp_map_count = ds_list_size(sp_characterMaps);
 	for(var sp_map_id = 0; sp_map_id < sp_map_count; sp_map_id++){
@@ -111,8 +110,8 @@ if(is_real(sp_characterMaps)&&ds_exists(sp_characterMaps,ds_type_list)){
 						var sp_remap_current = sk_createCompoundKey(sp_remap_record[? "folder"],sp_remap_record[? "file"]);
 						var sp_remap_target = sk_createCompoundKey(sp_remap_record[? "target_folder"],sp_remap_record[? "target_file"]);
 						// get the current and target attachments
-						var sk_remap_attachment_current = sk_armature_find_attachment_plane(sk_skel,sp_remap_current);
-						var sk_remap_attachment_target = sk_armature_find_attachment_plane(sk_skel,sp_remap_target);
+						var sk_remap_attachment_current = sk_armature_find(sk_skel,sk_type_attachment_plane,sp_remap_current);
+						var sk_remap_attachment_target = sk_armature_find(sk_skel,sk_type_attachment_plane,sp_remap_target);
 						// remap
 						if(sk_struct_exists(sk_remap_attachment_current,sk_type_attachment_plane)){
 							sk_map[? sk_remap_attachment_current] = sk_remap_attachment_target;
@@ -142,11 +141,11 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 						if(sp_timeline_type=="sprite"){
 							#region // add symbol
 							var sk_symbol_name = sp_timeline_record[? "name"];
-							if(sk_armature_find_symbol(sk_skel,sk_symbol_name)==noone){
+							if(sk_armature_find(sk_skel,sk_type_symbol,sk_symbol_name)==noone){
 								// symbol doesn't exist, create it
 								var sk_symbol = sk_symbol_create(sk_symbol_name);
 								sk_bone_transformMode(sk_symbol_get_nested_bone(sk_symbol),sk_transformMode_ex_spriter); // no skew transform
-								sk_armature_add_symbol(sk_skel,sk_symbol);
+								sk_armature_add(sk_skel,sk_symbol);
 							}
 							#endregion
 						}
@@ -171,7 +170,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 			var sk_anim = sk_animation_create(sk_anim_name);
 			sk_animation_set_duration(sk_anim,real(sp_anim_record[? "length"]));
 			sk_animation_set_looping(sk_anim,sp_anim_record[? "looping"]!="false");
-			sk_armature_add_animation(sk_skel,sk_anim);
+			sk_armature_add(sk_skel,sk_anim);
 			// create and add the draw order timeline
 			var sk_anim_timeline_drawOrder = sk_timeline_create_order("Armature.TimelineDrawOrder",sk_drawOrder);
 			sk_animation_add_timeline(sk_anim,sk_anim_timeline_drawOrder);
@@ -257,7 +256,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 															// parent timeline exists
 															if(sp_anim_parent_timeline_record[? "object_type"]=="bone"){
 																// get parent structure from timeline's name
-																sk_anim_bone_parent = sk_armature_find_bone(sk_skel,sp_anim_parent_timeline_record[? "name"]);
+																sk_anim_bone_parent = sk_armature_find(sk_skel,sk_type_bone,sp_anim_parent_timeline_record[? "name"]);
 															}
 														}
 													}
@@ -279,7 +278,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 															switch(sp_anim_timeline_type){
 																case "bone":
 																	var sk_anim_bone_name = sp_anim_bone_timeline_record[? "name"];
-																	var sk_anim_bone = sk_armature_find_bone(sk_skel,sk_anim_bone_name);
+																	var sk_anim_bone = sk_armature_find(sk_skel,sk_type_bone,sk_anim_bone_name);
 																	if(sk_struct_exists(sk_anim_bone,sk_type_bone)){
 																		// add frame
 																		var sk_anim_frame_timeline_translate = SP_BONE_TIMELINE_MAP_TRANSLATE[? sk_anim_bone_name];
@@ -383,7 +382,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 															// parent timeline exists
 															if(sp_anim_parent_timeline_record[? "object_type"]=="bone"){
 																// get parent structure from timeline's name
-																sk_anim_object_parent = sk_armature_find_bone(sk_skel,sp_anim_parent_timeline_record[? "name"]);
+																sk_anim_object_parent = sk_armature_find(sk_skel,sk_type_bone,sp_anim_parent_timeline_record[? "name"]);
 															}
 														}
 													}
@@ -405,7 +404,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 															switch(sp_anim_timeline_type){
 																case "sprite":
 																	var sk_anim_symbol_name = sp_anim_object_timeline_record[? "name"];
-																	var sk_anim_symbol = sk_armature_find_symbol(sk_skel,sk_anim_symbol_name);
+																	var sk_anim_symbol = sk_armature_find(sk_skel,sk_type_symbol,sk_anim_symbol_name);
 																	if(sk_struct_exists(sk_anim_symbol,sk_type_symbol)){
 																		var sk_anim_symbol_nestedBone = sk_symbol_get_nested_bone(sk_anim_symbol);
 																		var sk_anim_symbol_nestedSlot = sk_symbol_get_nested_slot(sk_anim_symbol);
@@ -475,7 +474,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 																			sk_skin_record_add(
 																				sk_defaultSkin,
 																				sk_anim_symbol,
-																				sk_armature_find_attachment_plane(sk_skel,sk_anim_symbol_attachmentKey),
+																				sk_armature_find(sk_skel,sk_type_attachment_plane,sk_anim_symbol_attachmentKey),
 																				sk_anim_symbol_attachmentKey
 																			);
 																		}

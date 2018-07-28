@@ -13,5 +13,4 @@ switch(argument1){
 	case sk_type_event:					return argument0[SK_ARMATURE.events]; break;
 	case sk_type_attachment_plane:
 	case sk_type_attachment_point:		return argument0[SK_ARMATURE.attachments]; break;
-}
-return noone;
+}										return -1;

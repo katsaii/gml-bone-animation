@@ -1,6 +1,6 @@
 /// @desc sets the default skin (if it exists)
 /// @param armature
-var sk_defaultSkin = sk_armature_find_skin(argument0,"default");
+var sk_defaultSkin = sk_armature_get_defaultSkin(argument0);
 // clear ALL slot attachments
 var sk_slots = argument0[SK_ARMATURE.slots];
 var sk_slot_count = ds_list_size(sk_slots);

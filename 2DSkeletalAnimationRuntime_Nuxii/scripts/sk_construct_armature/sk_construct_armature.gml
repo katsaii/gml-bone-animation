@@ -11,3 +11,4 @@ argument0[@ SK_ARMATURE.updateOrderDefault] = ds_list_create();
 argument0[@ SK_ARMATURE.updateOrder] = ds_list_create();
 argument0[@ SK_ARMATURE.drawOrderDefault] = ds_list_create();
 argument0[@ SK_ARMATURE.drawOrder] = ds_list_create();
+sk_armature_add(argument0,sk_skin_create("default"));

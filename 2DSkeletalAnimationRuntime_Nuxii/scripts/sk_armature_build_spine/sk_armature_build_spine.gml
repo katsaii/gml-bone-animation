@@ -33,7 +33,7 @@ if(is_real(sp_bones)&&ds_exists(sp_bones,ds_type_list)){
 	        #region // add bone
 			var sk_bone_name = string(sp_bone_record[? "name"]);
 	        var sk_bone_len = real(sp_bone_record[? "length"]);
-	        var sk_bone_par = sk_armature_find_bone(sk_skel,sp_bone_record[? "parent"]);
+	        var sk_bone_par = sk_armature_find(sk_skel,sk_type_bone,sp_bone_record[? "parent"]);
 			var sk_bone_xpos = real(sp_bone_record[? "x"]);
 	        var sk_bone_ypos = -real(sp_bone_record[? "y"]);
 	        var sk_bone_xsc = is_real(sp_bone_record[? "scaleX"]) ? sp_bone_record[? "scaleX"] : 1;
@@ -61,7 +61,7 @@ if(is_real(sp_bones)&&ds_exists(sp_bones,ds_type_list)){
 			sk_bone_xshear(sk_bone,sk_bone_xsh);
 			sk_bone_yshear(sk_bone,sk_bone_ysh);
 			sk_bone_rotation(sk_bone,sk_bone_rot);
-			sk_armature_add_bone(sk_skel,sk_bone);
+			sk_armature_add(sk_skel,sk_bone);
 			#endregion
 		}
 	}
@@ -74,7 +74,7 @@ if(is_real(sp_slots)&&ds_exists(sp_slots,ds_type_list)){
 	    if(is_real(sp_slot_record)&&ds_exists(sp_slot_record,ds_type_map)){
 			#region // add slot
 	        var sk_slot_name = string(sp_slot_record[? "name"]);
-   			var sk_slot_par = sk_armature_find_bone(sk_skel,sp_slot_record[? "bone"]);
+   			var sk_slot_par = sk_armature_find(sk_skel,sk_type_bone,sp_slot_record[? "bone"]);
 			var sk_slot_attachmentName = string(sp_slot_record[? "attachment"]);
 			var sk_slot_rgba = is_string(sp_slot_record[? "color"]) ? sp_slot_record[? "color"] : "FFFFFFFF";
 	        // create new record and set data
@@ -83,7 +83,7 @@ if(is_real(sp_slots)&&ds_exists(sp_slots,ds_type_list)){
 			sk_slot_colour(sk_slot,sk_hex_get_colour(sk_slot_rgba,false));
 			sk_slot_alpha(sk_slot,sk_hex_get_alpha(sk_slot_rgba,false));
 			sk_slot_bone(sk_slot,sk_slot_par);
-			sk_armature_add_slot(sk_skel,sk_slot);
+			sk_armature_add(sk_skel,sk_slot);
 			#endregion
 	    }
 	}
@@ -96,8 +96,13 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 		var sp_skin_record = sp_skins[? sp_skin_name];
 		if(is_real(sp_skin_record)&&ds_exists(sp_skin_record,ds_type_map)){
 			#region // add skin
-			var sk_skin = sk_skin_create(sp_skin_name);
-			sk_armature_add_skin(sk_skel,sk_skin);
+			var sk_skin;
+			if(sp_skin_name=="default"){
+				sk_skin = sk_armature_get_defaultSkin(sk_skel);
+			} else {
+				sk_skin = sk_skin_create(sp_skin_name);
+				sk_armature_add(sk_skel,sk_skin);
+			}
 			// compile slot attachment data
 			var sp_skin_slots = sp_skin_record;
 			// iterate through skin slots and add their display data
@@ -106,7 +111,7 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 			repeat(sp_skin_slot_count){
 				var sp_skin_slot_record = sp_skin_slots[? sp_skin_slot_name];
 				if(is_real(sp_skin_slot_record)&&ds_exists(sp_skin_slot_record,ds_type_map)){
-					var sk_skin_slotData = sk_armature_find_slot(sk_skel,sp_skin_slot_name);
+					var sk_skin_slotData = sk_armature_find(sk_skel,sk_type_slot,sp_skin_slot_name);
 					var sp_skin_slot_attachments = sp_skin_slot_record;
 					if(sk_struct_exists(sk_skin_slotData,sk_type_slot)){
 						// iterate through slot attachments and add create attachments
@@ -131,7 +136,7 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 										sk_attachment_point_x(sk_attachment,sk_attachment_x);
 										sk_attachment_point_y(sk_attachment,sk_attachment_y);
 										sk_attachment_point_rotation(sk_attachment,sk_attachment_rotation);
-										sk_armature_add_attachment(sk_skel,sk_attachment);
+										sk_armature_add(sk_skel,sk_attachment);
 									break;
 									case "region": default:
 										// create plane (region) attachment
@@ -151,7 +156,7 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 											sk_attachment_xscale,sk_attachment_yscale,
 											0,0,sk_attachment_rotation
 										);
-										sk_armature_add_attachment(sk_skel,sk_attachment);
+										sk_armature_add(sk_skel,sk_attachment);
 									break;
 								}
 								// add attachment to the skin (even if it doesn't exist, because those will be null attachments)
@@ -203,8 +208,8 @@ for(var sp_constraint_id = 0; sp_constraint_id < sp_constraint_count; sp_constra
 						#region // add IK constraint
 						var sk_IK_name = string(sp_ik_record[? "name"]);
 				        var sk_IK_chain = ds_list_size(sp_IK_bones)>1;
-						var sk_IK_boneTarget = sk_armature_find_bone(sk_skel,sp_ik_record[? "target"]);
-						var sk_IK_boneJoint = sk_armature_find_bone(sk_skel,sp_IK_bones[| sk_IK_chain]);
+						var sk_IK_boneTarget = sk_armature_find(sk_skel,sk_type_bone,sp_ik_record[? "target"]);
+						var sk_IK_boneJoint = sk_armature_find(sk_skel,sk_type_bone,sp_IK_bones[| sk_IK_chain]);
 						var sk_IK_positive = (is_real(sp_ik_record[? "bendPositive"])&&(!sp_ik_record[? "bendPositive"])) ? sk_bendDir_positive : sk_bendDir_negative; //  this is because spines +ve y axis is up (not down)
 						var sk_IK_weight = is_real(sp_ik_record[? "mix"]) ? sp_ik_record[? "mix"] : 1;
 						if(sk_struct_exists(sk_IK_boneTarget,sk_type_bone)&&sk_struct_exists(sk_IK_boneJoint,sk_type_bone)){
@@ -215,7 +220,7 @@ for(var sp_constraint_id = 0; sp_constraint_id < sp_constraint_count; sp_constra
 							sk_constraint_ik_chain(sk_constraint,sk_IK_chain);
 							sk_constraint_ik_bone_joint(sk_constraint,sk_IK_boneJoint);
 							sk_constraint_ik_bone_effector(sk_constraint,sk_IK_boneTarget);
-							sk_armature_add_constraint(sk_skel,sk_constraint);
+							sk_armature_add(sk_skel,sk_constraint);
 						}
 						#endregion
 					}
@@ -231,7 +236,7 @@ for(var sp_constraint_id = 0; sp_constraint_id < sp_constraint_count; sp_constra
 				if(sp_constraint_id==sp_transform_record[? "order"]){
 					#region // add transformation constraint
 					var sk_transform_name = string(sp_transform_record[? "name"]);
-					var sk_transform_boneTarget = sk_armature_find_bone(sk_skel,sp_transform_record[? "target"]);
+					var sk_transform_boneTarget = sk_armature_find(sk_skel,sk_type_bone,sp_transform_record[? "target"]);
 					var sk_transform_bones = sp_transform_record[? "bones"];
 					var sk_transform_x = real(sp_transform_record[? "x"]);
 					var sk_transform_y = -real(sp_transform_record[? "y"]);
@@ -265,13 +270,13 @@ for(var sp_constraint_id = 0; sp_constraint_id < sp_constraint_count; sp_constra
 						if(is_real(sk_transform_bones)&&ds_exists(sk_transform_bones,ds_type_list)){
 							var sk_transform_bone_count = ds_list_size(sk_transform_bones);
 							for(var sk_transform_bone_id = 0; sk_transform_bone_id < sk_transform_bone_count; sk_transform_bone_id++){
-								var sk_transform_bone = sk_armature_find_bone(sk_skel,sk_transform_bones[| sk_transform_bone_id]);
+								var sk_transform_bone = sk_armature_find(sk_skel,sk_type_bone,sk_transform_bones[| sk_transform_bone_id]);
 								if(sk_struct_exists(sk_transform_bone,sk_type_bone)){
 									sk_constraint_transform_children_add(sk_constraint,sk_transform_bone);
 								}
 							}
 						}
-						sk_armature_add_constraint(sk_skel,sk_constraint);
+						sk_armature_add(sk_skel,sk_constraint);
 					}
 					#endregion
 					break; // break out of the loop since the current constraint was found
@@ -308,7 +313,7 @@ if(is_real(sp_events)&&ds_exists(sp_events,ds_type_map)){
 			sk_event_data_string(sk_event,sk_event_string);
 			sk_event_data_real(sk_event,sk_event_float);
 			sk_event_data_int(sk_event,sk_event_int);
-			sk_armature_add_event(sk_skel,sk_event);
+			sk_armature_add(sk_skel,sk_event);
 			#endregion
 		}
 		// goto next event
@@ -331,7 +336,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	    if(is_real(sp_anim_record)&&ds_exists(sp_anim_record,ds_type_map)){
 			#region // add animation
 			var sk_anim = sk_animation_create(string(sp_anim_name));
-			sk_armature_add_animation(sk_skel,sk_anim);
+			sk_armature_add(sk_skel,sk_anim);
 			var sk_anim_duration = 0;
 			// compile timeline data
 			var sp_anim_bones = sp_anim_record[? "bones"];
@@ -349,7 +354,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 				    if(is_real(sp_anim_bone_record)&&ds_exists(sp_anim_bone_record,ds_type_map)){
 						// add bone timeline data to animation
 						var sk_anim_timeline_boneName = string(sp_anim_bone_name);
-						var sk_anim_timeline_boneData = sk_armature_find_bone(sk_skel,sk_anim_timeline_boneName);
+						var sk_anim_timeline_boneData = sk_armature_find(sk_skel,sk_type_bone,sk_anim_timeline_boneName);
 						var sp_anim_bone_translate = sp_anim_bone_record[? "translate"];
 						var sp_anim_bone_scale = sp_anim_bone_record[? "scale"];
 						var sp_anim_bone_shear = sp_anim_bone_record[? "shear"];
@@ -548,7 +553,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 				    if(is_real(sp_anim_slot_record)&&ds_exists(sp_anim_slot_record,ds_type_map)){
 						// add slot timeline data to animation
 						var sk_anim_timeline_slotName = string(sp_anim_slot_name);
-						var sk_anim_timeline_slotData = sk_armature_find_slot(sk_skel,sk_anim_timeline_slotName);
+						var sk_anim_timeline_slotData = sk_armature_find(sk_skel,sk_type_slot,sk_anim_timeline_slotName);
 						var sp_anim_slot_colour = sp_anim_slot_record[? "color"];
 						var sp_anim_slot_attachment = sp_anim_slot_record[? "attachment"];
 						#region // compile colour timeline
@@ -641,7 +646,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 				    if(is_real(sp_anim_ik_record)&&ds_exists(sp_anim_ik_record,ds_type_list)){
 						// add constraint timeline data to animation
 						var sk_anim_timeline_ikName = string(sp_anim_ik_name);
-						var sk_anim_timeline_ikData = sk_armature_find_constraint_ik(sk_skel,sk_anim_timeline_ikName);
+						var sk_anim_timeline_ikData = sk_armature_find(sk_skel,sk_type_constraint_ik,sk_anim_timeline_ikName);
 						var sp_anim_ik_frames = sp_anim_ik_record;
 						#region // compile IK timeline
 						if(true){
@@ -702,7 +707,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 				    if(is_real(sp_anim_transform_record)&&ds_exists(sp_anim_transform_record,ds_type_list)){
 						// add constraint timeline data to animation
 						var sk_anim_timeline_transformName = string(sp_anim_transform_name);
-						var sk_anim_timeline_transformData = sk_armature_find_constraint_transform(sk_skel,sk_anim_timeline_transformName);
+						var sk_anim_timeline_transformData = sk_armature_find(sk_skel,sk_type_constraint_transform,sk_anim_timeline_transformName);
 						var sp_anim_transform_frames = sp_anim_transform_record;
 						#region // compile transformation timeline
 						if(true){
@@ -770,11 +775,11 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 							var sk_anim_frame_time = real(sp_anim_event_record[? "time"])*sp_fps;
 							var sk_anim_frame_eventName = sp_anim_event_record[? "name"];
 							// get event
-							var sk_anim_frame_event = sk_armature_find_event(sk_skel,sk_anim_frame_eventName);
+							var sk_anim_frame_event = sk_armature_find(sk_skel,sk_type_event,sk_anim_frame_eventName);
 							if(!sk_struct_exists(sk_event,sk_type_event)){
 								// event doesn't exist, that's okay, create a new event
 								sk_anim_frame_event = sk_event_create(sk_anim_frame_time);
-								sk_armature_add_event(sk_skel,sk_anim_frame_event);
+								sk_armature_add(sk_skel,sk_anim_frame_event);
 							}
 							// get timeline
 							var sk_anim_frame_timeline = SP_EVENT_TIMELINE_MAP[? sk_anim_frame_eventName];
@@ -832,7 +837,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 								for(var sp_order_offset_id = 0; sp_order_offset_id < sp_order_offset_count; sp_order_offset_id++){
 									var sp_order_record = sp_order_offsets[| sp_order_offset_id];
 									if(is_real(sp_order_record)&&ds_exists(sp_order_record,ds_type_map)){
-										var sk_order_slot = sk_armature_find_slot(sk_skel,sp_order_record[? "slot"]);
+										var sk_order_slot = sk_armature_find(sk_skel,sk_type_slot,sp_order_record[? "slot"]);
 										var sk_order_shift = real(sp_order_record[? "slot"]);
 										if(!sk_struct_exists(sk_order_slot,sk_type_slot)){
 											// slot is invalid

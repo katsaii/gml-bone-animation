@@ -29,22 +29,22 @@ sk_atlas_page(atlas,sprite_add(PATH_PALIA+"Palia_Skeleton_tex.png",0,false,false
 #region
 var constraint = sk_constraint_create_physics("phys");
 sk_constraint_physics_rigid(constraint,true);
-var b2 = sk_bone_create("endeffector"); sk_bone_length(b2,1); sk_armature_add_bone(armature,b2);
-sk_constraint_physics_bone_anchor(constraint,sk_armature_find_bone(armature,"b_hip"));
+var b2 = sk_bone_create("endeffector"); sk_bone_length(b2,1); sk_armature_add(armature,b2);
+sk_constraint_physics_bone_anchor(constraint,sk_armature_find(armature,sk_type_bone,"b_hip"));
 sk_constraint_physics_bone_effector(constraint,b2);
-	var b = sk_bone_create("a"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(armature,b);
-		b = sk_bone_create("b"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(armature,b);
-		b = sk_bone_create("c"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(armature,b);
-		b = sk_bone_create("d"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(armature,b);
-		b = sk_bone_create("e"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(armature,b);
-		b = sk_bone_create("f"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add_bone(armature,b);
-sk_armature_add_constraint(armature,constraint);
+	var b = sk_bone_create("a"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_bone_create("b"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_bone_create("c"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_bone_create("d"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_bone_create("e"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_bone_create("f"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+sk_armature_add(armature,constraint);
 sk_armature_updateCache(armature);
 #endregion
 
 #region
-sk_animation_apply(sk_armature_find_animation(armature,"display_costume_top_classic"),0,0,sk_mixPose_overwrite,1,false);
-sk_animation_apply(sk_armature_find_animation(armature,"display_costume_bottom_classic"),0,0,sk_mixPose_overwrite,1,false);
+sk_animation_apply(sk_armature_find(armature,sk_type_animation,"display_costume_top_classic"),0,0,sk_mixPose_overwrite,1,false);
+sk_animation_apply(sk_armature_find(armature,sk_type_animation,"display_costume_bottom_classic"),0,0,sk_mixPose_overwrite,1,false);
 #endregion
 
 #region
