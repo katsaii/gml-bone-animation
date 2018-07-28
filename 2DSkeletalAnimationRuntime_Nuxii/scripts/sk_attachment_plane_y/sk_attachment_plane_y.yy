@@ -1,8 +1,8 @@
 {
-    "id": "65ae3196-9c4e-4888-8b8a-c62ca3ba3c40",
+    "id": "8c7667d5-1597-4644-aae9-c5ee1941eaa8",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_bone_rotation_world_matrix",
+    "name": "sk_attachment_plane_y",
     "IsCompatibility": false,
     "IsDnD": false
 }

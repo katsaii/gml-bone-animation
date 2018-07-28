@@ -173,13 +173,13 @@ if(is_real(db_skins)&&ds_exists(db_skins,ds_type_list)){
 						                    }
 											// create a new attachment and add it to the skin
 											var sk_attachment = sk_attachment_create_plane(sk_attachment_name);
-											sk_attachment_plane_set_regionKey(sk_attachment,sk_attachment_textureName);
-											sk_attachment_plane_set_transform(
+											sk_attachment_plane_regionKey(sk_attachment,sk_attachment_textureName);
+											sk_attachment_plane_x(sk_attachment,sk_attachment_x);
+											sk_attachment_plane_y(sk_attachment,sk_attachment_y);
+											sk_attachment_plane_matrix(
 												sk_attachment,
-												sk_attachment_x,sk_attachment_y,
 												sk_attachment_xscale,sk_attachment_yscale,
-												sk_attachment_xshear,sk_attachment_yshear,
-												0
+												sk_attachment_xshear,sk_attachment_yshear,0
 											);
 											sk_armature_add_attachment(sk_skel,sk_attachment);
 											sk_skin_record_add(

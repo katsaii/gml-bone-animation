@@ -55,15 +55,10 @@ if(is_real(sp_folders)&&ds_exists(sp_folders,ds_type_list)){
 						var sk_attachment_pivot_w = real(sp_sprite[? "width"]);
 						var sk_attachment_pivot_h = real(sp_sprite[? "height"]);
 						var sk_attachment = sk_attachment_create_plane(sk_attachment_name);
-						sk_attachment_plane_set_regionKey(sk_attachment,sk_attachment_path);
-						sk_attachment_plane_set_transform(
-							sk_attachment,
-							-(sk_attachment_pivot_x-0.5)*sk_attachment_pivot_w, /* attachments are drawn with a default origin at their centre */
-							-(sk_attachment_pivot_y-0.5)*sk_attachment_pivot_h,
-							1,1,
-							0,0,
-							0
-						);
+						sk_attachment_plane_regionKey(sk_attachment,sk_attachment_path);
+						sk_attachment_plane_x(sk_attachment,-(sk_attachment_pivot_x-0.5)*sk_attachment_pivot_w); // attachments are drawn with a default origin at their centre
+						sk_attachment_plane_y(sk_attachment,-(sk_attachment_pivot_y-0.5)*sk_attachment_pivot_h);
+						sk_attachment_plane_matrix(sk_attachment,1,1,0,0,0);
 						sk_armature_add_attachment(sk_skel,sk_attachment);
 						#endregion
 					}

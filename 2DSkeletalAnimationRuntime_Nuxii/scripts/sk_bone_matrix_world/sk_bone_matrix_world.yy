@@ -1,8 +1,8 @@
 {
-    "id": "44724389-71a9-481e-8798-6d2975ff8b0d",
+    "id": "65ae3196-9c4e-4888-8b8a-c62ca3ba3c40",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_attachment_plane_set_transform",
+    "name": "sk_bone_matrix_world",
     "IsCompatibility": false,
     "IsDnD": false
 }
