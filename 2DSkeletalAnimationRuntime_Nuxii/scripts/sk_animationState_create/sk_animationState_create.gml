@@ -11,6 +11,6 @@ gml_pragma("global","sk_struct_type_add(sk_type_animationState,SK_ANIMATIONSTATE
 /// @desc creates a structure
 /// @param name
 var sk_structure = sk_struct_create(sk_type_animationState,argument0);
-sk_animationState_setPlaybackSpeed(sk_structure,1);
-sk_animationState_setDefaultMix(sk_structure,1);
+sk_animationState_playback_speed(sk_structure,1);
+sk_animationState_mix_default(sk_structure,1);
 return sk_structure;

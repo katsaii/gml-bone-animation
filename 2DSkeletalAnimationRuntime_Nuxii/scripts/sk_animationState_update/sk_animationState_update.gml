@@ -30,6 +30,6 @@ if(sk_anim_next!=sk_anim_current){	// set new animation
 	// update mix
 	var sk_mix = argument0[SK_ANIMATIONSTATE.mixAlpha];
 	if(sk_mix<1){
-		argument0[@ SK_ANIMATIONSTATE.mixAlpha] = min(sk_mix+sk_dt*sk_animationState_getMix(argument0,sk_anim_prev,sk_anim_current),1);
+		argument0[@ SK_ANIMATIONSTATE.mixAlpha] = min(sk_mix+sk_dt*sk_animationState_mix(argument0,sk_anim_prev,sk_anim_current),1);
 	}
 }

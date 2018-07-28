@@ -50,8 +50,8 @@ sk_animation_apply(sk_armature_find(armature,sk_type_animation,"display_costume_
 #region
 animationState = sk_animationState_create("");
 sk_animationState_add_animation_from_armature(animationState,armature);
-sk_animationState_setMix(animationState,"anim_run","anim_skid",0.2);
-sk_animationState_setDefaultMix(animationState,0.05);
+sk_animationState_mix(animationState,"anim_run","anim_skid",0.2);
+sk_animationState_mix_default(animationState,0.05);
 #endregion
 
 v_phys = ds_map_create();
