@@ -862,7 +862,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 				}
 			}
 			// set final duration
-			sk_animation_set_duration(sk_anim,max(sk_anim_duration,0));
+			sk_animation_duration(sk_anim,sk_anim_duration);
 			#endregion
 		}
 		// goto next animation

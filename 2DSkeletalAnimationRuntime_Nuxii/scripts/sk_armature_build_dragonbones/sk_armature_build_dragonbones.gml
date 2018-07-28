@@ -247,7 +247,7 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 	    if(is_real(db_anim_record)&&ds_exists(db_anim_record,ds_type_map)){
 			#region // add animation
 			var sk_anim = sk_animation_create(string(db_anim_record[? "name"]));
-			sk_animation_set_duration(sk_anim,max(real(db_anim_record[? "duration"]),0)*db_fps);
+			sk_animation_duration(sk_anim,real(db_anim_record[? "duration"])*db_fps);
 			sk_armature_add(sk_skel,sk_anim);
 			// compile timeline data
 			var db_anim_bones = db_anim_record[? "bone"];

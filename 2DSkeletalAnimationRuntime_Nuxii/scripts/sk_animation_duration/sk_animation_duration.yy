@@ -1,8 +1,8 @@
 {
-    "id": "e6d8ed30-e9b1-4d09-b211-7c10a218be30",
+    "id": "5c0ff8ea-b672-4706-a0f0-de4f354dcdc2",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_animation_set_looping",
+    "name": "sk_animation_duration",
     "IsCompatibility": false,
     "IsDnD": false
 }

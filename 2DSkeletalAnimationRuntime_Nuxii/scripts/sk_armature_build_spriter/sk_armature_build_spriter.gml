@@ -168,8 +168,8 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 			#region // add animation
 			var sk_anim_name = string(sp_anim_record[? "name"]);
 			var sk_anim = sk_animation_create(sk_anim_name);
-			sk_animation_set_duration(sk_anim,real(sp_anim_record[? "length"]));
-			sk_animation_set_looping(sk_anim,sp_anim_record[? "looping"]!="false");
+			sk_animation_duration(sk_anim,sp_anim_record[? "length"]);
+			sk_animation_looping(sk_anim,sp_anim_record[? "looping"]!="false");
 			sk_armature_add(sk_skel,sk_anim);
 			// create and add the draw order timeline
 			var sk_anim_timeline_drawOrder = sk_timeline_create_order("Armature.TimelineDrawOrder",sk_drawOrder);

@@ -11,4 +11,6 @@ gml_pragma("global","sk_struct_type_add(sk_type_animation,SK_ANIMATION.sizeof,sk
 /// @desc creates a structure
 /// @param name
 var sk_structure = sk_struct_create(sk_type_animation,argument0);
+sk_animation_duration(sk_structure,0);
+sk_animation_looping(sk_structure,false);
 return sk_structure;
