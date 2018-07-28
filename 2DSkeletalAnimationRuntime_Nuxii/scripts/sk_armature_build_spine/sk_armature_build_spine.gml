@@ -128,12 +128,9 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 										var sk_attachment_rotation = real(sp_skin_slot_attachment_record[? "rotation"]);
 										// create a new attachment and add it to the skin
 										sk_attachment = sk_attachment_create_point(sk_attachment_name);
-										sk_attachment_point_set_offsets(
-											sk_attachment,
-											sk_attachment_x,
-											sk_attachment_y,
-											sk_attachment_rotation
-										);
+										sk_attachment_point_x(sk_attachment,sk_attachment_x);
+										sk_attachment_point_y(sk_attachment,sk_attachment_y);
+										sk_attachment_point_rotation(sk_attachment,sk_attachment_rotation);
 										sk_armature_add_attachment(sk_skel,sk_attachment);
 									break;
 									case "region": default:
