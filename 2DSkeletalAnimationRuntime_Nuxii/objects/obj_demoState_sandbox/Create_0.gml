@@ -24,7 +24,7 @@ if(!sk_struct_exists(atlas,sk_type_atlas)){
 	show_message("atlas doesn't exist");
 	game_end();
 }
-sk_atlas_assignPage(atlas,sprite_add(PATH_PALIA+"Palia_Skeleton_tex.png",0,false,false,0,0),0);
+sk_atlas_page(atlas,sprite_add(PATH_PALIA+"Palia_Skeleton_tex.png",0,false,false,0,0),0);
 
 #region
 var constraint = sk_constraint_create_physics("phys");

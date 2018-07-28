@@ -704,6 +704,14 @@
             }
         },
         {
+            "Key": "2b8a3b29-7f51-4a64-8c12-ac76415c2162",
+            "Value": {
+                "id": "8e16e10e-3058-4cd9-ac48-da42be8803d0",
+                "resourcePath": "views\\2b8a3b29-7f51-4a64-8c12-ac76415c2162.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "2ba76769-fcfb-4db3-82e5-ac8ccd9e7753",
             "Value": {
                 "id": "25c50689-26c9-4d85-980d-72a33a711164",
@@ -1544,14 +1552,6 @@
             }
         },
         {
-            "Key": "61ac209b-8fc9-4554-b91d-d80a5f53d85f",
-            "Value": {
-                "id": "574c3256-c935-4d7e-93cb-58f93a20d01f",
-                "resourcePath": "views\\61ac209b-8fc9-4554-b91d-d80a5f53d85f.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "61c8c1a6-6e83-4ab8-98b1-f052c1062fa1",
             "Value": {
                 "id": "d09418b5-c2df-4cad-bf11-b75a547159c4",
@@ -1636,14 +1636,6 @@
             "Value": {
                 "id": "670f6509-8a47-412b-9f92-edcc7f583438",
                 "resourcePath": "scripts\\sk_erp\\sk_erp.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "658709b5-7f5e-4d8c-bf67-5919a95176c2",
-            "Value": {
-                "id": "4dc22926-7e75-42bc-9822-53748d211f54",
-                "resourcePath": "scripts\\sk_atlas_assignPage\\sk_atlas_assignPage.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3152,6 +3144,14 @@
             }
         },
         {
+            "Key": "cdf1fefd-3575-4b4c-a79a-b5b49bdf5d49",
+            "Value": {
+                "id": "ce176819-9062-47c2-8a05-e7cd8bea7a9c",
+                "resourcePath": "scripts\\sk_atlas_page\\sk_atlas_page.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ce1493ab-64e9-4097-8066-d9419353318f",
             "Value": {
                 "id": "c8ddccc2-3947-42f9-b3d4-df8c1db462c4",
@@ -4048,7 +4048,7 @@
         "e79f1e97-4d52-4a49-891e-8acdef309ff2",
         "c7d2722a-3217-4dae-b28e-0cd34581287a",
         "0c86c732-29ab-438a-a2f2-fb9df9cfddb5",
-        "658709b5-7f5e-4d8c-bf67-5919a95176c2",
+        "cdf1fefd-3575-4b4c-a79a-b5b49bdf5d49",
         "9ee44167-370e-4808-b2f8-1d1b2e00966d",
         "24f95c50-b0b0-4770-b66f-9bac1ba671e2",
         "58ffeab2-0094-4c2e-975b-e8551a4adc1d",

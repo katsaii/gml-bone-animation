@@ -45,7 +45,7 @@ if(file_exists(m_path_skel)){ \
 } \
 if(sk_struct_exists(new_atlas,sk_type_atlas)){ \
 	var new_texture = sprite_add(m_path_tex,0,false,false,0,0); \
-	sk_atlas_assignPage(new_atlas,new_texture,0); \
+	sk_atlas_page(new_atlas,new_texture,0); \
 	ds_list_add(global.available_atlas,new_atlas); \
 } \
 if(sk_struct_exists(new_armature,sk_type_armature)){ \

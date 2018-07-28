@@ -61,7 +61,7 @@ if(keyboard_check_pressed(ord("A"))){
 		if(sk_struct_exists(new_atlas,sk_type_atlas)){
 			// assign
 			global.current_atlas = new_atlas;
-			sk_atlas_assignPage(new_atlas,new_texture,0);
+			sk_atlas_page(new_atlas,new_texture,0);
 			default_format = format;
 		} else {
 			show_message("Invalid atlas file");

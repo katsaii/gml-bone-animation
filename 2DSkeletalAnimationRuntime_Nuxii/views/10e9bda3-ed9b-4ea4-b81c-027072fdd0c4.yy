@@ -8,7 +8,7 @@
         "479a5f15-775d-46c9-844b-81aca9fe99b5"
     ],
     "filterType": "GMScript",
-    "folderName": "Setup",
+    "folderName": "Properties",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

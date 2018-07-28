@@ -9,4 +9,5 @@ gml_pragma("global","sk_struct_type_add(sk_type_atlas,SK_ATLAS.sizeof,sk_constru
 /// @desc creates a structure
 /// @param name
 var sk_structure = sk_struct_create(sk_type_atlas,argument0);
+sk_atlas_page(sk_structure,-1,0);
 return sk_structure;
