@@ -14,8 +14,7 @@ if(sk_struct_exists(sk_anim_current,sk_type_animation)){
 			argument0[SK_ANIMATIONSTATE.animation_previous_timeLast],
 			argument0[SK_ANIMATIONSTATE.animation_previous_time],
 			argument1,argument2,
-			argument0[SK_ANIMATIONSTATE.animation_previous_loop],
-			(sk_mix>0.5) // ignore events if the mix is above the alpha threshold
+			argument0[SK_ANIMATIONSTATE.animation_previous_loop]
 		);
 		sk_animation_apply(
 			sk_anim_current,

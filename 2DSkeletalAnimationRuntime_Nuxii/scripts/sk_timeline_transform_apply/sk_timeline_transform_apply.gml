@@ -1,37 +1,30 @@
 /// @desc applies the pose at the given time in the timeline
-/// @param timeline
-/// @param time
+/// @param keyframes
+/// @param body
+/// @param time (the time to search for)
+/// @param timeLast (the previous frame time)
+/// @param frameA
+/// @param frameB
+/// @param frameA_time
+/// @param frameB_time
 /// @param mixPose
 /// @param alpha
-/// @param duration ? leave this as -1 if not required
-var sk_keyframes = argument0[sk_timeline_header_keyframes];
-var sk_body = argument0[sk_timeline_header_body];
-if(!sk_struct_exists(sk_body,sk_type_constraint_transform)){ return; }
-var sk_time = argument1;
-var sk_mix = argument2;
-var sk_alpha = argument3;
-var sk_loop = argument4>0; // not -1
-var sk_duration = argument4;
-// find frames
-var sk_keyframe_last = ds_list_size(sk_keyframes)-SK_TIMELINE_TRANSFORM.kf_ENTRIES; if(sk_keyframe_last<0){ return; } // not enough frames
-var sk_keyframe_prev = sk_list_search_binary(sk_keyframes,sk_time,SK_TIMELINE_TRANSFORM.kf_ENTRIES,0,sk_keyframe_last);
-var sk_keyframe_next = sk_keyframe_prev+SK_TIMELINE_TRANSFORM.kf_ENTRIES;
-// get times
-var sk_t1 = sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_TRANSFORM.kf_time]; if(sk_t1>sk_time){ return; } // keyframe has not been reached yet
-var sk_t2 = 0;
-if(sk_loop&&(sk_keyframe_next>sk_keyframe_last)){
-	sk_keyframe_next = 0; // first frame
-	sk_t2 = sk_duration;
-} else {
-	sk_keyframe_next = min(sk_keyframe_next,sk_keyframe_last);
-	sk_t2 = sk_keyframes[| sk_keyframe_next+SK_TIMELINE_TRANSFORM.kf_time];
-}
+var sk_keyframes = argument0;
+var sk_body = argument1; if(!sk_struct_exists(sk_body,sk_type_constraint_transform)){ return; }
+var sk_time = argument2;
+var sk_timeLast = argument3;
+var sk_keyframe_prev = argument4;
+var sk_keyframe_next = argument5;
+var sk_keyframe_prev_time = argument6;
+var sk_keyframe_next_time = argument7;
+var sk_mix = argument8;
+var sk_alpha = argument9;
 // interpolate
-var sk_interpolation = sk_erp(sk_t1,sk_t2,sk_time,sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_TRANSFORM.kf_tweenEasing]);
-var sk_translate = lerp(sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_TRANSFORM.kf_translateMix],sk_keyframes[| sk_keyframe_next+SK_TIMELINE_TRANSFORM.kf_translateMix],sk_interpolation);
-var sk_scale = lerp(sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_TRANSFORM.kf_scaleMix],sk_keyframes[| sk_keyframe_next+SK_TIMELINE_TRANSFORM.kf_scaleMix],sk_interpolation);
-var sk_shear = lerp(sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_TRANSFORM.kf_shearMix],sk_keyframes[| sk_keyframe_next+SK_TIMELINE_TRANSFORM.kf_shearMix],sk_interpolation);
-var sk_rotate = lerp(sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_TRANSFORM.kf_rotateMix],sk_keyframes[| sk_keyframe_next+SK_TIMELINE_TRANSFORM.kf_rotateMix],sk_interpolation);
+var sk_interpolation = sk_erp(sk_keyframe_prev_time,sk_keyframe_next_time,sk_time,sk_keyframes[| sk_keyframe_prev+sk_keyframe_transform.tweenEasing]);
+var sk_translate = lerp(sk_keyframes[| sk_keyframe_prev+sk_keyframe_transform.translateMix],sk_keyframes[| sk_keyframe_next+sk_keyframe_transform.translateMix],sk_interpolation);
+var sk_scale = lerp(sk_keyframes[| sk_keyframe_prev+sk_keyframe_transform.scaleMix],sk_keyframes[| sk_keyframe_next+sk_keyframe_transform.scaleMix],sk_interpolation);
+var sk_shear = lerp(sk_keyframes[| sk_keyframe_prev+sk_keyframe_transform.shearMix],sk_keyframes[| sk_keyframe_next+sk_keyframe_transform.shearMix],sk_interpolation);
+var sk_rotate = lerp(sk_keyframes[| sk_keyframe_prev+sk_keyframe_transform.rotateMix],sk_keyframes[| sk_keyframe_next+sk_keyframe_transform.rotateMix],sk_interpolation);
 // apply
 switch(sk_mix){
 	case sk_mixPose_mix: case sk_mixPose_add:

@@ -17,7 +17,7 @@
         "6b9794f0-5cf5-4db9-a7fb-7c761578f19f"
     ],
     "filterType": "GMScript",
-    "folderName": "Child Types",
+    "folderName": "Types",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

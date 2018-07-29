@@ -4,11 +4,9 @@
     "mvc": "1.1",
     "name": "d82f71cc-b61b-44a7-9b10-a327681d9d04",
     "children": [
-        "3b79816a-55ef-4fad-8a76-36fcace30759",
+        "a9118ece-96f2-4412-8b4b-884fec0a32bb",
         "8bae7b1c-b2d1-4db7-900c-9f265d7b464e",
-        "16d2778a-cc32-4352-98f5-15a8ed4c6dbd",
-        "92c84c7f-d5e4-4870-b687-497dc4fab6aa",
-        "7696a8e7-e914-4e4c-b27c-4639c4ac1360"
+        "16d2778a-cc32-4352-98f5-15a8ed4c6dbd"
     ],
     "filterType": "GMScript",
     "folderName": "Physics",

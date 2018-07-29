@@ -1,21 +1,27 @@
 /// @desc applies the pose at the given time in the timeline
-/// @param timeline
-/// @param time
+/// @param keyframes
+/// @param body
+/// @param time (the time to search for)
+/// @param timeLast (the previous frame time)
+/// @param frameA
+/// @param frameB
+/// @param frameA_time
+/// @param frameB_time
 /// @param mixPose
 /// @param alpha
-if(argument3>=0.5){
-	var sk_keyframes = argument0[sk_timeline_header_keyframes];
-	var sk_body = argument0[sk_timeline_header_body];
-	if(!sk_struct_exists(sk_body,sk_type_constraint_hierarchy)){ return; }
-	var sk_time = argument1;
-	var sk_mix = argument2;
-	// find frames
-	var sk_keyframe_last = ds_list_size(sk_keyframes)-SK_TIMELINE_HIERARCHY.kf_ENTRIES; if(sk_keyframe_last<0){ return; }
-	var sk_keyframe_prev = sk_list_search_binary(sk_keyframes,sk_time,SK_TIMELINE_HIERARCHY.kf_ENTRIES,0,sk_keyframe_last);
-	// get times
-	if(sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_HIERARCHY.kf_time]>sk_time){ return; } // keyframe has not been reached yet
-	// interpolate
-	var sk_tupleId = sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_HIERARCHY.kf_tupleKey];
+var sk_keyframes = argument0;
+var sk_body = argument1; if(!sk_struct_exists(sk_body,sk_type_constraint_hierarchy)){ return; }
+var sk_time = argument2;
+var sk_timeLast = argument3;
+var sk_keyframe_prev = argument4;
+var sk_keyframe_next = argument5;
+var sk_keyframe_prev_time = argument6;
+var sk_keyframe_next_time = argument7;
+var sk_mix = argument8;
+var sk_alpha = argument9;
+if(sk_alpha>=0.5){
+	// get tuple index
+	var sk_tupleId = sk_keyframes[| sk_keyframe_prev+sk_keyframe_hierarchy.tupleKey];
 	// apply
 	switch(sk_mix){
 		case sk_mixPose_mix: case sk_mixPose_add:

@@ -9,7 +9,7 @@ if(argument_count<2){
 }
 var sk_timeline = argument[0];
 var sk_time = argument[1];
-var sk_keys = sk_timeline[sk_timeline_header_keyframes];
+var sk_keys = sk_timeline[SK_TIMELINE.keyframes];
 var sk_ENTRIES = argument_count-1;
 var sk_offset = 0;
 if(!ds_list_empty(sk_keys)){

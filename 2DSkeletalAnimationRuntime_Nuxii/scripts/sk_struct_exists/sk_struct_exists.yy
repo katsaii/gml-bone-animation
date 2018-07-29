@@ -1,5 +1,5 @@
 {
-    "id": "5aa0fbd1-ce57-44c5-bf92-677618a9c292",
+    "id": "cd2b7b3e-2eab-426a-9101-76d0c5b492d3",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_struct_exists",

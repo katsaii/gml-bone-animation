@@ -17,11 +17,13 @@ ds_list_clear(sk_drawOrder);
 var sk_constraint_count = ds_list_size(sk_constraints);
 for(var sk_constraint_id = 0; sk_constraint_id < sk_constraint_count; sk_constraint_id++){
 	var sk_constraint = sk_constraints[| sk_constraint_id];
-	switch(sk_struct_get_type(sk_constraint)){
-		case sk_type_constraint_ik: sk_cache_sort_constraint_ik(sk_updateOrder,sk_constraint); break;
-		case sk_type_constraint_transform: sk_cache_sort_constraint_transform(sk_updateOrder,sk_constraint); break;
-		case sk_type_constraint_hierarchy: sk_cache_sort_constraint_hierarchy(sk_updateOrder,sk_constraint); break;
-		case sk_type_constraint_physics: sk_cache_sort_constraint_physics(sk_updateOrder,sk_constraint); break;
+	if(sk_struct_exists(sk_constraint)){
+		switch(sk_struct_get_type(sk_constraint)){
+			case sk_type_constraint_ik: sk_cache_sort_constraint_ik(sk_updateOrder,sk_constraint); break;
+			case sk_type_constraint_transform: sk_cache_sort_constraint_transform(sk_updateOrder,sk_constraint); break;
+			case sk_type_constraint_hierarchy: sk_cache_sort_constraint_hierarchy(sk_updateOrder,sk_constraint); break;
+			case sk_type_constraint_physics: sk_cache_sort_constraint_physics(sk_updateOrder,sk_constraint); break;
+		}
 	}
 }
 // sort remaining bones
@@ -32,5 +34,5 @@ for(var sk_bone_id = 0; sk_bone_id < sk_bone_count; sk_bone_id++){
 // add all images to draw order
 var sk_slot_count = ds_list_size(sk_slots);
 for(var sk_slot_id = 0; sk_slot_id < sk_slot_count; sk_slot_id++){
-	sk_cache_add_slot(sk_drawOrder,sk_slots[| sk_slot_id]);
+	ds_list_add(sk_drawOrder,sk_slots[| sk_slot_id]);
 }

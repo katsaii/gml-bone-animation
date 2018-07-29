@@ -33,7 +33,7 @@ var sp_objInfo = sp_armature[? "obj_info"];
 var sp_characterMaps = sp_armature[? "character_map"];
 var sp_animations = sp_armature[? "animation"];
 // create armature
-var sk_skel = sk_armature_create(sp_armature[? "name"]);
+var sk_skel = sk_struct_create(sk_type_armature,sp_armature[? "name"]);
 // transfer sprite data (attachments)
 if(is_real(sp_folders)&&ds_exists(sp_folders,ds_type_list)){
 	var sp_folder_count = ds_list_size(sp_folders);
@@ -54,7 +54,7 @@ if(is_real(sp_folders)&&ds_exists(sp_folders,ds_type_list)){
 						var sk_attachment_pivot_y = 1-(is_real(sp_sprite[? "pivot_y"]) ? sp_sprite[? "pivot_y"] : 1);
 						var sk_attachment_pivot_w = real(sp_sprite[? "width"]);
 						var sk_attachment_pivot_h = real(sp_sprite[? "height"]);
-						var sk_attachment = sk_attachment_create_plane(sk_attachment_name);
+						var sk_attachment = sk_struct_create(sk_type_attachment_plane,sk_attachment_name);
 						sk_attachment_plane_regionKey(sk_attachment,sk_attachment_path);
 						sk_attachment_plane_x(sk_attachment,-(sk_attachment_pivot_x-0.5)*sk_attachment_pivot_w); // attachments are drawn with a default origin at their centre
 						sk_attachment_plane_y(sk_attachment,-(sk_attachment_pivot_y-0.5)*sk_attachment_pivot_h);
@@ -76,7 +76,7 @@ if(is_real(sp_objInfo)&&ds_exists(sp_objInfo,ds_type_list)){
 			switch(sp_obj_record[? "type"]){
 				case "bone":
 					#region // add bone
-					var sk_bone = sk_bone_create(string(sp_obj_record[? "name"]));
+					var sk_bone = sk_struct_create(sk_type_bone,string(sp_obj_record[? "name"]));
 					sk_bone_transformMode(sk_bone,sk_transformMode_ex_spriter); // spriter doesn't have skew transforms
 					sk_bone_length(sk_bone,sp_obj_record[? "w"]);
 					sk_armature_add(sk_skel,sk_bone);
@@ -87,7 +87,7 @@ if(is_real(sp_objInfo)&&ds_exists(sp_objInfo,ds_type_list)){
 	}
 }
 // create a default hierarchy constraint
-var sk_bone_hierarchy = sk_constraint_create_hierarchy("spriter_bone_hierarchy");
+var sk_bone_hierarchy = sk_struct_create(sk_type_constraint_hierarchy,"spriter_bone_hierarchy");
 sk_armature_add(sk_skel,sk_bone_hierarchy);
 // create a default skin and define remap data
 var sk_defaultSkin = sk_armature_get_defaultSkin(sk_skel);
@@ -143,7 +143,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 							var sk_symbol_name = sp_timeline_record[? "name"];
 							if(sk_armature_find(sk_skel,sk_type_symbol,sk_symbol_name)==noone){
 								// symbol doesn't exist, create it
-								var sk_symbol = sk_symbol_create(sk_symbol_name);
+								var sk_symbol = sk_struct_create(sk_type_symbol,sk_symbol_name);
 								sk_bone_transformMode(sk_symbol_get_nested_bone(sk_symbol),sk_transformMode_ex_spriter); // no skew transform
 								sk_armature_add(sk_skel,sk_symbol);
 							}
@@ -167,15 +167,17 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 	    if(is_real(sp_anim_record)&&ds_exists(sp_anim_record,ds_type_map)){
 			#region // add animation
 			var sk_anim_name = string(sp_anim_record[? "name"]);
-			var sk_anim = sk_animation_create(sk_anim_name);
+			var sk_anim = sk_struct_create(sk_type_animation,sk_anim_name);
 			sk_animation_duration(sk_anim,sp_anim_record[? "length"]);
 			sk_animation_looping(sk_anim,sp_anim_record[? "looping"]!="false");
 			sk_armature_add(sk_skel,sk_anim);
 			// create and add the draw order timeline
-			var sk_anim_timeline_drawOrder = sk_timeline_create_order("Armature.TimelineDrawOrder",sk_drawOrder);
+			var sk_anim_timeline_drawOrder = sk_struct_create(sk_type_timeline_order,"Armature.TimelineDrawOrder");
+			sk_timeline_body(sk_anim_timeline_drawOrder,sk_drawOrder);
 			sk_animation_add_timeline(sk_anim,sk_anim_timeline_drawOrder);
 			// create and add the hierarchy timeline
-			var sk_anim_timeline_hierarchy = sk_timeline_create_hierarchy("Armature.TimelineHierarchy",sk_bone_hierarchy);
+			var sk_anim_timeline_hierarchy = sk_struct_create(sk_type_timeline_hierarchy,"Armature.TimelineHierarchy");
+			sk_timeline_body(sk_anim_timeline_hierarchy,sk_bone_hierarchy);
 			sk_animation_add_timeline(sk_anim,sk_anim_timeline_hierarchy);
 			// create a map to easily look up the timeline attributed to the object
 			var SP_BONE_TIMELINE_MAP_TRANSLATE = ds_map_create();
@@ -283,19 +285,22 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 																		// add frame
 																		var sk_anim_frame_timeline_translate = SP_BONE_TIMELINE_MAP_TRANSLATE[? sk_anim_bone_name];
 																		if(!sk_struct_exists(sk_anim_frame_timeline_translate,sk_type_timeline_translate)){
-																			sk_anim_frame_timeline_translate = sk_timeline_create_translate(string(sk_anim_bone_name)+".TimelineTranslate",sk_anim_bone);
+																			sk_anim_frame_timeline_translate = sk_struct_create(sk_type_timeline_translate,string(sk_anim_bone_name)+".TimelineTranslate");
+																			sk_timeline_body(sk_anim_frame_timeline_translate,sk_anim_bone);
 																			sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline_translate);
 																			SP_BONE_TIMELINE_MAP_TRANSLATE[? sk_anim_bone_name] = sk_anim_frame_timeline_translate;
 																		}
 																		var sk_anim_frame_timeline_scale = SP_BONE_TIMELINE_MAP_SCALE[? sk_anim_bone_name];
 																		if(!sk_struct_exists(sk_anim_frame_timeline_scale,sk_type_timeline_scale)){
-																			sk_anim_frame_timeline_scale = sk_timeline_create_scale(string(sk_anim_bone_name)+".TimelineScale",sk_anim_bone);
+																			sk_anim_frame_timeline_scale = sk_struct_create(sk_type_timeline_scale,string(sk_anim_bone_name)+".TimelineScale");
+																			sk_timeline_body(sk_anim_frame_timeline_scale,sk_anim_bone);
 																			sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline_scale);
 																			SP_BONE_TIMELINE_MAP_SCALE[? sk_anim_bone_name] = sk_anim_frame_timeline_scale;
 																		}
 																		var sk_anim_frame_timeline_rotate = SP_BONE_TIMELINE_MAP_ROTATE[? sk_anim_bone_name];
 																		if(!sk_struct_exists(sk_anim_frame_timeline_rotate,sk_type_timeline_rotate)){
-																			sk_anim_frame_timeline_rotate = sk_timeline_create_rotate(string(sk_anim_bone_name)+".TimelineRotate",sk_anim_bone);
+																			sk_anim_frame_timeline_rotate = sk_struct_create(sk_type_timeline_rotate,string(sk_anim_bone_name)+".TimelineRotate");
+																			sk_timeline_body(sk_anim_frame_timeline_rotate,sk_anim_bone);
 																			sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline_rotate);
 																			SP_BONE_TIMELINE_MAP_ROTATE[? sk_anim_bone_name] = sk_anim_frame_timeline_rotate;
 																		}
@@ -411,37 +416,43 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 																		// add frame
 																		var sk_anim_frame_timeline_translate = SP_SYMBOL_TIMELINE_MAP_TRANSLATE[? sk_anim_symbol_name];
 																		if(!sk_struct_exists(sk_anim_frame_timeline_translate,sk_type_timeline_translate)){
-																			sk_anim_frame_timeline_translate = sk_timeline_create_translate(string(sk_anim_symbol_name)+".Symbol.TimelineTranslate",sk_anim_symbol_nestedBone);
+																			sk_anim_frame_timeline_translate = sk_struct_create(sk_type_timeline_translate,string(sk_anim_symbol_name)+".Symbol.TimelineTranslate");
+																			sk_timeline_body(sk_anim_frame_timeline_translate,sk_anim_symbol_nestedBone);
 																			sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline_translate);
 																			SP_SYMBOL_TIMELINE_MAP_TRANSLATE[? sk_anim_symbol_name] = sk_anim_frame_timeline_translate;
 																		}
 																		var sk_anim_frame_timeline_scale = SP_SYMBOL_TIMELINE_MAP_SCALE[? sk_anim_symbol_name];
 																		if(!sk_struct_exists(sk_anim_frame_timeline_scale,sk_type_timeline_scale)){
-																			sk_anim_frame_timeline_scale = sk_timeline_create_scale(string(sk_anim_symbol_name)+".Symbol.TimelineScale",sk_anim_symbol_nestedBone);
+																			sk_anim_frame_timeline_scale = sk_struct_create(sk_type_timeline_scale,string(sk_anim_symbol_name)+".Symbol.TimelineScale");
+																			sk_timeline_body(sk_anim_frame_timeline_scale,sk_anim_symbol_nestedBone);
 																			sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline_scale);
 																			SP_SYMBOL_TIMELINE_MAP_SCALE[? sk_anim_symbol_name] = sk_anim_frame_timeline_scale;
 																		}
 																		var sk_anim_frame_timeline_rotate = SP_SYMBOL_TIMELINE_MAP_ROTATE[? sk_anim_symbol_name];
 																		if(!sk_struct_exists(sk_anim_frame_timeline_rotate,sk_type_timeline_rotate)){
-																			sk_anim_frame_timeline_rotate = sk_timeline_create_rotate(string(sk_anim_symbol_name)+".Symbol.TimelineRotate",sk_anim_symbol_nestedBone);
+																			sk_anim_frame_timeline_rotate = sk_struct_create(sk_type_timeline_rotate,string(sk_anim_symbol_name)+".Symbol.TimelineRotate");
+																			sk_timeline_body(sk_anim_frame_timeline_rotate,sk_anim_symbol_nestedBone);
 																			sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline_rotate);
 																			SP_SYMBOL_TIMELINE_MAP_ROTATE[? sk_anim_symbol_name] = sk_anim_frame_timeline_rotate;
 																		}
 																		var sk_anim_frame_timeline_colour = SP_SYMBOL_TIMELINE_MAP_COLOUR[? sk_anim_symbol_name];
 																		if(!sk_struct_exists(sk_anim_frame_timeline_colour,sk_type_timeline_colour)){
-																			sk_anim_frame_timeline_colour = sk_timeline_create_colour(string(sk_anim_symbol_name)+".Symbol.TimelineColour",sk_anim_symbol_nestedSlot);
+																			sk_anim_frame_timeline_colour = sk_struct_create(sk_type_timeline_colour,string(sk_anim_symbol_name)+".Symbol.TimelineColour");
+																			sk_timeline_body(sk_anim_frame_timeline_colour,sk_anim_symbol_nestedSlot);
 																			sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline_colour);
 																			SP_SYMBOL_TIMELINE_MAP_COLOUR[? sk_anim_symbol_name] = sk_anim_frame_timeline_colour;
 																		}
 																		var sk_anim_frame_timeline_display = SP_SYMBOL_TIMELINE_MAP_DISPLAY[? sk_anim_symbol_name];
 																		if(!sk_struct_exists(sk_anim_frame_timeline_display,sk_type_timeline_display)){
-																			sk_anim_frame_timeline_display = sk_timeline_create_display(string(sk_anim_symbol_name)+".Symbol.TimelineDisplay",sk_anim_symbol_nestedSlot);
+																			sk_anim_frame_timeline_display = sk_struct_create(sk_type_timeline_display,string(sk_anim_symbol_name)+".Symbol.TimelineDisplay");
+																			sk_timeline_body(sk_anim_frame_timeline_display,sk_anim_symbol_nestedSlot);
 																			sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline_display);
 																			SP_SYMBOL_TIMELINE_MAP_DISPLAY[? sk_anim_symbol_name] = sk_anim_frame_timeline_display;
 																		}
 																		var sk_anim_frame_timeline_parent = SP_SYMBOL_TIMELINE_MAP_PARENT[? sk_anim_symbol_name];
 																		if(!sk_struct_exists(sk_anim_frame_timeline_parent,sk_type_timeline_parent)){
-																			sk_anim_frame_timeline_parent = sk_timeline_create_parent(string(sk_anim_symbol_name)+".Symbol.TimelineParent",sk_anim_symbol_nestedSlot);
+																			sk_anim_frame_timeline_parent = sk_struct_create(sk_type_timeline_parent,string(sk_anim_symbol_name)+".Symbol.TimelineParent");
+																			sk_timeline_body(sk_anim_frame_timeline_parent,sk_anim_symbol_nestedSlot);
 																			sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline_parent);
 																			SP_SYMBOL_TIMELINE_MAP_PARENT[? sk_anim_symbol_name] = sk_anim_frame_timeline_parent;
 																		}

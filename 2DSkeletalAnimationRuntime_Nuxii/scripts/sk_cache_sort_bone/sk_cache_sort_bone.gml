@@ -6,10 +6,8 @@ if(sk_struct_exists(argument1,sk_type_bone)){
 	if(sk_bone_id==-1){
 		// not sorted
 		var sk_boneParent = argument1[SK_BONE.parent];
-		if(sk_struct_exists(sk_boneParent,sk_type_bone)){
-			// sort parent
-			sk_cache_sort_bone(argument0,sk_boneParent);
-		}
+		// sort parent
+		sk_cache_sort_bone(argument0,sk_boneParent);
 		// add current bone to cache
 		ds_list_add(argument0,argument1);
 	} // else bone is already sorted
