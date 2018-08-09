@@ -1,4 +1,4 @@
-#macro sk_type_slot __sk_slot_header
+#macro sk_type_slot "__sk_slot_header"
 enum SK_SLOT{
 	availableAttachments,defaultAttachmentKey,
 	colour,alpha,bone,attachment,

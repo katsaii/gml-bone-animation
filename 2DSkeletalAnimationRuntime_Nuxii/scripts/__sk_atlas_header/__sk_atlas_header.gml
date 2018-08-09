@@ -1,4 +1,4 @@
-#macro sk_type_atlas __sk_atlas_header
+#macro sk_type_atlas "__sk_atlas_header"
 enum SK_ATLAS{
 	texturePage,
 	UV_left,UV_top,UV_right,UV_bottom,

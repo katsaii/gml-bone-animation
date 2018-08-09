@@ -611,7 +611,7 @@
             "Key": "2a1a6543-4c73-446c-8cdc-814c8639a769",
             "Value": {
                 "id": "d928ae2a-0d84-466e-8e78-97204a464f53",
-                "resourcePath": "scripts\\__sk_runtime_config__\\__sk_runtime_config__.yy",
+                "resourcePath": "scripts\\__sk_runtime_config\\__sk_runtime_config.yy",
                 "resourceType": "GMScript"
             }
         },

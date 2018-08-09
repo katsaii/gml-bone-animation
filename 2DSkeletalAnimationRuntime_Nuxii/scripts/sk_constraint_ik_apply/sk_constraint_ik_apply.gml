@@ -7,7 +7,7 @@ if(sk_alpha<0.01){
 }
 var sk_bone_effector = argument0[SK_CONSTRAINT_IK.boneEffector];
 var sk_bone_joint = argument0[SK_CONSTRAINT_IK.boneJoint];
-if(sk_struct_exists(sk_bone_effector,sk_type_bone)&&sk_struct_exists(sk_bone_joint,sk_type_bone)){
+if(SK_CONFIG_RELEASE_MODE||(sk_struct_exists(sk_bone_effector,sk_type_bone)&&sk_struct_exists(sk_bone_joint,sk_type_bone))){
 	var sk_targetX = sk_bone_effector[SK_BONE.XWorld];
 	var sk_targetY = sk_bone_effector[SK_BONE.YWorld];
 	if(argument0[SK_CONSTRAINT_IK.chain]){

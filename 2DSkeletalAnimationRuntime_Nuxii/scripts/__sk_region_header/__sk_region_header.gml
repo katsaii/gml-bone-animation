@@ -1,4 +1,4 @@
-#macro sk_type_region __sk_region_header
+#macro sk_type_region "__sk_region_header"
 enum SK_REGION{
 	uv_ULX,uv_ULY,
 	uv_URX,uv_URY,

@@ -1,4 +1,4 @@
-#macro sk_type_constraint_transform __sk_constraint_header_transform
+#macro sk_type_constraint_transform "__sk_constraint_header_transform"
 enum SK_CONSTRAINT_TRANSFORM{
 	local,relative,boneChildren,boneTarget,
 	X,Y,XScale,YScale,YShear,rotation,

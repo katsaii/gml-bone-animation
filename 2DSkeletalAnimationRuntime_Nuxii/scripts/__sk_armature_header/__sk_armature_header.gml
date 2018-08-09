@@ -1,4 +1,4 @@
-#macro sk_type_armature __sk_armature_header
+#macro sk_type_armature "__sk_armature_header"
 enum SK_ARMATURE{
 	bones,slots,skins,constraints,
 	animations,events,attachments,

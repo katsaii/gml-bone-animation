@@ -1,5 +1,6 @@
 /// @desc update armature
-if(sk_struct_exists(v_armature,sk_type_armature)&&sk_struct_exists(v_atlas,sk_type_atlas)){
+v_tick=!v_tick;
+if(v_tick&&sk_struct_exists(v_armature,sk_type_armature)&&sk_struct_exists(v_atlas,sk_type_atlas)){
 	var v_time = current_time*v_rate;
 	sk_armature_setToSetupPose(v_armature);
 	if(sk_struct_exists(v_anim,sk_type_animation)){

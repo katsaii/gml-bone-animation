@@ -1,4 +1,4 @@
-#macro sk_type_attachment_plane __sk_attachment_header_plane
+#macro sk_type_attachment_plane "__sk_attachment_header_plane"
 enum SK_ATTACHMENT_PLANE{
 	regionKey,
 	X,Y,m00,m01,m10,m11,

@@ -10,7 +10,7 @@
 /// @param mixPose
 /// @param alpha
 var sk_keyframes = argument0;
-var sk_body = argument1; if(!sk_struct_exists(sk_body,sk_type_event)){ return; }
+var sk_body = argument1; if(!SK_CONFIG_RELEASE_MODE&&!sk_struct_exists(sk_body,sk_type_event)){ return; }
 var sk_time = argument2;
 var sk_timeLast = argument3;
 var sk_keyframe_prev = argument4;

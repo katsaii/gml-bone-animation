@@ -10,7 +10,7 @@ if(argument1){
 	// clear previous slot attachments
 	for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id+=sk_tuple_skinRecord_ENTRIES){
 		var sk_slot = sk_displays[| sk_display_id+sk_tuple_skinRecord_slot];
-		if(sk_struct_exists(sk_slot,sk_type_slot)){
+		if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_slot,sk_type_slot)){
 			sk_slot_attachments_clear(sk_slot);
 		}
 	}
@@ -33,7 +33,7 @@ for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id+=sk_tuple_
 		}
 	}
 	// add final attachment to slot
-	if(sk_struct_exists(sk_slot,sk_type_slot)){
+	if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_slot,sk_type_slot)){
 		sk_slot_attachments(sk_slot,sk_attachmentKey,sk_attachment);
 	}
 }

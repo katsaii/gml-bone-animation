@@ -10,3 +10,5 @@ v_anim = noone;
 v_rate = random_range(0.01,0.02);
 v_timeLast = 0;
 v_phys = ds_map_create();
+
+v_tick = false;

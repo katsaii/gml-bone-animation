@@ -1,4 +1,4 @@
-#macro sk_type_animation __sk_animation_header
+#macro sk_type_animation "__sk_animation_header"
 enum SK_ANIMATION{
 	duration,looping,
 	timelines,

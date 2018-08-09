@@ -1,4 +1,4 @@
-#macro sk_type_constraint_hierarchy __sk_constraint_header_hierarchy
+#macro sk_type_constraint_hierarchy "__sk_constraint_header_hierarchy"
 enum SK_CONSTRAINT_HIERARCHY{
 	boneParentTuples, /* a list of 2 record tuple consisting of a bone and the id of its parent */
 	tupleKey,

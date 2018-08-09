@@ -1,6 +1,6 @@
 /// @desc 
 
-/*var dt = 1;
+var dt = 1;
 var dir = keyboard_check(vk_right)-keyboard_check(vk_left);
 if(dir==0){
 	sk_animationState_set_animation(animationState,"anim_run",true);
@@ -26,8 +26,7 @@ if(keyboard_check(vk_enter)){
 	sk_animation_apply(sk_armature_find(armature,sk_type_animation,"anim_run"),t,t,sk_mixPose_mix,ratio,true);
 }
 draw_text(mouse_x,mouse_y-20,ratio);
-*/
-sk_armature_setToSetupPose(armature);
+
 sk_physics_boneState = v_phys;
 sk_armature_updateWorldTransform(armature);
 

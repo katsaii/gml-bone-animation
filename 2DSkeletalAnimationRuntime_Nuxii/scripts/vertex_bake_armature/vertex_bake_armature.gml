@@ -23,7 +23,7 @@ vertex_begin(argument2,sk_vertex_format);
 var sk_slot_count = ds_list_size(sk_armature_drawOrder); var sk_slot_id, sk_slot;
 for(sk_slot_id = 0; sk_slot_id < sk_slot_count; sk_slot_id++){
 	sk_slot = sk_armature_drawOrder[| sk_slot_id];
-	if(sk_struct_exists(sk_slot)){
+	if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_slot)){
 		var sk_attachment = noone;
 		var sk_bone = noone;
 		var sk_colour = $ffffff;

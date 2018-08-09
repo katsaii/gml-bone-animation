@@ -1,4 +1,4 @@
-#macro sk_type_symbol __sk_symbol_header
+#macro sk_type_symbol "__sk_symbol_header"
 enum SK_SYMBOL{
 	NESTED_BONE,NESTED_SLOT, /* nested bone and slot. NEVER, EVER, EVER CHANGE THESE */
 	sizeof

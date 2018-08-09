@@ -1,4 +1,4 @@
-#macro sk_type_skin __sk_skin_header
+#macro sk_type_skin "__sk_skin_header"
 enum SK_SKIN{
 	displays,
 	remaps,

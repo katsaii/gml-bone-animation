@@ -11,16 +11,17 @@ enum sk_structure_type_command{
 /// @param type
 /// @param name
 var sk_struct_type = argument0;
+var sk_struct_type_script = asset_get_index(argument0);
 var sk_struct_name = argument1;
-if(script_exists(sk_struct_type)){
+if(asset_get_type(argument0)==asset_script){
 	// the type exists, poll the type to return the size of the structure to create
-	var sk_struct_size = max(real(script_execute(sk_struct_type,sk_structure_type_command.get_sizeof,-1)),0);
+	var sk_struct_size = max(real(script_execute(sk_struct_type_script,sk_structure_type_command.get_sizeof,-1)),0);
 	// build structure prototype
 	var sk_structure = array_create(sk_struct_size,0);
-	sk_structure[@ sk_structure_header_type] = argument0;
-	sk_structure[@ sk_structure_header_name] = argument1;
+	sk_structure[@ sk_structure_header_type] = sk_struct_type;
+	sk_structure[@ sk_structure_header_name] = sk_struct_name;
 	// call the type constructor
-	script_execute(sk_struct_type,sk_structure_type_command.me_construct,sk_structure);
+	script_execute(sk_struct_type_script,sk_structure_type_command.me_construct,sk_structure);
 	// return final structure
 	return sk_structure;
 }

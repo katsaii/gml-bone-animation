@@ -1,4 +1,4 @@
-#macro sk_type_animationState __sk_animationState_header
+#macro sk_type_animationState "__sk_animationState_header"
 enum SK_ANIMATIONSTATE{
 	animations,playbackRate,
 	mixTable,mixSpeedDefault,mixAlpha,

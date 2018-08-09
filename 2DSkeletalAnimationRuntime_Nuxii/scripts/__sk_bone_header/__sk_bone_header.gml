@@ -1,4 +1,4 @@
-#macro sk_type_bone __sk_bone_header
+#macro sk_type_bone "__sk_bone_header"
 enum SK_BONE{
 	X,Y,XScale,YScale,XShear,YShear,rotation,
 	XApplied,YApplied,XScaleApplied,YScaleApplied,XShearApplied,YShearApplied,rotationApplied,

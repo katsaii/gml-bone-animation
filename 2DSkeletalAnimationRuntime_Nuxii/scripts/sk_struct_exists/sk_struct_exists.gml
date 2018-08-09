@@ -5,7 +5,10 @@ gml_pragma("forceinline");
 var sk_struct = argument[0];
 return(
 	is_array(sk_struct)&&
-	(array_length_2d(sk_struct,sk_structure_head_dimension)==sk_structure_head_size)&&
+	(
+		!SK_CONFIG_SAFE_MODE||
+		(array_length_2d(sk_struct,sk_structure_head_dimension)==sk_structure_head_size)
+	)&&
 	(	// check for specific type
 		(argument_count<2)||
 		(sk_struct[sk_structure_header_type]==argument[1])

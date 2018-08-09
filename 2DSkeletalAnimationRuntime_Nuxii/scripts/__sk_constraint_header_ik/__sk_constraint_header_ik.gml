@@ -1,4 +1,4 @@
-#macro sk_type_constraint_ik __sk_constraint_header_ik
+#macro sk_type_constraint_ik "__sk_constraint_header_ik"
 enum SK_CONSTRAINT_IK{
 	chain,boneJoint,boneEffector,
 	bendDir,weight,

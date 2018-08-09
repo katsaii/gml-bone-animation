@@ -6,7 +6,7 @@ var sk_item_id;
 for(sk_item_id = 0; sk_item_id < sk_item_count; sk_item_id++){
 	// iterate through cache
 	var sk_itemData = sk_updateOrder[| sk_item_id];
-	if(sk_struct_exists(sk_itemData)){
+	if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_itemData)){
 		switch(sk_struct_get_type(sk_itemData)){
 			case sk_type_bone: sk_bone_setToSetupPose(sk_itemData); break;
 			case sk_type_slot: sk_slot_setToSetupPose(sk_itemData); break;

@@ -5,7 +5,7 @@ enum SK_TIMELINE{
 	updateScript,
 	sizeof
 }
-#macro sk_timeline_header_value __sk_timeline_pragma
+#macro sk_timeline_header_value "__sk_timeline_pragma"
 #macro sk_timeline_keyframe_time 0
 #macro sk_timeline_keyframe_body 1
 /// @desc specialises a structure
@@ -19,7 +19,7 @@ var sk_keyframe_ENTRIES = 1;
 var sk_keyframe_update = -1;
 if(argument_count>3){
 	sk_keyframe_ENTRIES = max(argument[2],1);
-	sk_keyframe_update = argument[3];
+	sk_keyframe_update = asset_get_index(argument[3]);
 }
 switch(sk_cmd){
 	// Select command

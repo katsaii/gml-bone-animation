@@ -6,7 +6,7 @@ var sk_slots = argument0[SK_ARMATURE.slots];
 var sk_slot_count = ds_list_size(sk_slots);
 for(var sk_slot_id = 0; sk_slot_id < sk_slot_count; sk_slot_id++){
 	var sk_slot = sk_slots[| sk_slot_id];
-	if(sk_struct_exists(sk_slot)){
+	if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_slot)){
 		switch(sk_struct_get_type(sk_slot)){
 			case sk_type_slot: sk_slot_attachments_clear(sk_slot); break;
 			case sk_type_symbol: sk_slot_attachments_clear(sk_symbol_get_nested_slot(sk_slot)); break;
@@ -14,7 +14,7 @@ for(var sk_slot_id = 0; sk_slot_id < sk_slot_count; sk_slot_id++){
 	}
 }
 // set default skin
-if(sk_struct_exists(sk_defaultSkin,sk_type_skin)){
+if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_defaultSkin,sk_type_skin)){
 	sk_skin_apply(sk_defaultSkin,false);
 }
 // set default attachments for all slots

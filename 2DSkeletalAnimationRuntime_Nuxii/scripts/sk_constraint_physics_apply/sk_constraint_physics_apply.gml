@@ -19,7 +19,7 @@ if(ds_exists(sk_phys_boneState,ds_type_map)){
 	// get effectors
 	var sk_phys_bone_anchor = argument0[SK_CONSTRAINT_PHYSICS.boneAnchor];
 	var sk_phys_bone_effector = argument0[SK_CONSTRAINT_PHYSICS.boneEffector];
-	if(sk_struct_exists(sk_phys_bone_anchor,sk_type_bone)){
+	if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_phys_bone_anchor,sk_type_bone)){
 		// use the current physics state to update the bones
 		var sk_phys_rigidBody = argument0[SK_CONSTRAINT_PHYSICS.rigid];
 		var sk_phys_xdisplacement = sk_physics_external_xDisplacement;
@@ -37,7 +37,7 @@ if(ds_exists(sk_phys_boneState,ds_type_map)){
 			var sk_phys_target_length = 0;
 			for(var sk_phys_bone_id = sk_phys_bone_count-1; sk_phys_bone_id >= 0; sk_phys_bone_id--){
 				var sk_bone = sk_phys_bones[| sk_phys_bone_id];
-				if(sk_struct_exists(sk_bone,sk_type_bone)){
+				if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_bone,sk_type_bone)){
 					// get current bone's physics state
 					var sk_bone_state = sk_phys_boneState[? sk_bone];
 					if(!is_array(sk_bone_state)){
@@ -73,7 +73,7 @@ if(ds_exists(sk_phys_boneState,ds_type_map)){
 		var sk_phys_pivot_y = sk_phys_bone_anchor[SK_BONE.YWorld];
 		for(var sk_phys_bone_id = 0; sk_phys_bone_id < sk_phys_bone_count; sk_phys_bone_id++){
 			var sk_bone = sk_phys_bones[| sk_phys_bone_id];
-			if(sk_struct_exists(sk_bone,sk_type_bone)){
+			if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_bone,sk_type_bone)){
 				// get current bone's physics state
 				var sk_bone_state = sk_phys_boneState[? sk_bone];
 				if(!is_array(sk_bone_state)){

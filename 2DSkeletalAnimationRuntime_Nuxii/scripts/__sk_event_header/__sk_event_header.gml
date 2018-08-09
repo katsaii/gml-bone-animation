@@ -1,4 +1,4 @@
-#macro sk_type_event __sk_event_header
+#macro sk_type_event "__sk_event_header"
 enum SK_EVENT{
 	callingScript,
 	dBone,dString,dReal,dInt,dSound,

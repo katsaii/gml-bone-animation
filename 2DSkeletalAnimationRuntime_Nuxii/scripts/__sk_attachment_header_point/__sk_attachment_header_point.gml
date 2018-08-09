@@ -1,4 +1,4 @@
-#macro sk_type_attachment_point __sk_attachment_header_point
+#macro sk_type_attachment_point "__sk_attachment_header_point"
 enum SK_ATTACHMENT_POINT{
 	X,Y,rotation,
 	XWorld,YWorld,rotationWorld,

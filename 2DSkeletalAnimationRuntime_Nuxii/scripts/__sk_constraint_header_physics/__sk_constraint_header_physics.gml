@@ -1,4 +1,4 @@
-#macro sk_type_constraint_physics __sk_constraint_header_physics
+#macro sk_type_constraint_physics "__sk_constraint_header_physics"
 enum SK_CONSTRAINT_PHYSICS{
 	rigid, /* if the bob is a distance less than the bone length, the bone will be scaled so its tip is exactly at the bob */
 	boneSystem,boneAnchor,boneEffector, /* anchor is the bone the system will be attached to, the effector is where the bones will try to reach to */
