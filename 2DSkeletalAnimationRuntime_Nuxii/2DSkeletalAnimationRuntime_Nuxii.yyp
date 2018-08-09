@@ -1624,14 +1624,6 @@
             }
         },
         {
-            "Key": "711a0c3c-4449-47c0-8257-ebc9ef8c2aae",
-            "Value": {
-                "id": "d60a0a4d-6008-4d96-9e4e-12a45b56a271",
-                "resourcePath": "scripts\\sk_destruct_constraint_hierarchy\\sk_destruct_constraint_hierarchy.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "715025ae-5683-4e1a-b856-a283ae08f2f4",
             "Value": {
                 "id": "2a8202a2-5c05-4f71-98f4-77cca94496ab",
@@ -3045,14 +3037,6 @@
                 "id": "3d29e800-73c3-4f54-9fa0-53f3a47aca46",
                 "resourcePath": "views\\db30e92f-434b-4547-b3f9-15d7780cc7d3.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "db39266e-acbf-4c37-9474-1f26934617a2",
-            "Value": {
-                "id": "2e0d02ef-c1bb-4b77-b766-37412396cb08",
-                "resourcePath": "scripts\\sk_construct_constraint_hierarchy\\sk_construct_constraint_hierarchy.yy",
-                "resourceType": "GMScript"
             }
         },
         {
