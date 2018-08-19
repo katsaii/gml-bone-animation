@@ -11,7 +11,7 @@ enum sk_structure_type_command{
 /// @param type
 /// @param name
 var sk_struct_type = argument0;
-var sk_struct_type_script = asset_get_index(argument0);
+var sk_struct_type_script = sk_get_index(argument0);
 var sk_struct_name = argument1;
 if(asset_get_type(argument0)==asset_script){
 	// the type exists, poll the type to return the size of the structure to create
