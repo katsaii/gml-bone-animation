@@ -25,10 +25,10 @@ if(sk_alpha>=0.5){
 	// apply
 	switch(sk_mix){
 		case sk_mixPose_mix: case sk_mixPose_add:
-			sk_body[@ SK_CONSTRAINT_HIERARCHY.tupleKeyFinal] = sk_tupleId;
+			sk_body[@ SK_CONSTRAINT_HIERARCHY.displayKeyFinal] = sk_tupleId;
 		break;
 		case sk_mixPose_overwrite:
-			sk_body[@ SK_CONSTRAINT_HIERARCHY.tupleKey] = sk_tupleId;
+			sk_body[@ SK_CONSTRAINT_HIERARCHY.displayKey] = sk_tupleId;
 		break;
 	}
 }

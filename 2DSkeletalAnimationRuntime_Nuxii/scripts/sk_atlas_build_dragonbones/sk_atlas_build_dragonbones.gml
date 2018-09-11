@@ -39,7 +39,7 @@ if(ds_exists(db_atlas,ds_type_map)){
 						sk_tex_h*sk_atlas_scale,
 						0
 					);
-					sk_atlas_add_subtextureRegion(sk_atlas,sk_tex,sk_tex_name);
+					sk_atlas_add_region(sk_atlas,sk_tex_name,sk_tex);
 				}
 			}
 			#endregion

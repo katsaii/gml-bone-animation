@@ -18,7 +18,7 @@ switch(sk_cmd){
 	case sk_structure_type_command.me_construct:
 		if(sk_struct_exists(sk_structure)){
 			sk_structure[@ SK_ATLAS.subTextureMap] = ds_map_create(); // create map for looking up region data
-			sk_atlas_page(sk_structure,-1,0);
+			sk_atlas_set_page(sk_structure,-1,0);
 		}
 	break;
 	case sk_structure_type_command.me_destruct:

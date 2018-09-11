@@ -19,19 +19,11 @@ switch(sk_cmd){
 	case sk_structure_type_command.me_construct:
 		if(sk_struct_exists(sk_structure)){
 			sk_structure[@ SK_CONSTRAINT_TRANSFORM.boneChildren] = ds_list_create(); // create list for storing children
-			sk_constraint_transform_local(sk_structure,false);
-			sk_constraint_transform_relative(sk_structure,false);
-			sk_constraint_transform_target(sk_structure,noone);
-			sk_constraint_transform_offset_x(sk_structure,0);
-			sk_constraint_transform_offset_y(sk_structure,0);
-			sk_constraint_transform_offset_xscale(sk_structure,0);
-			sk_constraint_transform_offset_yscale(sk_structure,0);
-			sk_constraint_transform_offset_yshear(sk_structure,0);
-			sk_constraint_transform_offset_rotation(sk_structure,0);
-			sk_constraint_transform_mix_translate(sk_structure,1);
-			sk_constraint_transform_mix_scale(sk_structure,1);
-			sk_constraint_transform_mix_shear(sk_structure,1);
-			sk_constraint_transform_mix_rotate(sk_structure,1);
+			sk_constraint_transform_set_local(sk_structure,false);
+			sk_constraint_transform_set_relative(sk_structure,false);
+			sk_constraint_transform_set_bone_target(sk_structure,noone);
+			sk_constraint_transform_set_offset(sk_structure,0,0,1,1,0,0);
+			sk_constraint_transform_set_mix(sk_structure,1,1,1,1);
 			sk_constraint_transform_setToSetupMix(sk_structure);
 		}
 	break;

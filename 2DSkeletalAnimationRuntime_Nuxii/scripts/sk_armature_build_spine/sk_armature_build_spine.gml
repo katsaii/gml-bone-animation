@@ -51,16 +51,13 @@ if(is_real(sp_bones)&&ds_exists(sp_bones,ds_type_list)){
 			}
 			// create new record and append data
 			var sk_bone = sk_struct_create(sk_type_bone,sk_bone_name);
-			sk_bone_transformMode(sk_bone,sk_bone_inheritance);
-			sk_bone_length(sk_bone,sk_bone_len);
-			sk_bone_parent(sk_bone,sk_bone_par);
-			sk_bone_x(sk_bone,sk_bone_xpos);
-			sk_bone_y(sk_bone,sk_bone_ypos);
-			sk_bone_xscale(sk_bone,sk_bone_xsc);
-			sk_bone_yscale(sk_bone,sk_bone_ysc);
-			sk_bone_xshear(sk_bone,sk_bone_xsh);
-			sk_bone_yshear(sk_bone,sk_bone_ysh);
-			sk_bone_rotation(sk_bone,sk_bone_rot);
+			sk_bone_set_transformMode(sk_bone,sk_bone_inheritance);
+			sk_bone_set_length(sk_bone,sk_bone_len);
+			sk_bone_set_parent(sk_bone,sk_bone_par);
+			sk_bone_set_position(sk_bone,sk_bone_xpos,sk_bone_ypos);
+			sk_bone_set_scale(sk_bone,sk_bone_xsc,sk_bone_ysc);
+			sk_bone_set_shear(sk_bone,sk_bone_xsh,sk_bone_ysh);
+			sk_bone_set_rotation(sk_bone,sk_bone_rot);
 			sk_armature_add(sk_skel,sk_bone);
 			#endregion
 		}
@@ -79,10 +76,9 @@ if(is_real(sp_slots)&&ds_exists(sp_slots,ds_type_list)){
 			var sk_slot_rgba = is_string(sp_slot_record[? "color"]) ? sp_slot_record[? "color"] : "FFFFFFFF";
 	        // create new record and set data
 			var sk_slot = sk_struct_create(sk_type_slot,sk_slot_name);
-			sk_slot_defaultDisplay(sk_slot,sk_slot_attachmentName);
-			sk_slot_colour(sk_slot,sk_hex_get_colour(sk_slot_rgba,false));
-			sk_slot_alpha(sk_slot,sk_hex_get_alpha(sk_slot_rgba,false));
-			sk_slot_bone(sk_slot,sk_slot_par);
+			sk_slot_set_defaultDisplay(sk_slot,sk_slot_attachmentName);
+			sk_slot_set_colour(sk_slot,sk_hex_get_colour(sk_slot_rgba,false),sk_hex_get_alpha(sk_slot_rgba,false));
+			sk_slot_set_bone(sk_slot,sk_slot_par);
 			sk_armature_add(sk_skel,sk_slot);
 			#endregion
 	    }
@@ -133,9 +129,7 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 										var sk_attachment_rotation = real(sp_skin_slot_attachment_record[? "rotation"]);
 										// create a new attachment and add it to the skin
 										sk_attachment = sk_struct_create(sk_type_attachment_point,sk_attachment_name);
-										sk_attachment_point_x(sk_attachment,sk_attachment_x);
-										sk_attachment_point_y(sk_attachment,sk_attachment_y);
-										sk_attachment_point_rotation(sk_attachment,sk_attachment_rotation);
+										sk_attachment_point_set_offsets(sk_attachment,sk_attachment_x,sk_attachment_y,sk_attachment_rotation);
 										sk_armature_add(sk_skel,sk_attachment);
 									break;
 									case "region": default:
@@ -148,11 +142,10 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 										var sk_attachment_rotation = real(sp_skin_slot_attachment_record[? "rotation"]);
 										// create a new attachment and add it to the skin
 										sk_attachment = sk_struct_create(sk_type_attachment_plane,sk_attachment_name);
-										sk_attachment_plane_regionKey(sk_attachment,sk_attachment_textureName);
-										sk_attachment_plane_x(sk_attachment,sk_attachment_x);
-										sk_attachment_plane_y(sk_attachment,sk_attachment_y);
-										sk_attachment_plane_matrix(
+										sk_attachment_plane_set_regionName(sk_attachment,sk_attachment_textureName);
+										sk_attachment_plane_set_matrix(
 											sk_attachment,
+											sk_attachment_x,sk_attachment_y,
 											sk_attachment_xscale,sk_attachment_yscale,
 											0,0,sk_attachment_rotation
 										);
@@ -215,11 +208,10 @@ for(var sp_constraint_id = 0; sp_constraint_id < sp_constraint_count; sp_constra
 						if(sk_struct_exists(sk_IK_boneTarget,sk_type_bone)&&sk_struct_exists(sk_IK_boneJoint,sk_type_bone)){
 							// create new record and set data
 							var sk_constraint = sk_struct_create(sk_type_constraint_ik,sk_IK_name);
-							sk_constraint_ik_bendDir(sk_constraint,sk_IK_positive);
-							sk_constraint_ik_weight(sk_constraint,sk_IK_weight);
-							sk_constraint_ik_chain(sk_constraint,sk_IK_chain);
-							sk_constraint_ik_bone_joint(sk_constraint,sk_IK_boneJoint);
-							sk_constraint_ik_bone_effector(sk_constraint,sk_IK_boneTarget);
+							sk_constraint_ik_set_mix(sk_constraint,sk_IK_positive,sk_IK_weight);
+							sk_constraint_ik_set_chain(sk_constraint,sk_IK_chain);
+							sk_constraint_ik_set_bone_joint(sk_constraint,sk_IK_boneJoint);
+							sk_constraint_ik_set_bone_effector(sk_constraint,sk_IK_boneTarget);
 							sk_armature_add(sk_skel,sk_constraint);
 						}
 						#endregion
@@ -253,26 +245,29 @@ for(var sp_constraint_id = 0; sp_constraint_id < sp_constraint_count; sp_constra
 					if(sk_struct_exists(sk_transform_boneTarget,sk_type_bone)){
 						// create new record and set data
 						var sk_constraint = sk_struct_create(sk_type_constraint_transform,sk_transform_name);
-						sk_constraint_transform_target(sk_constraint,sk_transform_boneTarget);
-						sk_constraint_transform_local(sk_constraint,sk_transform_local);
-						sk_constraint_transform_relative(sk_constraint,sk_transform_relative);
-						sk_constraint_transform_offset_x(sk_constraint,sk_transform_x);
-						sk_constraint_transform_offset_y(sk_constraint,sk_transform_y);
-						sk_constraint_transform_offset_xscale(sk_constraint,sk_transform_xscale);
-						sk_constraint_transform_offset_yscale(sk_constraint,sk_transform_yscale);
-						sk_constraint_transform_offset_yshear(sk_constraint,sk_transform_yshear);
-						sk_constraint_transform_offset_rotation(sk_constraint,sk_transform_rotation);
-						sk_constraint_transform_mix_translate(sk_constraint,sk_transform_translateMix);
-						sk_constraint_transform_mix_scale(sk_constraint,sk_transform_scaleMix);
-						sk_constraint_transform_mix_shear(sk_constraint,sk_transform_shearMix);
-						sk_constraint_transform_mix_rotate(sk_constraint,sk_transform_rotateMix);
+						sk_constraint_transform_set_local(sk_constraint,sk_transform_local);
+						sk_constraint_transform_set_relative(sk_constraint,sk_transform_relative);
+						sk_constraint_transform_set_bone_target(sk_constraint,sk_transform_boneTarget);
+						sk_constraint_transform_set_offset(
+							sk_constraint,
+							sk_transform_x,sk_transform_y,
+							sk_transform_xscale,sk_transform_yscale,
+							sk_transform_yshear,sk_transform_rotation
+						);
+						sk_constraint_transform_set_mix(
+							sk_constraint,
+							sk_transform_translateMix,
+							sk_transform_scaleMix,
+							sk_transform_shearMix,
+							sk_transform_rotateMix
+						);
 						// add child bones
 						if(is_real(sk_transform_bones)&&ds_exists(sk_transform_bones,ds_type_list)){
 							var sk_transform_bone_count = ds_list_size(sk_transform_bones);
 							for(var sk_transform_bone_id = 0; sk_transform_bone_id < sk_transform_bone_count; sk_transform_bone_id++){
 								var sk_transform_bone = sk_armature_find(sk_skel,sk_type_bone,sk_transform_bones[| sk_transform_bone_id]);
 								if(sk_struct_exists(sk_transform_bone,sk_type_bone)){
-									sk_constraint_transform_children_add(sk_constraint,sk_transform_bone);
+									sk_constraint_transform_bone_children_add(sk_constraint,sk_transform_bone);
 								}
 							}
 						}
@@ -310,9 +305,7 @@ if(is_real(sp_events)&&ds_exists(sp_events,ds_type_map)){
 			var sk_event_int = int64(sp_event_record[? "int"]);
 			// create a new event and add it to the armature
 			var sk_event = sk_struct_create(sk_type_event,string(sp_event_name));
-			sk_event_data_string(sk_event,sk_event_string);
-			sk_event_data_real(sk_event,sk_event_float);
-			sk_event_data_int(sk_event,sk_event_int);
+			sk_event_data_set(sk_event,noone,sk_event_string,sk_event_float,sk_event_int,-1);
 			sk_armature_add(sk_skel,sk_event);
 			#endregion
 		}
@@ -872,7 +865,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 				}
 			}
 			// set final duration
-			sk_animation_duration(sk_anim,sk_anim_duration);
+			sk_animation_set_duration(sk_anim,sk_anim_duration);
 			#endregion
 		}
 		// goto next animation

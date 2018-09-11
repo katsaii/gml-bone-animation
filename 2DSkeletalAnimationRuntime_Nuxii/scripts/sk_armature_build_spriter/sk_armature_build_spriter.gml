@@ -55,10 +55,13 @@ if(is_real(sp_folders)&&ds_exists(sp_folders,ds_type_list)){
 						var sk_attachment_pivot_w = real(sp_sprite[? "width"]);
 						var sk_attachment_pivot_h = real(sp_sprite[? "height"]);
 						var sk_attachment = sk_struct_create(sk_type_attachment_plane,sk_attachment_name);
-						sk_attachment_plane_regionKey(sk_attachment,sk_attachment_path);
-						sk_attachment_plane_x(sk_attachment,-(sk_attachment_pivot_x-0.5)*sk_attachment_pivot_w); // attachments are drawn with a default origin at their centre
-						sk_attachment_plane_y(sk_attachment,-(sk_attachment_pivot_y-0.5)*sk_attachment_pivot_h);
-						sk_attachment_plane_matrix(sk_attachment,1,1,0,0,0);
+						sk_attachment_plane_set_regionName(sk_attachment,sk_attachment_path);
+						sk_attachment_plane_set_matrix(
+							sk_attachment,
+							-(sk_attachment_pivot_x-0.5)*sk_attachment_pivot_w, // attachments are drawn with a default origin at their centre
+							-(sk_attachment_pivot_y-0.5)*sk_attachment_pivot_h,
+							1,1,0,0,0
+						);
 						sk_armature_add(sk_skel,sk_attachment);
 						#endregion
 					}
@@ -77,8 +80,8 @@ if(is_real(sp_objInfo)&&ds_exists(sp_objInfo,ds_type_list)){
 				case "bone":
 					#region // add bone
 					var sk_bone = sk_struct_create(sk_type_bone,string(sp_obj_record[? "name"]));
-					sk_bone_transformMode(sk_bone,sk_transformMode_ex_spriter); // spriter doesn't have skew transforms
-					sk_bone_length(sk_bone,sp_obj_record[? "w"]);
+					sk_bone_set_transformMode(sk_bone,sk_transformMode_ex_spriter); // spriter doesn't have skew transforms
+					sk_bone_set_length(sk_bone,sp_obj_record[? "w"]);
 					sk_armature_add(sk_skel,sk_bone);
 					#endregion
 				break;
@@ -144,7 +147,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 							if(sk_armature_find(sk_skel,sk_type_symbol,sk_symbol_name)==noone){
 								// symbol doesn't exist, create it
 								var sk_symbol = sk_struct_create(sk_type_symbol,sk_symbol_name);
-								sk_bone_transformMode(sk_symbol_get_nested_bone(sk_symbol),sk_transformMode_ex_spriter); // no skew transform
+								sk_bone_set_transformMode(sk_symbol_get_nested_bone(sk_symbol),sk_transformMode_ex_spriter); // no skew transform
 								sk_armature_add(sk_skel,sk_symbol);
 							}
 							#endregion
@@ -168,8 +171,8 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 			#region // add animation
 			var sk_anim_name = string(sp_anim_record[? "name"]);
 			var sk_anim = sk_struct_create(sk_type_animation,sk_anim_name);
-			sk_animation_duration(sk_anim,sp_anim_record[? "length"]);
-			sk_animation_looping(sk_anim,sp_anim_record[? "looping"]!="false");
+			sk_animation_set_duration(sk_anim,sp_anim_record[? "length"]);
+			sk_animation_set_looping(sk_anim,sp_anim_record[? "looping"]!="false");
 			sk_armature_add(sk_skel,sk_anim);
 			// create and add the draw order timeline
 			var sk_anim_timeline_drawOrder = sk_struct_create(sk_type_timeline_order,"Armature.TimelineDrawOrder");
@@ -230,7 +233,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_list)){
 								ds_map_add_list(sp_anim_mainline_frame,"|SK_OBJECT_ZORDER_FRAMES|",SK_OBJECT_ZORDER_FRAMES);
 								// create a new frame for the hierarchy constraint timeline
 								var sk_anim_frame_hierarchy_tupleKey = sk_createCompoundKey(sk_anim_name,sp_anim_mainline_frame_id);
-								var sk_anim_frame_hierarchy_boneParentTuple = sk_constraint_hierarchy_tuple_find(sk_bone_hierarchy,sk_anim_frame_hierarchy_tupleKey);
+								var sk_anim_frame_hierarchy_boneParentTuple = sk_constraint_hierarchy_find_tuple(sk_bone_hierarchy,sk_anim_frame_hierarchy_tupleKey);
 								sk_timeline_hierarchy_add_frame(
 									sk_anim_timeline_hierarchy,
 									sp_anim_mainline_frame_time,

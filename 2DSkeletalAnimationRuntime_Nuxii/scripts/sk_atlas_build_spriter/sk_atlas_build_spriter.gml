@@ -67,7 +67,7 @@ if(ds_exists(sp_atlas,ds_type_map)){
 							sk_tex_h*sk_atlas_scale,
 							sk_tex_rotate*-90 /* rotate the UVs 90 degrees clockwise */
 						);
-						sk_atlas_add_subtextureRegion(sk_atlas,sk_tex,sk_tex_path);
+						sk_atlas_add_region(sk_atlas,sk_tex_path,sk_tex);
 					}
 				}
 				#endregion

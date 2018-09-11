@@ -50,7 +50,7 @@ for(sk_slot_id = 0; sk_slot_id < sk_slot_count; sk_slot_id++){
 			switch(sk_struct_get_type(sk_attachment)){
 				case sk_type_attachment_plane:
 					// render region attachment
-					var sk_attachment_subtexture = sk_atlas_subtextures[? sk_attachment[SK_ATTACHMENT_PLANE.regionKey]];
+					var sk_attachment_subtexture = sk_atlas_subtextures[? sk_attachment[SK_ATTACHMENT_PLANE.regionName]];
 					if(sk_struct_exists(sk_attachment_subtexture,sk_type_region)){
 						// get bone world transform
 						var sk_bone_xpos = 0;

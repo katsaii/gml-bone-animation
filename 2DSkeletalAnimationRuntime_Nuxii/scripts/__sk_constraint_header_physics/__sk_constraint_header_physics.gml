@@ -19,12 +19,11 @@ switch(sk_cmd){
 	case sk_structure_type_command.me_construct:
 		if(sk_struct_exists(sk_structure)){
 			sk_structure[@ SK_CONSTRAINT_PHYSICS.boneSystem] = ds_list_create(); // create a list for storing system data (similar to transformation constraints)
-			sk_constraint_physics_rigid(sk_structure,false);
-			sk_constraint_physics_bone_anchor(sk_structure,noone);
-			sk_constraint_physics_bone_effector(sk_structure,noone);
-			sk_constraint_physics_gravity_x(sk_structure,0);
-			sk_constraint_physics_gravity_y(sk_structure,0);
-			sk_constraint_physics_drive(sk_structure,1);
+			sk_constraint_physics_set_rigid(sk_structure,false);
+			sk_constraint_physics_set_bone_anchor(sk_structure,noone);
+			sk_constraint_physics_set_bone_effector(sk_structure,noone);
+			sk_constraint_physics_set_gravity(sk_structure,0,0);
+			sk_constraint_physics_set_drive(sk_structure,1);
 			sk_constraint_physics_setToSetupMix(sk_structure);
 		}
 	break;

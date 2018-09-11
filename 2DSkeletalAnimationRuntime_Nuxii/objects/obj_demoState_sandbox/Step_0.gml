@@ -3,11 +3,11 @@
 var dt = 1;
 var dir = keyboard_check(vk_right)-keyboard_check(vk_left);
 if(dir==0){
-	sk_animationState_set_animation(animationState,"anim_run",true);
+	sk_animationState_play_animation(animationState,"anim_run",true);
 } else if(dir>0){
-	sk_animationState_set_animation(animationState,"anim_skid",true);
+	sk_animationState_play_animation(animationState,"anim_skid",true);
 } else {
-	sk_animationState_set_animation(animationState,"anim_walk",true);
+	sk_animationState_play_animation(animationState,"anim_walk",true);
 }
 
 var spd = 0.5;

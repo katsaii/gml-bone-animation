@@ -91,7 +91,7 @@ do{
 				sk_current_h*sk_atlas_scale,
 				sk_current_rotation
 			);
-			sk_atlas_add_subtextureRegion(sk_atlas,sk_tex,sk_current_name);
+			sk_atlas_add_region(sk_atlas,sk_current_name,sk_tex);
 			// reset attributes for next round
 			sk_current_x = 0;
 			sk_current_y = 0;

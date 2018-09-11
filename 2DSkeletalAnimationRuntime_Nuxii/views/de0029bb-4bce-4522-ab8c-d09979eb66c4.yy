@@ -5,7 +5,6 @@
     "name": "de0029bb-4bce-4522-ab8c-d09979eb66c4",
     "children": [
         "2b784dcd-1ef1-4e0f-a80c-4a5ffc5959d7",
-        "f5577afa-c719-4264-b7fa-75efbd6477ac",
         "c4ad5d48-256a-42e8-be02-62648ae6721f",
         "4f813109-da3d-49d1-99f5-20d4e2f58510"
     ],

@@ -20,8 +20,8 @@ switch(sk_cmd){
 	case sk_structure_type_command.me_construct:
 		if(sk_struct_exists(sk_structure)){
 			sk_structure[@ SK_ANIMATION.timelines] = ds_list_create(); // create list for storing timeline data
-			sk_animation_duration(sk_structure,0);
-			sk_animation_looping(sk_structure,false);
+			sk_animation_set_duration(sk_structure,0);
+			sk_animation_set_looping(sk_structure,false);
 		}
 	break;
 	case sk_structure_type_command.me_destruct:

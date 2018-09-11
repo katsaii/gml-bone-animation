@@ -18,11 +18,10 @@ switch(sk_cmd){
 	case sk_structure_type_command.me_construct:
 		if(sk_struct_exists(sk_structure)){
 			sk_structure[@ SK_SLOT.availableAttachments] = ds_map_create(); // create a map for storing attachment data
-			sk_slot_defaultDisplay(sk_structure,undefined);
-			sk_slot_colour(sk_structure,$ffffff);
-			sk_slot_alpha(sk_structure,1);
-			sk_slot_bone(sk_structure,noone);
-			sk_slot_attachment(sk_structure,noone);
+			sk_slot_set_defaultDisplay(sk_structure,undefined);
+			sk_slot_set_colour(sk_structure,$ffffff,1);
+			sk_slot_set_bone(sk_structure,noone);
+			sk_slot_set_attachment(sk_structure,noone);
 			sk_slot_setToDefaultDisplay(sk_structure);
 			sk_slot_setToSetupPose(sk_structure);
 		}

@@ -16,12 +16,8 @@ switch(sk_cmd){
 	break;
 	case sk_structure_type_command.me_construct:
 		if(sk_struct_exists(sk_structure)){
-			sk_event_script(sk_structure,sk_ev_default);
-			sk_event_data_bone(sk_structure,noone);
-			sk_event_data_string(sk_structure,"");
-			sk_event_data_real(sk_structure,0);
-			sk_event_data_int(sk_structure,0);
-			sk_event_data_sound(sk_structure,-1);
+			sk_event_set_script(sk_structure,-1);
+			sk_event_data_set(sk_structure,noone,"",0,0,-1);
 		}
 	break;
 }

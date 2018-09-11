@@ -10,7 +10,7 @@
         "a7396821-7e3b-4b6f-a57d-03b8229dbe50"
     ],
     "filterType": "GMScript",
-    "folderName": "Apply",
+    "folderName": "Transformation",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

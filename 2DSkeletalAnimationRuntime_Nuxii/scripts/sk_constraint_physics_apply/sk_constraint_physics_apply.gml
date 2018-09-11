@@ -1,17 +1,17 @@
-gml_pragma("global",@'
-	global.sk_globalVar_physicsConstraint_physicsState = noone;
-	global.sk_globalVar_physicsConstraint_xDisplacement = 0; // adding the displacement to the world coordinate can simulate external movement
-	global.sk_globalVar_physicsConstraint_yDisplacement = 0;
-	global.sk_globalVar_physicsConstraint_xGrav = 0;
-	global.sk_globalVar_physicsConstraint_yGrav = 0.25;
-	global.sk_globalVar_physicsConstraint_drive = 0.9;
-');
 #macro sk_physics_boneState global.sk_globalVar_physicsConstraint_physicsState
 #macro sk_physics_external_xDisplacement global.sk_globalVar_physicsConstraint_xDisplacement
 #macro sk_physics_external_yDisplacement global.sk_globalVar_physicsConstraint_yDisplacement
 #macro sk_physics_global_xGravity global.sk_globalVar_physicsConstraint_xGrav
 #macro sk_physics_global_yGravity global.sk_globalVar_physicsConstraint_yGrav
 #macro sk_physics_global_drivingRatio global.sk_globalVar_physicsConstraint_drive
+gml_pragma("global",@'
+	sk_physics_boneState = noone;
+	sk_physics_external_xDisplacement = 0; // adding the displacement to the world coordinate can simulate external movement
+	sk_physics_external_yDisplacement = 0;
+	sk_physics_global_xGravity = 0;
+	sk_physics_global_yGravity = 0.2;
+	sk_physics_global_drivingRatio = 0.85;
+');
 /// @desc applys the constraint
 /// @param constraint
 var sk_phys_boneState = sk_physics_boneState;

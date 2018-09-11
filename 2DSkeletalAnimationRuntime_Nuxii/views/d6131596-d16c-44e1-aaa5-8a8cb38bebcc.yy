@@ -4,8 +4,8 @@
     "mvc": "1.1",
     "name": "d6131596-d16c-44e1-aaa5-8a8cb38bebcc",
     "children": [
-        "64d7839a-322a-49db-ab34-fbf2383acce7",
-        "38ab88c8-0020-494b-92fd-053c7d63ce9a"
+        "8724bae5-8f98-4c0a-bc0a-08c1f379e2b6",
+        "582004f4-e3a4-4b2a-9c86-54c3d143cd4f"
     ],
     "filterType": "GMScript",
     "folderName": "Properties",

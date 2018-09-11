@@ -24,20 +24,19 @@ if(!sk_struct_exists(atlas,sk_type_atlas)){
 	show_message("atlas doesn't exist");
 	game_end();
 }
-sk_atlas_page(atlas,sprite_add(PATH_PALIA+"Palia_Skeleton_tex.png",0,false,false,0,0),0);
+sk_atlas_set_page(atlas,sprite_add(PATH_PALIA+"Palia_Skeleton_tex.png",0,false,false,0,0),0);
 
 #region
 var constraint = sk_struct_create(sk_type_constraint_physics,"phys");
-sk_constraint_physics_rigid(constraint,true);
-var b2 = sk_struct_create(sk_type_bone,"endeffector"); sk_bone_length(b2,1); sk_armature_add(armature,b2);
-sk_constraint_physics_bone_anchor(constraint,sk_armature_find(armature,sk_type_bone,"b_hip"));
-sk_constraint_physics_bone_effector(constraint,b2);
-	var b = sk_struct_create(sk_type_bone,"a"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
-		b = sk_struct_create(sk_type_bone,"b"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
-		b = sk_struct_create(sk_type_bone,"c"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
-		b = sk_struct_create(sk_type_bone,"d"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
-		b = sk_struct_create(sk_type_bone,"e"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
-		b = sk_struct_create(sk_type_bone,"f"); sk_bone_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+sk_constraint_physics_set_rigid(constraint,false);
+sk_constraint_physics_set_bone_anchor(constraint,sk_armature_find(armature,sk_type_bone,"b_wrist_left"));
+//sk_constraint_physics_set_bone_effector(constraint,sk_armature_find(armature,sk_type_bone,"b_wrist_right"));
+	var b = sk_struct_create(sk_type_bone,"a"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_struct_create(sk_type_bone,"b"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_struct_create(sk_type_bone,"c"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_struct_create(sk_type_bone,"d"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_struct_create(sk_type_bone,"e"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
+		b = sk_struct_create(sk_type_bone,"f"); sk_bone_set_length(b,5); sk_constraint_physics_system_add(constraint,b); sk_armature_add(armature,b);
 sk_armature_add(armature,constraint);
 sk_armature_updateCache(armature);
 #endregion
@@ -49,9 +48,9 @@ sk_animation_apply(sk_armature_find(armature,sk_type_animation,"display_costume_
 
 #region
 animationState = sk_struct_create(sk_type_animationState,"");
-sk_animationState_add_animation_from_armature(animationState,armature);
-sk_animationState_mix(animationState,"anim_run","anim_skid",0.2);
-sk_animationState_mix_default(animationState,0.05);
+sk_animationState_add_animations_from_armature(animationState,armature);
+sk_animationState_set_animation_mix(animationState,"anim_run","anim_skid",0.2);
+sk_animationState_set_default_mix(animationState,0.05);
 #endregion
 
 v_phys = ds_map_create();

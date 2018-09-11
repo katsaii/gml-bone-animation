@@ -8,8 +8,8 @@ for(var sk_slot_id = 0; sk_slot_id < sk_slot_count; sk_slot_id++){
 	var sk_slot = sk_slots[| sk_slot_id];
 	if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_slot)){
 		switch(sk_struct_get_type(sk_slot)){
-			case sk_type_slot: sk_slot_attachments_clear(sk_slot); break;
-			case sk_type_symbol: sk_slot_attachments_clear(sk_symbol_get_nested_slot(sk_slot)); break;
+			case sk_type_slot: sk_slot_clear_attachments(sk_slot); break;
+			case sk_type_symbol: sk_slot_clear_attachments(sk_symbol_get_nested_slot(sk_slot)); break;
 		}
 	}
 }

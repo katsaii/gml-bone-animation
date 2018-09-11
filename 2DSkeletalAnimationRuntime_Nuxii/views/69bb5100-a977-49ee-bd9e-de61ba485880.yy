@@ -7,7 +7,7 @@
         "94274954-7f97-4a22-888e-1d7bf93da1da"
     ],
     "filterType": "GMScript",
-    "folderName": "Call",
+    "folderName": "Methods",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

@@ -8,7 +8,8 @@ switch(argument1){
 	case sk_type_skin:					return argument0[SK_ARMATURE.skins]; break;
 	case sk_type_constraint_ik:
 	case sk_type_constraint_transform:
-	case sk_type_constraint_hierarchy:	return argument0[SK_ARMATURE.constraints]; break;
+	case sk_type_constraint_hierarchy:	
+	case sk_type_constraint_physics:	return argument0[SK_ARMATURE.constraints]; break;
 	case sk_type_animation:				return argument0[SK_ARMATURE.animations]; break;
 	case sk_type_event:					return argument0[SK_ARMATURE.events]; break;
 	case sk_type_attachment_plane:

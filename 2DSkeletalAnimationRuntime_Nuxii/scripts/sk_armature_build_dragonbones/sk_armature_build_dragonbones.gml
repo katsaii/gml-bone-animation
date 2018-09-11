@@ -70,16 +70,13 @@ if(is_real(db_bones)&&ds_exists(db_bones,ds_type_list)){
 			}
 			// create new record and append data
 			var sk_bone = sk_struct_create(sk_type_bone,sk_bone_name);
-			sk_bone_transformMode(sk_bone,sk_bone_inheritance);
-			sk_bone_length(sk_bone,sk_bone_len);
-			sk_bone_parent(sk_bone,sk_bone_par);
-			sk_bone_x(sk_bone,sk_bone_xpos);
-			sk_bone_y(sk_bone,sk_bone_ypos);
-			sk_bone_xscale(sk_bone,sk_bone_xsc);
-			sk_bone_yscale(sk_bone,sk_bone_ysc);
-			sk_bone_xshear(sk_bone,sk_bone_xsh);
-			sk_bone_yshear(sk_bone,sk_bone_ysh);
-			sk_bone_rotation(sk_bone,0);
+			sk_bone_set_transformMode(sk_bone,sk_bone_inheritance);
+			sk_bone_set_length(sk_bone,sk_bone_len);
+			sk_bone_set_parent(sk_bone,sk_bone_par);
+			sk_bone_set_position(sk_bone,sk_bone_xpos,sk_bone_ypos);
+			sk_bone_set_scale(sk_bone,sk_bone_xsc,sk_bone_ysc);
+			sk_bone_set_shear(sk_bone,sk_bone_xsh,sk_bone_ysh);
+			sk_bone_set_rotation(sk_bone,0);
 			sk_armature_add(sk_skel,sk_bone);
 			#endregion
 	    }
@@ -113,10 +110,9 @@ if(is_real(db_slots)&&ds_exists(db_slots,ds_type_list)){
 	        }
 			// create new record and set data
 			var sk_slot = sk_struct_create(sk_type_slot,sk_slot_name);
-			sk_slot_defaultDisplay(sk_slot,sk_slot_displayIndex);
-			sk_slot_colour(sk_slot,sk_slot_col);
-			sk_slot_alpha(sk_slot,sk_slot_a);
-			sk_slot_bone(sk_slot,sk_slot_par);
+			sk_slot_set_defaultDisplay(sk_slot,sk_slot_displayIndex);
+			sk_slot_set_colour(sk_slot,sk_slot_col,sk_slot_a);
+			sk_slot_set_bone(sk_slot,sk_slot_par);
 			sk_armature_add(sk_skel,sk_slot);
 			#endregion
 	    }
@@ -178,11 +174,10 @@ if(is_real(db_skins)&&ds_exists(db_skins,ds_type_list)){
 						                    }
 											// create a new attachment and add it to the skin
 											var sk_attachment = sk_struct_create(sk_type_attachment_plane,sk_attachment_name);
-											sk_attachment_plane_regionKey(sk_attachment,sk_attachment_textureName);
-											sk_attachment_plane_x(sk_attachment,sk_attachment_x);
-											sk_attachment_plane_y(sk_attachment,sk_attachment_y);
-											sk_attachment_plane_matrix(
+											sk_attachment_plane_set_regionName(sk_attachment,sk_attachment_textureName);
+											sk_attachment_plane_set_matrix(
 												sk_attachment,
+												sk_attachment_x,sk_attachment_y,
 												sk_attachment_xscale,sk_attachment_yscale,
 												sk_attachment_xshear,sk_attachment_yshear,0
 											);
@@ -222,11 +217,10 @@ if(is_real(db_IK)&&ds_exists(db_IK,ds_type_list)){
 			if(sk_struct_exists(sk_IK_boneTarget,sk_type_bone)&&sk_struct_exists(sk_IK_boneJoint,sk_type_bone)){
 				// create new record and set data
 				var sk_constraint = sk_struct_create(sk_type_constraint_ik,sk_IK_name);
-				sk_constraint_ik_bendDir(sk_constraint,sk_IK_positive);
-				sk_constraint_ik_weight(sk_constraint,sk_IK_weight);
-				sk_constraint_ik_chain(sk_constraint,sk_IK_chain);
-				sk_constraint_ik_bone_joint(sk_constraint,sk_IK_boneJoint);
-				sk_constraint_ik_bone_effector(sk_constraint,sk_IK_boneTarget);
+				sk_constraint_ik_set_mix(sk_constraint,sk_IK_positive,sk_IK_weight);
+				sk_constraint_ik_set_chain(sk_constraint,sk_IK_chain);
+				sk_constraint_ik_set_bone_joint(sk_constraint,sk_IK_boneJoint);
+				sk_constraint_ik_set_bone_effector(sk_constraint,sk_IK_boneTarget);
 				sk_armature_add(sk_skel,sk_constraint);
 			}
 			#endregion
@@ -247,7 +241,7 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 	    if(is_real(db_anim_record)&&ds_exists(db_anim_record,ds_type_map)){
 			#region // add animation
 			var sk_anim = sk_struct_create(sk_type_animation,string(db_anim_record[? "name"]));
-			sk_animation_duration(sk_anim,real(db_anim_record[? "duration"])*db_fps);
+			sk_animation_set_duration(sk_anim,real(db_anim_record[? "duration"])*db_fps);
 			sk_armature_add(sk_skel,sk_anim);
 			// compile timeline data
 			var db_anim_bones = db_anim_record[? "bone"];

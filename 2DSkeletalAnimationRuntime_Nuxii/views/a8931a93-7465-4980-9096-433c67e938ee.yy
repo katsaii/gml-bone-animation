@@ -11,7 +11,7 @@
         "7abd9f51-e2f3-4544-a9ee-17f5178bd641"
     ],
     "filterType": "GMScript",
-    "folderName": "Apply",
+    "folderName": "IK",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

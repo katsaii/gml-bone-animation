@@ -1,6 +1,6 @@
 /// @desc applys the constraint
 /// @param constraint
-var sk_tuple = ds_map_find_value(argument0[SK_CONSTRAINT_HIERARCHY.boneParentTuples],argument0[SK_CONSTRAINT_HIERARCHY.tupleKeyFinal]);
+var sk_tuple = ds_map_find_value(argument0[SK_CONSTRAINT_HIERARCHY.boneParentTuples],argument0[SK_CONSTRAINT_HIERARCHY.displayKeyFinal]);
 if(is_real(sk_tuple)&&ds_exists(sk_tuple,ds_type_list)){
 	var sk_tuple_last = ds_list_size(sk_tuple);
 	var sk_tuple_id;

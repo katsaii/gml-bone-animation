@@ -1,6 +1,6 @@
 #macro sk_type_attachment_plane "__sk_attachment_header_plane"
 enum SK_ATTACHMENT_PLANE{
-	regionKey,
+	regionName,
 	X,Y,m00,m01,m10,m11,
 	sizeof
 }
@@ -16,14 +16,8 @@ switch(sk_cmd){
 	break;
 	case sk_structure_type_command.me_construct:
 		if(sk_struct_exists(sk_structure)){
-			sk_attachment_plane_regionKey(sk_structure,undefined);
-			sk_attachment_plane_x(sk_structure,0);
-			sk_attachment_plane_y(sk_structure,0);
-			sk_attachment_plane_matrix(
-				sk_structure,
-				1,1,
-				0,0,0
-			);
+			sk_attachment_plane_set_regionName(sk_structure,undefined);
+			sk_attachment_plane_set_matrix(sk_structure,0,0,1,1,0,0,0);
 		}
 	break;
 }

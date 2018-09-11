@@ -3,6 +3,6 @@
 /// @param x
 /// @param y
 /// @param rotation
-argument0[@ SK_ATTACHMENT_POINT.X] = argument1;
-argument0[@ SK_ATTACHMENT_POINT.Y] = argument2;
-argument0[@ SK_ATTACHMENT_POINT.rotation] = argument3;
+argument0[@ SK_ATTACHMENT_POINT.X] = real(argument1);
+argument0[@ SK_ATTACHMENT_POINT.Y] = real(argument2);
+argument0[@ SK_ATTACHMENT_POINT.rotation] = -angle_difference(0,real(argument3));
