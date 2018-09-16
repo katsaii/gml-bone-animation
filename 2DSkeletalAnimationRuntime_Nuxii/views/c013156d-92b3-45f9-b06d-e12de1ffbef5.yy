@@ -6,7 +6,8 @@
     "children": [
         "9aa756bd-adbf-48b7-a04c-bbfe4b83c8a4",
         "030432fd-8cbf-4c17-bccc-9a6221e4d0de",
-        "e5ca37b4-6902-40cd-85b0-7d22974db779"
+        "e5ca37b4-6902-40cd-85b0-7d22974db779",
+        "a9953380-c7af-4349-a5af-9907487262a2"
     ],
     "filterType": "GMScript",
     "folderName": "Point",

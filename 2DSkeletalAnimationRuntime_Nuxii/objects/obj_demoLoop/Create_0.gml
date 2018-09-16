@@ -2,6 +2,8 @@
 #macro draw_reset_colour draw_set_colour($203621)
 show_debug_overlay(true);
 gml_release_mode(true);
+gpu_set_ztestenable(true);
+gpu_set_zwriteenable(true);
 draw_set_font(font0);
 draw_reset_colour;
 

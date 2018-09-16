@@ -696,6 +696,14 @@
             }
         },
         {
+            "Key": "21c15ad8-0e48-4530-98a1-a5a7bfd6daeb",
+            "Value": {
+                "id": "8090e832-73c0-40fc-a4e5-d2ebe5a83da7",
+                "resourcePath": "scripts\\sk_attachment_point_computeWorldPosition\\sk_attachment_point_computeWorldPosition.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "227baed7-5a81-431c-b2df-d7b5a6496608",
             "Value": {
                 "id": "edaeb644-416c-4337-acb4-55c2e1ea8cab",
@@ -2840,6 +2848,14 @@
             }
         },
         {
+            "Key": "a9953380-c7af-4349-a5af-9907487262a2",
+            "Value": {
+                "id": "0088925d-2d09-4ff7-9282-ef94ecd40364",
+                "resourcePath": "views\\a9953380-c7af-4349-a5af-9907487262a2.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "aa3c9de0-8a8f-4c28-a026-41464050f635",
             "Value": {
                 "id": "5b6da350-5d37-4f22-a978-94fba32bab49",
@@ -3696,6 +3712,14 @@
             }
         },
         {
+            "Key": "de69e3f5-0c77-4757-9e12-140dfe79bf18",
+            "Value": {
+                "id": "cc2cb08c-05aa-4022-8416-608657b7109f",
+                "resourcePath": "scripts\\sk_attachment_point_computeWorldRotation\\sk_attachment_point_computeWorldRotation.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dead597e-2dfc-45cd-bcfb-0b3d5a0bb597",
             "Value": {
                 "id": "c9e7562b-03d1-42fb-9c6a-c575dd736d90",
@@ -4492,6 +4516,8 @@
         "7a165a83-a1dc-4054-a6c3-5f52fcadef1b",
         "b9b658f6-4478-4af7-b53e-a8623daf0852",
         "aa3c9de0-8a8f-4c28-a026-41464050f635",
+        "21c15ad8-0e48-4530-98a1-a5a7bfd6daeb",
+        "de69e3f5-0c77-4757-9e12-140dfe79bf18",
         "61b97a13-de77-4fd2-a75d-6cb07e7ed8a2",
         "fabab261-0192-421a-9b8c-81970ddc48b0",
         "121eba11-4442-4c4c-90a7-18670b1234bd",
