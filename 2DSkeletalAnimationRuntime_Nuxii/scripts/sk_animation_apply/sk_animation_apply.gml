@@ -12,7 +12,7 @@ if(sk_alpha<0.001){ // zero effect
 var sk_anim = argument0;
 var sk_anim_duration = sk_anim[SK_ANIMATION.duration];
 var sk_anim_timelines = sk_anim[SK_ANIMATION.timelines];
-var sk_anim_loop = sk_anim[SK_ANIMATION.looping];
+var sk_anim_loopTime = sk_anim[SK_ANIMATION.looping] ? sk_anim_duration : -1;
 var sk_timeLast = argument1;
 var sk_time = argument2;
 if(sk_anim_duration>0){
@@ -31,5 +31,5 @@ var sk_timeline_count = ds_list_size(sk_anim_timelines);
 var sk_timeline_id;
 for(sk_timeline_id = 0; sk_timeline_id < sk_timeline_count; sk_timeline_id++){
 	var sk_timelineData = sk_anim_timelines[| sk_timeline_id];
-	sk_timeline_apply(sk_timelineData,sk_time,sk_timeLast,0,sk_anim_duration,sk_mixPose,sk_alpha,sk_anim_loop);
+	sk_timeline_apply(sk_timelineData,sk_time,sk_timeLast,sk_mixPose,sk_alpha,sk_anim_loopTime);
 }
