@@ -1,5 +1,6 @@
 enum SK_STRUCT_H{
 	parity, // whether the structure exists (should equate to true at all times)
+	protector, // if this contains a structure, the child structure cannot be destroyed
 	type, // the type of structure used as an identifier, cannot/must not be changed
 	name, // the name given to the structure
 	scr_setup, // used during polymorphism to initialise the structure
@@ -16,6 +17,7 @@ enum SK_STRUCT_H{
 /// @param destroy_script_id_or_name]
 var sk_struct = argument[0];
 sk_struct[@ 1,SK_STRUCT_H.parity] = true;
+sk_struct[@ 1,SK_STRUCT_H.protector] = noone;
 sk_struct[@ 1,SK_STRUCT_H.type] = argument[1];
 sk_struct_set_name(sk_struct,argument[2]);
 if(argument_count==6){

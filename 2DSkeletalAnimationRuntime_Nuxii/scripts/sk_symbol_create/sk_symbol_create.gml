@@ -15,7 +15,7 @@ array_hook_sk_structure(
 	"sk_symbol_destroy" // destruction script
 );
 // create dynamic data structures
-sk_struct[@ SK_SYMBOL.NESTED_BONE] = sk_bone_create("%B",argument1); // create nested data structures
-sk_struct[@ SK_SYMBOL.NESTED_SLOT] = sk_slot_create("%S",noone);
+var sk_bone = sk_bone_create("%B",argument1); sk_struct_protect(sk_bone,sk_struct); sk_struct[@ SK_SYMBOL.NESTED_BONE] = sk_bone;
+var sk_slot = sk_slot_create("%S",noone); sk_struct_protect(sk_slot,sk_struct); sk_struct[@ SK_SYMBOL.NESTED_SLOT] = sk_slot;
 // return to caller
 return sk_struct;

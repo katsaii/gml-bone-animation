@@ -1248,6 +1248,14 @@
             }
         },
         {
+            "Key": "3ea6d9fa-88ad-42ce-a135-21b6294cfe9f",
+            "Value": {
+                "id": "91ba6d8c-7d45-465e-ae56-3b85afd48692",
+                "resourcePath": "scripts\\sk_struct_protected\\sk_struct_protected.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3eea9b79-edec-46fc-9929-6ce59eb29d63",
             "Value": {
                 "id": "c82ff57a-7f8a-471b-b9e1-9fed2d357d05",
@@ -3496,6 +3504,14 @@
             }
         },
         {
+            "Key": "ce82ff99-e5d1-46b7-a7d5-9d6190040aec",
+            "Value": {
+                "id": "790fa817-29f0-43ef-8bae-cc9ee252d183",
+                "resourcePath": "scripts\\sk_struct_protect\\sk_struct_protect.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cf1b2dd8-c9cc-491a-ad84-e9a2956def86",
             "Value": {
                 "id": "f3700080-eda9-49b5-ad28-42d39b8a721b",
@@ -4335,6 +4351,8 @@
         "09604e24-cc3a-4139-8860-887da90c5504",
         "c42cc849-db2e-4ce0-81da-d0ea72f1f3b5",
         "640a833c-6ee5-4ccc-9b64-ab5a4afe5be0",
+        "ce82ff99-e5d1-46b7-a7d5-9d6190040aec",
+        "3ea6d9fa-88ad-42ce-a135-21b6294cfe9f",
         "502e49a6-11ca-48d1-897f-79faa9a34988",
         "aa7d6e8d-b130-410d-835e-509102513b42",
         "cc7723eb-1fe2-4e95-a059-069667476e59",
