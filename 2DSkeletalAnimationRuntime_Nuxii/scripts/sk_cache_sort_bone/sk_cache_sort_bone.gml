@@ -1,7 +1,7 @@
 /// @desc sort bones in hierarchy
 /// @param updateOrder
 /// @param bone
-if(sk_struct_exists(argument1,sk_type_bone)){
+if(sk_struct_isof(argument1,sk_type_bone)){
 	var sk_bone_id = ds_list_find_index(argument0,argument1);
 	if(sk_bone_id==-1){
 		// not sorted

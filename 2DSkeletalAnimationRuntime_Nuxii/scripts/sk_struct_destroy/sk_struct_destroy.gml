@@ -1,11 +1,12 @@
 /// @desc calls the destructor script on a supplied structure
 /// @param struct
-var sk_struct = argument0;
-var sk_struct_type = sk_struct_get_type(sk_struct);
-var sk_struct_type_script = sk_get_index(sk_struct_type);
-if(script_exists(sk_struct_type_script)){
-	// the type exists, call the type destructor
-	script_execute(sk_struct_type_script,sk_structure_type_command.me_destruct,sk_struct);
-	// since arrays cannot be disposed directly, make the structure invisible by making the type undefined
-	argument0[@ sk_structure_header_type] = undefined;
+var sk_scr_id = sk_struct_get_destroy_script(argument0);
+if(sk_scr_id!=-1){ // the function will always return -1 if the script doesnt exist
+	// call script with structure as an argument
+	script_execute(sk_scr_id,argument0);
+}
+// check whether the structure was destroyed successfully
+if(sk_struct_exists(argument0)){
+	// if the structure wasn't destroyed (the script doesn't exist) unhook the struct manually
+	array_unhook_sk_structure(argument0);
 }

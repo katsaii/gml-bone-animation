@@ -1,7 +1,7 @@
 /// @desc sort end effector, so that its world transform is calculated before the joint (forward kinematics)
 /// @param updateOrder
 /// @param constraint
-if(sk_struct_exists(argument1,sk_type_constraint_ik)){
+if(sk_struct_isof(argument1,sk_type_constraint_ik)){
 	var sk_bone_effector = argument1[SK_CONSTRAINT_IK.boneEffector];
 	var sk_bone_joint = argument1[SK_CONSTRAINT_IK.boneJoint];
 	sk_cache_sort_bone(argument0,sk_bone_effector);

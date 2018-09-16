@@ -7,7 +7,7 @@ var sk_m01 = argument0[SK_BONE.m01];
 var sk_m10 = argument0[SK_BONE.m10];
 var sk_m11 = argument0[SK_BONE.m11];
 var sk_parent = argument0[SK_BONE.parent];
-if(sk_struct_exists(sk_parent,sk_type_bone)){
+if(sk_struct_isof(sk_parent,sk_type_bone)){
 	// calculate the parent's inverse rotation matrix
 	var sk_parent_m00 = sk_parent[SK_BONE.m00];
 	var sk_parent_m01 = sk_parent[SK_BONE.m01];
@@ -45,3 +45,5 @@ argument0[@ SK_BONE.YShearApplied] = angle_difference(-darctan2(sk_m11,sk_m10),s
 argument0[@ SK_BONE.rotationApplied] = sk_rotation;
 // bad applied transform has been corrected
 argument0[@ SK_BONE.badApplied] = false;
+// set the corrected transformMode to "normal"
+argument0[@ SK_BONE.transformModeCorrected] = sk_transformMode_normal;

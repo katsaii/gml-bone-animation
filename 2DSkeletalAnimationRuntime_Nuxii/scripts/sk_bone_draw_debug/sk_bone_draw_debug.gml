@@ -68,7 +68,7 @@ if(argument6&sk_debug_bones){
 if(argument6&sk_debug_boneInheritance){
 	V_COLOUR = $ff00ff;
 	var sk_parentData = sk_bone[SK_BONE.parent];
-	if(sk_struct_exists(sk_parentData,sk_type_bone)){
+	if(sk_struct_isof(sk_parentData,sk_type_bone)){
 		// get parent bone transforms
 		var sk_parent_xlocal = sk_parentData[SK_BONE.XWorld]*sk_draw_xscale;
 		var sk_parent_ylocal = sk_parentData[SK_BONE.YWorld]*sk_draw_yscale;

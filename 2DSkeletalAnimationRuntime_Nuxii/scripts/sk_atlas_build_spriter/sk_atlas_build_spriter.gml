@@ -15,7 +15,7 @@ if(ds_exists(sp_atlas,ds_type_map)){
 			var sp_texture_height = sp_texture_size[? "h"];
 			if(is_real(sp_texture_width)&&(sp_texture_width>0)&&is_real(sp_texture_height)&&(sp_texture_height>0)){
 				// build final structure
-				var sk_atlas = sk_struct_create(sk_type_atlas,sp_atlas_metaData[? "image"]);
+				var sk_atlas = sk_atlas_create(sp_atlas_metaData[? "image"]);
 				#region // transfer atlas texture data to new structure
 				var sp_subtex_count = ds_list_size(sp_atlas_frames); var sp_subtex_id;
 				for(sp_subtex_id = 0; sp_subtex_id < sp_subtex_count; sp_subtex_id++){
@@ -52,7 +52,7 @@ if(ds_exists(sp_atlas,ds_type_map)){
 							sk_tex_hframe = real(sp_subtex_sourceSize[? "h"]);
 						}
 						// insert
-						var sk_tex = sk_struct_create(sk_type_region,sk_tex_path);
+						var sk_tex = sk_region_create(sk_tex_path);
 						var sk_tex_dx = sk_tex_rotate ? sk_tex_h : sk_tex_w;
 						var sk_tex_dy = sk_tex_rotate ? sk_tex_w : sk_tex_h;
 						sk_region_set_uvs(

@@ -4,12 +4,13 @@
     "mvc": "1.1",
     "name": "16c026a5-d76c-4c0f-a258-0f0a99dbb325",
     "children": [
-        "91a7659b-9c94-41f8-aeb3-cc00ac473ab6",
+        "262c76f6-1d95-4b80-a755-b4e77f5a187b",
+        "cfcbdb8c-5b15-4836-a843-885aff187367",
         "cd2b7b3e-2eab-426a-9101-76d0c5b492d3",
         "37bc3464-28d8-492c-9021-69f839311a85",
-        "b0c7972f-a469-402a-88a5-ef3744f4b963",
-        "f5ee1bff-5ff8-435c-a273-5dc91c7f89a4",
-        "bad84e87-c9df-4fd4-9995-bd46fbffb56b"
+        "146cbba2-0dfa-4d55-9c51-3a983a207b74",
+        "a0597cef-5e25-4315-82c0-6c766744224e",
+        "335b1c8f-8196-442d-bbb8-dae7198386aa"
     ],
     "filterType": "GMScript",
     "folderName": "Struct",

@@ -10,10 +10,15 @@ if(keyboard_check(vk_control)){
 v_xscale += (keyboard_check(vk_right)-keyboard_check(vk_left))*0.1;
 v_yscale -= (keyboard_check(vk_down)-keyboard_check(vk_up))*0.1;
 
-if(mouse_check_button_pressed(mb_left)){
+if(
+	mouse_check_button_pressed(mb_left)||
+	(
+		mouse_check_button(mb_left)&&keyboard_check(vk_shift)
+	)
+){
 	var sk = global.current_ske;
 	var at = global.current_atlas;
-	if(sk_struct_exists(sk,sk_type_armature)&&sk_struct_exists(at,sk_type_atlas)){
+	if(sk_struct_isof(sk,sk_type_armature)&&sk_struct_isof(at,sk_type_atlas)){
 		var xscale = v_xscale;
 		var yscale = v_yscale;
 		with(instance_create_layer(mouse_x,mouse_y,layer,obj_armature)){

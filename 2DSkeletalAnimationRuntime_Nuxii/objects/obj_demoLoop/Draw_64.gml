@@ -16,5 +16,5 @@ draw_text(10,20*i,"X - iterate through available armatures"); i++;
 draw_text(10,20*i,"State: "+state); i++;
 draw_text(10,20*i,"FPS: "+string(fps)); i++;
 draw_text(10,20*i,"FPS_REAL: "+string(fps_real)); i++;
-draw_text(10,20*i,"Current_armature: "+string(sk_struct_exists(global.current_ske,sk_type_armature) ? sk_struct_get_name(global.current_ske) : "N/A")); i++;
-draw_text(10,20*i,"Current_atlas: "+string(sk_struct_exists(global.current_atlas,sk_type_atlas) ? sk_struct_get_name(global.current_atlas) : "N/A")); i++;
+draw_text(10,20*i,"Current_armature: "+string(sk_struct_isof(global.current_ske,sk_type_armature) ? sk_struct_get_name(global.current_ske) : "N/A")); i++;
+draw_text(10,20*i,"Current_atlas: "+string(sk_struct_isof(global.current_atlas,sk_type_atlas) ? sk_struct_get_name(global.current_atlas) : "N/A")); i++;

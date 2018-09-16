@@ -18,8 +18,6 @@ argument0[@ SK_BONE.YScaleApplied] = argument4;
 argument0[@ SK_BONE.XShearApplied] = argument5;
 argument0[@ SK_BONE.YShearApplied] = argument6;
 argument0[@ SK_BONE.rotationApplied] = argument7;
-argument0[@ SK_BONE.transformMode] = argument8;
+argument0[@ SK_BONE.transformModeCorrected] = argument8;
 // update bone with new transforms
 sk_bone_updateWorldTransform(argument0);
-// preserve transform mode
-argument0[@ SK_BONE.transformMode] = sk_previous_transformMode;

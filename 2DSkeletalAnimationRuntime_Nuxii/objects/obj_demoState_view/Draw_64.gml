@@ -1,7 +1,7 @@
 /// @desc draw UI
 var v_armature = global.current_ske;
 var i = 15;
-if(sk_struct_exists(v_armature,sk_type_armature)){
+if(sk_struct_isof(v_armature,sk_type_armature)){
 	draw_text(10,20*i,"Left click to iterate through animations"); i++;
 	draw_text(10,20*i,"Right click to iterate through bones"); i++;
 	draw_text(10,20*i,"Press space to iterate through skins"); i++;

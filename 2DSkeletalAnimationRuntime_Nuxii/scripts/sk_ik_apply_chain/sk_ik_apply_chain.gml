@@ -54,7 +54,7 @@ var sk_tx = sk_im00*sk_xx+sk_im10*sk_yy - sk_pax;
 var sk_ty = sk_im01*sk_xx+sk_im11*sk_yy - sk_pay;
 // determine whether the parent bone is of uniform scale
 var sk_uniform = abs(sk_paxscale-sk_payscale) <= 0.01;
-if(sk_uniform){
+if(true){
 	sk_payscale = sk_paxscale;
 	// calculate bone lengths
 	var sk_lena = abs(point_distance(0,0,sk_cax,sk_cay)*sk_paxscale);
@@ -74,27 +74,4 @@ if(sk_uniform){
 		sk_rotationIK += 180;
 	}
 	sk_bone_updateWorldTransform_ext(sk_child,sk_cax,sk_cay,sk_caxscale,sk_cayscale,sk_caxshear,sk_cayshear,sk_carotation+sk_rotationIK*sk_alpha,sk_transformMode_normal);
-} else {
-	// DON'T INHERIT SCALES
-	//	currently, I don't know how to implement a system where scales are inherited like in Spine, so this is the current middleground
-	#region
-	// calculate bone lengths
-	var sk_lena = abs(point_distance(0,0,sk_cax,sk_cay)*sk_paxscale);
-	var sk_lenb = abs(sk_child[SK_BONE.length]*sk_caxscale);
-	// set rotations
-	var sk_rotb = sk_ik_calculate_b(sk_tx,sk_ty,sk_lena,sk_lenb,sk_bendDir);
-	var sk_rota = sk_ik_calculate_a(sk_tx,sk_ty,sk_lena,sk_lenb,sk_rotb);
-	// apply
-	var sk_offsetShear = -darctan2(sk_cay,sk_cax);
-	var sk_rotationIK = angle_difference(sk_rota-sk_offsetShear,sk_parotation);
-	if(sk_paxscale<0){
-		sk_rotationIK += 180;
-	}
-	sk_bone_updateWorldTransform_ext(sk_parent,sk_pax,sk_pay,sk_paxscale,sk_payscale,0,0,sk_parotation+sk_rotationIK*sk_alpha,sk_transformMode_normal);
-	sk_rotationIK = sk_rotb+sk_offsetShear-sk_carotation-sk_caxshear - darctan2(sk_parent[SK_BONE.m01],sk_parent[SK_BONE.m00]);
-	if(sk_caxscale<0){
-		sk_rotationIK += 180;
-	}
-	sk_bone_updateWorldTransform_ext(sk_child,sk_cax,sk_cay,sk_caxscale,sk_cayscale,sk_caxshear,sk_cayshear,sk_carotation+sk_rotationIK*sk_alpha,sk_transformMode_noScaleOrRotation);
-	#endregion
 }

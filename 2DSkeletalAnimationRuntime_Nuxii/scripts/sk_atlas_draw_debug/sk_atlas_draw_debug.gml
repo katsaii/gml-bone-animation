@@ -31,7 +31,7 @@ var sk_region_count = ds_map_size(sk_atlas_subtextures);
 var sk_region_key = ds_map_find_first(sk_atlas_subtextures);
 repeat(sk_region_count){
 	var sk_region = sk_atlas_subtextures[? sk_region_key];
-	if(sk_struct_exists(sk_region,sk_type_region)){
+	if(sk_struct_isof(sk_region,sk_type_region)){
 		// get positions
 		var ULX = lerp(sk_x1,sk_x2,sk_region[SK_REGION.uv_ULX]);
 		var ULY = lerp(sk_y1,sk_y2,sk_region[SK_REGION.uv_ULY]);

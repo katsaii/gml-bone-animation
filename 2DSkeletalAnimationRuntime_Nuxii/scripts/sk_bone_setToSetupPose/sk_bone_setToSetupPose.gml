@@ -9,3 +9,4 @@ argument0[@ SK_BONE.XShearApplied] = argument0[SK_BONE.XShear];
 argument0[@ SK_BONE.YShearApplied] = argument0[SK_BONE.YShear];
 argument0[@ SK_BONE.rotationApplied] = argument0[SK_BONE.rotation];
 argument0[@ SK_BONE.badApplied] = false;
+argument0[@ SK_BONE.transformModeCorrected] = argument0[SK_BONE.transformMode];

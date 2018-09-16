@@ -57,7 +57,7 @@ if((sp_texture_width<1)||(sp_texture_height<1)){
 	return noone;
 }
 // build atlas
-var sk_atlas = sk_struct_create(sk_type_atlas,sp_name);
+var sk_atlas = sk_atlas_create(sp_name);
 // add regions
 var sk_current_exists = false;
 var sk_current_name = "";
@@ -76,7 +76,7 @@ do{
 	if(file_text_eof(sp_atlas)||(sp_data=="")||(string_count(":",sp_data)<1)){
 		// current line is a statement, apply current attributes to current region and add it to the atlas
 		if(sk_current_exists){
-			var sk_tex = sk_struct_create(sk_type_region,sk_current_name);
+			var sk_tex = sk_region_create(sk_current_name);
 			var sk_tex_dx = (sk_current_rotation>45) ? sk_current_h : sk_current_w;
 			var sk_tex_dy = (sk_current_rotation>45) ? sk_current_w : sk_current_h;
 			sk_region_set_uvs(

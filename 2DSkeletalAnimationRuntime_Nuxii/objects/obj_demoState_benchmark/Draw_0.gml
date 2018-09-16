@@ -2,9 +2,9 @@
 var v_armature = global.current_ske;
 var v_atlas = global.current_atlas;
 var v_anim = global.current_animation;
-if(sk_struct_exists(v_armature,sk_type_armature)&&sk_struct_exists(v_atlas,sk_type_atlas)){
+if(sk_struct_isof(v_armature,sk_type_armature)&&sk_struct_isof(v_atlas,sk_type_atlas)){
 	sk_armature_setToSetupPose(v_armature);
-	if(sk_struct_exists(v_anim,sk_type_animation)){
+	if(sk_struct_isof(v_anim,sk_type_animation)){
 		var t = current_time*0.01;
 		sk_animation_apply(v_anim,t,t,sk_mixPose_mix,1,true);
 	}

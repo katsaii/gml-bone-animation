@@ -1,7 +1,7 @@
 /// @desc sorts the parent bones in the map before the child so their transforms are ready to be inherited on demand
 /// @param updateOrder
 /// @param constraint
-if(sk_struct_exists(argument1,sk_type_constraint_hierarchy)){
+if(sk_struct_isof(argument1,sk_type_constraint_hierarchy)){
 	var sk_availableTuples = argument1[SK_CONSTRAINT_HIERARCHY.boneParentTuples];
 	var sk_count = ds_map_size(sk_availableTuples);
 	var sk_key = ds_map_find_first(sk_availableTuples);

@@ -23,7 +23,7 @@ var sp_constraints_path = sp_armature[? "path"]; // not used
 var sp_animations = sp_armature[? "animations"];
 var sp_events = sp_armature[? "events"];
 // create armature
-var sk_skel = sk_struct_create(sk_type_armature,string(argument1));
+var sk_skel = sk_armature_create(string(argument1));
 // transfer bone data
 if(is_real(sp_bones)&&ds_exists(sp_bones,ds_type_list)){
 	var sp_bone_count = ds_list_size(sp_bones);
@@ -50,10 +50,9 @@ if(is_real(sp_bones)&&ds_exists(sp_bones,ds_type_list)){
 				case "noScale": case "noScaleOrReflection": sk_bone_inheritance = sk_transformMode_noScale; break;
 			}
 			// create new record and append data
-			var sk_bone = sk_struct_create(sk_type_bone,sk_bone_name);
+			var sk_bone = sk_bone_create(sk_bone_name,sk_bone_par);
 			sk_bone_set_transformMode(sk_bone,sk_bone_inheritance);
 			sk_bone_set_length(sk_bone,sk_bone_len);
-			sk_bone_set_parent(sk_bone,sk_bone_par);
 			sk_bone_set_position(sk_bone,sk_bone_xpos,sk_bone_ypos);
 			sk_bone_set_scale(sk_bone,sk_bone_xsc,sk_bone_ysc);
 			sk_bone_set_shear(sk_bone,sk_bone_xsh,sk_bone_ysh);
@@ -75,10 +74,9 @@ if(is_real(sp_slots)&&ds_exists(sp_slots,ds_type_list)){
 			var sk_slot_attachmentName = string(sp_slot_record[? "attachment"]);
 			var sk_slot_rgba = is_string(sp_slot_record[? "color"]) ? sp_slot_record[? "color"] : "FFFFFFFF";
 	        // create new record and set data
-			var sk_slot = sk_struct_create(sk_type_slot,sk_slot_name);
+			var sk_slot = sk_slot_create(sk_slot_name,sk_slot_par);
 			sk_slot_set_defaultDisplay(sk_slot,sk_slot_attachmentName);
 			sk_slot_set_colour(sk_slot,sk_hex_get_colour(sk_slot_rgba,false),sk_hex_get_alpha(sk_slot_rgba,false));
-			sk_slot_set_bone(sk_slot,sk_slot_par);
 			sk_armature_add(sk_skel,sk_slot);
 			#endregion
 	    }
@@ -96,7 +94,7 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 			if(sp_skin_name=="default"){
 				sk_skin = sk_armature_get_defaultSkin(sk_skel);
 			} else {
-				sk_skin = sk_struct_create(sk_type_skin,sp_skin_name);
+				sk_skin = sk_skin_create(sp_skin_name);
 				sk_armature_add(sk_skel,sk_skin);
 			}
 			// compile slot attachment data
@@ -109,7 +107,7 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 				if(is_real(sp_skin_slot_record)&&ds_exists(sp_skin_slot_record,ds_type_map)){
 					var sk_skin_slotData = sk_armature_find(sk_skel,sk_type_slot,sp_skin_slot_name);
 					var sp_skin_slot_attachments = sp_skin_slot_record;
-					if(sk_struct_exists(sk_skin_slotData,sk_type_slot)){
+					if(sk_struct_isof(sk_skin_slotData,sk_type_slot)){
 						// iterate through slot attachments and add create attachments
 						var sp_skin_slot_attachment_count = ds_map_size(sp_skin_slot_attachments);
 						var sp_skin_slot_attachment_key = ds_map_find_first(sp_skin_slot_attachments);
@@ -128,7 +126,7 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 										var sk_attachment_y = -real(sp_skin_slot_attachment_record[? "y"]);
 										var sk_attachment_rotation = real(sp_skin_slot_attachment_record[? "rotation"]);
 										// create a new attachment and add it to the skin
-										sk_attachment = sk_struct_create(sk_type_attachment_point,sk_attachment_name);
+										sk_attachment = sk_attachment_create_point(sk_attachment_name);
 										sk_attachment_point_set_offsets(sk_attachment,sk_attachment_x,sk_attachment_y,sk_attachment_rotation);
 										sk_armature_add(sk_skel,sk_attachment);
 									break;
@@ -141,8 +139,7 @@ if(is_real(sp_skins)&&ds_exists(sp_skins,ds_type_map)){
 										var sk_attachment_yscale = is_real(sp_skin_slot_attachment_record[? "scaleY"]) ? sp_skin_slot_attachment_record[? "scaleY"] : 1;
 										var sk_attachment_rotation = real(sp_skin_slot_attachment_record[? "rotation"]);
 										// create a new attachment and add it to the skin
-										sk_attachment = sk_struct_create(sk_type_attachment_plane,sk_attachment_name);
-										sk_attachment_plane_set_regionName(sk_attachment,sk_attachment_textureName);
+										sk_attachment = sk_attachment_create_plane(sk_attachment_name,sk_attachment_textureName);
 										sk_attachment_plane_set_matrix(
 											sk_attachment,
 											sk_attachment_x,sk_attachment_y,
@@ -205,13 +202,11 @@ for(var sp_constraint_id = 0; sp_constraint_id < sp_constraint_count; sp_constra
 						var sk_IK_boneJoint = sk_armature_find(sk_skel,sk_type_bone,sp_IK_bones[| sk_IK_chain]);
 						var sk_IK_positive = (is_real(sp_ik_record[? "bendPositive"])&&(!sp_ik_record[? "bendPositive"])) ? sk_bendDir_positive : sk_bendDir_negative; //  this is because spines +ve y axis is up (not down)
 						var sk_IK_weight = is_real(sp_ik_record[? "mix"]) ? sp_ik_record[? "mix"] : 1;
-						if(sk_struct_exists(sk_IK_boneTarget,sk_type_bone)&&sk_struct_exists(sk_IK_boneJoint,sk_type_bone)){
+						if(sk_struct_isof(sk_IK_boneTarget,sk_type_bone)&&sk_struct_isof(sk_IK_boneJoint,sk_type_bone)){
 							// create new record and set data
-							var sk_constraint = sk_struct_create(sk_type_constraint_ik,sk_IK_name);
+							var sk_constraint = sk_constraint_create_ik(sk_IK_name,sk_IK_boneJoint,sk_IK_boneTarget);
 							sk_constraint_ik_set_mix(sk_constraint,sk_IK_positive,sk_IK_weight);
 							sk_constraint_ik_set_chain(sk_constraint,sk_IK_chain);
-							sk_constraint_ik_set_bone_joint(sk_constraint,sk_IK_boneJoint);
-							sk_constraint_ik_set_bone_effector(sk_constraint,sk_IK_boneTarget);
 							sk_armature_add(sk_skel,sk_constraint);
 						}
 						#endregion
@@ -242,12 +237,11 @@ for(var sp_constraint_id = 0; sp_constraint_id < sp_constraint_count; sp_constra
 					var sk_transform_rotateMix = is_real(sp_transform_record[? "rotateMix"]) ? sp_transform_record[? "rotateMix"] : 1;
 					var sk_transform_local = real(sp_transform_record[? "local"]);
 					var sk_transform_relative = real(sp_transform_record[? "relative"]);
-					if(sk_struct_exists(sk_transform_boneTarget,sk_type_bone)){
+					if(sk_struct_isof(sk_transform_boneTarget,sk_type_bone)){
 						// create new record and set data
-						var sk_constraint = sk_struct_create(sk_type_constraint_transform,sk_transform_name);
+						var sk_constraint = sk_constraint_create_transform(sk_transform_name,sk_transform_boneTarget);
 						sk_constraint_transform_set_local(sk_constraint,sk_transform_local);
 						sk_constraint_transform_set_relative(sk_constraint,sk_transform_relative);
-						sk_constraint_transform_set_bone_target(sk_constraint,sk_transform_boneTarget);
 						sk_constraint_transform_set_offset(
 							sk_constraint,
 							sk_transform_x,sk_transform_y,
@@ -266,7 +260,7 @@ for(var sp_constraint_id = 0; sp_constraint_id < sp_constraint_count; sp_constra
 							var sk_transform_bone_count = ds_list_size(sk_transform_bones);
 							for(var sk_transform_bone_id = 0; sk_transform_bone_id < sk_transform_bone_count; sk_transform_bone_id++){
 								var sk_transform_bone = sk_armature_find(sk_skel,sk_type_bone,sk_transform_bones[| sk_transform_bone_id]);
-								if(sk_struct_exists(sk_transform_bone,sk_type_bone)){
+								if(sk_struct_isof(sk_transform_bone,sk_type_bone)){
 									sk_constraint_transform_bone_children_add(sk_constraint,sk_transform_bone);
 								}
 							}
@@ -304,7 +298,7 @@ if(is_real(sp_events)&&ds_exists(sp_events,ds_type_map)){
 			var sk_event_float = real(sp_event_record[? "float"]);
 			var sk_event_int = int64(sp_event_record[? "int"]);
 			// create a new event and add it to the armature
-			var sk_event = sk_struct_create(sk_type_event,string(sp_event_name));
+			var sk_event = sk_event_create(string(sp_event_name));
 			sk_event_data_set(sk_event,noone,sk_event_string,sk_event_float,sk_event_int,-1);
 			sk_armature_add(sk_skel,sk_event);
 			#endregion
@@ -328,7 +322,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	    var sp_anim_record = sp_animations[? sp_anim_name];
 	    if(is_real(sp_anim_record)&&ds_exists(sp_anim_record,ds_type_map)){
 			#region // add animation
-			var sk_anim = sk_struct_create(sk_type_animation,string(sp_anim_name));
+			var sk_anim = sk_animation_create(string(sp_anim_name));
 			sk_armature_add(sk_skel,sk_anim);
 			var sk_anim_duration = 0;
 			// compile timeline data
@@ -357,8 +351,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	                        var sp_anim_frame_count = ds_list_size(sp_anim_bone_translate);
 							if(sp_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_struct_create(sk_type_timeline_translate,sk_anim_timeline_boneName+".TimelineTranslate");
-								sk_timeline_body(sk_timelineData,sk_anim_timeline_boneData);
+								var sk_timelineData = sk_timeline_create_translate(sk_anim_timeline_boneName+".TimelineTranslate",sk_anim_timeline_boneData);
 								sk_animation_add_timeline(sk_anim,sk_timelineData);
 								// compile frames
 								var sk_anim_frame_duration = 0;
@@ -382,7 +375,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 											);
 										}
 		                                // append keyframe data in format [time, dx, dy, tween]
-										sk_timeline_translate_add_frame(
+										sk_timeline_frame_add_translate(
 											sk_timelineData,
 											sk_anim_frame_time,
 											real(sp_anim_frame_record[? "x"]),
@@ -403,8 +396,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	                        var sp_anim_frame_count = ds_list_size(sp_anim_bone_scale);
 							if(sp_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_struct_create(sk_type_timeline_scale,sk_anim_timeline_boneName+".TimelineScale");
-								sk_timeline_body(sk_timelineData,sk_anim_timeline_boneData);
+								var sk_timelineData = sk_timeline_create_scale(sk_anim_timeline_boneName+".TimelineScale",sk_anim_timeline_boneData);
 								sk_animation_add_timeline(sk_anim,sk_timelineData);
 								// compile frames
 								var sk_anim_frame_duration = 0;
@@ -428,7 +420,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 											);
 										}
 		                                // append keyframe data in format [time, dx, dy, tween]
-										sk_timeline_scale_add_frame(
+										sk_timeline_frame_add_scale(
 											sk_timelineData,
 											sk_anim_frame_time,
 											is_real(sp_anim_frame_record[? "x"]) ? sp_anim_frame_record[? "x"] : 1,
@@ -449,8 +441,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	                        var sp_anim_frame_count = ds_list_size(sp_anim_bone_shear);
 							if(sp_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_struct_create(sk_type_timeline_shear,sk_anim_timeline_boneName+".TimelineShear");
-								sk_timeline_body(sk_timelineData,sk_anim_timeline_boneData);
+								var sk_timelineData = sk_timeline_create_shear(sk_anim_timeline_boneName+".TimelineShear",sk_anim_timeline_boneData);
 								sk_animation_add_timeline(sk_anim,sk_timelineData);
 								// compile frames
 								var sk_anim_frame_duration = 0;
@@ -474,7 +465,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 											);
 										}
 		                                // append keyframe data in format [time, dx, dy, tween]
-										sk_timeline_shear_add_frame(
+										sk_timeline_frame_add_shear(
 											sk_timelineData,
 											sk_anim_frame_time,
 											real(sp_anim_frame_record[? "x"]),
@@ -495,8 +486,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	                        var sp_anim_frame_count = ds_list_size(sp_anim_bone_rotate);
 							if(sp_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_struct_create(sk_type_timeline_rotate,sk_anim_timeline_boneName+".TimelineRotate");
-								sk_timeline_body(sk_timelineData,sk_anim_timeline_boneData);
+								var sk_timelineData = sk_timeline_create_rotate(sk_anim_timeline_boneName+".TimelineRotate",sk_anim_timeline_boneData);
 								sk_animation_add_timeline(sk_anim,sk_timelineData);
 								// compile frames
 								var sk_anim_frame_duration = 0;
@@ -520,7 +510,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 											);
 										}
 		                                // append keyframe data in format [time, dx, dy, tween]
-										sk_timeline_rotate_add_frame(
+										sk_timeline_frame_add_rotate(
 											sk_timelineData,
 											sk_anim_frame_time,
 											real(sp_anim_frame_record[? "angle"]),
@@ -558,8 +548,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	                        var sp_anim_frame_count = ds_list_size(sp_anim_slot_colour);
 							if(sp_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_struct_create(sk_type_timeline_colour,sk_anim_timeline_slotName+".TimelineColour");
-								sk_timeline_body(sk_timelineData,sk_anim_timeline_slotData);
+								var sk_timelineData = sk_timeline_create_colour(sk_anim_timeline_slotName+".TimelineColour",sk_anim_timeline_slotData);
 								sk_animation_add_timeline(sk_anim,sk_timelineData);
 								// compile frames
 								var sk_anim_frame_duration = 0;
@@ -585,7 +574,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 										// get colour
 										var sk_anim_frame_rgba = is_string(sp_anim_frame_record[? "color"]) ? sp_anim_frame_record[? "color"] : "FFFFFFFF";
 										// append keyframe data in format [time, colour, alpha, tween]
-										sk_timeline_colour_add_frame(
+										sk_timeline_frame_add_colour(
 											sk_timelineData,
 											sk_anim_frame_time,
 											sk_hex_get_colour(sk_anim_frame_rgba,false),
@@ -606,8 +595,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	                        var sp_anim_frame_count = ds_list_size(sp_anim_slot_attachment);
 							if(sp_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_struct_create(sk_type_timeline_display,sk_anim_timeline_slotName+".TimelineDisplay");
-								sk_timeline_body(sk_timelineData,sk_anim_timeline_slotData);
+								var sk_timelineData = sk_timeline_create_display(sk_anim_timeline_slotName+".TimelineDisplay",sk_anim_timeline_slotData);
 								sk_animation_add_timeline(sk_anim,sk_timelineData);
 								// compile frames
 								var sk_anim_frame_duration = 0;
@@ -617,7 +605,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 										// add frame
 										var sk_anim_frame_time = real(sp_anim_frame_record[? "time"])*sp_fps;
 										// append keyframe data in format [time, attachmentName]
-										sk_timeline_display_add_frame(
+										sk_timeline_frame_add_display(
 											sk_timelineData,
 											sk_anim_frame_time,
 											string(sp_anim_frame_record[? "name"])
@@ -652,8 +640,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	                        var sp_anim_frame_count = ds_list_size(sp_anim_ik_frames);
 							if(sp_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_struct_create(sk_type_timeline_ik,sk_anim_timeline_ikName+".TimelineIK");
-								sk_timeline_body(sk_timelineData,sk_anim_timeline_ikData);
+								var sk_timelineData = sk_timeline_create_ik(sk_anim_timeline_ikName+".TimelineIK",sk_anim_timeline_ikData);
 								sk_animation_add_timeline(sk_anim,sk_timelineData);
 								// compile frames
 								var sk_anim_frame_duration = 0;
@@ -677,7 +664,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 											);
 										}
 										// append keyframe data in format [time, bendDir, weight, tweenEasing]
-										sk_timeline_ik_add_frame(
+										sk_timeline_frame_add_ik(
 											sk_timelineData,
 											sk_anim_frame_time,
 											sp_anim_frame_record[? "bendPositive"] ? sk_bendDir_negative : sk_bendDir_positive,
@@ -714,8 +701,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 	                        var sp_anim_frame_count = ds_list_size(sp_anim_transform_frames);
 							if(sp_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_struct_create(sk_type_timeline_transform,sk_anim_timeline_transformName+".TimelineTransform");
-								sk_timeline_body(sk_timelineData,sk_anim_timeline_transformData);
+								var sk_timelineData = sk_timeline_create_transform(sk_anim_timeline_transformName+".TimelineTransform",sk_anim_timeline_transformData);
 								sk_animation_add_timeline(sk_anim,sk_timelineData);
 								// compile frames
 								var sk_anim_frame_duration = 0;
@@ -739,7 +725,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 											);
 										}
 										// append keyframe data in format [time, translateMix, scaleMix, shearMix, rotateMix, tweenEasing]
-										sk_timeline_transform_add_frame(
+										sk_timeline_frame_add_transform(
 											sk_timelineData,
 											sk_anim_frame_time,
 											is_real(sp_anim_frame_record[? "translateMix"]) ? sp_anim_frame_record[? "translateMix"] : 1,
@@ -777,17 +763,16 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 							var sk_anim_frame_eventName = sp_anim_event_record[? "name"];
 							// get event
 							var sk_anim_frame_event = sk_armature_find(sk_skel,sk_type_event,sk_anim_frame_eventName);
-							if(!sk_struct_exists(sk_event,sk_type_event)){
+							if(!sk_struct_isof(sk_event,sk_type_event)){
 								// event doesn't exist, that's okay, create a new event
-								sk_anim_frame_event = sk_struct_create(sk_type_event,sk_anim_frame_time);
+								sk_anim_frame_event = sk_event_create(sk_anim_frame_time);
 								sk_armature_add(sk_skel,sk_anim_frame_event);
 							}
 							// get timeline
 							var sk_anim_frame_timeline = SP_EVENT_TIMELINE_MAP[? sk_anim_frame_eventName];
-							if(!sk_struct_exists(sk_anim_frame_timeline,sk_type_timeline_event)){
+							if(!sk_struct_isof(sk_anim_frame_timeline,sk_type_timeline)){
 								// timeline doesn't exist, create it
-								sk_anim_frame_timeline = sk_struct_create(sk_type_timeline_event,sk_anim_frame_eventName+".timelineEvent");
-								sk_timeline_body(sk_anim_frame_timeline,sk_anim_frame_event);
+								sk_anim_frame_timeline = sk_timeline_create_event(sk_anim_frame_eventName+".timelineEvent",sk_anim_frame_event);
 								sk_animation_add_timeline(sk_anim,sk_anim_frame_timeline);
 								SP_EVENT_TIMELINE_MAP[? sk_anim_frame_eventName] = sk_anim_frame_timeline;
 							}
@@ -796,7 +781,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 							var sk_anim_frame_float = sp_anim_event_record[? "float"];
 							var sk_anim_frame_string = sp_anim_event_record[? "string"];
 							// append timeline data
-							sk_timeline_event_add_frame(
+							sk_timeline_frame_add_event(
 								sk_anim_frame_timeline,
 								sk_anim_frame_time,
 								noone,
@@ -819,8 +804,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 				var sp_anim_frame_count = ds_list_size(sp_anim_drawOrder);
 				if(sp_anim_frame_count>0){
 					// add timeline to animation
-					var sk_timelineData = sk_struct_create(sk_type_timeline_order,"Armature.TimelineDrawOrder");
-					sk_timeline_body(sk_timelineData,sk_skel_drawOrder);
+					var sk_timelineData = sk_timeline_create_draworder("Armature.TimelineDrawOrder",sk_skel_drawOrder);
 					sk_animation_add_timeline(sk_anim,sk_timelineData);
 					#region // compile order frames
 					var sk_anim_frame_duration = 0;
@@ -829,10 +813,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 		                if(is_real(sp_anim_frame_record)&&ds_exists(sp_anim_frame_record,ds_type_map)){
 							// add frame
 							var sk_anim_frame_time = real(sp_anim_frame_record[? "time"])*sp_fps;
-							var sk_order_itemOffsetTuple = sk_timeline_order_add_frame(
-								sk_timelineData,
-								sk_anim_frame_time
-							);
+							var sk_order_itemOffsetTuple = ds_list_create();
 							// find original slot from slots array
 							var sp_order_offsets = sp_anim_frame_record[? "offsets"];
 							if(is_real(sp_order_offsets)&&ds_exists(sp_order_offsets,ds_type_list)){
@@ -842,7 +823,7 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 									if(is_real(sp_order_record)&&ds_exists(sp_order_record,ds_type_map)){
 										var sk_order_slot = sk_armature_find(sk_skel,sk_type_slot,sp_order_record[? "slot"]);
 										var sk_order_shift = real(sp_order_record[? "slot"]);
-										if(!sk_struct_exists(sk_order_slot,sk_type_slot)){
+										if(!sk_struct_isof(sk_order_slot,sk_type_slot)){
 											// slot is invalid
 											continue;
 										}
@@ -855,6 +836,12 @@ if(is_real(sp_animations)&&ds_exists(sp_animations,ds_type_map)){
 									}
 								}
 							}
+							// append timeline data
+							sk_timeline_frame_add_draworder(
+								sk_timelineData,
+								sk_anim_frame_time,
+								sk_order_itemOffsetTuple
+							);
 							// set last time for next frame
 							sk_anim_frame_duration = sk_anim_frame_time;
 						}

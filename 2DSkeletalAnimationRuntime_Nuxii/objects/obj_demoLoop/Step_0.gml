@@ -58,7 +58,7 @@ if(keyboard_check_pressed(ord("A"))){
 			}
 			file_text_close(file);
 		}
-		if(sk_struct_exists(new_atlas,sk_type_atlas)){
+		if(sk_struct_isof(new_atlas,sk_type_atlas)){
 			// assign
 			global.current_atlas = new_atlas;
 			sk_atlas_set_page(new_atlas,new_texture,0);
@@ -101,7 +101,7 @@ if(keyboard_check_pressed(ord("S"))){
 			}
 			file_text_close(file);
 		}
-		if(sk_struct_exists(new_armature,sk_type_armature)){
+		if(sk_struct_isof(new_armature,sk_type_armature)){
 			// assign
 			global.current_ske = new_armature;
 			default_format = format;

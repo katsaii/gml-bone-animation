@@ -10,7 +10,7 @@ if(ds_exists(db_atlas,ds_type_map)){
         var db_texture_height = db_atlas[? "height"];
         if(is_real(db_texture_width)&&(db_texture_width>0)&&is_real(db_texture_height)&&(db_texture_height>0)){
 			// build final structure
-			var sk_atlas = sk_struct_create(sk_type_atlas,db_atlas[? "name"]);
+			var sk_atlas = sk_atlas_create(db_atlas[? "name"]);
 			#region // transfer atlas texture data to new structure
 			var db_subtex_count = ds_list_size(db_atlas_subtextures); var db_subtex_id;
 			for(db_subtex_id = 0; db_subtex_id < db_subtex_count; db_subtex_id++){
@@ -26,7 +26,7 @@ if(ds_exists(db_atlas,ds_type_map)){
 					var sk_tex_wframe = is_real(db_subtex_record[? "frameWidth"]) ? db_subtex_record[? "frameWidth"] : sk_tex_w;
 					var sk_tex_hframe = is_real(db_subtex_record[? "frameHeight"]) ? db_subtex_record[? "frameHeight"] : sk_tex_h;
 					// insert
-					var sk_tex = sk_struct_create(sk_type_region,sk_tex_name);
+					var sk_tex = sk_region_create(sk_tex_name);
 					sk_region_set_uvs(
 						sk_tex,
 						sk_tex_x/db_texture_width,

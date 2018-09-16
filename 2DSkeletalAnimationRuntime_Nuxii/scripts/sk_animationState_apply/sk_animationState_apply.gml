@@ -5,8 +5,8 @@
 var sk_anims = argument0[SK_ANIMATIONSTATE.animations];
 var sk_anim_prev = sk_anims[? argument0[SK_ANIMATIONSTATE.animation_previous]];
 var sk_anim_current = sk_anims[? argument0[SK_ANIMATIONSTATE.animation_current]];
-if(sk_struct_exists(sk_anim_current,sk_type_animation)){
-	if(sk_struct_exists(sk_anim_prev,sk_type_animation)){
+if(sk_struct_isof(sk_anim_current,sk_type_animation)){
+	if(sk_struct_isof(sk_anim_prev,sk_type_animation)){
 		var sk_mix = argument0[SK_ANIMATIONSTATE.mixAlpha];
 		// mix between animations
 		/*sk_animation_apply(

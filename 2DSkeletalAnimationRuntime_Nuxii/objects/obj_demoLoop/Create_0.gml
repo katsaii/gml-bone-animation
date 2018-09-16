@@ -43,12 +43,12 @@ if(file_exists(m_path_skel)){ \
 		case "spriter": new_armature = sk_armature_build_spriter(raw,0); break; \
 	} \
 } \
-if(sk_struct_exists(new_atlas,sk_type_atlas)){ \
+if(sk_struct_isof(new_atlas,sk_type_atlas)){ \
 	var new_texture = sprite_add(m_path_tex,0,false,false,0,0); \
 	sk_atlas_set_page(new_atlas,new_texture,0); \
 	ds_list_add(global.available_atlas,new_atlas); \
 } \
-if(sk_struct_exists(new_armature,sk_type_armature)){ \
+if(sk_struct_isof(new_armature,sk_type_armature)){ \
 	ds_list_add(global.available_ske,new_armature); \
 }
 

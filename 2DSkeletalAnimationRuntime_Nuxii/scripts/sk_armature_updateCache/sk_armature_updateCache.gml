@@ -17,13 +17,11 @@ ds_list_clear(sk_drawOrder);
 var sk_constraint_count = ds_list_size(sk_constraints);
 for(var sk_constraint_id = 0; sk_constraint_id < sk_constraint_count; sk_constraint_id++){
 	var sk_constraint = sk_constraints[| sk_constraint_id];
-	if(SK_CONFIG_RELEASE_MODE||sk_struct_exists(sk_constraint)){
-		switch(sk_struct_get_type(sk_constraint)){
-			case sk_type_constraint_ik: sk_cache_sort_constraint_ik(sk_updateOrder,sk_constraint); break;
-			case sk_type_constraint_transform: sk_cache_sort_constraint_transform(sk_updateOrder,sk_constraint); break;
-			case sk_type_constraint_hierarchy: sk_cache_sort_constraint_hierarchy(sk_updateOrder,sk_constraint); break;
-			case sk_type_constraint_physics: sk_cache_sort_constraint_physics(sk_updateOrder,sk_constraint); break;
-		}
+	switch(sk_struct_get_type(sk_constraint)){
+		case sk_type_constraint_ik: sk_cache_sort_constraint_ik(sk_updateOrder,sk_constraint); break;
+		case sk_type_constraint_transform: sk_cache_sort_constraint_transform(sk_updateOrder,sk_constraint); break;
+		case sk_type_constraint_hierarchy: sk_cache_sort_constraint_hierarchy(sk_updateOrder,sk_constraint); break;
+		case sk_type_constraint_physics: sk_cache_sort_constraint_physics(sk_updateOrder,sk_constraint); break;
 	}
 }
 // sort remaining bones

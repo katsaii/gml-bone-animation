@@ -1,7 +1,7 @@
 /// @desc update atlas
 var v_atlas = global.current_atlas;
 
-if(sk_struct_exists(v_atlas,sk_type_atlas)){
+if(sk_struct_isof(v_atlas,sk_type_atlas)){
 	
 	if(keyboard_check(vk_control)){
 		x += mouse_x-global.mouse_xprevious;

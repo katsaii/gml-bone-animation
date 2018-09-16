@@ -10,13 +10,10 @@ if(is_real(sk_tuple)&&ds_exists(sk_tuple,ds_type_list)){
 		if(sk_tuple_parent_id < sk_tuple_id){
 			// valid parent
 			var sk_tuple_parent = sk_tuple[| sk_tuple_parent_id+sk_tuple_boneParent_bone];
-			if(sk_struct_exists(sk_tuple_bone,sk_type_bone)&&sk_struct_exists(sk_tuple_parent,sk_type_bone)){
-				// update child world transform
-				if(sk_tuple_bone[SK_BONE.badApplied]){
-					sk_bone_updateAppliedTransform(sk_tuple_bone);
-				}
-				sk_bone_updateWorldTransform_other(sk_tuple_bone,sk_tuple_parent);
-			}
+			// update child world transform
+			if(sk_tuple_bone[SK_BONE.badApplied]){
+				sk_bone_updateAppliedTransform(sk_tuple_bone);
+			}	sk_bone_updateWorldTransform_other(sk_tuple_bone,sk_tuple_parent);
 		}
 	}
 }

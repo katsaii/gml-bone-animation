@@ -2,7 +2,7 @@
 var v_armature = global.current_ske;
 var v_atlas = global.current_atlas;
 
-if(sk_struct_exists(v_armature,sk_type_armature)){
+if(sk_struct_isof(v_armature,sk_type_armature)){
 	
 	if(keyboard_check(vk_control)){
 		x += mouse_x-global.mouse_xprevious;
@@ -52,7 +52,7 @@ if(sk_struct_exists(v_armature,sk_type_armature)){
 	v_skin_name = "N/A";
 	v_anim_name = "N/A";
 	
-	if(sk_struct_exists(v_skin,sk_type_skin)){
+	if(sk_struct_isof(v_skin,sk_type_skin)){
 		if(v_init||new_skin){
 			sk_armature_setToDefaultSkin(v_armature);
 			sk_skin_apply(v_skin,false);
@@ -62,14 +62,14 @@ if(sk_struct_exists(v_armature,sk_type_armature)){
 		v_skin_name = sk_struct_get_name(v_skin);
 	}	
 	sk_armature_setToSetupPose(v_armature);
-	if(sk_struct_exists(v_anim,sk_type_animation)){
+	if(sk_struct_isof(v_anim,sk_type_animation)){
 		sk_animation_apply(v_anim,v_timeLast,v_time,sk_mixPose_add,1,true);
 		v_anim_name = sk_struct_get_name(v_anim);
 		global.current_animation = v_anim;
 	}
 	sk_physics_boneState = noone;
 	sk_armature_updateWorldTransform(v_armature);
-	if(sk_struct_exists(v_bone,sk_type_bone)){
+	if(sk_struct_isof(v_bone,sk_type_bone)){
 		v_bone[@ SK_BONE.XWorld] = (mouse_x-x)/v_xscale;
 		v_bone[@ SK_BONE.YWorld] = (mouse_y-y)/v_yscale;
 		v_bone_name = sk_struct_get_name(v_bone);
@@ -79,7 +79,7 @@ if(sk_struct_exists(v_armature,sk_type_armature)){
 	sk_armature_updateWorldTransform(v_armature);
 	
 	v_timeLast = v_time;
-	if(sk_struct_exists(v_atlas,sk_type_atlas)){
+	if(sk_struct_isof(v_atlas,sk_type_atlas)){
 		v_bufftex = vertex_bake_armature(v_armature,v_atlas,v_buffskel);
 		v_buffinit = true; // so there is no error
 	}

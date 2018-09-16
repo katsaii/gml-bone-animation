@@ -14,10 +14,10 @@ var sk_yscale = sk_bone[SK_BONE.YScaleApplied];
 var sk_xshear = sk_bone[SK_BONE.XShearApplied];
 var sk_yshear = sk_bone[SK_BONE.YShearApplied];
 var sk_rotation = sk_bone[SK_BONE.rotationApplied];
-var sk_transform = sk_bone[SK_BONE.transformMode];
+var sk_transform = sk_bone[SK_BONE.transformModeCorrected];
 // get parent data
 var sk_parent = sk_bone[SK_BONE.parent];
-if(!sk_struct_exists(sk_parent,sk_type_bone)){
+if(!sk_struct_isof(sk_parent,sk_type_bone)){
 	// parent does not exist
 	var sk_rotationX = sk_rotation+sk_xshear;
 	var sk_rotationY = sk_rotation+sk_yshear+90;
@@ -47,8 +47,6 @@ if(!sk_struct_exists(sk_parent,sk_type_bone)){
 	sk_bone[@ SK_BONE.badApplied] = false;
 	return;
 }
-// if this flag remains true by the end of the script, then the bone has a valid applied transform
-var sk_appliedValid = true;
 // get parent matrix
 var sk_pa = sk_parent[SK_BONE.m00];
 var sk_pb = sk_parent[SK_BONE.m01];
@@ -65,7 +63,6 @@ if(sk_transform&sk_transformMode_translate){
 	if(sk_global_flipY){	sk_y = -sk_y;	}
 	sk_bone[@ SK_BONE.XWorld] = sk_x;
 	sk_bone[@ SK_BONE.YWorld] = sk_y;
-	sk_appliedValid = false; // bad applied transformation
 }
 sk_transform &= ~sk_transformMode_translate; // disable translation in transform mode
 // correct skew transforms
@@ -82,7 +79,6 @@ if(!sk_skew){
 			sk_rotation = -sk_rotation;
 		}
 	}
-	sk_appliedValid = false; // bad applied transformation
 }
 sk_transform &= ~sk_transformMode_skew; // disable skewing in transform mode
 // calculate matrix transforms
@@ -119,7 +115,6 @@ switch(sk_transform){
 		sk_bone[@ SK_BONE.m01] = sk_b;
 		sk_bone[@ SK_BONE.m10] = sk_c;
 		sk_bone[@ SK_BONE.m11] = sk_d;
-		sk_appliedValid = false; // bad applied transformation
 	break;
 	case sk_transformMode_scale:
 		// same as normal, but cancel out rotation
@@ -139,7 +134,6 @@ switch(sk_transform){
 		sk_bone[@ SK_BONE.m01] = (sk_pb*sk_a)+(sk_pd*sk_b);
 		sk_bone[@ SK_BONE.m10] = (sk_pa*sk_c)+(sk_pc*sk_d);
 		sk_bone[@ SK_BONE.m11] = (sk_pb*sk_c)+(sk_pd*sk_d);
-		sk_appliedValid = false; // bad applied transformation
 	break;
 	case sk_transformMode_none:
 		// don't inherit anything; use applied transform
@@ -156,7 +150,6 @@ switch(sk_transform){
 		sk_bone[@ SK_BONE.m01] = sk_b;
 		sk_bone[@ SK_BONE.m10] = sk_c;
 		sk_bone[@ SK_BONE.m11] = sk_d;
-		sk_appliedValid = false; // bad applied transformation
 	break;
 }
-sk_bone[@ SK_BONE.badApplied] = !sk_appliedValid;
+sk_bone[@ SK_BONE.badApplied] = false;
