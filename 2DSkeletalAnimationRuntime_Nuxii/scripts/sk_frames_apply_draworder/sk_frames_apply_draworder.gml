@@ -23,5 +23,12 @@ if(sk_alpha>=0.5){
 	// get offset tuple
 	var sk_itemOffset = sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_FRAMES_DRAWORDER.itemOffsetTuple];
 	// apply
-	sk_cache_reorganise(sk_target,sk_itemOffset);
+	switch(sk_mix){
+		case sk_mixPose_mix: case sk_mixPose_add:
+			sk_list_shift_list(sk_target[SK_ARMATURE.drawOrderFinal],sk_itemOffset);
+		break;
+		case sk_mixPose_overwrite:
+			sk_list_shift_list(sk_target[SK_ARMATURE.drawOrder],sk_itemOffset);
+		break;
+	}
 }

@@ -5,8 +5,8 @@
 ///		| * Changes to a constraint data sets, such as changing the end effector of an IKConstraint
 ///		| * New bones, slots, or constraints are created or removed from the armature
 /// @param armature
-var sk_updateOrder = argument0[SK_ARMATURE.updateOrderDefault];
-var sk_drawOrder = argument0[SK_ARMATURE.drawOrderDefault];
+var sk_updateOrder = argument0[SK_ARMATURE.updateOrder];
+var sk_drawOrder = argument0[SK_ARMATURE.drawOrder];
 var sk_bones = argument0[SK_ARMATURE.bones];
 var sk_slots = argument0[SK_ARMATURE.slots];
 var sk_constraints = argument0[SK_ARMATURE.constraints];
@@ -18,18 +18,18 @@ var sk_constraint_count = ds_list_size(sk_constraints);
 for(var sk_constraint_id = 0; sk_constraint_id < sk_constraint_count; sk_constraint_id++){
 	var sk_constraint = sk_constraints[| sk_constraint_id];
 	switch(sk_struct_get_type(sk_constraint)){
-		case sk_type_constraint_ik: sk_cache_sort_constraint_ik(sk_updateOrder,sk_constraint); break;
-		case sk_type_constraint_transform: sk_cache_sort_constraint_transform(sk_updateOrder,sk_constraint); break;
-		case sk_type_constraint_hierarchy: sk_cache_sort_constraint_hierarchy(sk_updateOrder,sk_constraint); break;
-		case sk_type_constraint_physics: sk_cache_sort_constraint_physics(sk_updateOrder,sk_constraint); break;
+		case sk_type_constraint_ik: sk_list_sort_constraint_ik(sk_updateOrder,sk_constraint); break;
+		case sk_type_constraint_transform: sk_list_sort_constraint_transform(sk_updateOrder,sk_constraint); break;
+		case sk_type_constraint_hierarchy: sk_list_sort_constraint_hierarchy(sk_updateOrder,sk_constraint); break;
+		case sk_type_constraint_physics: sk_list_sort_constraint_physics(sk_updateOrder,sk_constraint); break;
 	}
 }
 // sort remaining bones
 var sk_bone_count = ds_list_size(sk_bones);
 for(var sk_bone_id = 0; sk_bone_id < sk_bone_count; sk_bone_id++){
-	sk_cache_sort_bone(sk_updateOrder,sk_bones[| sk_bone_id]);
+	sk_list_sort_bone(sk_updateOrder,sk_bones[| sk_bone_id]);
 }
-// add all images to draw order
+// add slots to drawOrder
 var sk_slot_count = ds_list_size(sk_slots);
 for(var sk_slot_id = 0; sk_slot_id < sk_slot_count; sk_slot_id++){
 	ds_list_add(sk_drawOrder,sk_slots[| sk_slot_id]);

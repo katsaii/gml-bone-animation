@@ -2,8 +2,7 @@
 enum SK_ARMATURE{
 	bones,slots,skins,constraints,
 	animations,events,attachments,
-	updateOrderDefault,updateOrder, /* stores bone, slot, and constraint data in a single iterable list */
-	drawOrderDefault,drawOrder,
+	updateOrder,drawOrder,drawOrderFinal, /* stores bone, slot, and constraint data in a single iterable list */
 	sizeof
 }
 /// @desc creates a new structure and returns its reference
@@ -24,10 +23,9 @@ sk_struct[@ SK_ARMATURE.constraints] = ds_list_create();
 sk_struct[@ SK_ARMATURE.animations] = ds_list_create();
 sk_struct[@ SK_ARMATURE.events] = ds_list_create();
 sk_struct[@ SK_ARMATURE.attachments] = ds_list_create();
-sk_struct[@ SK_ARMATURE.updateOrderDefault] = ds_list_create();
 sk_struct[@ SK_ARMATURE.updateOrder] = ds_list_create();
-sk_struct[@ SK_ARMATURE.drawOrderDefault] = ds_list_create();
 sk_struct[@ SK_ARMATURE.drawOrder] = ds_list_create();
-sk_armature_add(sk_struct,sk_skin_create("default"));
+sk_struct[@ SK_ARMATURE.drawOrderFinal] = ds_list_create();
+sk_armature_add_skin(sk_struct,sk_skin_create("default"));
 // return to caller
 return sk_struct;

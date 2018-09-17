@@ -11,7 +11,7 @@ gml_pragma("global",@"
 /// @param armature
 /// @param atlas
 /// @param vbuff
-var sk_armature_drawOrder = argument0[SK_ARMATURE.drawOrder];
+var sk_armature_drawOrder = argument0[SK_ARMATURE.drawOrderFinal];
 var sk_atlas_subtextures = argument1[SK_ATLAS.subTextureMap];
 var sk_texture_UVLeft = argument1[SK_ATLAS.UV_left];
 var sk_texture_UVTop = argument1[SK_ATLAS.UV_top];

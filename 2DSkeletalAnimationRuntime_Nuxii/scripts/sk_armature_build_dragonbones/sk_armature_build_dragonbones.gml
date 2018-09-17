@@ -45,7 +45,7 @@ if(is_real(db_bones)&&ds_exists(db_bones,ds_type_list)){
 	        #region // add bone
 			var sk_bone_name = string(db_bone_record[? "name"]);
 	        var sk_bone_len = real(db_bone_record[? "length"]);
-	        var sk_bone_par = sk_armature_find(sk_skel,sk_type_bone,db_bone_record[? "parent"]);
+	        var sk_bone_par = sk_armature_find_bone(sk_skel,db_bone_record[? "parent"]);
 			var sk_bone_xpos = 0;
 	        var sk_bone_ypos = 0;
 	        var sk_bone_xsc = 1;
@@ -76,7 +76,7 @@ if(is_real(db_bones)&&ds_exists(db_bones,ds_type_list)){
 			sk_bone_set_scale(sk_bone,sk_bone_xsc,sk_bone_ysc);
 			sk_bone_set_shear(sk_bone,sk_bone_xsh,sk_bone_ysh);
 			sk_bone_set_rotation(sk_bone,0);
-			sk_armature_add(sk_skel,sk_bone);
+			sk_armature_add_bone(sk_skel,sk_bone);
 			#endregion
 	    }
 	}
@@ -89,7 +89,7 @@ if(is_real(db_slots)&&ds_exists(db_slots,ds_type_list)){
 	    if(is_real(db_slot_record)&&ds_exists(db_slot_record,ds_type_map)){
 			#region // add slot
 	        var sk_slot_name = string(db_slot_record[? "name"]);
-   			var sk_slot_par = sk_armature_find(sk_skel,sk_type_bone,db_slot_record[? "parent"]);
+   			var sk_slot_par = sk_armature_find_bone(sk_skel,db_slot_record[? "parent"]);
 			var sk_slot_displayIndex = string(real(db_slot_record[? "displayIndex"]));
 			var sk_slot_col = $ffffff;
 	        var sk_slot_a = 1;
@@ -111,7 +111,7 @@ if(is_real(db_slots)&&ds_exists(db_slots,ds_type_list)){
 			var sk_slot = sk_slot_create(sk_slot_name,sk_slot_par);
 			sk_slot_set_defaultDisplay(sk_slot,sk_slot_displayIndex);
 			sk_slot_set_colour(sk_slot,sk_slot_col,sk_slot_a);
-			sk_armature_add(sk_skel,sk_slot);
+			sk_armature_add_slot(sk_skel,sk_slot);
 			#endregion
 	    }
 	}
@@ -126,9 +126,9 @@ if(is_real(db_skins)&&ds_exists(db_skins,ds_type_list)){
 			var sk_skin;
 			if(is_string(db_skin_record[? "name"])&&(db_skin_record[? "name"]!="")){
 				sk_skin = sk_skin_create(db_skin_record[? "name"]);
-				sk_armature_add(sk_skel,sk_skin);
+				sk_armature_add_skin(sk_skel,sk_skin);
 			} else {
-				sk_skin = sk_armature_get_defaultSkin(sk_skel);
+				sk_skin = sk_armature_default_skin(sk_skel);
 			}
 			// compile slot attachment data
 			var db_skin_slots = db_skin_record[? "slot"];
@@ -138,7 +138,7 @@ if(is_real(db_skins)&&ds_exists(db_skins,ds_type_list)){
 				for(var db_skin_slot_id = 0; db_skin_slot_id < db_skin_slot_count; db_skin_slot_id++){
 				    var db_skin_slot_record = db_skin_slots[| db_skin_slot_id];
 				    if(is_real(db_skin_slot_record)&&ds_exists(db_skin_slot_record,ds_type_map)){
-						var sk_skin_slotData = sk_armature_find(sk_skel,sk_type_slot,db_skin_slot_record[? "name"]);
+						var sk_skin_slotData = sk_armature_find_slot(sk_skel,db_skin_slot_record[? "name"],sk_type_slot);
 						var db_skin_slot_displays = db_skin_slot_record[? "display"];
 						if(sk_struct_isof(sk_skin_slotData,sk_type_slot)&&is_real(db_skin_slot_displays)&&ds_exists(db_skin_slot_displays,ds_type_list)){
 							// iterate through slot displays and create attachments
@@ -178,7 +178,7 @@ if(is_real(db_skins)&&ds_exists(db_skins,ds_type_list)){
 												sk_attachment_xscale,sk_attachment_yscale,
 												sk_attachment_xshear,sk_attachment_yshear,0
 											);
-											sk_armature_add(sk_skel,sk_attachment);
+											sk_armature_add_attachment(sk_skel,sk_attachment);
 											sk_skin_record_add(
 												sk_skin,
 												sk_skin_slotData,
@@ -207,8 +207,8 @@ if(is_real(db_IK)&&ds_exists(db_IK,ds_type_list)){
 			#region // add IK constraint
 			var sk_IK_name = string(db_IK_record[? "name"]);
 			var sk_IK_chain = db_IK_record[? "chain"]||false;
-	        var sk_IK_boneTarget = sk_armature_find(sk_skel,sk_type_bone,db_IK_record[? "target"]);
-			var sk_IK_boneJoint = sk_armature_find(sk_skel,sk_type_bone,db_IK_record[? "bone"]);
+	        var sk_IK_boneTarget = sk_armature_find_bone(sk_skel,db_IK_record[? "target"]);
+			var sk_IK_boneJoint = sk_armature_find_bone(sk_skel,db_IK_record[? "bone"]);
 			var sk_IK_positive = (is_undefined(db_IK_record[? "bendPositive"])||db_IK_record[? "bendPositive"]) ? sk_bendDir_positive : sk_bendDir_negative;
 			var sk_IK_weight = is_real(db_IK_record[? "weight"]) ? db_IK_record[? "weight"] : 1;
 			if(sk_struct_isof(sk_IK_boneTarget,sk_type_bone)&&sk_struct_isof(sk_IK_boneJoint,sk_type_bone)){
@@ -216,7 +216,7 @@ if(is_real(db_IK)&&ds_exists(db_IK,ds_type_list)){
 				var sk_constraint = sk_constraint_create_ik(sk_IK_name,sk_IK_boneJoint,sk_IK_boneTarget);
 				sk_constraint_ik_set_mix(sk_constraint,sk_IK_positive,sk_IK_weight);
 				sk_constraint_ik_set_chain(sk_constraint,sk_IK_chain);
-				sk_armature_add(sk_skel,sk_constraint);
+				sk_armature_add_constraint(sk_skel,sk_constraint);
 			}
 			#endregion
 	    }
@@ -227,7 +227,10 @@ sk_armature_updateCache(sk_skel);
 sk_armature_setToDefaultSkin(sk_skel);
 sk_armature_setToSetupPose(sk_skel);
 sk_armature_updateWorldTransform(sk_skel);
-var sk_skel_drawOrder = sk_armature_get_drawOrder(sk_skel);
+// get slot list
+var sk_slots = ds_list_create();
+ds_map_add_list(db_armature,"|sk_slots|",sk_slots);
+sk_armature_copy_slots(sk_skel,sk_slots);
 // transfer animation data
 if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 	var db_anim_count = ds_list_size(db_animations);
@@ -237,7 +240,7 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 			#region // add animation
 			var sk_anim = sk_animation_create(string(db_anim_record[? "name"]));
 			sk_animation_set_duration(sk_anim,real(db_anim_record[? "duration"])*db_fps);
-			sk_armature_add(sk_skel,sk_anim);
+			sk_armature_add_animation(sk_skel,sk_anim);
 			// compile timeline data
 			var db_anim_bones = db_anim_record[? "bone"];
 			var db_anim_slots = db_anim_record[? "slot"];
@@ -252,7 +255,7 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 	                if(is_real(db_anim_bone_record)&&ds_exists(db_anim_bone_record,ds_type_map)){
 						// add bone timeline data to animation
 						var sk_anim_timeline_boneName = string(db_anim_bone_record[? "name"]);
-						var sk_anim_timeline_boneData = sk_armature_find(sk_skel,sk_type_bone,sk_anim_timeline_boneName);
+						var sk_anim_timeline_boneData = sk_armature_find_bone(sk_skel,sk_anim_timeline_boneName);
 						var db_anim_bone_translate = db_anim_bone_record[? "translateFrame"];
 						var db_anim_bone_scale = db_anim_bone_record[? "scaleFrame"];
 						var db_anim_bone_rotate = db_anim_bone_record[? "rotateFrame"];
@@ -399,7 +402,7 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 	                if(is_real(db_anim_slot_record)&&ds_exists(db_anim_slot_record,ds_type_map)){
 						// add slot timeline data to animation
 						var sk_anim_timeline_slotName = string(db_anim_slot_record[? "name"]);
-						var sk_anim_timeline_slotData = sk_armature_find(sk_skel,sk_type_slot,sk_anim_timeline_slotName);
+						var sk_anim_timeline_slotData = sk_armature_find_slot(sk_skel,sk_anim_timeline_slotName,sk_type_slot);
 						var db_anim_slot_colour = db_anim_slot_record[? "colorFrame"];
 						var db_anim_slot_display = db_anim_slot_record[? "displayFrame"];
 						#region // compile colour timeline
@@ -498,7 +501,7 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 	                if(is_real(db_anim_ik_record)&&ds_exists(db_anim_ik_record,ds_type_map)){
 						// add ik timeline data to animation
 						var sk_anim_timeline_ikName = string(db_anim_ik_record[? "name"]);
-						var sk_anim_timeline_ikData = sk_armature_find(sk_skel,sk_type_constraint_ik,sk_anim_timeline_ikName);
+						var sk_anim_timeline_ikData = sk_armature_find_constraint(sk_skel,sk_anim_timeline_ikName,sk_type_constraint_ik);
 						var db_anim_ik_frames = db_anim_ik_record[? "frame"];
 						#region // compile ik timeline
 						if(is_real(db_anim_ik_frames)&&ds_exists(db_anim_ik_frames,ds_type_list)){
@@ -570,11 +573,11 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 										// add event
 										var sk_event_name = db_event[? "name"];
 										//show_message(sk_event_name+string(db_anim_frame_id));
-										var sk_event = sk_armature_find(sk_skel,sk_type_event,sk_event_name);
+										var sk_event = sk_armature_find_event(sk_skel,sk_event_name);
 										if(!sk_struct_isof(sk_event,sk_type_event)){
 											// the event doesn't exist yet, so create it
 											sk_event = sk_event_create(sk_event_name);
-											sk_armature_add(sk_skel,sk_event);
+											sk_armature_add_event(sk_skel,sk_event);
 										}
 										var sk_event_timeline = DB_EVENT_TIMELINE_MAP[? sk_event_name];
 										if(!sk_struct_isof(sk_event_timeline,sk_type_timeline)){
@@ -584,7 +587,7 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 											DB_EVENT_TIMELINE_MAP[? sk_event_name] = sk_event_timeline;
 										}
 										// get data types
-										var sk_event_bone = sk_armature_find(sk_skel,sk_type_bone,db_event[? "bone"]);
+										var sk_event_bone = sk_armature_find_bone(sk_skel,db_event[? "bone"]);
 										var sk_event_string = undefined;
 										var sk_event_float = undefined;
 										var sk_event_int = undefined;
@@ -627,7 +630,7 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 		            var db_anim_frame_count = ds_list_size(db_anim_order_frames);
 					if(db_anim_frame_count>0){
 						var sk_anim_frame_time = 0;
-						var sk_order_timeline = sk_timeline_create_draworder("Armature.timelineDrawOrder",sk_skel_drawOrder);
+						var sk_order_timeline = sk_timeline_create_draworder("Armature.timelineDrawOrder",sk_skel);
 						sk_animation_add_timeline(sk_anim,sk_order_timeline);
 			            for(var db_anim_frame_id = 0; db_anim_frame_id < db_anim_frame_count; db_anim_frame_id++){
 			                var db_anim_frame_record = db_anim_order_frames[| db_anim_frame_id];
@@ -643,7 +646,7 @@ if(is_real(db_animations)&&ds_exists(db_animations,ds_type_list)){
 										var sk_order_z = real(db_order_zOrder[| db_order_id+0]);
 										var sk_order_shift = real(db_order_zOrder[| db_order_id+1]);
 										// use z value to locate the desired slot to shift
-										var sk_order_slot = sk_skel_drawOrder[| sk_order_z];
+										var sk_order_slot = sk_slots[| sk_order_z];
 										if(!sk_struct_isof(sk_order_slot,sk_type_slot)){
 											// slot is invalid
 											continue;

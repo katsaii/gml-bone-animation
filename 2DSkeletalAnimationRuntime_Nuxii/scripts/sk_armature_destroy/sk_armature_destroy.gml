@@ -24,8 +24,7 @@ if(array_unhook_sk_structure(argument0)){
 		ds_list_destroy(sk_armature_list);
 	}
 	// destroy cache
-	ds_list_destroy(argument0[SK_ARMATURE.updateOrderDefault]);
 	ds_list_destroy(argument0[SK_ARMATURE.updateOrder]);
-	ds_list_destroy(argument0[SK_ARMATURE.drawOrderDefault]);
 	ds_list_destroy(argument0[SK_ARMATURE.drawOrder]);
+	ds_list_destroy(argument0[SK_ARMATURE.drawOrderFinal]);
 }

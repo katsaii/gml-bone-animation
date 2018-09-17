@@ -43,9 +43,9 @@ if(sk_struct_isof(v_armature,sk_type_armature)){
 	}
 	v_rate += (mouse_wheel_up()-mouse_wheel_down())*0.001*(keyboard_check(vk_shift) ? 10 : 1);
 	
-	var v_bone = sk_armature_find(v_armature,sk_type_bone,v_bone_id);
-	var v_skin = sk_armature_find(v_armature,sk_type_skin,v_skin_id);
-	var v_anim = sk_armature_find(v_armature,sk_type_animation,v_anim_id);
+	var v_bone = sk_armature_find_bone(v_armature,v_bone_id);
+	var v_skin = sk_armature_find_skin(v_armature,v_skin_id);
+	var v_anim = sk_armature_find_animation(v_armature,v_anim_id);
 	var v_time = current_time*v_rate;
 	
 	v_bone_name = "N/A";

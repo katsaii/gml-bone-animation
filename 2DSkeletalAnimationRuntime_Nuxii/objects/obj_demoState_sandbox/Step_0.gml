@@ -19,11 +19,11 @@ ratio += dir*0.01;
 
 var t = current_time*0.025;
 if(keyboard_check(vk_enter)){
-	sk_animation_apply(sk_armature_find(armature,sk_type_animation,"anim_walk"),t,t,sk_mixPose_add,1-ratio,true);
-	sk_animation_apply(sk_armature_find(armature,sk_type_animation,"anim_run"),t,t,sk_mixPose_add,ratio,true);
+	sk_animation_apply(sk_armature_find_animation(armature,"anim_walk"),t,t,sk_mixPose_add,1-ratio,true);
+	sk_animation_apply(sk_armature_find_animation(armature,"anim_run"),t,t,sk_mixPose_add,ratio,true);
 } else {
-	sk_animation_apply(sk_armature_find(armature,sk_type_animation,"anim_walk"),t,t,sk_mixPose_add,1,true);
-	sk_animation_apply(sk_armature_find(armature,sk_type_animation,"anim_run"),t,t,sk_mixPose_mix,ratio,true);
+	sk_animation_apply(sk_armature_find_animation(armature,"anim_walk"),t,t,sk_mixPose_add,1,true);
+	sk_animation_apply(sk_armature_find_animation(armature,"anim_run"),t,t,sk_mixPose_mix,ratio,true);
 }
 draw_text(mouse_x,mouse_y-20,ratio);
 

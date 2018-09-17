@@ -5,7 +5,7 @@ enum SK_TIMELINE_FRAMES_DRAWORDER{
 }
 /// @desc creates a new structure and returns its reference
 /// @param name
-/// @param draworder
+/// @param armature
 var sk_struct = sk_timeline_create(argument0);
 // set default property values
 sk_timeline_set_target(sk_struct,argument1);
