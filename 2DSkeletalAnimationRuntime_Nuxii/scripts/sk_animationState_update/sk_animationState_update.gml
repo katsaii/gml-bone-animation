@@ -1,35 +1,29 @@
 /// @desc updates the animation state
 /// @param animationState
 /// @param timestep
-var sk_anim_prev = argument0[SK_ANIMATIONSTATE.animation_previous];
-var sk_anim_current = argument0[SK_ANIMATIONSTATE.animation_current];
-var sk_anim_next = argument0[SK_ANIMATIONSTATE.animation_next];
-// update animations
-if(sk_anim_next!=sk_anim_current){	// set new animation
-	argument0[@ SK_ANIMATIONSTATE.animation_previous] = sk_anim_current;
-	argument0[@ SK_ANIMATIONSTATE.animation_previous_loop] = argument0[SK_ANIMATIONSTATE.animation_current_loop];
-	argument0[@ SK_ANIMATIONSTATE.animation_previous_time] = argument0[SK_ANIMATIONSTATE.animation_current_time];
-	argument0[@ SK_ANIMATIONSTATE.animation_previous_timeLast] = argument0[SK_ANIMATIONSTATE.animation_current_timeLast];
-	argument0[@ SK_ANIMATIONSTATE.animation_current] = sk_anim_next;
-	argument0[@ SK_ANIMATIONSTATE.animation_current_loop] = argument0[SK_ANIMATIONSTATE.animation_next_loop];
-	var sk_anim_next_time = argument0[SK_ANIMATIONSTATE.animation_next_time];
-	if(sk_anim_next_time>=0){
-		argument0[@ SK_ANIMATIONSTATE.animation_current_time] = argument0[SK_ANIMATIONSTATE.animation_next_time];
-		argument0[@ SK_ANIMATIONSTATE.animation_current_timeLast] = 0;
+var sk_animationQueue = argument0[SK_ANIMATIONSTATE.animationQueue];
+var sk_dt = argument1*argument0[SK_ANIMATIONSTATE.timescale];
+argument0[@ SK_ANIMATIONSTATE.timerTimeLast] = argument0[SK_ANIMATIONSTATE.timerTime];
+argument0[@ SK_ANIMATIONSTATE.timerTime] += sk_dt;
+var sk_mix_difference = sk_dt*argument0[SK_ANIMATIONSTATE.animationMixSpeedCurrent];
+var sk_queue_length = ds_list_size(sk_animationQueue);
+if(sk_queue_length>1){
+	// update top mix
+	var sk_queueItem_top = sk_animationQueue[| sk_queue_length-1];
+	sk_queueItem_top[@ SK_ANIMATIONSTATE.queueItem_mix] += sk_mix_difference;
+	// update previous animations
+	repeat(sk_queue_length-1){
+		var sk_queueItem_bottom = sk_animationQueue[| 0];
+		var sk_queueItem_mix = sk_queueItem_bottom[SK_ANIMATIONSTATE.queueItem_mix] - sk_mix_difference;
+		sk_queueItem_bottom[@ SK_ANIMATIONSTATE.queueItem_mix] = sk_queueItem_mix;
+		if(sk_queueItem_mix>0){
+			// animation has not been fully faded out
+			return;
+		}
+		// dequeue the animation, since it has been fully dequeued, and carry remaining mix to next animation until queue is empty
+		ds_list_delete(sk_animationQueue,0);
+		sk_mix_difference = abs(sk_mix_difference);
 	}
-	// reset mixing alpha
-	argument0[@ SK_ANIMATIONSTATE.mixAlpha] = 0;
-} else {
-	var sk_dt = argument1*argument0[SK_ANIMATIONSTATE.playbackRate];
-	if(sk_dt<0){ sk_dt = -sk_dt; }
-	// update time
-	argument0[@ SK_ANIMATIONSTATE.animation_previous_timeLast] = argument0[SK_ANIMATIONSTATE.animation_previous_time];
-	argument0[@ SK_ANIMATIONSTATE.animation_current_timeLast] = argument0[SK_ANIMATIONSTATE.animation_current_time];
-	argument0[@ SK_ANIMATIONSTATE.animation_previous_time] += sk_dt;
-	argument0[@ SK_ANIMATIONSTATE.animation_current_time] += sk_dt;
-	// update mix
-	var sk_mix = argument0[SK_ANIMATIONSTATE.mixAlpha];
-	if(sk_mix<1){
-		argument0[@ SK_ANIMATIONSTATE.mixAlpha] = min(sk_mix+sk_dt*sk_animationState_get_animation_mix(argument0,sk_anim_prev,sk_anim_current),1);
-	}
+	// clamp final animation to 1
+	sk_queueItem_top[@ SK_ANIMATIONSTATE.queueItem_mix] = 1;
 }

@@ -1,4 +1,4 @@
 gml_pragma("forceinline");
 /// @desc gets a property
 /// @param animationState
-return argument0[SK_ANIMATIONSTATE.animation_current];
+return argument0[SK_ANIMATIONSTATE.timescale];

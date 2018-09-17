@@ -47,9 +47,9 @@ sk_animation_apply(sk_armature_find_animation(armature,"display_costume_bottom_c
 
 #region
 animationState = sk_animationState_create("");
-sk_animationState_add_animations_from_armature(animationState,armature);
-sk_animationState_set_animation_mix(animationState,"anim_run","anim_skid",0.2);
-sk_animationState_set_default_mix(animationState,0.05);
+sk_animationState_add_armature(animationState,armature);
+sk_animationState_set_default_mix(animationState,0.1);
+sk_animationState_set_timescale(animationState,1);
 #endregion
 
 v_phys = ds_map_create();

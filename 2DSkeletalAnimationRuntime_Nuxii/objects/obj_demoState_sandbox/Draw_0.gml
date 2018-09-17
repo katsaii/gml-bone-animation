@@ -6,4 +6,4 @@ vertex_submit_transformed(v_buff,pr_trianglelist,bufftex,buffx,buffy,10,10,0);
 
 //sk_animationState_draw_debug(animationState,buffx,buffy);
 
-sk_armature_draw_debug(armature,buffx,buffy,10,10,0,sk_debug_boneStructure);
+//sk_armature_draw_debug(armature,buffx,buffy,10,10,0,sk_debug_boneStructure);

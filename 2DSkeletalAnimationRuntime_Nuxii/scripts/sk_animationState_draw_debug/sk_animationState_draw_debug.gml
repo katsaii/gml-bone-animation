@@ -3,22 +3,18 @@
 /// @param x
 /// @param y
 var i = 0;
-draw_text( argument1,argument2+i*20,"AnimCount: "+string(ds_map_size(argument0[SK_ANIMATIONSTATE.animations])) );
+draw_text( argument1,argument2+i*20,"count: "+string(ds_map_size(argument0[SK_ANIMATIONSTATE.animations])) );
 i++;
-draw_text( argument1,argument2+i*20,"playbackRate: "+string(argument0[SK_ANIMATIONSTATE.playbackRate]) );
+draw_text( argument1,argument2+i*20,"timescale: "+string(argument0[SK_ANIMATIONSTATE.timescale]) );
 i++;
 draw_text( argument1,argument2+i*20,"mixSpeedDefault: "+string(argument0[SK_ANIMATIONSTATE.mixSpeedDefault]) );
 i++;
-draw_text( argument1,argument2+i*20,"mixAlpha: "+string(argument0[SK_ANIMATIONSTATE.mixAlpha]) );
+draw_text( argument1,argument2+i*20,"queueLength: "+string(ds_list_size(argument0[SK_ANIMATIONSTATE.animationQueue])) );
 i++;
-draw_text( argument1,argument2+i*20,"animation_previous: "+string(argument0[SK_ANIMATIONSTATE.animation_previous]) );
+draw_text( argument1,argument2+i*20,"animCurrent: "+string(argument0[SK_ANIMATIONSTATE.animationCurrent]) );
 i++;
-draw_text( argument1,argument2+i*20,"     time: "+string(argument0[SK_ANIMATIONSTATE.animation_previous_time]) );
+draw_text( argument1,argument2+i*20,"mixSpeedCurrent: "+string(argument0[SK_ANIMATIONSTATE.animationMixSpeedCurrent]) );
 i++;
-draw_text( argument1,argument2+i*20,"animation_current: "+string(argument0[SK_ANIMATIONSTATE.animation_current]) );
+draw_text( argument1,argument2+i*20,"time: "+string(argument0[SK_ANIMATIONSTATE.timerTime]) );
 i++;
-draw_text( argument1,argument2+i*20,"     time: "+string(argument0[SK_ANIMATIONSTATE.animation_current_time]) );
-i++;
-draw_text( argument1,argument2+i*20,"animation_next: "+string(argument0[SK_ANIMATIONSTATE.animation_next]) );
-i++;
-draw_text( argument1,argument2+i*20,"     time: "+string(argument0[SK_ANIMATIONSTATE.animation_next_time]) );
+draw_text( argument1,argument2+i*20,"timeLast: "+string(argument0[SK_ANIMATIONSTATE.timerTimeLast]) );
