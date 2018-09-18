@@ -10,5 +10,11 @@ if(sk_struct_isof(v_armature,sk_type_armature)&&sk_struct_isof(v_atlas,sk_type_a
 	}
 	sk_armature_updateWorldTransform(v_armature);
 	var v_bufftex = vertex_bake_armature(v_armature,v_atlas,v_buffskel);
-	vertex_submit_transformed(v_buffskel,pr_trianglelist,v_bufftex,mouse_x,mouse_y,v_xscale,v_yscale,0);
+	// update the world matrix so the buffer is drawn at the position of the object
+	var previous_matrix = matrix_get(matrix_world);
+	matrix_set(matrix_world,matrix_build(mouse_x,mouse_y,0,0,0,0,v_xscale,v_yscale,0));
+	// submit the vertex buffer at the x and y position of the object
+	vertex_submit(v_buffskel,pr_trianglelist,v_bufftex);
+	// reset the world matrix
+	matrix_set(matrix_world,previous_matrix);
 }
