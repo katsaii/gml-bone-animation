@@ -19,12 +19,11 @@ do{	raw += file_text_read_string(file);
 	file_text_readln(file);
 }until(file_text_eof(file));
 file_text_close(file);
-atlas = sk_atlas_build_dragonbones(raw,1);
+atlas = sk_atlas_build_dragonbones(raw,sprite_add(PATH_PALIA+"Palia_Skeleton_tex.png",0,false,false,0,0),0,1);
 if(!sk_struct_isof(atlas,sk_type_atlas)){
 	show_message("atlas doesn't exist");
 	game_end();
 }
-sk_atlas_set_page(atlas,sprite_add(PATH_PALIA+"Palia_Skeleton_tex.png",0,false,false,0,0),0);
 
 #region
 var constraint = sk_constraint_create_physics("phys",sk_armature_find_bone(armature,"b_wrist_left"));

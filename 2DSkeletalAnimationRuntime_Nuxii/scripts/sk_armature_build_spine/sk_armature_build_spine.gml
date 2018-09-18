@@ -1,6 +1,6 @@
 /// @desc loads an armature file
 /// @param json
-/// @param armatureNameOrID
+/// @param name
 var sp_armature = noone;
 // extract armature data from spriter json
 var sp_skel = json_decode(argument0);

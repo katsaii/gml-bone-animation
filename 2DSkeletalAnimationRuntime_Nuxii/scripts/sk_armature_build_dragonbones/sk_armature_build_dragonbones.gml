@@ -1,6 +1,6 @@
 /// @desc loads an armature file
 /// @param json
-/// @param armatureNameOrID
+/// @param armature_name_or_id
 var db_armature = noone;
 // extract armature data from dragonbones json
 var db_skel = json_decode(argument0);

@@ -1,7 +1,11 @@
 /// @desc loads an atlas file
 /// @param json
+/// @param sprite
+/// @param subimg
 /// @param scale
-var sk_atlas_scale = argument1;
+var sk_atlas_sprite = argument1;
+var sk_atlas_subimg = argument2;
+var sk_atlas_scale = argument3;
 var sp_atlas = json_decode(argument0);
 if(ds_exists(sp_atlas,ds_type_map)){
 	var sp_atlas_frames = sp_atlas[? "frames"];
@@ -73,6 +77,8 @@ if(ds_exists(sp_atlas,ds_type_map)){
 				#endregion
 				// return final structure
 				ds_map_destroy(sp_atlas);
+				// set page
+				sk_atlas_set_page(sk_atlas,sk_atlas_sprite,sk_atlas_subimg);
 				return sk_atlas;
 			}
 		}

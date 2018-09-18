@@ -1,7 +1,11 @@
 /// @desc loads an atlas file
-/// @param libgx
+/// @param libgdx
+/// @param sprite
+/// @param subimg
 /// @param scale
-var sk_atlas_scale = argument1;
+var sk_atlas_sprite = argument1;
+var sk_atlas_subimg = argument2;
+var sk_atlas_scale = argument3;
 var sp_atlas = file_text_open_from_string(string(argument0));
 // search for header
 while(file_text_read_string(sp_atlas)!=""){
@@ -146,5 +150,6 @@ do{
 		}
 	}
 }until(false)
-// return final atlas
+// set page
+sk_atlas_set_page(sk_atlas,sk_atlas_sprite,sk_atlas_subimg);
 return sk_atlas;

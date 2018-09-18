@@ -29,12 +29,13 @@ var m_skel_type = "";
 #macro m_load_data \
 var new_atlas = noone; \
 var new_armature = noone; \
+var new_texture = sprite_add(m_path_tex,0,false,false,0,0); \
 if(file_exists(m_path_atlas)){ \
 	var file = file_text_open_read(m_path_atlas);var raw = "";do{raw += file_text_read_string(file)+"\n";file_text_readln(file);}until(file_text_eof(file));file_text_close(file); \
 	switch(string_lower(m_atlas_type)){ \
-		case "dragonbones": new_atlas = sk_atlas_build_dragonbones(raw,m_atlas_scale); break; \
-		case "spine": new_atlas = sk_atlas_build_libgdx(raw,m_atlas_scale); break; \
-		case "spriter": new_atlas = sk_atlas_build_spriter(raw,m_atlas_scale); break; \
+		case "dragonbones": new_atlas = sk_atlas_build_dragonbones(raw,new_texture,0,m_atlas_scale); break; \
+		case "spine": new_atlas = sk_atlas_build_libgdx(raw,new_texture,0,m_atlas_scale); break; \
+		case "spriter": new_atlas = sk_atlas_build_spriter(raw,new_texture,0,m_atlas_scale); break; \
 	} \
 } \
 if(file_exists(m_path_skel)){ \
@@ -46,9 +47,9 @@ if(file_exists(m_path_skel)){ \
 	} \
 } \
 if(sk_struct_isof(new_atlas,sk_type_atlas)){ \
-	var new_texture = sprite_add(m_path_tex,0,false,false,0,0); \
-	sk_atlas_set_page(new_atlas,new_texture,0); \
 	ds_list_add(global.available_atlas,new_atlas); \
+} else { \
+	sprite_delete(new_texture); \
 } \
 if(sk_struct_isof(new_armature,sk_type_armature)){ \
 	ds_list_add(global.available_ske,new_armature); \

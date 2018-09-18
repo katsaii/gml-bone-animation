@@ -47,13 +47,13 @@ if(keyboard_check_pressed(ord("A"))){
 			}until(file_text_eof(file))
 			switch(string_lower(format)){
 				case "dragonbones":
-					new_atlas = sk_atlas_build_dragonbones(raw,atlas_scale);
+					new_atlas = sk_atlas_build_dragonbones(raw,new_texture,0,atlas_scale);
 				break;
 				case "spine":
-					new_atlas = sk_atlas_build_libgdx(raw,atlas_scale);
+					new_atlas = sk_atlas_build_libgdx(raw,new_texture,0,atlas_scale);
 				break;
 				case "spriter":
-					new_atlas = sk_atlas_build_spriter(raw,atlas_scale);
+					new_atlas = sk_atlas_build_spriter(raw,new_texture,0,atlas_scale);
 				break;
 			}
 			file_text_close(file);
@@ -61,7 +61,6 @@ if(keyboard_check_pressed(ord("A"))){
 		if(sk_struct_isof(new_atlas,sk_type_atlas)){
 			// assign
 			global.current_atlas = new_atlas;
-			sk_atlas_set_page(new_atlas,new_texture,0);
 			default_format = format;
 		} else {
 			show_message("Invalid atlas file");

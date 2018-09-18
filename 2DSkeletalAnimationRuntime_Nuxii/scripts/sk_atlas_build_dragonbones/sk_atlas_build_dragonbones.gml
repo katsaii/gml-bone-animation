@@ -1,7 +1,11 @@
 /// @desc builds an atlas from dragonbones json format
 /// @param json
+/// @param sprite
+/// @param subimg
 /// @param scale
-var sk_atlas_scale = argument1;
+var sk_atlas_sprite = argument1;
+var sk_atlas_subimg = argument2;
+var sk_atlas_scale = argument3;
 var db_atlas = json_decode(argument0);
 if(ds_exists(db_atlas,ds_type_map)){
 	var db_atlas_subtextures = db_atlas[? "SubTexture"];
@@ -45,6 +49,8 @@ if(ds_exists(db_atlas,ds_type_map)){
 			#endregion
 			// return final structure
 			ds_map_destroy(db_atlas);
+			// set page
+			sk_atlas_set_page(sk_atlas,sk_atlas_sprite,sk_atlas_subimg);
 			return sk_atlas;
         }
     }
