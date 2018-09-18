@@ -15,4 +15,7 @@ if(script_exists(sk_scr)){
 		(is_real(argument4)||is_int64(argument4)) ? int64(argument4) : argument0[SK_EVENT.dInt],
 		is_real(argument5) ? argument5 : argument0[SK_EVENT.dSound]
 	);
+} else {
+	// post default event
+	show_debug_message("Sk: ["+string(current_time)+"] - Event Called: "+string(sk_struct_get_name(argument0)));
 }

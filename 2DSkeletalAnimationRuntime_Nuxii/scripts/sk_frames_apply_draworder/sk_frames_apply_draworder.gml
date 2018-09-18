@@ -20,6 +20,8 @@ var sk_keyframe_next_time = argument7;
 var sk_mix = argument8;
 var sk_alpha = argument9;
 if(sk_alpha>=0.5){
+	// check whether the keyframe has been reached
+	if(sk_time<sk_keyframe_prev_time){ return; }
 	// get offset tuple
 	var sk_itemOffset = sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_FRAMES_DRAWORDER.itemOffsetTuple];
 	// apply

@@ -38,9 +38,6 @@ if(sk_script_apply!=-1){
 			sk_keyframe = sk_keyframe_last;
 			sk_keyframe_time = -sk_loopTime+sk_keyframe_time_last;
 		}
-	} else if(sk_time<sk_keyframe_time_first){
-		// keyframe has not been reached yet
-		return;
 	}
 	// submit
 	script_execute(

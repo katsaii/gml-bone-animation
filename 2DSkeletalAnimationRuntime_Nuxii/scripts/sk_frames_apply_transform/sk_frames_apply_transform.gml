@@ -19,6 +19,8 @@ var sk_keyframe_prev_time = argument6;
 var sk_keyframe_next_time = argument7;
 var sk_mix = argument8;
 var sk_alpha = argument9;
+// check whether the keyframe has been reached
+if(sk_time<sk_keyframe_prev_time){ return; }
 // interpolate
 var sk_interpolation = sk_erp(sk_keyframe_prev_time,sk_keyframe_next_time,sk_time,sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_FRAMES_TRANSFORM.tweenEasing]);
 var sk_translate = lerp(sk_keyframes[| sk_keyframe_prev+SK_TIMELINE_FRAMES_TRANSFORM.translateMix],sk_keyframes[| sk_keyframe_next+SK_TIMELINE_FRAMES_TRANSFORM.translateMix],sk_interpolation);
