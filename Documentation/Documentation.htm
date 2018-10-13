@@ -39,6 +39,54 @@
 				text-decoration-line: none;
 				color: #ff43a4;
 			}
+			/*Somewhat progress to GMS2's banner*/
+			/*.title::before {
+				background-color: #000000;
+				position:absolute;
+				content: " ";
+				left:0;
+				right:0;
+				top:0;
+				bottom:0;
+				/*width:97vw;
+				display: block;
+				border-radius: 10px 10px 0px 0px;
+				margin: auto;
+			}
+			.title{
+				position: relative;
+    			width: 500px;
+
+				background-color: #c44687;
+				font-weight: bold;
+				font-size: 25px;
+				margin-bottom: 15px;
+				padding-left: 5px;
+				padding-bottom: 5px;
+				padding-top: 5px;
+
+				border-radius: 10px 10px 0px 0px;
+			}
+			
+			.title::after {
+				content: " ";
+				position: absolute;
+				width:100%;
+				height:100%;
+				display: block;
+
+				background-color: #c44687;
+				transform-origin: bottom left;
+				top: 0;
+			    left: 0;
+			    z-index: -1;
+
+				border-radius: 10px 10px 0px 0px;
+			    -ms-transform: skew(30deg, 0deg) translateX(30px);
+			    -webkit-transform: skew(30deg, 0deg) translateX(30px);
+			    transform: skew(30deg, 0deg) translateX(30px);
+			}*/
+			
 			.title{
 				background-color: #c44687;
 				font-weight: bold;
@@ -47,6 +95,7 @@
 				padding-left: 5px;
 				padding-bottom: 2px;
 			}
+			
 			.brief{
 				font-weight: bold;
 				font-style: italic;
@@ -79,7 +128,7 @@
 				font-weight: bold;
 				margin-left: 20px;
 			}
-			.footer{
+			.footer {
 				background-color: #1c111b;
 				position: fixed;
 				padding: 1px 1px 1px 3px;
@@ -87,6 +136,47 @@
 				width: 100%;
 				height: 30px;
 			}
+			input[id^="spoiler"]{
+				display: none;
+			}
+			input[id^="spoiler"]:not(:hover) + label {
+				background: #392D3D;
+			}
+			input[id^="spoiler"] + label:before {
+				content: "► ";
+				color: #c44687;
+			}
+			input[id^="spoiler"] + label {
+			  display: block;
+			  width: 90%;
+				background-color: #c44687;
+				font-weight: bold;
+				font-size: 18px;
+				margin-bottom: 20px;
+				margin-left: 30px;
+				margin-right: 30px;
+				padding-left: 10px;
+				padding-bottom: 6px;
+				padding-top: 6px;
+				text-align: left;
+				margin: 0 auto;
+				border-radius: 6px;
+
+			}
+			input[id^="spoiler"] ~ .spoiler {
+			  width: 85%;
+			  height: 0;
+			  overflow: hidden;
+			  opacity: 0;
+			  margin: 0px auto 0; 
+			  padding: 10px;
+			}
+			input[id^="spoiler"]:checked + label + .spoiler {
+			  height: auto;
+			  opacity: 1;
+			  padding-bottom: 40px;
+			}
+			
 			table{
 				width:70%; 
 				margin-left:15%; 
@@ -139,6 +229,7 @@
 			<p>This section will help get you started by introducing you to the system and its components, as well as describing how to perform the basic loading and manipulation of your skeleton data:</p>
 			<ul>
 				<li><a href="#ref_overview">Overview</a></li>
+				<li><a href="#ref_gettingStarted">Getting Started</a></li>
 				<li><a href="#ref_updatingYourArmature">Updating Your Armature</a></li>
 				<li><a href="#ref_bakingSkeleton2VB">Baking Skeleton Data</a></li>
 				<li><a href="#ref_debugOverlay">Debug Overlay</a></li>
@@ -148,7 +239,7 @@
 			<ul>
 				<li><a href="#ref_structs">Structure Types</a></li>
 				<li><a href="#ref_animationState">Animation State</a></li>
-				<li><a href="#ref_proceeduralAnim">Proceedural Animation</a></li>
+				<li><a href="#ref_proceduralAnimation">Procedural Animation</a></li>
 				<li><a href="#ref_skeletalManipulation">Manipulating Skeleton Data</a></li>
 				<li><a href="#ref_usefulTechniques">Useful Techniques</a></li>
 			</ul>
@@ -163,11 +254,122 @@
 		<documentation id="ref_overview">
 			<div class="title">Overview</div>
 		</documentation>
+		<documentation id="ref_gettingStarted">
+			<div class="title">Getting Started</div>
+
+			<input type="checkbox"  id="spoiler_loadingArmatures"/>
+			<label for="spoiler_loadingArmatures">Loading Armatures</label>
+
+			<div class="spoiler">
+				<p>You have the option of building your armature from Spine, DragonBones, or Spriter formats using the following functions for each respectively:</p>
+				<ul>
+					<li><a href="#sk_armature_build_spine">sk_armature_build_spine</a></li>
+					<li><a href="#sk_armature_build_dragonbones">sk_armature_build_dragonbones</a></li>
+					<li><a href="#sk_armature_build_spriter">sk_armature_build_spriter</a></li>
+				</ul>
+				<p>Each of these functions will parse their respective json, and return a reference to the armature data structure if successful.
+	If the build was unsuccessful, the function will return "noone", so you should always confirm the armature exists before attempting to render it.</p>
+			</div>
+
+			<input type="checkbox"  id="spoiler_loadingTextureAtlases"/>
+			<label for="spoiler_loadingTextureAtlases">Loading Texture Atlases</label>
+
+			<div class="spoiler">
+				<p>To render your armatures, you need to supply a texture atlas so the renderer can look-up the UV coordinates of each attachment of your skeleton.
+Similar to armatures, you have the option of building your texture atlases from Spine, DragonBones, or Spriter formats using the following functions:</p>
+				<ul>
+					<li><a href="#sk_atlas_build_libgdx">sk_atlas_build_libgdx</a></li>
+					<li><a href="#sk_atlas_build_dragonbones">sk_atlas_build_dragonbones</a></li>
+					<li><a href="#sk_atlas_build_spriter">sk_atlas_build_spriter</a></li>
+				</ul>
+			</div>
+		</documentation>
 		<documentation id="ref_updatingYourArmature">
 			<div class="title">Updating Your Armature</div>
+				<input type="checkbox"  id="spoiler_basicUpdateStructure"/>
+				<label for="spoiler_basicUpdateStructure">Basic Update Structure</label>
+
+				<div class="spoiler">
+					<p>This engine is very "hands-off"; you have to do all the updating manually. This gives you the most control over your animations, but can be overwhelming
+at first. Here I will explain the basic structure you should use to update your armatures.
+
+In the following code, a spine armature with a single bone has been created and stored in the variable "armature":</p>
+				<div class="code"><pre>
+armature = sk_armature_build_spine(@'
+     {
+         "bones": [
+             {
+                 "name": "bone",
+                 "length": 10,
+                 "rotation": -90
+             }
+         ]
+     }',"myArmature"
+ );</pre></div>
+			 <p>To update this armature, we need to direct ourselfs to the step event (or whereever you are updating your skeleton), and first set our armature to its setup pose. To do this, we should call sk_armature_setToSetupPose(armature), which will iterate through all the bones and reset their applied state. Next, we need to calculate the bones world transform by calling sk_armature_updateWorldTransform(armature).
+
+			 Your step event should look like this:</p>
+			 <div class="code"><pre>
+// set the armature to its setup pose
+sk_armature_setToSetupPose(armature);
+
+// calculate the armatures world state
+sk_armature_updateWorldTransform(armature);</pre></div>
+
+			<p>That should be all the code required to view the setup pose of your armature. Calling sk_armature_draw_debug(armature,x,y,1,1,0,sk_debug_bones) in
+the draw event will draw a basic version of your armature without its attachments, so you can check you're doing things right.</p>
+			</div>
+
+			<input type="checkbox"  id="spoiler_applyingAnimations"/>
+			<label for="spoiler_applyingAnimations">Applying Animations</label>
+
+			<div class="spoiler">
+				<p>To apply animations, you must first obtain the reference to the animation from the armature through the function sk_armature_find_animation, and then
+use the corresponding sk_animation_apply function to apply the animation to your setup pose.</p>
+				<div class="code"><pre>
+// get the animation
+var animation = sk_armature_find_animation(armature,"anim_run");
+
+// set the armature to its setup pose
+sk_armature_setToSetupPose(armature);
+
+// check whether the animation exists
+if(sk_struct_exists(animation)){
+    // apply the animation
+    var t = current_time*0.1; // the timer
+    sk_animation_apply(animation,t,t,sk_mixPose_add,1,true);
+}
+
+// calculate the armatures world state
+sk_armature_updateWorldTransform(armature);</pre></div>
+				<p>This segment of code will find the reference to the animation called "anim_run" from the armature, and will apply it to the armature before updating its world transform.</p>
+
+				<p><i><b>Note: </b>You can pre-obtain the animation in the create event and store them for later, this is purely as an example.</i></p>
+			</div>
 		</documentation>
 		<documentation id="ref_bakingSkeleton2VB">
 			<div class="title">Baking Skeleton Data</div>
+			<div class="brief">Baking Your Skeleton Into a Vertex Buffer:</div>
+			<p>Vertex buffers are the primary way to store and render your skeletons. To get started, you should create a target vertex buffer using 
+vertex_create_buffer(). Using this buffer, we can now bake our skeleton onto it:</p>
+			<div class="code"><pre>
+// bake the skeleton data onto the vertex buffer, returning the texture target in the process
+var texture = vertex_bake_armature(armature,atlas,vbuff);
+
+// submit the vertex buffer with the skeleton texture
+vertex_submit(vbuff,pr_trianglelist,texture);</pre></div>
+			<p>This code will build the buffer and render it at the origin of your room. If you want to draw your skeleton at a different location, you will need to
+transform the world matrix, then submit your buffer:</p>
+<div class="code"><pre>
+// update the world matrix so the buffer is drawn at the position of the object
+var previous_matrix = matrix_get(matrix_world);
+matrix_set(matrix_world,matrix_build(x,y,0,0,0,image_angle,image_xscale,image_yscale,0));
+
+// submit the vertex buffer at the x and y position of the object
+vertex_submit(vbuff,pr_trianglelist,texture);
+
+// reset the world matrix
+matrix_set(matrix_world,previous_matrix);</pre></div>
 		</documentation>
 		<documentation id="ref_debugOverlay">
 			<div class="title">Debug Overlay</div>
@@ -182,11 +384,60 @@
 		<documentation id="ref_structs">
 			<div class="title">Structure Types</div>
 		</documentation>
+		<documentation id="ref_animationTypes">
+			<div class="title">Animation Types</div>
+			<p>The following are the available animations within the runtime:</p>
+			<ul>
+				<li><a href="#ref_simpleAnimation">Simple Animation</a></li>
+				<li><a href="#ref_animationState">Animation State</a></li>
+				<li><a href="#ref_proceduralAnimation">Procedural Animation</a></li>
+			</ul>
+		</documentation>
+		<documentation id="ref_simpleAnimation">
+			<div class="title">Simple Animation</div>
+			<p>With simple animations, you will be able to play a single animation on your armature.</p>
+			<p>If you wish for your animations to interpolate between different animations, use <a href="#ref_animationState">Animation State</a>.</p>
+			<p><i><b>Note: </b>Animations must be destroyed when no longer needed to prevent memory leaks.</i></p>
+			<p>The following scripts exist for dealing with animations:</p>
+			<ul>
+				<li><a href="#sk_animation_create">sk_animation_create</a></li>
+				<li><a href="#sk_animation_destroy">sk_animation_destroy</a></li>
+				<li><a href="#sk_animation_get_duration">sk_animation_get_duration</a></li>
+				<li><a href="#sk_animation_get_looping">sk_animation_get_looping</a></li>
+				<li><a href="#sk_animation_set_duration">sk_animation_set_duration</a></li>
+				<li><a href="#sk_animation_set_looping">sk_animation_set_looping</a></li>
+				<li><a href="#sk_animation_add_timeline">sk_animationState_set_default_mix</a></li>
+				<li><a href="#sk_animation_apply">sk_animation_apply</a></li>
+			</ul>
+			<p><i><b>Note: </b>If you want to use an existing animation on your armature, use <a href="#sk_armature_find_animation">sk_armature_find_animation</a></i>.</p>
+		</documentation>
 		<documentation id="ref_animationState">
 			<div class="title">Animation State</div>
+			<p>Animation states allows animations to interpolate between each other.</p>
+			<p><i><b>Note: </b>Animation states must be destroyed when no longer needed to prevent memory leaks.</i></p>
+			<p>The following scripts exist for dealing with animation states:</p>
+			<ul>
+				<li><a href="#sk_animationState_create">sk_animationState_create</a></li>
+				<li><a href="#sk_animationState_destroy">sk_animationState_destroy</a></li>
+				<li><a href="#sk_animationState_get_animation_mix">sk_animationState_get_animation_mix</a></li>
+				<li><a href="#sk_animationState_get_default_mix">sk_animationState_get_default_mix</a></li>
+				<li><a href="#sk_animationState_get_timescale">sk_animationState_get_timescale</a></li>
+				<li><a href="#sk_animationState_set_animation_mix">sk_animationState_set_animation_mix</a></li>
+				<li><a href="#sk_animationState_set_default_mix">sk_animationState_set_default_mix</a></li>
+				<li><a href="#sk_animationState_set_timescale">sk_animationState_set_timescale</a></li>
+
+				<li><a href="#sk_animationState_draw_debug">sk_animationState_draw_debug</a></li>
+				<li><a href="#sk_animationState_current_animation">sk_animationState_current_animation</a></li>
+				<li><a href="#sk_animationState_play_animation">sk_animationState_play_animation</a></li>
+				<li><a href="#sk_animationState_update">sk_animationState_update</a></li>
+				<li><a href="#sk_animationState_apply">sk_animationState_apply</a></li>
+				<li><a href="#sk_animationState_add_animation">sk_animationState_add_animation</a></li>
+				<li><a href="#sk_animationState_add_armature">sk_animationState_add_armature</a></li>
+				<li><a href="#sk_animationState_find_animation">sk_animationState_find_animation</a></li>
+			</ul>
 		</documentation>
-		<documentation id="ref_proceeduralAnim">
-			<div class="title">Proceedural Animation</div>
+		<documentation id="ref_proceduralAnimation">
+			<div class="title">Procedural Animation</div>
 		</documentation>
 		<documentation id="ref_skeletalManipulation">
 			<div class="title">Manipulating Skeleton Data</div>
@@ -241,10 +492,10 @@ my_vector[@ vec2.Y] = y;</pre></div>
 			<p>The example code will create a new structure type called "2Dvector". Afterwards, a new instance of "2Dvector" (called "position") is created and has its position changed.</p>
 		</documentation>
 		<documentation id="sk_struct_type_exists">
-			<div class="title">sk_struct_type_exists</div>
-			<div class="brief">Returns whether the supplied type exists.</div>
+		<div class="title">sk_struct_type_exists</div>
+		<div class="brief">Returns whether the supplied type exists.</div>
 			<div class="subtitle">Syntax</div>
-			<div class="code">var result = sk_struct_type_exists(type);</div>
+			<div class="code">sk_struct_type_exists(type);</div>
 			<table>
 				<tr>
 					<th>Argument</th>
@@ -274,7 +525,7 @@ if(sk_struct_type_exists("2Dvector")){
 			<div class="title">sk_struct_create</div>
 			<div class="brief">Creates a new structure instance and returns its reference.</div>
 			<div class="subtitle">Syntax</div>
-			<div class="code">var struct = sk_struct_create(type, name);</div>
+			<div class="code">sk_struct_create(type, name);</div>
 			<table>
 				<tr>
 					<th>Argument</th>
@@ -289,7 +540,7 @@ if(sk_struct_type_exists("2Dvector")){
 					<td>The name of the structure <i>(this is used to identify the structure in the future)</i>.</td>
 				</tr>
 			</table>
-			<div class="returns">struct (actually, its an array reference)</div>
+			<div class="returns">Struct (actually, its an array reference)</div>
 			<div class="subtitle">Description</div>
 			<p>This script is used to create a new instance of a supplied structure type.</p>
 			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
@@ -335,7 +586,7 @@ my_vector = 0;</pre></div>
 			<div class="title">sk_struct_exists</div>
 			<div class="brief">Returns whether the supplied structure instance exists.</div>
 			<div class="subtitle">Syntax</div>
-			<div class="code">var result = sk_struct_exists(struct, type);</div>
+			<div class="code">sk_struct_exists(struct, type);</div>
 			<table>
 				<tr>
 					<th>Argument</th>
@@ -368,7 +619,7 @@ show_message(sk_struct_exists(is_not_a_vector,"2Dvector"));
 			<div class="title">sk_struct_get_type</div>
 			<div class="brief">Returns the type of the structure instance.</div>
 			<div class="subtitle">Syntax</div>
-			<div class="code">var type = sk_struct_get_type(struct);</div>
+			<div class="code">sk_struct_get_type(struct);</div>
 			<table>
 				<tr>
 					<th>Argument</th>
@@ -394,7 +645,7 @@ var my_type = sk_struct_get_type(my_structure);</pre></div>
 			<div class="title">sk_struct_get_name</div>
 			<div class="brief">Returns the name of the structure instance.</div>
 			<div class="subtitle">Syntax</div>
-			<div class="code">var name = sk_struct_get_name(struct);</div>
+			<div class="code">sk_struct_get_name(struct);</div>
 			<table>
 				<tr>
 					<th>Argument</th>
@@ -417,11 +668,64 @@ var my_type = sk_struct_get_type(my_structure);</pre></div>
 			<p>The example code will store the name and type, of the pre-defined structure (located in the variable "my_structure"), in corresponding variables.</p>
 		</documentation>
 		
+		<documentation id="sk_animation_create">
+			<div class="title">sk_animation_create</div>
+			<div class="brief">Creates a new structure and returns its reference</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">sk_animation_create(name);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td>The name of the structure <i>(this is used to identify the structure in the future).</i></td>
+				</tr>
+			</table>
+			<div class="returns">Struct (actually, its an array reference)</div>
+			<div class="subtitle">Description</div>
+			<p>This script is used to initialize a simple animation. </p>
+			<p>If you wish to load an animation from an existing armature, use <a href="#sk_armature_find_animation">sk_armature_find_animation</a>.</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+var my_animation = sk_animation_create("anim_walk");</pre></div>
+			<p>The example code will initialize a simple animation, and store the struct in my_animation.</p>
+		</documentation>
+
+		<documentation id="sk_animation_destroy">
+			<div class="title">sk_animation_destroy</div>
+			<div class="brief">Deletes the supplied structure and unhooks its array</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">sk_animation_destroy(event);</div>
+			
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>event</td>
+					<td>The animation (struct) you wish to destroy</td>
+				</tr>
+			</table>
+
+			<div class="returns">N/A</div>
+			<div class="subtitle">Description</div>
+			<p>You call this script whenever the animation is no longer needed.</p>
+			<p>This can be written where the instance gets destroyed or when changing rooms.</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+var my_animation = sk_animation_create("anim_walk");
+sk_animation_destroy(my_animation);</pre></div>
+		<p>The example code will initialize an animation called "my_animation" and immediately deletes "my_animation"</p>
+		</documentation>
+
 		<documentation id="sk_bone_create">
 			<div class="title">sk_bone_create</div>
 			<div class="brief">Creates a new bone structure and returns its reference.</div>
 			<div class="subtitle">Syntax</div>
-			<div class="code">var bone = sk_bone_create(name);</div>
+			<div class="code">sk_bone_create(name);</div>
 			<table>
 				<tr>
 					<th>Argument</th>
