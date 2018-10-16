@@ -2,6 +2,9 @@
 <html>
 	<head>
 		<title>2DSkeletalAnimation Script Documentation</title>
+
+		<meta charset="utf-8"/>
+		
 		<script type="text/javascript">
 			// update the tag
             function js_find_tag(){
@@ -39,35 +42,36 @@
 				text-decoration-line: none;
 				color: #ff43a4;
 			}
-			/*Somewhat progress to GMS2's banner*/
-			/*.title::before {
-				background-color: #000000;
+			/*(wip) GMS2's header banner*/
+			.title::before {
+				background-color: #1c111b;
 				position:absolute;
 				content: " ";
 				left:0;
 				right:0;
 				top:0;
 				bottom:0;
-				/*width:97vw;
+				width: calc(100vw - 30px); /*vw - Viewport width. Does not take account of the scrollbar's width. Just taking away an arbitrary value for now*/
+				border-bottom: 100%;
+				z-index: -10;
 				display: block;
 				border-radius: 10px 10px 0px 0px;
 				margin: auto;
 			}
 			.title{
 				position: relative;
-    			width: 500px;
+    			width: 600px;
 
 				background-color: #c44687;
 				font-weight: bold;
 				font-size: 25px;
 				margin-bottom: 15px;
-				padding-left: 5px;
+				padding-left: 10px;
 				padding-bottom: 5px;
 				padding-top: 5px;
 
 				border-radius: 10px 10px 0px 0px;
 			}
-			
 			.title::after {
 				content: " ";
 				position: absolute;
@@ -85,8 +89,11 @@
 			    -ms-transform: skew(30deg, 0deg) translateX(30px);
 			    -webkit-transform: skew(30deg, 0deg) translateX(30px);
 			    transform: skew(30deg, 0deg) translateX(30px);
-			}*/
-			
+
+			    
+			    /*: calc(100vw - 30px); /*vw - Viewport width. Does not take account of the scrollbar's width. Just taking away an arbitrary value for now*/
+			}
+			/*
 			.title{
 				background-color: #c44687;
 				font-weight: bold;
@@ -94,7 +101,7 @@
 				margin-bottom: 20px;
 				padding-left: 5px;
 				padding-bottom: 2px;
-			}
+			}*/
 			
 			.brief{
 				font-weight: bold;
@@ -135,32 +142,36 @@
 				bottom: 0px;
 				width: 100%;
 				height: 30px;
+				z-index: 100;
 			}
 			input[id^="spoiler"]{
 				display: none;
 			}
-			input[id^="spoiler"]:not(:hover) + label {
-				background: #392D3D;
+			input[id^="spoiler"] + label:hover {
+				background-color: #c44687;
 			}
 			input[id^="spoiler"] + label:before {
-				content: "► ";
+				/*00a0 (non-breaking space). 0020 (normal space) doesn't work*/
+				content: "►\00a0\00a0";
 				color: #c44687;
+				font-size: 16px;
 			}
 			input[id^="spoiler"] + label {
-			  display: block;
-			  width: 90%;
-				background-color: #c44687;
+				display: block;
+				width: 90%;
+				background-color: #392D3D;
+				
 				font-weight: bold;
 				font-size: 18px;
 				margin-bottom: 20px;
 				margin-left: 30px;
 				margin-right: 30px;
-				padding-left: 10px;
+				padding-left: 12px;
 				padding-bottom: 6px;
 				padding-top: 6px;
 				text-align: left;
 				margin: 0 auto;
-				border-radius: 6px;
+				border-radius: 8px;
 
 			}
 			input[id^="spoiler"] ~ .spoiler {
@@ -204,11 +215,13 @@
 				background-color: #ddd0dc;
 				color: #281927;
 				border-style: none;
+				z-index: 100;
 			}
 			button{
 				background-color: #589d62;
 				color: #281927;
 				border-style: none;
+				z-index: 100;
 			}
 		</style>
 	</head>
@@ -296,15 +309,15 @@ at first. Here I will explain the basic structure you should use to update your 
 In the following code, a spine armature with a single bone has been created and stored in the variable "armature":</p>
 				<div class="code"><pre>
 armature = sk_armature_build_spine(@'
-     {
-         "bones": [
-             {
-                 "name": "bone",
-                 "length": 10,
-                 "rotation": -90
-             }
-         ]
-     }',"myArmature"
+    {
+        "bones": [
+            {
+                "name": "bone",
+                "length": 10,
+                "rotation": -90
+            }
+        ]
+    }',"myArmature"
  );</pre></div>
 			 <p>To update this armature, we need to direct ourselfs to the step event (or whereever you are updating your skeleton), and first set our armature to its setup pose. To do this, we should call sk_armature_setToSetupPose(armature), which will iterate through all the bones and reset their applied state. Next, we need to calculate the bones world transform by calling sk_armature_updateWorldTransform(armature).
 
@@ -406,7 +419,7 @@ matrix_set(matrix_world,previous_matrix);</pre></div>
 				<li><a href="#sk_animation_get_looping">sk_animation_get_looping</a></li>
 				<li><a href="#sk_animation_set_duration">sk_animation_set_duration</a></li>
 				<li><a href="#sk_animation_set_looping">sk_animation_set_looping</a></li>
-				<li><a href="#sk_animation_add_timeline">sk_animationState_set_default_mix</a></li>
+				<li><a href="#sk_animation_add_timeline">sk_animation_add_timeline</a></li>
 				<li><a href="#sk_animation_apply">sk_animation_apply</a></li>
 			</ul>
 			<p><i><b>Note: </b>If you want to use an existing animation on your armature, use <a href="#sk_armature_find_animation">sk_armature_find_animation</a></i>.</p>
@@ -683,7 +696,7 @@ var my_type = sk_struct_get_type(my_structure);</pre></div>
 					<td>The name of the structure <i>(this is used to identify the structure in the future).</i></td>
 				</tr>
 			</table>
-			<div class="returns">Struct (actually, its an array reference)</div>
+			<div class="returns">Animation Struct</div>
 			<div class="subtitle">Description</div>
 			<p>This script is used to initialize a simple animation. </p>
 			<p>If you wish to load an animation from an existing armature, use <a href="#sk_armature_find_animation">sk_armature_find_animation</a>.</p>
@@ -814,6 +827,265 @@ var bone_world_y = my_bone[SK_BONE.YWorld];</pre></div>
 			<p>The example code create a new bone called "b_arm", and store it in the variable "my_bone". Afterwards, it's world position is obtained and stored in corresponding variables.</p>
 		</documentation>
 		
+		<documentation id="sk_armature_build_spine">
+			<div class="title">sk_armature_build_spine</div>
+			<div class="brief">Parses the supplied json, and returns a reference to the armature data structure if it was successful.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code"><pre>
+sk_armature_build_spine(json, name)</pre></div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>json</td>
+					<td>A string containing a json structure in the spine skeleton file format.</td>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td>The name to give to the armature (it could be anything).</td>
+				</tr>
+			</table>
+			<div class="returns">Armature Struct</div>
+			<div class="subtitle">Description</div>
+			<p>This script will parse the supplied json, and returns a reference to the armature data structure if it was successful.
+If the build was unsuccessful, the function will return "noone", so you should always confirm the armature exists before attempting to render it.</p>
+<p><i><b>Note: </b>The name of the armature has no significant value. It's purely cosmetic.</i></p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+var PATH_SPINEBOY = "Skeletons/Spine/Esoteric/Spineboy/spineboy-ess.json";
+var file = file_text_open_read(PATH_SPINEBOY);
+var raw = "";
+do {
+    raw += file_text_read_string(file)+"\n";
+    file_text_readln(file);
+} until(file_text_eof(file));
+file_text_close(file);
+
+armature_spineboy = sk_armature_build_spine(raw, "");</pre></div>
+			<p>The example code will store the path to the armature in "PATH_SPINEBOY", and the file contents is converted into a string. After that, the string is passed into sk_armature_build_spine, and an empty name for the armature is supplied.</p>
+		</documentation>
+		<documentation id="sk_armature_build_dragonbones">
+			<div class="title">sk_armature_build_dragonbones</div>
+			<div class="brief">Parses the supplied json, and returns a reference to the armature data structure if it was successful.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code"><pre>
+sk_armature_build_dragonbones(json, armature_name_or_id)</pre></div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>json</td>
+					<td>A string containing a json structure in the dragonbones skeleton file format.</td>
+				</tr>
+				<tr>
+					<td>armature_name_or_id</td>
+					<td>The name or id of the armature you want to load (as specified in the editor).</td>
+				</tr>
+			</table>
+			<div class="returns">Armature Struct</div>
+			<div class="subtitle">Description</div>
+			<p>This script will parse the supplied json, and returns a reference to the armature data structure if it was successful.
+If the build was unsuccessful, the function will return "noone", so you should always confirm the armature exists before attempting to render it.</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+var PATH_DRAGON = "Skeletons/DragonBones/Egret/Dragon/Dragon_ske.json";
+var file = file_text_open_read(PATH_DRAGON);
+var raw = "";
+do {
+    raw += file_text_read_string(file)+"\n";
+    file_text_readln(file);
+} until(file_text_eof(file));
+file_text_close(file);
+
+armature_dragon = sk_armature_build_dragonbones(raw, "0");</pre></div>
+			<p>The example code will store the path to the armature in "PATH_DRAGON", and the file contents is converted into a string. After that, the string is passed into sk_armature_build_dragonbones, using armature "0" that's defined in the editor.</p>
+		</documentation>
+		<documentation id="sk_armature_build_spriter">
+			<div class="title">sk_armature_build_spriter</div>
+			<div class="brief">Parses the supplied json, and returns a reference to the armature data structure if it was successful.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code"><pre>
+sk_armature_build_spriter(json, armature_name_or_id)</pre></div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>json</td>
+					<td>A string containing a json structure in the spriter skeleton file format.</td>
+				</tr>
+				<tr>
+					<td>armature_name_or_id</td>
+					<td>The name or id of the armature you want to load (as specified in the editor).</td>
+				</tr>
+			</table>
+			<div class="returns">Armature Struct</div>
+			<div class="subtitle">Description</div>
+			<p>This script will parse the supplied json, and returns a reference to the armature data structure if it was successful.
+If the build was unsuccessful, the function will return "noone", so you should always confirm the armature exists before attempting to render it.</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+var PATH_SPRITER = "Skeletons/Spriter/BrashMonkey/Platformer/outJSONskel.scon";
+var file = file_text_open_read(PATH_SPRITER);
+var raw = "";
+do {
+    raw += file_text_read_string(file)+"\n";
+    file_text_readln(file);
+} until(file_text_eof(file));
+file_text_close(file);
+
+armature_platformer = sk_armature_build_spriter(raw, "0");</pre></div>
+			<p>The example code will store the path to the armature in "PATH_SPRITER", and the file contents is converted into a string. After that, the string is passed into sk_armature_build_spriter, using armature "0" that's defined in the editor.</p>
+		</documentation>
+		<documentation id="sk_atlas_build_libgdx">
+			<div class="title">sk_atlas_build_libgdx</div>
+			<div class="brief">Constructs an atlas file to be used with your armatures.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code"><pre>
+sk_atlas_build_libgdx(libgdx, sprite, subimg, scale)</pre></div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>libgdx</td>
+					<td>A multi-line raw-text string in the libgdx atlas format, this is the export format of spine.</td>
+				</tr>
+				<tr>
+					<td>sprite</td>
+					<td>The index of the sprite to use as a texture</td>
+				</tr>
+				<tr>
+					<td>subimg</td>
+					<td>The subimage index for the sprite</td>
+				</tr>
+				<tr>
+					<td>scale</td>
+					<td>A multiplier to scale each region by</td>
+				</tr>
+			</table>
+			<div class="returns">Atlas Struct</div>
+			<div class="subtitle">Description</div>
+			<p>To render your armatures, you need to supply a texture atlas so the renderer can look-up the UV coordinates of each attachment of your skeleton.
+Similar to armatures, you have the option of building your texture atlases from Spine.</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+var PATH_SPINEBOY_SPRITE = "spineboy.png";
+var PATH_SPINEBOY_ATLAS = "spineboy.atlas";
+var sprite = sprite_add(PATH_SPINEBOY_SPRITE, 1, false, 0, 0);
+var file = file_text_open_read(PATH_SPINEBOY_ATLAS);
+var raw = "";
+do {
+    raw += file_text_read_string(file)+"\n";
+    file_text_readln(file);
+} until(file_text_eof(file));
+file_text_close(file);
+
+atlas_spineboy = sk_atlas_build_libgdx(raw, sprite, 0, 1);</pre></div>
+			<p>The example code will store the path to the image in "PATH_SPINEBOY_SPRITE", the path to the atlas in "PATH_SPINEBOY_ATLAS", and the file contents of the atlas is converted into a string. After that, the string is passed into sk_atlas_build_libgdx.</p>
+		</documentation>
+		<documentation id="sk_atlas_build_dragonbones">
+			<div class="title">sk_atlas_build_dragonbones</div>
+			<div class="brief">Constructs an atlas file to be used with your armatures.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code"><pre>
+sk_atlas_build_dragonbones(json, sprite, subimg, scale)</pre></div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>json</td>
+					<td>A string containing a json structure in the dragonbones texture atlas file format</td>
+				</tr>
+				<tr>
+					<td>sprite</td>
+					<td>The index of the sprite to use as a texture</td>
+				</tr>
+				<tr>
+					<td>subimg</td>
+					<td>The subimage index for the sprite</td>
+				</tr>
+				<tr>
+					<td>scale</td>
+					<td>A multiplier to scale each region by</td>
+				</tr>
+			</table>
+			<div class="returns">Atlas Struct</div>
+			<div class="subtitle">Description</div>
+			<p>To render your armatures, you need to supply a texture atlas so the renderer can look-up the UV coordinates of each attachment of your skeleton.
+Similar to armatures, you have the option of building your texture atlases from Dragonbones.</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+var PATH_DRAGON_SPRITE = "Dragon_tex.png";
+var PATH_DRAGON_ATLAS = "Dragon_tex.json";
+var sprite = sprite_add(PATH_DRAGON_SPRITE, 1, false, 0, 0);
+var file = file_text_open_read(PATH_DRAGON_ATLAS);
+var raw = "";
+do {
+    raw += file_text_read_string(file)+"\n";
+    file_text_readln(file);
+} until(file_text_eof(file));
+file_text_close(file);
+
+atlas_dragon = sk_atlas_build_dragonbones(raw, sprite, 0, 1);</pre></div>
+			<p>The example code will store the path to the image in "PATH_DRAGON_SPRITE", the path to the atlas in "PATH_DRAGON_ATLAS", and the file contents of the atlas is converted into a string. After that, the string is passed into sk_atlas_build_dragonbones.</p>
+		</documentation>
+		<documentation id="sk_atlas_build_spriter">
+			<div class="title">sk_atlas_build_spriter</div>
+			<div class="brief">Constructs an atlas file to be used with your armatures.</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code"><pre>
+sk_atlas_build_spriter(json, sprite, subimg, scale)</pre></div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>json</td>
+					<td>A string containing a json structure in the spriter texture atlas file format</td>
+				</tr>
+				<tr>
+					<td>sprite</td>
+					<td>The index of the sprite to use as a texture</td>
+				</tr>
+				<tr>
+					<td>subimg</td>
+					<td>The subimage index for the sprite</td>
+				</tr>
+				<tr>
+					<td>scale</td>
+					<td>A multiplier to scale each region by</td>
+				</tr>
+			</table>
+			<div class="returns">Atlas Struct</div>
+			<div class="subtitle">Description</div>
+			<p>To render your armatures, you need to supply a texture atlas so the renderer can look-up the UV coordinates of each attachment of your skeleton.
+Similar to armatures, you have the option of building your texture atlases from Spriter.</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+var PATH_SPRITER_SPRITE = "outJSON.png";
+var PATH_SPRITER_ATLAS = "outJSON.json";
+var sprite = sprite_add(PATH_SPRITER_ATLAS, 1, false, 0, 0);
+var file = file_text_open_read(PATH_SPRITER_ATLAS);
+var raw = "";
+do {
+    raw += file_text_read_string(file)+"\n";
+    file_text_readln(file);
+} until(file_text_eof(file));
+file_text_close(file);
+
+atlas_platformer = sk_atlas_build_spriter(raw, sprite, 0, 1);</pre></div>
+			<p>The example code will store the path to the image in "PATH_SPRITER_SPRITE", the path to the atlas in "PATH_SPRITER_ATLAS", and the file contents of the atlas is converted into a string. After that, the string is passed into sk_atlas_build_spriter.</p>
+		</documentation>
 		<br/><br/>
 	</body>
 </html>
