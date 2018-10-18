@@ -144,6 +144,15 @@
 				height: 30px;
 				z-index: 100;
 			}
+			.note:before {
+				content: "Note: ";
+				font-style: italic;
+				font-weight: bold;
+			}
+			.note {
+				font-style: italic;
+				font-weight: normal;
+			}
 			input[id^="spoiler"]{
 				display: none;
 			}
@@ -162,16 +171,20 @@
 				background-color: #392D3D;
 				
 				font-weight: bold;
-				font-size: 18px;
+				/*font-size: 18px;
 				margin-bottom: 20px;
 				margin-left: 30px;
-				margin-right: 30px;
-				padding-left: 12px;
+				margin-right: 30px;*/
+				font-size: 1.2em;
+				margin:0;
+				padding:0.25em 0.25em 0.25em 0.5em;
+				border-radius:0.5em;
+				/*padding-left: 12px;
 				padding-bottom: 6px;
-				padding-top: 6px;
+				padding-top: 6px;*/
 				text-align: left;
 				margin: 0 auto;
-				border-radius: 8px;
+				/*border-radius: 8px;*/
 
 			}
 			input[id^="spoiler"] ~ .spoiler {
@@ -250,7 +263,6 @@
 			<div class="subtitle">Advanced Use</div>
 			<p>If you want to get more familiar with the nitty-gritty of system, or learn some useful techniques for manipulating your skeleton data at runtime, this is the place for you. This section will go over the more overwhelming and powerful aspects of the runtime to help you get the most out of your animations:</p>
 			<ul>
-				<li><a href="#ref_structs">Structure Types</a></li>
 				<li><a href="#ref_animationState">Animation State</a></li>
 				<li><a href="#ref_proceduralAnimation">Procedural Animation</a></li>
 				<li><a href="#ref_skeletalManipulation">Manipulating Skeleton Data</a></li>
@@ -357,7 +369,7 @@ if(sk_struct_exists(animation)){
 sk_armature_updateWorldTransform(armature);</pre></div>
 				<p>This segment of code will find the reference to the animation called "anim_run" from the armature, and will apply it to the armature before updating its world transform.</p>
 
-				<p><i><b>Note: </b>You can pre-obtain the animation in the create event and store them for later, this is purely as an example.</i></p>
+				<div class="note"> You can pre-obtain the animation in the create event and store them for later, this is purely as an example.</div>
 			</div>
 		</documentation>
 		<documentation id="ref_bakingSkeleton2VB">
@@ -394,9 +406,6 @@ matrix_set(matrix_world,previous_matrix);</pre></div>
 			</ul>
 			<p>Additionally, these functions are particularly useful in the case of modding, since you can supply these debug views to the community so they know what they've done is correct.</p>
 		</documentation>
-		<documentation id="ref_structs">
-			<div class="title">Structure Types</div>
-		</documentation>
 		<documentation id="ref_animationTypes">
 			<div class="title">Animation Types</div>
 			<p>The following are the available animations within the runtime:</p>
@@ -409,8 +418,8 @@ matrix_set(matrix_world,previous_matrix);</pre></div>
 		<documentation id="ref_simpleAnimation">
 			<div class="title">Simple Animation</div>
 			<p>With simple animations, you will be able to play a single animation on your armature.</p>
-			<p>If you wish for your animations to interpolate between different animations, use <a href="#ref_animationState">Animation State</a>.</p>
-			<p><i><b>Note: </b>Animations must be destroyed when no longer needed to prevent memory leaks.</i></p>
+			<p>If you wish to intorpolate between different animations without much effort, use <a href="#ref_animationState">Animation State</a>.</p>
+			<div class="note">Animations must be destroyed when no longer needed to prevent memory leaks</div>
 			<p>The following scripts exist for dealing with animations:</p>
 			<ul>
 				<li><a href="#sk_animation_create">sk_animation_create</a></li>
@@ -422,12 +431,12 @@ matrix_set(matrix_world,previous_matrix);</pre></div>
 				<li><a href="#sk_animation_add_timeline">sk_animation_add_timeline</a></li>
 				<li><a href="#sk_animation_apply">sk_animation_apply</a></li>
 			</ul>
-			<p><i><b>Note: </b>If you want to use an existing animation on your armature, use <a href="#sk_armature_find_animation">sk_armature_find_animation</a></i>.</p>
+			<div class="note">If you want to use an existing animation on your armature, use <a href="#sk_armature_find_animation">sk_armature_find_animation</a>.</div>
 		</documentation>
 		<documentation id="ref_animationState">
 			<div class="title">Animation State</div>
 			<p>Animation states allows animations to interpolate between each other.</p>
-			<p><i><b>Note: </b>Animation states must be destroyed when no longer needed to prevent memory leaks.</i></p>
+			<div class="note">Animation states must be destroyed when no longer needed to prevent memory leaks.</div>
 			<p>The following scripts exist for dealing with animation states:</p>
 			<ul>
 				<li><a href="#sk_animationState_create">sk_animationState_create</a></li>
@@ -449,6 +458,9 @@ matrix_set(matrix_world,previous_matrix);</pre></div>
 				<li><a href="#sk_animationState_find_animation">sk_animationState_find_animation</a></li>
 			</ul>
 		</documentation>
+		<documentation id="ref_timelines">
+			<div class="title">Timelines</div>
+		</documentation>
 		<documentation id="ref_proceduralAnimation">
 			<div class="title">Procedural Animation</div>
 		</documentation>
@@ -461,226 +473,6 @@ matrix_set(matrix_world,previous_matrix);</pre></div>
 		<!--
 			Scripts
 		-->
-		<documentation id="sk_struct_type_add">
-			<div class="title">sk_struct_type_add</div>
-			<div class="brief">Creates a structure type template for future construction of child types.</div>
-			<div class="subtitle">Syntax</div>
-			<div class="code">sk_struct_type_add(type, size, constructor, destructor);</div>
-			<table>
-				<tr>
-					<th>Argument</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<td>type</td>
-					<td>The name of the structure type.</td>
-				</tr>
-				<tr>
-					<td>size</td>
-					<td>The number of indicies to allocate for storing data.</td>
-				</tr>
-				<tr>
-					<td>constructor</td>
-					<td>An index of the script that is called when constructing the structure with <a href="#sk_struct_create">sk_struct_create</a>.</td>
-				</tr>
-				<tr>
-					<td>destructor</td>
-					<td>An index of the script that is called when destroying the structure with <a href="#sk_struct_destroy">sk_struct_destroy</a>.</td>
-				</tr>
-			</table>
-			<div class="returns">N/A</div>
-			<div class="subtitle">Description</div>
-			<p>This script can be used to define your own structure types for use with the runtime. These types will then be used as pseudo <i>class</i> templates when creating child structures.</p>
-			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
-			<div class="subtitle">Example</div>
-			<div class="code"><pre>
-enum vec2{
-    X,Y,
-    sizeof /* sizeof is used to allocate suitable space */
-}
-sk_struct_type_add("2Dvector",vec2.sizeof,-1,-1);
-var my_vector = sk_struct_create("2Dvector","position");
-my_vector[@ vec2.X] = x;
-my_vector[@ vec2.Y] = y;</pre></div>
-			<p>The example code will create a new structure type called "2Dvector". Afterwards, a new instance of "2Dvector" (called "position") is created and has its position changed.</p>
-		</documentation>
-		<documentation id="sk_struct_type_exists">
-		<div class="title">sk_struct_type_exists</div>
-		<div class="brief">Returns whether the supplied type exists.</div>
-			<div class="subtitle">Syntax</div>
-			<div class="code">sk_struct_type_exists(type);</div>
-			<table>
-				<tr>
-					<th>Argument</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<td>type</td>
-					<td>The name of the structure type.</td>
-				</tr>
-			</table>
-			<div class="returns">Boolean (True/False)</div>
-			<div class="subtitle">Description</div>
-			<p>This script can be used to check whether a structure type exists before accessing it.</p>
-			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
-			<div class="subtitle">Example</div>
-			<p><i>The following example assumes a structure type "2Dvector" exists prior.</i></p>
-			<div class="code"><pre>
-var my_vector = noone;
-if(sk_struct_type_exists("2Dvector")){
-    my_vector = sk_struct_create("2Dvector","position");
-    my_vector[@ vec2.X] = x;
-    my_vector[@ vec2.Y] = y;
-}</pre></div>
-			<p>The example code will check whether a structure type called "2Dvector" exists, and if it does, stores a new instance of that type in the variable "my_vector".</p>
-		</documentation>
-		<documentation id="sk_struct_create">
-			<div class="title">sk_struct_create</div>
-			<div class="brief">Creates a new structure instance and returns its reference.</div>
-			<div class="subtitle">Syntax</div>
-			<div class="code">sk_struct_create(type, name);</div>
-			<table>
-				<tr>
-					<th>Argument</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<td>type</td>
-					<td>The name of the structure type.</td>
-				</tr>
-				<tr>
-					<td>name</td>
-					<td>The name of the structure <i>(this is used to identify the structure in the future)</i>.</td>
-				</tr>
-			</table>
-			<div class="returns">Struct (actually, its an array reference)</div>
-			<div class="subtitle">Description</div>
-			<p>This script is used to create a new instance of a supplied structure type.</p>
-			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
-			<div class="subtitle">Example</div>
-			<p><i>The following example assumes a structure type "2Dvector" exists prior.</i></p>
-			<div class="code"><pre>
-var my_vector = noone;
-if(sk_struct_type_exists("2Dvector")){
-    my_vector = sk_struct_create("2Dvector","position");
-    my_vector[@ vec2.X] = x;
-    my_vector[@ vec2.Y] = y;
-}</pre></div>
-			<p>The example code will check whether a structure type called "2Dvector" exists, and if it does, stores a new instance of that type in the variable "my_vector".</p>
-		</documentation>
-		<documentation id="sk_struct_destroy">
-			<div class="title">sk_struct_destroy</div>
-			<div class="brief">Makes the supplied structure unidentifiable, and frees the nested data attributed to it.</div>
-			<div class="subtitle">Syntax</div>
-			<div class="code">sk_struct_destroy(struct);</div>
-			<table>
-				<tr>
-					<th>Argument</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<td>struct</td>
-					<td>The reference to the structure instance you want to dispose.</td>
-				</tr>
-			</table>
-			<div class="returns">N/A</div>
-			<div class="subtitle">Description</div>
-			<p>This script is used to call the destructor script on a specific structure instance; since [arrays] cannot be explicitly destroyed, you should always remove all previous references by setting your variable a value such as '0'.</p>
-			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
-			<div class="subtitle">Example</div>
-			<p><i>The following example assumes a structure type "2Dvector" exists prior.</i></p>
-			<div class="code"><pre>
-var my_vector = sk_struct_create("2Dvector","position");
-sk_struct_destroy(my_vector);
-my_vector = 0;</pre></div>
-			<p>The example code will create a new instance of "2Dvector". Afterwards, that same structure is promptly destroyed and its reference set to '0', so that its container can be garbage collected.</p>
-		</documentation>
-		<documentation id="sk_struct_exists">
-			<div class="title">sk_struct_exists</div>
-			<div class="brief">Returns whether the supplied structure instance exists.</div>
-			<div class="subtitle">Syntax</div>
-			<div class="code">sk_struct_exists(struct, type);</div>
-			<table>
-				<tr>
-					<th>Argument</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<td>struct</td>
-					<td>The reference to the structure instance.</td>
-				</tr>
-				<tr>
-					<td>type</td>
-					<td>The name of the structure type.</td>
-				</tr>
-			</table>
-			<div class="returns">Boolean (True/False)</div>
-			<div class="subtitle">Description</div>
-			<p>This script is used to check whether the supplied structure exists before accessing it.</p>
-			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
-			<div class="subtitle">Example</div>
-			<p><i>The following example assumes a structure type "2Dvector" exists prior.</i></p>
-			<div class="code"><pre>
-var is_a_vector = sk_struct_create("2Dvector","position");
-var is_not_a_vector = noone;
-show_message(sk_struct_exists(is_a_vector,"2Dvector"));
-show_message(sk_struct_exists(is_not_a_vector,"2Dvector"));
-</pre></div>
-			<p>The example code will produce two message boxes; the first will output true (1), and the second will output false (0).</p>
-		</documentation>
-		<documentation id="sk_struct_get_type">
-			<div class="title">sk_struct_get_type</div>
-			<div class="brief">Returns the type of the structure instance.</div>
-			<div class="subtitle">Syntax</div>
-			<div class="code">sk_struct_get_type(struct);</div>
-			<table>
-				<tr>
-					<th>Argument</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<td>struct</td>
-					<td>The reference to the structure instance.</td>
-				</tr>
-			</table>
-			<div class="returns">String</div>
-			<div class="subtitle">Description</div>
-			<p>This script is used to find the structure type of the supplied structure instance.</p>
-			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
-			<div class="subtitle">Example</div>
-			<p><i>The following example assumes a structure instance "my_structure" exists prior.</i></p>
-			<div class="code"><pre>
-var my_name = sk_struct_get_name(my_structure);
-var my_type = sk_struct_get_type(my_structure);</pre></div>
-			<p>The example code will store the name and type, of the pre-defined structure (located in the variable "my_structure"), in corresponding variables.</p>
-		</documentation>
-		<documentation id="sk_struct_get_name">
-			<div class="title">sk_struct_get_name</div>
-			<div class="brief">Returns the name of the structure instance.</div>
-			<div class="subtitle">Syntax</div>
-			<div class="code">sk_struct_get_name(struct);</div>
-			<table>
-				<tr>
-					<th>Argument</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<td>struct</td>
-					<td>The reference to the structure instance.</td>
-				</tr>
-			</table>
-			<div class="returns">String</div>
-			<div class="subtitle">Description</div>
-			<p>This script is used to find the name of the supplied structure instance.</p>
-			<p>For more information, see the <a href="#ref_structs">Structure Types</a> section of the reference.</p>
-			<div class="subtitle">Example</div>
-			<p><i>The following example assumes a structure instance "my_structure" exists prior.</i></p>
-			<div class="code"><pre>
-var my_name = sk_struct_get_name(my_structure);
-var my_type = sk_struct_get_type(my_structure);</pre></div>
-			<p>The example code will store the name and type, of the pre-defined structure (located in the variable "my_structure"), in corresponding variables.</p>
-		</documentation>
-		
 		<documentation id="sk_animation_create">
 			<div class="title">sk_animation_create</div>
 			<div class="brief">Creates a new structure and returns its reference</div>
@@ -692,7 +484,7 @@ var my_type = sk_struct_get_type(my_structure);</pre></div>
 					<th>Description</th>
 				</tr>
 				<tr>
-					<td>name</td>
+					<td>Name</td>
 					<td>The name of the structure <i>(this is used to identify the structure in the future).</i></td>
 				</tr>
 			</table>
@@ -718,7 +510,7 @@ var my_animation = sk_animation_create("anim_walk");</pre></div>
 					<th>Description</th>
 				</tr>
 				<tr>
-					<td>event</td>
+					<td>Event</td>
 					<td>The animation (struct) you wish to destroy</td>
 				</tr>
 			</table>
@@ -731,7 +523,205 @@ var my_animation = sk_animation_create("anim_walk");</pre></div>
 			<div class="code"><pre>
 var my_animation = sk_animation_create("anim_walk");
 sk_animation_destroy(my_animation);</pre></div>
-		<p>The example code will initialize an animation called "my_animation" and immediately deletes "my_animation"</p>
+			<p>The example code will initialize an animation called "my_animation" and immediately deletes "my_animation".</p>
+		</documentation>
+
+		<documentation id="sk_animation_get_duration">
+			<div class="title">sk_animation_get_duration</div>
+			<div class="brief">Gets the duration of the animation (in steps)</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">sk_animation_get_duration(animation);</div>
+			
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>Animation</td>
+					<td>The animation you wish to get the duration from</td>
+				</tr>
+			</table>
+
+			<div class="returns">Real</div>
+			<div class="subtitle">Description</div>
+			<p>This script will return the duration (in steps) of the animation that's defined from the editor's timeline</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+anim_walk_time = sk_animation_get_duration(anim_walk);</pre></div>
+			<p>The example code would get the duration of the animation and store it into "anim_walk_time".</p>
+		</documentation>
+
+		<documentation id="sk_animation_get_looping">
+			<div class="title">sk_animation_get_looping</div>
+			<div class="brief">Checks if the animation is looping</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">sk_animation_get_looping(animation);</div>
+			
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>Animation</td>
+					<td>The animation you wish check if it's looping</td>
+				</tr>
+			</table>
+
+			<div class="returns">Boolean</div>
+			<div class="subtitle">Description</div>
+			<p>This script will return true if the animation is looping, otherwise false.</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+if sk_animation_get_looping(anim_walk) {
+    if !audio_is_playing(snd_step) {
+        audio_play_sound(snd_step, 1, true);
+    }
+} else {
+    audio_stop_sound(snd_step);
+}</pre></div>
+			<p>The example code would check if the animation is looping. If the animation is looping and the sound is not currently playing, it will play a walk sound on loop. If the animation is not looping, the sound is stopped.</p>
+		</documentation>
+
+		<documentation id="sk_animation_set_duration">
+			<div class="title">sk_animation_set_duration</div>
+			<div class="brief">Sets the duration of the animation</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">sk_animation_set_duration(animation, duration);</div>
+			
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>Animation</td>
+					<td>The animation you wish to set the duration</td>
+				</tr>
+				<tr>
+					<td>Duration</td>
+					<td>The length you wish to set for the animation</td>
+				</tr>
+			</table>
+
+			<div class="returns">N/A</div>
+			<div class="subtitle">Description</div>
+			<p>This script will allow you to set the duration of the animation.</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+sk_animation_set_duration(anim_walk, 80);</pre></div>
+			<p>The example code would set the duration of the animation to 80 steps.</p>
+		</documentation>
+
+		<documentation id="sk_animation_set_looping">
+			<div class="title">sk_animation_set_looping</div>
+			<div class="brief">Sets whether the animation should loop or not</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">sk_animation_set_looping(animation, enable);</div>
+			
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>Animation</td>
+					<td>The animation you wish to set the duration</td>
+				</tr>
+				<tr>
+					<td>Enable</td>
+					<td>Whether the animation should loop or not</td>
+				</tr>
+			</table>
+
+			<div class="returns">N/A</div>
+			<div class="subtitle">Description</div>
+			<p>This script will allow you to set whether the animation should loop or not</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+sk_animation_set_looping(anim_walk, true);</pre></div>
+			<p>The example code would enable the animation to loop.</p>
+		</documentation>
+
+		<documentation id="sk_animation_add_timeline">
+			<div class="title">sk_animation_add_timeline</div>
+			<div class="brief">Adds a timeline to an animation</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">sk_animation_add_timeline(animation, timeline);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>Animation</td>
+					<td>The animation you wish to set the duration</td>
+				</tr>
+				<tr>
+					<td>Timeline</td>
+					<td>The timeline you wish to add to your animation</td>
+				</tr>
+			</table>
+
+			<div class="returns">N/A</div>
+			<div class="subtitle">Description</div>
+			<p>This script adds a timeline to an animation.</p>
+			<div class="note">See <a href="#ref_timelines">Timelines</a> to read more about timelines</div>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+sk_animation_add_timeline(anim_walk, keyframe);</pre></div>
+			<p>The example code adds a timeline called "keyframe" to the animation.</p>
+		</documentation>
+
+		<documentation id="sk_animation_apply">
+			<div class="title">sk_animation_apply</div>
+			<div class="brief">Sets the pose for the specified time</div>
+			<div class="subtitle">Syntax</div>
+			<div class="code">sk_animation_apply(animation, timeLast, time, mixPose, alpha, wrap);</div>
+			<table>
+				<tr>
+					<th>Argument</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>Animation</td>
+					<td>The animation you wish to apply a pose</td>
+				</tr>
+				<tr>
+					<td>TimeLast</td>
+					<td>The time from the previous update</td>
+				</tr>
+				<tr>
+					<td>Time</td>
+					<td>The current time to set the pose</td>
+				</tr>
+				<tr>
+					<td>MixPose</td>
+					<td>Should this overwrite current animation pose (false), or "add" it (true). This is useful if you want to blend animations (Default is false)</td>
+				</tr>
+				<tr>
+					<td>Alpha</td>
+					<td>How much of an effect it should have on the armature (2 = 2x larger change, 1 = normal, 0 = no effect)</td>
+				</tr>
+				<tr>
+					<td>Wrap</td>
+					<td>Whether the animation should wrap back to the beginning of the animation once it reaches the end of the animation or not</td>
+				</tr>
+			</table>
+
+			<div class="returns">N/A</div>
+			<div class="subtitle">Description</div>
+			<p>Whenever you want your armature to play an animation, you will call this script to set the animation pose. You will need to supply a time so that the runtime knows what timeline(s) the animation pose should be near (or at).</p>
+			<div class="subtitle">Example</div>
+			<div class="code"><pre>
+sk_armature_setToSetupPose(my_armature);
+sk_animation_apply(anim_walk, timeLast, current_time*0.05, false, 1, true);
+sk_armature_updateWorldTransform(my_armature);
+
+timeLast = current_time*0.05;</pre></div>
+			<p>The example code first resets our armature pose. After that, we update our animation pose, then apply our animation pose to the armature pose.
+			Once the scripts have been executed, we get the current time to be used for the next animation update (step).</p>
 		</documentation>
 
 		<documentation id="sk_bone_create">
@@ -745,86 +735,18 @@ sk_animation_destroy(my_animation);</pre></div>
 					<th>Description</th>
 				</tr>
 				<tr>
-					<td>name</td>
+					<td>Name</td>
 					<td>The name of the structure.</td>
 				</tr>
 			</table>
 			<div class="returns">Bone</div>
 			<div class="subtitle">Description</div>
 			<p>This script can be used to create a new bone at runtime; these can be added to an armature using <a href="#sk_armature_add_bone">sk_armature_add_bone</a>.</p>
-			<p>This script also comes packaged with a selection of constants used for accessing and manipulating bone data:</p>
-			<table>
-				<tr>
-					<th>Constant(s) / SK_BONE.[...]</th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<td>X, Y</td>
-					<td>The setup pose X and Y displacements of the bone.</td>
-				</tr>
-				<tr>
-					<td>XScale, YScale</td>
-					<td>The setup pose X and Y scales of the bone.</td>
-				</tr>
-				<tr>
-					<td>XShear, YShear</td>
-					<td>The setup pose X and Y shears of the bone.</td>
-				</tr>
-				<tr>
-					<td>rotation</td>
-					<td>The setup pose rotation of the bone.</td>
-				</tr>
-				<tr>
-					<td>XApplied, YApplied</td>
-					<td>The applied pose X and Y displacements of the bone.</td>
-				</tr>
-				<tr>
-					<td>XScaleApplied, YScaleApplied</td>
-					<td>The applied pose X and Y scales of the bone.</td>
-				</tr>
-				<tr>
-					<td>XShearApplied, YShearApplied</td>
-					<td>The applied pose X and Y shears of the bone.</td>
-				</tr>
-				<tr>
-					<td>rotationApplied</td>
-					<td>The applied pose rotation of the bone.</td>
-				</tr>
-				<tr>
-					<td>XWorld, YWorld</td>
-					<td>The world displacement of the bone.</td>
-				</tr>
-				<tr>
-					<td>m00, m01, m10, m11</td>
-					<td>The world 2x2 rotation matrix of the bone.</td>
-				</tr>
-				<tr>
-					<td>badApplied</td>
-					<td>A flag that represents whether the current applied pose is valid for the current world transform.</td>
-				</tr>
-				<tr>
-					<td>transformMode</td>
-					<td>The transformMode of the bone (see <a href="#sk_bone_set_transformMode">sk_bone_set_transformMode</a>).</td>
-				</tr>
-				<tr>
-					<td>length</td>
-					<td>The length of the bone (this is used for IK and other constraints).</td>
-				</tr>
-				<tr>
-					<td>parent</td>
-					<td>A reference to the bone's parent bone.</td>
-				</tr>
-				<tr>
-					<td>sizeof</td>
-					<td>The size of the bone structure.</td>
-				</tr>
-			</table>
 			<div class="subtitle">Example</div>
 			<div class="code"><pre>
 var my_bone = bone_create("b_arm");
-var bone_world_x = my_bone[SK_BONE.XWorld];
-var bone_world_y = my_bone[SK_BONE.YWorld];</pre></div>
-			<p>The example code create a new bone called "b_arm", and store it in the variable "my_bone". Afterwards, it's world position is obtained and stored in corresponding variables.</p>
+sk_bone_set_position(my_bone,10,20);</pre></div>
+			<p>The example code creates a new bone called "b_arm", and stores it in the variable "my_bone". It's local position is then set to (10,20).</p>
 		</documentation>
 		
 		<documentation id="sk_armature_build_spine">
@@ -839,11 +761,11 @@ sk_armature_build_spine(json, name)</pre></div>
 					<th>Description</th>
 				</tr>
 				<tr>
-					<td>json</td>
+					<td>JSON</td>
 					<td>A string containing a json structure in the spine skeleton file format.</td>
 				</tr>
 				<tr>
-					<td>name</td>
+					<td>Name</td>
 					<td>The name to give to the armature (it could be anything).</td>
 				</tr>
 			</table>
@@ -851,7 +773,7 @@ sk_armature_build_spine(json, name)</pre></div>
 			<div class="subtitle">Description</div>
 			<p>This script will parse the supplied json, and returns a reference to the armature data structure if it was successful.
 If the build was unsuccessful, the function will return "noone", so you should always confirm the armature exists before attempting to render it.</p>
-<p><i><b>Note: </b>The name of the armature has no significant value. It's purely cosmetic.</i></p>
+<div class="note">The name of the armature has no significant value. It's purely cosmetic.</div>
 			<div class="subtitle">Example</div>
 			<div class="code"><pre>
 var PATH_SPINEBOY = "Skeletons/Spine/Esoteric/Spineboy/spineboy-ess.json";
@@ -878,11 +800,11 @@ sk_armature_build_dragonbones(json, armature_name_or_id)</pre></div>
 					<th>Description</th>
 				</tr>
 				<tr>
-					<td>json</td>
+					<td>JSON</td>
 					<td>A string containing a json structure in the dragonbones skeleton file format.</td>
 				</tr>
 				<tr>
-					<td>armature_name_or_id</td>
+					<td>Armature_name_or_id</td>
 					<td>The name or id of the armature you want to load (as specified in the editor).</td>
 				</tr>
 			</table>
@@ -916,11 +838,11 @@ sk_armature_build_spriter(json, armature_name_or_id)</pre></div>
 					<th>Description</th>
 				</tr>
 				<tr>
-					<td>json</td>
+					<td>JSON</td>
 					<td>A string containing a json structure in the spriter skeleton file format.</td>
 				</tr>
 				<tr>
-					<td>armature_name_or_id</td>
+					<td>Armature_name_or_id</td>
 					<td>The name or id of the armature you want to load (as specified in the editor).</td>
 				</tr>
 			</table>
