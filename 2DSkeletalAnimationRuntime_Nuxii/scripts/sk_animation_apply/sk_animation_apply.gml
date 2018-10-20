@@ -28,8 +28,6 @@ if(sk_anim_duration>0){
 var sk_mixPose = argument3;
 // iterate through timelines
 var sk_timeline_count = ds_list_size(sk_anim_timelines);
-var sk_timeline_id;
-for(sk_timeline_id = 0; sk_timeline_id < sk_timeline_count; sk_timeline_id++){
-	var sk_timelineData = sk_anim_timelines[| sk_timeline_id];
-	sk_timeline_apply(sk_timelineData,sk_time,sk_timeLast,sk_mixPose,sk_alpha,sk_anim_loopTime);
+for(var sk_timeline_id = 0; sk_timeline_id < sk_timeline_count; sk_timeline_id++){
+	sk_timeline_apply(sk_anim_timelines[| sk_timeline_id],sk_time,sk_timeLast,sk_mixPose,sk_alpha,sk_anim_loopTime);
 }

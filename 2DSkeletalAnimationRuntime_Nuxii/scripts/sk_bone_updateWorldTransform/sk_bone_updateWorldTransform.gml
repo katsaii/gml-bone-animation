@@ -59,8 +59,8 @@ if(sk_transform&sk_transformMode_translate){
 	sk_bone[@ SK_BONE.YWorld] = sk_parent[SK_BONE.YWorld] + sk_pb*sk_x+sk_pd*sk_y;
 } else {
 	// don't inherit translation
-	if(sk_global_flipX){	sk_x = -sk_x;	}
-	if(sk_global_flipY){	sk_y = -sk_y;	}
+	if(sk_global_flipX){ sk_x = -sk_x; }
+	if(sk_global_flipY){ sk_y = -sk_y; }
 	sk_bone[@ SK_BONE.XWorld] = sk_x;
 	sk_bone[@ SK_BONE.YWorld] = sk_y;
 }
@@ -144,8 +144,8 @@ switch(sk_transform){
 		var sk_c = dcos(sk_rotationY)*-sk_yscale;
 		var sk_d = -dsin(sk_rotationY)*-sk_yscale;
 		// set global flip
-		if(sk_global_flipX){	sk_a = -sk_a; sk_c = -sk_c;		}
-		if(sk_global_flipY){	sk_b = -sk_b; sk_d = -sk_d;		}
+		if(sk_global_flipX){ sk_a = -sk_a; sk_c = -sk_c; }
+		if(sk_global_flipY){ sk_b = -sk_b; sk_d = -sk_d; }
 		sk_bone[@ SK_BONE.m00] = sk_a;
 		sk_bone[@ SK_BONE.m01] = sk_b;
 		sk_bone[@ SK_BONE.m10] = sk_c;

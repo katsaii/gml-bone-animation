@@ -19,6 +19,8 @@ if(dir_y<0){
 
 var spd = 0.5;
 sk_animationState_update(animationState,dt*spd);
+
+if(current_time%4==0){
 sk_armature_setToSetupPose(armature);
 sk_animationState_apply(animationState,1);
 
@@ -49,3 +51,4 @@ sk_physics_boneState = v_phys;
 sk_armature_updateWorldTransform(armature);
 
 bufftex = vertex_bake_armature(armature,atlas,v_buff);
+}
