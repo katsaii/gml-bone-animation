@@ -1592,14 +1592,6 @@
             }
         },
         {
-            "Key": "554a2c9f-d201-4bcb-b36a-4f18cf65dd70",
-            "Value": {
-                "id": "45ae27a5-f3fe-4019-b85a-7cbeecbd9eaa",
-                "resourcePath": "scripts\\sk_ik_calculate_a\\sk_ik_calculate_a.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "557caf99-1de8-4e06-a056-00e7103301e9",
             "Value": {
                 "id": "1da15b4c-af85-4861-b895-f8328034bea8",
@@ -2260,14 +2252,6 @@
             "Value": {
                 "id": "4568d2db-044c-4546-86c6-26daef94573b",
                 "resourcePath": "scripts\\sk_timeline_get_target\\sk_timeline_get_target.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "7abd9f51-e2f3-4544-a9ee-17f5178bd641",
-            "Value": {
-                "id": "476c0daf-c897-4a39-9100-f9512fab1803",
-                "resourcePath": "scripts\\sk_ik_calculate_b\\sk_ik_calculate_b.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4088,14 +4072,6 @@
             }
         },
         {
-            "Key": "ec2365fb-6001-48e6-ab2e-101899879d82",
-            "Value": {
-                "id": "94a2915e-7cce-4794-9ce4-a88c54d8c446",
-                "resourcePath": "scripts\\sk_ik_apply_chain\\sk_ik_apply_chain.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "ec417187-601d-4b17-b9cc-940e1a53059f",
             "Value": {
                 "id": "81dc0507-fbfb-4731-9cdb-c8723adba70d",
@@ -4352,6 +4328,14 @@
             }
         },
         {
+            "Key": "fa5cba5a-d543-49ee-bbc6-c3b7ad8322c8",
+            "Value": {
+                "id": "f1033fa8-7e9c-4354-a7a2-3508e590f32d",
+                "resourcePath": "scripts\\sk_ik_apply_chain\\sk_ik_apply_chain.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fabab261-0192-421a-9b8c-81970ddc48b0",
             "Value": {
                 "id": "d722a644-09e9-473e-91f2-41cf44aa1f18",
@@ -4527,10 +4511,8 @@
         "8694e035-023d-44f3-ade7-953dcb5795ea",
         "cc39cef3-0cc1-4b56-8abe-fb0feab606fc",
         "68450212-8194-49b9-8992-57f5adbe8b42",
-        "ec2365fb-6001-48e6-ab2e-101899879d82",
+        "fa5cba5a-d543-49ee-bbc6-c3b7ad8322c8",
         "2ba76769-fcfb-4db3-82e5-ac8ccd9e7753",
-        "554a2c9f-d201-4bcb-b36a-4f18cf65dd70",
-        "7abd9f51-e2f3-4544-a9ee-17f5178bd641",
         "a7907476-c918-48b0-80c5-e2b836812b09",
         "0c81ef38-66a1-486e-8aac-cc4b30fd0b9f",
         "77bda9cd-c0ea-42ac-bbab-4d844d1b0b66",

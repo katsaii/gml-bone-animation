@@ -35,6 +35,16 @@ if(keyboard_check(vk_enter)){
 }
 draw_text(mouse_x,mouse_y-20,ratio);*/
 
+/*var v_bone = sk_armature_find_bone(armature,"b_ik_leg_right");
+sk_physics_boneState = noone;
+sk_armature_updateWorldTransform(armature);
+if(sk_struct_isof(v_bone,sk_type_bone)){
+	var buffx = room_width div 2;
+var buffy = (room_height div 2)*1.4;
+	v_bone[@ SK_BONE.XWorld] = (mouse_x-buffx)/10;
+	v_bone[@ SK_BONE.YWorld] = (mouse_y-buffy)/10;
+	sk_bone_updateAppliedTransform(v_bone);
+}*/
 sk_physics_boneState = v_phys;
 sk_armature_updateWorldTransform(armature);
 

@@ -25,6 +25,14 @@ if(!sk_struct_isof(atlas,sk_type_atlas)){
 	game_end();
 }
 
+var bb = sk_armature_find_bone(armature,"b_upperarm_left");
+sk_bone_set_scale(bb,1,2.5);
+var bb = sk_armature_find_bone(armature,"b_upperarm_right");
+sk_bone_set_scale(bb,2.5,1);
+//	bb = sk_armature_find_bone(armature,"b_shin_right");
+//sk_bone_set_position(bb,sk_bone_get_x(bb),10);
+//sk_bone_set_scale(bb,-1,1);
+
 #region
 var constraint = sk_constraint_create_physics("phys",sk_armature_find_bone(armature,"b_wrist_left"));
 sk_constraint_physics_set_rigid(constraint,false);
