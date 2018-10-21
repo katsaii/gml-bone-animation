@@ -25,6 +25,7 @@ Alternatively, due to the decentralised nature of the runtime, you can use the f
 - Manipulate bone, slot, and other skeleton data freely at runtime.
 - Supports non-uniform scale and skew transforms for bones and region attachments.
 - Support for transformation and IK constraints.
+- IK constraint support for non-uniform parent scales.
 - Skin support, and the ability to apply these skins simultaneously to mix and match your armatures.
 - Use a skins remap stack to override a skins default attachment with another ([similar in design to Spriters character maps](https://www.youtube.com/watch?v=NufHCAHrEdw))
 - Event support.
@@ -51,8 +52,3 @@ Alternatively, due to the decentralised nature of the runtime, you can use the f
 
 ### Limitations
 - All sprites must be located on the same texture atlas in order to be attached.
-- IK constraints are not supported for non-uniform parent scales.
-
-### Examples
-
-TBA
