@@ -1,5 +1,5 @@
 /// @desc deletes the supplied structure and unhooks its array
-/// @param event
+/// @param animation
 if(array_unhook_sk_structure(argument0)){
 	// iterate through timelines and dispose
 	var sk_anim_timelines = argument0[SK_ANIMATION.timelines];
