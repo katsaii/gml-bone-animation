@@ -20,7 +20,7 @@ if(dir_y<0){
 var spd = 0.5;
 sk_animationState_update(animationState,dt*spd);
 
-if(current_time%4==0){
+if(current_time){
 sk_armature_setToSetupPose(armature);
 sk_animationState_apply(animationState,1);
 

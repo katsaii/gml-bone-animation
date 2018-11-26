@@ -2,6 +2,10 @@
 
 This project for Gamemaker Studio 2 contains a diverse range of useful scripts for importing and manipulating skeletal animation sprites at runtime.
 
+This repo contains two projects: "V1" Is a more extensible, but slower, runtime; "V2" (In progress) Is a more compact and efficient runtime designed to get the most FPS out of your armatures.
+
+If you use "V1", you are able to make use of the decentralised nature of the runtime to create and manage your own armature data without the use of external software.
+
 ## Downloads
 
 Download the project file ([.zip](https://github.com/NuxiiGit/GML2DSkeletalAnimation/archive/master.zip)), or clone the project through git using:
@@ -15,8 +19,6 @@ git clone git@github.com:NuxiiGit/GML2DSkeletalAnimation.git
 > [Spine](http://esotericsoftware.com/)
 > [DragonBones](http://dragonbones.com)
 > [Spriter](https://brashmonkey.com/)
-
-Alternatively, due to the decentralised nature of the runtime, you can use the features I offer without the use of external software by dynamically creating bones and other skeleton data at runtime without the need for an armature or texture atlas.
 
 ### Features
 
