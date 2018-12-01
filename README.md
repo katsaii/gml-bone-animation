@@ -2,9 +2,7 @@
 
 This project for Gamemaker Studio 2 contains a diverse range of useful scripts for importing and manipulating skeletal animation sprites at runtime.
 
-This repo contains two projects: "V1" Is a more extensible, but slower, runtime; "V2" (In progress) Is a more compact and efficient runtime designed to get the most FPS out of your armatures.
-
-If you use "V1", you are able to make use of the decentralised nature of the runtime to create and manage your own armature data without the use of external software.
+You are able to make use of the decentralised nature of the runtime to create and manage your own armature data without the use of external software.
 
 ## Downloads
 
