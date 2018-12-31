@@ -119,6 +119,14 @@
             }
         },
         {
+            "Key": "21cdcef1-3c65-4f0e-b8bd-0fc94b228f0a",
+            "Value": {
+                "id": "81e947a0-dc9c-4db3-99c1-f61260040248",
+                "resourcePath": "datafiles_yy\\Palia_Skeleton_tex.json.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "226692cc-118f-4283-8fd7-78301069af09",
             "Value": {
                 "id": "04febf71-2fb4-402b-a998-22962242f014",
@@ -132,6 +140,14 @@
                 "id": "4a3dac89-a78f-4186-a726-3dd72a0bc31b",
                 "resourcePath": "views\\271d4200-a0b7-4084-8892-f381213317d7.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "281293d3-13c7-4a9d-af84-d500129d056d",
+            "Value": {
+                "id": "caf505b0-ca59-40a0-ac66-22925bfaf4fe",
+                "resourcePath": "scripts\\sk_atlas_set_page\\sk_atlas_set_page.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -199,6 +215,14 @@
             }
         },
         {
+            "Key": "35330147-8f84-4f97-8af3-cf0424c19d85",
+            "Value": {
+                "id": "cf2dcbf3-7661-4887-acae-2a0ba4e8eb3b",
+                "resourcePath": "scripts\\sk_atlas_create_dragonbones\\sk_atlas_create_dragonbones.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "355e20ff-f763-40ba-9016-772e9531e0df",
             "Value": {
                 "id": "4869bb54-3105-49d6-8bbf-abcfa8463dfe",
@@ -228,6 +252,22 @@
                 "id": "c96c186e-9250-4715-8399-7b65e8a9d421",
                 "resourcePath": "views\\3d6319ac-6903-4e03-bcdd-60ef71d0efd3.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "4130770d-0330-4db6-ab01-cd7ac4892d3e",
+            "Value": {
+                "id": "79e2f330-2d17-4fa9-99c0-db3a3cd7bb6a",
+                "resourcePath": "scripts\\sk_atlas_create\\sk_atlas_create.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "416f7cf1-c690-4bbf-9d8a-8c72b5b78b95",
+            "Value": {
+                "id": "c71ad2fb-3a72-4eee-ab2d-941808c0037d",
+                "resourcePath": "scripts\\sk_atlas_destroy\\sk_atlas_destroy.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -479,6 +519,14 @@
             }
         },
         {
+            "Key": "7f27a347-9740-452b-88d4-d396c21062d6",
+            "Value": {
+                "id": "1f92a8fa-df8c-4b91-9b03-52b1a0559422",
+                "resourcePath": "scripts\\sk_atlas_create_libgdx\\sk_atlas_create_libgdx.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8036b00b-cef0-48be-9aa1-7926bcff0ff9",
             "Value": {
                 "id": "104ffb4b-d0a2-43a7-85ae-efdc16e35abd",
@@ -492,6 +540,14 @@
                 "id": "fb0650a3-77d4-4daf-a655-eabe7449ef26",
                 "resourcePath": "views\\846c1508-0e46-49f7-aeec-d8a343cb6f6d.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "8706a324-295f-4491-9951-83aa94f0d669",
+            "Value": {
+                "id": "11efdb88-5551-4091-9dcc-cfbf8948ae7b",
+                "resourcePath": "scripts\\sk_atlas_add_region_direct\\sk_atlas_add_region_direct.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -687,6 +743,14 @@
             }
         },
         {
+            "Key": "bd56e017-5a4e-4062-bdd5-176ce5777181",
+            "Value": {
+                "id": "e52b3dad-dee2-47f1-954c-4b445363dc34",
+                "resourcePath": "datafiles_yy\\Palia_Skeleton_tex.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "bd856c10-8505-4690-b8a7-1f45861e9ba4",
             "Value": {
                 "id": "b87552b9-8813-407c-b1e5-fea1007eb630",
@@ -751,6 +815,14 @@
             }
         },
         {
+            "Key": "d2eefe47-8430-4cbf-9627-d874a63b654e",
+            "Value": {
+                "id": "41a2c13c-91c6-4f38-ac1b-fbe1af7d4321",
+                "resourcePath": "scripts\\sk_atlas_draw_debug\\sk_atlas_draw_debug.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d46ec86f-f523-4655-a7bb-a12493206584",
             "Value": {
                 "id": "ecef10e1-f559-43a6-a11a-5d8c9de2487e",
@@ -804,6 +876,14 @@
                 "id": "a7fd150e-19ed-49f7-af53-950eb789b43e",
                 "resourcePath": "views\\e4602284-27d1-470b-8e50-f4dce0c0089a.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "e803b7ae-447b-483b-a9d4-60f54668c5d5",
+            "Value": {
+                "id": "b3a6540e-db7f-4b9d-9f6f-4f9c0b42853b",
+                "resourcePath": "scripts\\sk_atlas_add_region\\sk_atlas_add_region.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -868,6 +948,14 @@
         "928a890e-70ac-4d7f-a9df-be4bf25df6d5",
         "ddbf6645-37e6-4d28-9e38-16b7a070ea83",
         "787b9667-10e1-4a66-856a-4c495dc56541",
+        "4130770d-0330-4db6-ab01-cd7ac4892d3e",
+        "35330147-8f84-4f97-8af3-cf0424c19d85",
+        "7f27a347-9740-452b-88d4-d396c21062d6",
+        "416f7cf1-c690-4bbf-9d8a-8c72b5b78b95",
+        "281293d3-13c7-4a9d-af84-d500129d056d",
+        "e803b7ae-447b-483b-a9d4-60f54668c5d5",
+        "8706a324-295f-4491-9951-83aa94f0d669",
+        "d2eefe47-8430-4cbf-9627-d874a63b654e",
         "56a92cbb-4406-4083-8c5b-44db7327b184",
         "60270193-3469-49bd-8a65-e431efde1846",
         "53823a7d-6ec4-4bbe-960a-e982a6975bcc",
