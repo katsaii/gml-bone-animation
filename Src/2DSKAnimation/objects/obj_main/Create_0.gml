@@ -12,3 +12,5 @@ sk_bone_setToSetupPose(b);
 sk_bone_setToSetupPose(b2);
 sk_bone_updateWorldTransform(b);
 sk_bone_updateWorldTransform_other(b2,b);
+
+s = sk_slot_create("s");
