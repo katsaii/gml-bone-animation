@@ -31,6 +31,14 @@
     },
     "resources": [
         {
+            "Key": "028e9de7-632a-4564-a1f9-7cc6e75ac429",
+            "Value": {
+                "id": "07a9f746-f9a3-4396-9572-9b776b4df87c",
+                "resourcePath": "scripts\\sk_hex_get_colour\\sk_hex_get_colour.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "09549d55-1bd1-4852-9d11-4fa2cbb03ce8",
             "Value": {
                 "id": "ccd7265c-c2e2-492a-a5f3-26974ff146fb",
@@ -196,6 +204,14 @@
                 "id": "4869bb54-3105-49d6-8bbf-abcfa8463dfe",
                 "resourcePath": "views\\355e20ff-f763-40ba-9016-772e9531e0df.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "3847e997-70d3-4238-9fa8-f2cef2c8649f",
+            "Value": {
+                "id": "344ec57c-5847-4060-b718-dbda40da95dc",
+                "resourcePath": "scripts\\sk_hex_get_alpha\\sk_hex_get_alpha.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -655,6 +671,14 @@
             }
         },
         {
+            "Key": "b9fa5f82-2cb5-495d-942c-8755796fb0f9",
+            "Value": {
+                "id": "2274061f-73b6-4a30-a165-34f56665a5a5",
+                "resourcePath": "views\\b9fa5f82-2cb5-495d-942c-8755796fb0f9.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "ba8c4777-c9a6-4437-836e-d796718facde",
             "Value": {
                 "id": "d380b9d3-2960-40e3-8480-afc9894ed145",
@@ -675,6 +699,14 @@
             "Value": {
                 "id": "07894a7c-f893-4b12-974c-e08da8f6d14b",
                 "resourcePath": "scripts\\sk_object_build_attachment\\sk_object_build_attachment.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c6c8882b-cacf-4d9f-8044-8d9a101ee01b",
+            "Value": {
+                "id": "dbf2aaa2-b636-441c-870d-5c97fcad1e16",
+                "resourcePath": "scripts\\sk_hex_get_real\\sk_hex_get_real.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -844,7 +876,10 @@
         "90630385-bbe0-4d00-8fee-027108bc6b00",
         "78499944-7483-49ad-a2c0-a377a97b0b55",
         "1815a4d4-4738-4d48-aba8-0b2e639bbf25",
-        "32bdd8e7-cbd9-4b6e-a4d0-8c2129f1ada7"
+        "32bdd8e7-cbd9-4b6e-a4d0-8c2129f1ada7",
+        "c6c8882b-cacf-4d9f-8044-8d9a101ee01b",
+        "028e9de7-632a-4564-a1f9-7cc6e75ac429",
+        "3847e997-70d3-4238-9fa8-f2cef2c8649f"
     ],
     "tutorial": ""
 }
