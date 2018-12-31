@@ -1,10 +1,16 @@
 gml_pragma("forceinline");
 #macro sk_timeline_keyframe_time 0
 #macro sk_timeline_keyframe_body 1
-/// @desc applies the attachment to the supplied vbuffer
-/// @param attachment
-/// @param vbuff
-/// @param bone
+#macro sk_mixPose_mix 0 /* interpolates between the current pose and next pose */
+#macro sk_mixPose_add 1 /* adds the next pose to the current pose */
+#macro sk_mixPose_overwrite 2 /* permanently overwrites the setup pose with the supplied animation, this is useful for changing colours and transforms globally - THIS IS NOT A REVERTABLE ACTION */
+/// @desc applies the pose at the given time in the timeline
+/// @param timeline
+/// @param time (the time to search for)
+/// @param timeLast (the previous frame time)
+/// @param mixPose
+/// @param alpha
+/// @param loopTime (the duration of the timeline to loop)
 var sk_target = argument0[sk_timeline_var_target];
 var sk_keyframes = argument0[sk_timeline_var_keyframes];
 var sk_keyframe_ENTRIES = argument0[sk_timeline_var_ENTRIES];
