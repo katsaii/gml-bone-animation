@@ -1,7 +1,7 @@
-#macro sk_object_var_type 0+2,0
-#macro sk_object_var_name 0+2,1
-#macro sk_object_var_class 0+2,2
-#macro sk_object_var_args 0+2,3
+#macro sk_object_var_type 0+1,0
+#macro sk_object_var_name 0+1,1
+#macro sk_object_var_class 0+1,2
+#macro sk_object_var_args 0+1,3
 /// @desc creates an empty skeleton object
 /// @param type
 /// @param name
