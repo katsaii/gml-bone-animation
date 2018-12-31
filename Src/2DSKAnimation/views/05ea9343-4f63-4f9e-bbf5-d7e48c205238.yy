@@ -4,8 +4,9 @@
     "mvc": "1.1",
     "name": "05ea9343-4f63-4f9e-bbf5-d7e48c205238",
     "children": [
-        "8d47030c-cac0-4bc7-8311-bd4d774c444d",
-        "2b62895a-32bd-434b-8371-feaa6f5dcef6"
+        "2b62895a-32bd-434b-8371-feaa6f5dcef6",
+        "b4a2867f-38fe-4b6a-9be3-2fe901aaa9be",
+        "7c17cb41-310f-45f6-a8c3-2cc0f3c1d201"
     ],
     "filterType": "GMScript",
     "folderName": "Methods",
