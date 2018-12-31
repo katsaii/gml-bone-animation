@@ -7,7 +7,7 @@
 #macro sk_atlas_var_subtextures 5
 /// @desc creates a new object and returns its reference
 /// @param name
-var sk_obj = sk_object_build();
+var sk_obj = sk_object_build(sk_type_atlas,argument0,undefined);
 sk_obj[@ sk_atlas_var_subtextures] = ds_map_create();
 sk_atlas_set_page(sk_obj,-1,0);
 return sk_obj;

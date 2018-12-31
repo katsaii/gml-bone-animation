@@ -106,7 +106,7 @@
             "Key": "1b0b17f6-9598-411c-adb0-32ea44f361e5",
             "Value": {
                 "id": "282adc32-c724-4b4d-8a9e-295e4fc3925e",
-                "resourcePath": "scripts\\sk_animation_set_duration\\sk_animation_set_duration.yy",
+                "resourcePath": "scripts\\sk_animation_set_range\\sk_animation_set_range.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -291,6 +291,14 @@
             "Value": {
                 "id": "2912c5f4-2748-4273-bf34-ee73bfa6940c",
                 "resourcePath": "views\\4546e1e3-1aa1-417d-8a37-cda8f7d6e450.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "4691c7db-fc52-42e1-a824-682ced5aea2d",
+            "Value": {
+                "id": "62aee6a7-cfb1-411d-bde7-80a05288938e",
+                "resourcePath": "views\\4691c7db-fc52-42e1-a824-682ced5aea2d.yy",
                 "resourceType": "GMFolder"
             }
         },
@@ -663,14 +671,6 @@
             }
         },
         {
-            "Key": "928a890e-70ac-4d7f-a9df-be4bf25df6d5",
-            "Value": {
-                "id": "6b00a9cb-1353-4272-bedc-2e7e48f17d7a",
-                "resourcePath": "scripts\\sk_animation_set_looping\\sk_animation_set_looping.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "970f36a7-58c7-4297-988f-fb5259b5b1b2",
             "Value": {
                 "id": "ef63070b-f238-46ac-8d2d-9a4fa9d4841d",
@@ -991,6 +991,14 @@
             }
         },
         {
+            "Key": "f5cebf62-1c2b-40cb-aafc-d89533019b3c",
+            "Value": {
+                "id": "1990e4fb-ef25-4cf8-ade4-faec9738e8cf",
+                "resourcePath": "views\\f5cebf62-1c2b-40cb-aafc-d89533019b3c.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "f778f4d0-bc3b-4af4-8a2d-8ffeed9c4a1e",
             "Value": {
                 "id": "7ecd60e3-2c9f-4897-9f9f-a843ff541e3e",
@@ -1024,7 +1032,6 @@
         "cd94490a-4914-4b9e-8483-4165ba0ba40d",
         "3d564223-65df-4f03-b064-95aa5865e082",
         "1b0b17f6-9598-411c-adb0-32ea44f361e5",
-        "928a890e-70ac-4d7f-a9df-be4bf25df6d5",
         "5d086632-4df0-4385-a915-e80b4148fb8a",
         "ddbf6645-37e6-4d28-9e38-16b7a070ea83",
         "787b9667-10e1-4a66-856a-4c495dc56541",
