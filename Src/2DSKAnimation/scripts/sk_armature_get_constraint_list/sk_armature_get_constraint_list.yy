@@ -1,8 +1,8 @@
 {
-    "id": "c642ab13-a66d-4f98-a01a-5dd1c7fe61be",
+    "id": "4cb0198c-58b9-4fd5-ae3d-05f90d2fe643",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_armature_find_attachment",
+    "name": "sk_armature_get_constraint_list",
     "IsCompatibility": false,
     "IsDnD": false
 }

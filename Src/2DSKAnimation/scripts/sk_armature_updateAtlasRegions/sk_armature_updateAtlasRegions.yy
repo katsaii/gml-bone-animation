@@ -1,8 +1,8 @@
 {
-    "id": "5e3fe8d3-f878-4767-a9e7-cb4d2a4ca67c",
+    "id": "b458ab00-a121-44ac-b233-f36503ce978f",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_armature_find_slot",
+    "name": "sk_armature_updateAtlasRegions",
     "IsCompatibility": false,
     "IsDnD": false
 }

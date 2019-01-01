@@ -1,8 +1,8 @@
 {
-    "id": "80a91344-a0cc-403f-a2c5-69eb64dee07a",
+    "id": "3fe89578-c7ea-4a18-a588-c57a2fcf5aec",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_armature_find_bone",
+    "name": "sk_armature_get_skin",
     "IsCompatibility": false,
     "IsDnD": false
 }
