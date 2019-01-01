@@ -12,7 +12,7 @@
 #macro sk_bone_var_invalidAppliedTransform 10
 /// @desc creates a new object and returns its reference
 /// @param name
-var sk_obj = sk_object_build_updatable(sk_type_bone,argument0,"sk_bone_destroy","sk_bone_setToSetupPose","sk_bone_updateWorldTransform","sk_bone_cache");
+var sk_obj = sk_object_build_updatable(sk_type_bone,argument0,-1,"sk_bone_setToSetupPose","sk_bone_updateWorldTransform","sk_bone_cache");
 sk_bone_set_parent(sk_obj,noone);
 sk_bone_set_length(sk_obj,100);
 sk_bone_set_setupPose(sk_obj,0,0,1,1,0,0,0,sk_transformMode_normal);

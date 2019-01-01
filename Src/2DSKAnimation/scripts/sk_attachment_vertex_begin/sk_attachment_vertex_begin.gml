@@ -9,5 +9,7 @@ gml_pragma("global",@"
 /// @param attachment
 /// @param vbuff
 /// @param bone
+/// @param colour
+/// @param alpha
 vertex_begin(argument1,global.sk_attachment_vformat);
-sk_attachment_vertex_add(argument0,argument1,argument2);
+sk_attachment_vertex_add(argument0,argument1,argument2,argument3,argument4);
