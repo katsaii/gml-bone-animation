@@ -20,4 +20,19 @@ sk_attachment_plane_set_matrix(att,0,0,10,10,0,0,0);
 sk_attachment_plane_set_region(att,"base_head");
 sk_attachment_plane_updateRegionData(att,a);
 
+att2 = sk_attachment_create_plane("t");
+sk_attachment_plane_set_matrix(att2,0,0,10,10,0,0,0);
+sk_attachment_plane_set_region(att2,"classic_body");
+sk_attachment_plane_updateRegionData(att2,a);
+
+sk = sk_skin_create("sk");
+var remap = ds_map_create();
+remap[? att] = att2;
+sk_skin_remap_add(sk,remap,"classic");
+sk_skin_record_add(sk,s,att,"k");
+sk_skin_remap_stack_push(sk,"classic");
+sk_skin_apply(sk,false);
+
+sk_slot_updateAttachment(s,"k");
+
 v = vertex_create_buffer();
