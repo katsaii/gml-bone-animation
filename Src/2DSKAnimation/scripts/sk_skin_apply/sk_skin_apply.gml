@@ -10,7 +10,7 @@ if(argument1){
 	// clear previous slot attachments
 	for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id++){
 		var sk_display = sk_displays[| sk_display_id];
-		sk_slot_attachments_clear(sk_display[0]);
+		sk_symbol_attachments_clear(sk_display[0]);
 	}
 }
 // add new attachments
@@ -32,5 +32,5 @@ for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id++){
 		}
 	}
 	// add final attachment to slot
-	sk_slot_attachments_add(sk_slot,sk_attachmentKey,sk_attachment);
+	sk_symbol_attachments_add(sk_slot,sk_attachmentKey,sk_attachment);
 }

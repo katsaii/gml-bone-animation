@@ -22,5 +22,5 @@ sk_obj[@ sk_armature_var_attachments] = ds_list_create();
 sk_obj[@ sk_armature_var_updateOrder] = ds_list_create();
 sk_obj[@ sk_armature_var_drawOrder] = ds_list_create();
 sk_obj[@ sk_armature_var_drawOrderFinal] = ds_list_create();
-//sk_armature_add_skin(sk_obj,sk_skin_create("default"));
+sk_armature_add_skin(sk_obj,sk_skin_create("default"));
 return sk_obj;

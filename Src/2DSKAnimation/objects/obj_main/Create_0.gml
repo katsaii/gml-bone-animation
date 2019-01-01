@@ -15,7 +15,7 @@ sk_bone_updateWorldTransform_other(b2,b);
 
 s = sk_slot_create("s");
 
-sk_slot_set_setupPose(s,c_white,1,b2,undefined);
+sk_symbol_set_setupPose(s,c_white,1,b2,undefined);
 
 att = sk_attachment_create_plane("t");
 sk_attachment_plane_set_matrix(att,0,0,10,10,0,0,0);
@@ -35,7 +35,7 @@ sk_skin_record_add(sk,s,att,"k");
 sk_skin_remap_stack_push(sk,"classic");
 sk_skin_apply(sk,false);
 
-sk_slot_setToSetupPose(s);
-sk_slot_updateAttachment(s,"k");
+sk_symbol_setup(s);
+sk_symbol_updateAttachment(s,"k");
 
 v = vertex_create_buffer();
