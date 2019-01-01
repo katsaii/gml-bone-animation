@@ -847,6 +847,14 @@
             }
         },
         {
+            "Key": "773a0d79-d767-4998-b521-96c2bf4dc9eb",
+            "Value": {
+                "id": "701b2145-c2a6-4bbd-92fa-26e659e6869d",
+                "resourcePath": "scripts\\sk_atlas_create_scon\\sk_atlas_create_scon.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "78499944-7483-49ad-a2c0-a377a97b0b55",
             "Value": {
                 "id": "fb6f96bb-f1ab-4be1-b835-eb2052dec010",
@@ -1670,6 +1678,7 @@
         "4130770d-0330-4db6-ab01-cd7ac4892d3e",
         "35330147-8f84-4f97-8af3-cf0424c19d85",
         "7f27a347-9740-452b-88d4-d396c21062d6",
+        "773a0d79-d767-4998-b521-96c2bf4dc9eb",
         "516dd0b9-047f-4b2f-beaa-cba2d0fc657d",
         "281293d3-13c7-4a9d-af84-d500129d056d",
         "416f7cf1-c690-4bbf-9d8a-8c72b5b78b95",
