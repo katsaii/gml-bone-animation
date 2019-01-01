@@ -1,8 +1,8 @@
 {
-    "id": "b458ab00-a121-44ac-b233-f36503ce978f",
+    "id": "6168ed4c-29f5-4814-ad65-0d8646fc0b37",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_armature_updateAtlas",
+    "name": "sk_atlas_create_scon_context",
     "IsCompatibility": false,
     "IsDnD": false
 }

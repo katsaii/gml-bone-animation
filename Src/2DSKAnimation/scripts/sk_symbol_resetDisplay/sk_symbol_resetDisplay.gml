@@ -1,3 +1,3 @@
 /// @desc sets the default attachment display
 /// @param slot
-sk_symbol_updateAttachment(argument0,argument0[sk_symbol_var_defaultAttachmentKey]);
+argument0[@ sk_symbol_var_defaultAttachment] = ds_map_find_value(argument0[sk_symbol_var_availableAttachments],argument0[sk_symbol_var_defaultAttachmentKey]);

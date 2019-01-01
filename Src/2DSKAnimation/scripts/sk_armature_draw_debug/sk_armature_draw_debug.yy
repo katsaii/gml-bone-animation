@@ -1,8 +1,8 @@
 {
-    "id": "5ac61c7c-c152-4125-b692-e2ff59d69dd0",
+    "id": "f3f88042-0d52-49fe-83b2-3b3537dc4c43",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_armature_setToDefaultDisplay",
+    "name": "sk_armature_draw_debug",
     "IsCompatibility": false,
     "IsDnD": false
 }

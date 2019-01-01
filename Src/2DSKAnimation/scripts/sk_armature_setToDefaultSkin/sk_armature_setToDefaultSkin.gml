@@ -8,4 +8,4 @@ for(var sk_slot_id = 0; sk_slot_id<sk_slot_count; sk_slot_id++){
 // set default skin
 sk_skin_apply(sk_armature_get_default_skin(argument0),false);
 // set default attachments for all slots
-sk_armature_setToDefaultDisplay(argument0);
+sk_armature_resetDisplay(argument0);

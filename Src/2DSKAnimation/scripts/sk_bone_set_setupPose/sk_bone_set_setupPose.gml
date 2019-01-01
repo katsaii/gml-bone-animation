@@ -21,8 +21,8 @@
 argument0[@ sk_bone_var_setupTransform] = [
 	real(argument1),
 	real(argument2),
-	is_real(argument3) ? argument3 : 1,
-	is_real(argument4) ? argument4 : 1,
+	is_real(argument8) ? argument3 : 1,
+	is_real(argument8) ? argument4 : 1,
 	real(argument5),
 	real(argument6),
 	real(argument7),
