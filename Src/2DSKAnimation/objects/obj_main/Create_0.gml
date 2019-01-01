@@ -8,10 +8,7 @@ b = sk_bone_create("a");
 b2 = sk_bone_create("b");
 sk_bone_set_setupPose(b,10,0,1,1,0,0,45,sk_transformMode_normal);
 sk_bone_set_setupPose(b2,100,0,1,1,0,0,-110,sk_transformMode_normal);
-sk_bone_setToSetupPose(b);
-sk_bone_setToSetupPose(b2);
-sk_bone_updateWorldTransform(b);
-sk_bone_updateWorldTransform_other(b2,b);
+sk_bone_set_parent(b2,b);
 
 s = sk_slot_create("s");
 
@@ -39,3 +36,10 @@ sk_symbol_setup(s);
 sk_symbol_updateAttachment(s,"k");
 
 v = vertex_create_buffer();
+
+ar = sk_armature_create("");
+sk_armature_add_bone(ar,b);
+sk_armature_add_bone(ar,b2);
+sk_armature_updateCache(ar);
+sk_armature_setToSetupPose(ar);
+sk_armature_updateWorldTransform(ar);

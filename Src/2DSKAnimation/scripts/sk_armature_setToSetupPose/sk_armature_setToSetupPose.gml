@@ -10,6 +10,6 @@ for(var sk_updatable_id = 0; sk_updatable_id<sk_updatable_count; sk_updatable_id
 }
 // set slots to setup pose
 var sk_slot_count = ds_list_size(sk_drawOrder);
-for(var sk_slot_count = 0; sk_slot_count<sk_slot_count; sk_slot_count++){
-	sk_symbol_setup(sk_drawOrder[| sk_slot_count]);
+for(var sk_slot_id = 0; sk_slot_id<sk_slot_count; sk_slot_id++){
+	sk_symbol_setup(sk_drawOrder[| sk_slot_id]);
 }

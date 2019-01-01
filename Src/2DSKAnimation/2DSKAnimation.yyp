@@ -1047,14 +1047,6 @@
             }
         },
         {
-            "Key": "7aef1084-7c92-41d1-8e1d-92d0d242cdef",
-            "Value": {
-                "id": "0332051d-eff9-4af8-a180-886161bc41bf",
-                "resourcePath": "scripts\\sk_armature_draw_debug\\sk_armature_draw_debug.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "7c49070c-81df-4e4e-81b8-799326e865ab",
             "Value": {
                 "id": "f1839586-e951-44f9-858a-7ba7cc46ef34",
@@ -1458,7 +1450,7 @@
             "Key": "b458ab00-a121-44ac-b233-f36503ce978f",
             "Value": {
                 "id": "4ac47029-295a-4392-8937-9a0c4c97a8c0",
-                "resourcePath": "scripts\\sk_armature_updateAtlasRegions\\sk_armature_updateAtlasRegions.yy",
+                "resourcePath": "scripts\\sk_armature_updateAtlas\\sk_armature_updateAtlas.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1515,6 +1507,14 @@
             "Value": {
                 "id": "b87552b9-8813-407c-b1e5-fea1007eb630",
                 "resourcePath": "scripts\\sk_object_type\\sk_object_type.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "c15ec892-a80d-4220-9dc3-9f999fefc2a0",
+            "Value": {
+                "id": "ee69a8bd-2026-4285-a9f6-bc5ccc0919d1",
+                "resourcePath": "scripts\\sk_armature_vertex_apply\\sk_armature_vertex_apply.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1675,6 +1675,14 @@
             "Value": {
                 "id": "b3f2d930-a3b2-49cd-8fa2-18d76117f4d0",
                 "resourcePath": "scripts\\sk_bone_set_length\\sk_bone_set_length.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "dbb2e69f-fc68-43f5-9511-0f6cf94b1755",
+            "Value": {
+                "id": "5afa2661-205c-4cb9-b660-6d6cad26570e",
+                "resourcePath": "scripts\\sk_bone_cache\\sk_bone_cache.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1939,6 +1947,7 @@
         "28a989f7-fc69-4bd8-b1a9-9ddc40a54607",
         "defdf743-6a0a-470c-a771-d7f141078750",
         "9f23cec9-38ab-40dc-bc41-bb61c4b206d2",
+        "dbb2e69f-fc68-43f5-9511-0f6cf94b1755",
         "46e2d976-de33-4193-98b9-5ce1838e3acd",
         "0d511caf-ed24-4aa1-ad26-75b6d51c67cc",
         "80a91344-a0cc-403f-a2c5-69eb64dee07a",
@@ -1968,7 +1977,7 @@
         "b0e22c3b-061a-4a72-833b-b6b9e2cb41f5",
         "b458ab00-a121-44ac-b233-f36503ce978f",
         "674ecff3-59e4-4c1d-8642-e668446c55f6",
-        "7aef1084-7c92-41d1-8e1d-92d0d242cdef",
+        "c15ec892-a80d-4220-9dc3-9f999fefc2a0",
         "63db899c-cfda-4907-9304-970da9c69b52",
         "9f34b610-03e7-4618-ba1f-3f2c71dd4cd7",
         "e7ecff9a-944b-4e21-bfd8-c955d9767d0d",

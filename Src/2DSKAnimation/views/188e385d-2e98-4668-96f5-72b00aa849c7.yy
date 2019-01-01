@@ -12,7 +12,8 @@
         "e4359ba0-d337-495c-a95f-5ce56e6bcc76",
         "28a989f7-fc69-4bd8-b1a9-9ddc40a54607",
         "defdf743-6a0a-470c-a771-d7f141078750",
-        "9f23cec9-38ab-40dc-bc41-bb61c4b206d2"
+        "9f23cec9-38ab-40dc-bc41-bb61c4b206d2",
+        "dbb2e69f-fc68-43f5-9511-0f6cf94b1755"
     ],
     "filterType": "GMScript",
     "folderName": "Methods",

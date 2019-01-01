@@ -1,8 +1,8 @@
 {
-    "id": "7aef1084-7c92-41d1-8e1d-92d0d242cdef",
+    "id": "dbb2e69f-fc68-43f5-9511-0f6cf94b1755",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_armature_draw_debug",
+    "name": "sk_bone_cache",
     "IsCompatibility": false,
     "IsDnD": false
 }
