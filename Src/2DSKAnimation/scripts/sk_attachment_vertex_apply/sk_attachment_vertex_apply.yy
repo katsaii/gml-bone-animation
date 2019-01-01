@@ -1,8 +1,8 @@
 {
-    "id": "7c17cb41-310f-45f6-a8c3-2cc0f3c1d201",
+    "id": "b4a2867f-38fe-4b6a-9be3-2fe901aaa9be",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_attachment_vertex_end",
+    "name": "sk_attachment_vertex_apply",
     "IsCompatibility": false,
     "IsDnD": false
 }

@@ -1,8 +1,8 @@
 {
-    "id": "2b62895a-32bd-434b-8371-feaa6f5dcef6",
+    "id": "0a60b6cb-9ac0-4e53-ac2c-645333e7e74e",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_attachment_vertex_begin",
+    "name": "sk_symbol_setup",
     "IsCompatibility": false,
     "IsDnD": false
 }

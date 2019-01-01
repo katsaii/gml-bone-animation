@@ -7,6 +7,6 @@
 argument0[@ sk_slot_var_finalPose] = [
 	real(argument1),
 	real(argument2),
-	sk_object_oftype(argument1,sk_type_bone) ? argument3 : undefined,
-	sk_object_ofclass(argument1,sk_class_attachment) ? argument4 : undefined
+	sk_object_oftype(argument3,sk_type_bone) ? argument3 : undefined,
+	sk_object_ofclass(argument4,sk_class_attachment) ? argument4 : undefined
 ];

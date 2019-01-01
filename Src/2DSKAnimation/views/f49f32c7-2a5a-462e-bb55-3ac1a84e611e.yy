@@ -4,13 +4,13 @@
     "mvc": "1.1",
     "name": "f49f32c7-2a5a-462e-bb55-3ac1a84e611e",
     "children": [
-        "69f2cc50-9b28-43bc-a3a8-71b310fc0893",
-        "654f0d64-f95c-4cf6-b786-f8f794af5ae1",
-        "0abea4d8-fff5-43a2-bd12-497e04235367",
-        "29907940-4f0a-4880-b857-919e17ff36cc"
+        "63db899c-cfda-4907-9304-970da9c69b52",
+        "9f34b610-03e7-4618-ba1f-3f2c71dd4cd7",
+        "10e22527-b9d8-403b-ad2b-74ff84e03fa5",
+        "e95d12a3-f510-4d52-a984-3634612605f7"
     ],
     "filterType": "GMScript",
-    "folderName": "Slot",
+    "folderName": "Symbol",
     "isDefaultView": false,
     "localisedFolderName": ""
 }
