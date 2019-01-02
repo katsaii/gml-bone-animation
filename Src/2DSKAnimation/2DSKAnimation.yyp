@@ -183,6 +183,14 @@
             }
         },
         {
+            "Key": "13499575-71e9-40d8-87d4-56d7df8c6115",
+            "Value": {
+                "id": "38d2e8e3-010f-4ddc-bd59-64bd8ae097bd",
+                "resourcePath": "scripts\\sk_bone_interpolate_absolute_world\\sk_bone_interpolate_absolute_world.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1350e7c9-8977-4bde-91fe-46c76099cee2",
             "Value": {
                 "id": "66b72a11-378f-4925-be9b-580c6c4b686b",
@@ -1143,6 +1151,14 @@
             }
         },
         {
+            "Key": "7455bc67-c2d8-4b75-8e6f-9550b0d7c523",
+            "Value": {
+                "id": "1392703e-fb20-469e-ab9a-314314b2b5f1",
+                "resourcePath": "scripts\\sk_bone_interpolate_relative_world\\sk_bone_interpolate_relative_world.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "74a41daf-45c6-42cd-b268-b9acde6860ca",
             "Value": {
                 "id": "c227cfde-9022-487c-92a9-31fcace8c93d",
@@ -1511,6 +1527,14 @@
             }
         },
         {
+            "Key": "a06166af-fc50-438b-87b6-727cc72a8e48",
+            "Value": {
+                "id": "75e6104b-2d44-4866-8d43-0c6b5853641a",
+                "resourcePath": "scripts\\sk_bone_interpolate_absolute_local\\sk_bone_interpolate_absolute_local.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a1fa984b-b652-414b-bf49-dc58544505e5",
             "Value": {
                 "id": "d81b539f-605d-4c1f-8c4e-4d1f42005f99",
@@ -1604,6 +1628,14 @@
                 "id": "4f6a382c-459a-4fa8-ba78-d11aa16a1c07",
                 "resourcePath": "options\\linux\\options_linux.yy",
                 "resourceType": "GMLinuxOptions"
+            }
+        },
+        {
+            "Key": "a9810028-c0a6-4246-8028-f26f1b90cd45",
+            "Value": {
+                "id": "00f06ec0-eee9-4ec5-a258-3c91a3f6c41c",
+                "resourcePath": "scripts\\sk_bone_interpolate_relative_local\\sk_bone_interpolate_relative_local.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -2254,6 +2286,10 @@
         "dbb2e69f-fc68-43f5-9511-0f6cf94b1755",
         "13063c8b-4fdf-431d-8894-db107a7bb333",
         "f513f890-ad4f-4844-b53f-b806b179a607",
+        "7455bc67-c2d8-4b75-8e6f-9550b0d7c523",
+        "a9810028-c0a6-4246-8028-f26f1b90cd45",
+        "13499575-71e9-40d8-87d4-56d7df8c6115",
+        "a06166af-fc50-438b-87b6-727cc72a8e48",
         "7abab0a4-690b-4f08-be3d-5875f624c3b4",
         "b9fecc34-83f4-4e4c-b187-03f84eec75eb",
         "adaef587-60d4-4348-9ab7-cd5f5c167345",

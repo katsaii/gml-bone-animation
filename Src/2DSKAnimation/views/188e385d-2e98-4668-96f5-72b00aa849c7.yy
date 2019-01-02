@@ -15,7 +15,11 @@
         "9f23cec9-38ab-40dc-bc41-bb61c4b206d2",
         "dbb2e69f-fc68-43f5-9511-0f6cf94b1755",
         "13063c8b-4fdf-431d-8894-db107a7bb333",
-        "f513f890-ad4f-4844-b53f-b806b179a607"
+        "f513f890-ad4f-4844-b53f-b806b179a607",
+        "7455bc67-c2d8-4b75-8e6f-9550b0d7c523",
+        "a9810028-c0a6-4246-8028-f26f1b90cd45",
+        "13499575-71e9-40d8-87d4-56d7df8c6115",
+        "a06166af-fc50-438b-87b6-727cc72a8e48"
     ],
     "filterType": "GMScript",
     "folderName": "Methods",
