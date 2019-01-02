@@ -14,4 +14,4 @@ matrix_set(matrix_world,matrix_build(xx,yy,0,0,0,0,10,10,1));
 vertex_submit(vertex,pr_trianglelist,sk_atlas_get_texture(atlas));
 matrix_set(matrix_world,m);
 
-sk_armature_draw_debug(arm,xx,yy,10,10,0,sk_debug_boneData|sk_debug_boneStructure);
+//sk_armature_draw_debug(arm,xx,yy,10,10,0,sk_debug_boneData|sk_debug_boneStructure);

@@ -1,8 +1,8 @@
 {
-    "id": "28ab16e6-9d73-4fd3-b2a6-bc4a85c79b22",
+    "id": "5961d401-f323-48d3-8a60-10268d631926",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_constraint_ik_set_finalMix",
+    "name": "sk_constraint_create_transform",
     "IsCompatibility": false,
     "IsDnD": false
 }
