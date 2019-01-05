@@ -1,5 +1,5 @@
 {
-    "id": "6938f3d2-6881-4f9a-94fe-7acdaad7e958",
+    "id": "cbf0f72f-c2dc-4120-9c2d-9e25c1eca980",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_bone_get_rotation",

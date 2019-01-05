@@ -1,5 +1,5 @@
 {
-    "id": "416f7cf1-c690-4bbf-9d8a-8c72b5b78b95",
+    "id": "465524b8-6680-4882-abbe-0c3c6447abc4",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_atlas_destroy",

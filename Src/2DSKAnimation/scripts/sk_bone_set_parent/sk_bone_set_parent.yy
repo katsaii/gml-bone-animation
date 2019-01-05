@@ -1,5 +1,5 @@
 {
-    "id": "aaa1d679-9597-421f-be3c-9c2cbc76344e",
+    "id": "97abafed-6a0e-4beb-89fe-a2f332190f89",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_bone_set_parent",

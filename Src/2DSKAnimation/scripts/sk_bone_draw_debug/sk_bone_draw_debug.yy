@@ -1,5 +1,5 @@
 {
-    "id": "9f23cec9-38ab-40dc-bc41-bb61c4b206d2",
+    "id": "988dd525-b3db-4788-85c0-c1be08a63242",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_bone_draw_debug",

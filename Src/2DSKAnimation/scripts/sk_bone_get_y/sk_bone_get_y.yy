@@ -1,5 +1,5 @@
 {
-    "id": "f88045b2-d72e-4f2b-a719-bb39586dedd7",
+    "id": "ed7adf4e-cb0b-4832-b42a-4d5fdcbe0b40",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_bone_get_y",

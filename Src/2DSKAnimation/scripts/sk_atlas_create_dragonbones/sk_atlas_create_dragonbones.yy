@@ -1,5 +1,5 @@
 {
-    "id": "35330147-8f84-4f97-8af3-cf0424c19d85",
+    "id": "9168b6c0-edbe-4d1f-ac08-edb2551d4b1a",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_atlas_create_dragonbones",

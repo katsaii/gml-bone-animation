@@ -1,3 +1,4 @@
+SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
 /// @desc adds a subtexture to the subtexture map
 /// @param atlas
 /// @param key
@@ -18,7 +19,7 @@ var sk_uv_ox = argument6;
 var sk_uv_oy = argument7;
 var sk_uv_width = argument8;
 var sk_uv_height = argument9;
-var sk_region = [];
+var sk_region = array_create(12);
 switch(floor((angle_difference(argument10+45,0))/90)){
 	case -2:
 		// rotate 180 degrees
@@ -69,4 +70,4 @@ sk_region[@ 8] = sk_uv_ox;
 sk_region[@ 9] = sk_uv_oy;
 sk_region[@ 10] = sk_uv_width;
 sk_region[@ 11] = sk_uv_height;
-ds_map_add(argument0[sk_atlas_var_subtextures],argument1,sk_region);
+ds_map_add(argument0[sk_atlas.subtextures],argument1,sk_region);

@@ -1,3 +1,4 @@
+SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
 /// @desc sets a property
 /// @param atlas
 /// @param sprite
@@ -9,29 +10,29 @@ if(sprite_exists(sk_sprite)){
 	// this allows texture pages to be stored and cropped without having to be a power of two format
 	var sk_w = sprite_get_width(sk_sprite);
 	var sk_h = sprite_get_height(sk_sprite);
-	var sk_UVs = sprite_get_uvs(sk_sprite,sk_subimg);
-	var uv_u = sk_UVs[0];
-	var uv_v = sk_UVs[1];
-	var uv_u2 = sk_UVs[2];
-	var uv_v2 = sk_UVs[3];
-	var uv_dx = sk_UVs[4]; // number of pixels trimmed from the left
-	var uv_dy = sk_UVs[5]; // number of pixels trimmed from the top
-	var uv_a = sk_UVs[6]; // ratio of discarded pixels horizontally
-	var uv_b = sk_UVs[7]; // ratio of discarded pixels vertically
-	var uv_width = (uv_u2-uv_u)/uv_a;
-	var uv_height = (uv_v2-uv_v)/uv_b;
-	var uv_kw = uv_width/sk_w;
-	var uv_kh = uv_height/sk_h;
+	var sk_uvs = sprite_get_uvs(sk_sprite,sk_subimg);
+	var sk_uv_u = sk_uvs[0];
+	var sk_uv_v = sk_uvs[1];
+	var sk_uv_u2 = sk_uvs[2];
+	var sk_uv_v2 = sk_uvs[3];
+	var sk_uv_dx = sk_uvs[4]; // number of pixels trimmed from the left
+	var sk_uv_dy = sk_uvs[5]; // number of pixels trimmed from the top
+	var sk_uv_a = sk_uvs[6]; // ratio of discarded pixels horizontally
+	var sk_uv_b = sk_uvs[7]; // ratio of discarded pixels vertically
+	var sk_uv_width = (sk_uv_u2-sk_uv_u)/sk_uv_a;
+	var sk_uv_height = (sk_uv_v2-sk_uv_v)/sk_uv_b;
+	var sk_uv_kw = sk_uv_width/sk_w;
+	var sk_uv_kh = sk_uv_height/sk_h;
 	// set data
-	argument0[@ sk_atlas_var_texturePage] = sprite_get_texture(sk_sprite,sk_subimg);
-	argument0[@ sk_atlas_var_UVLeft] = uv_u-uv_dx*uv_kw;
-	argument0[@ sk_atlas_var_UVTop] = uv_v-uv_dy*uv_kh;
-	argument0[@ sk_atlas_var_UVRight] = argument0[sk_atlas_var_UVLeft]+uv_width;
-	argument0[@ sk_atlas_var_UVBottom] = argument0[sk_atlas_var_UVTop]+uv_height;
+	argument0[@ sk_atlas.texturePage] = sprite_get_texture(sk_sprite,sk_subimg);
+	argument0[@ sk_atlas.UVLeft] = sk_uv_u-sk_uv_dx*sk_uv_kw;
+	argument0[@ sk_atlas.UVTop] = sk_uv_v-sk_uv_dy*sk_uv_kh;
+	argument0[@ sk_atlas.UVRight] = argument0[sk_atlas.UVLeft]+sk_uv_width;
+	argument0[@ sk_atlas.UVBottom] = argument0[sk_atlas.UVTop]+sk_uv_height;
 }else{
-	argument0[@ sk_atlas_var_texturePage] = -1;
-	argument0[@ sk_atlas_var_UVLeft] = 0;
-	argument0[@ sk_atlas_var_UVTop] = 0;
-	argument0[@ sk_atlas_var_UVRight] = 1;
-	argument0[@ sk_atlas_var_UVBottom] = 1;
+	argument0[@ sk_atlas.texturePage] = -1;
+	argument0[@ sk_atlas.UVLeft] = 0;
+	argument0[@ sk_atlas.UVTop] = 0;
+	argument0[@ sk_atlas.UVRight] = 1;
+	argument0[@ sk_atlas.UVBottom] = 1;
 }

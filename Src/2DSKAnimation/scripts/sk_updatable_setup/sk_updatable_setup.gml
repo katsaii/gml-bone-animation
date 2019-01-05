@@ -1,4 +1,5 @@
+SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_updatable_exists(argument0);
 gml_pragma("forceinline");
-/// @desc updates the updatable
-/// @param updatable
-script_execute(argument0[sk_updatable_var_setup],argument0);
+/// @desc calls an internal script
+/// @param variable
+script_execute(argument0[1,0],argument0);

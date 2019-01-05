@@ -1,4 +1,4 @@
-#macro sk_bone_destroy sk_updatable_destroy
-/// @desc clears bone data
+SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
+/// @desc destroy
 /// @param bone
-show_error(argument0,true);
+sk_object_destroy(argument0);

@@ -3,4 +3,4 @@
 /// @param sprite
 /// @param subimg
 /// @param scale
-return sk_atlas_create_scon_context(sk_file_read_all(argument0),argument1,argument2,argument3);
+return sk_atlas_create_scon_context(__sk_file_read_all(argument0),argument1,argument2,argument3);

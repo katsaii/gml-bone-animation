@@ -1,5 +1,5 @@
 {
-    "id": "5a55c778-0ae0-4ba8-a9b0-9acc37bda84e",
+    "id": "42734d46-34ac-4489-86df-fa24cc6cb9c6",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_bone_create",

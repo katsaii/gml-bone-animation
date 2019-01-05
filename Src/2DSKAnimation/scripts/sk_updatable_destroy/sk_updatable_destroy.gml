@@ -1,5 +1,4 @@
-gml_pragma("forceinline");
-/// @desc destroys the updatable
-/// @param updatable
-script_execute(argument0[sk_updatable_var_destructor],argument0);
-sk_object_wipe(argument0);
+SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_updatable_exists(argument0);
+/// @desc destroy
+/// @param variable
+sk_object_destroy(argument0);

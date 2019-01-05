@@ -1,7 +1,8 @@
-#macro sk_debug_atlas_texture (1<<16)
-#macro sk_debug_atlas_regions (1<<17)
-#macro sk_debug_atlas_regionKeys (1<<18)
-#macro sk_debug_atlas_regionOrigins (1<<19)
+SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
+#macro SK_ATLAS_DEBUG_TEXTURE (1<<0)
+#macro SK_ATLAS_DEBUG_REGIONS (1<<1)
+#macro SK_ATLAS_DEBUG_KEYS (1<<2)
+#macro SK_ATLAS_DEBUG_ORIGINS (1<<3)
 /// @desc draws the atlas and its regions
 ///		| NOTE: if you are using a texture which has been cropped or is not a power of two, then it will be incorrectly represented...
 ///		|		this does not mean that your UVs are incorrect, it just means that what is displayed is inaccurate.
@@ -11,13 +12,13 @@
 /// @param w
 /// @param h
 /// @param debugArgs
-var sk_atlas_subtextures = argument0[sk_atlas_var_subtextures];
-var sk_atlas_texture = argument0[sk_atlas_var_texturePage];
+var sk_atlas_subtextures = argument0[sk_atlas.subtextures];
+var sk_atlas_texture = argument0[sk_atlas.texturePage];
 var sk_x1 = argument1;
 var sk_y1 = argument2;
 var sk_x2 = sk_x1+argument3;
 var sk_y2 = sk_y1+argument4;
-if(argument5&sk_debug_atlas_texture){
+if(argument5&SK_ATLAS_DEBUG_TEXTURE){
 	// draw texture
 	draw_primitive_begin_texture(pr_trianglestrip,sk_atlas_texture);
 	draw_vertex_texture_colour(sk_x1,sk_y1,0,0,c_white,1);
@@ -45,7 +46,7 @@ repeat(sk_region_count){
 	var OY = lerp(ULY,BRY,sk_region[9]/max(sk_region[11],1));
 	// draw polygon
 	draw_primitive_begin(pr_linelist);
-	if(argument5&sk_debug_atlas_regions){
+	if(argument5&SK_ATLAS_DEBUG_REGIONS){
 		draw_vertex_colour(BLX,BLY,c_blue,1); // left
 		draw_vertex_colour(ULX,ULY,c_blue,1);
 		draw_vertex_colour(ULX,ULY,c_yellow,1); // top
@@ -55,12 +56,12 @@ repeat(sk_region_count){
 		draw_vertex_colour(BLX,BLY,c_blue,1); // bottom
 		draw_vertex_colour(BRX,BRY,c_blue,1);
 	}
-	if(argument5&sk_debug_atlas_regionOrigins){
+	if(argument5&SK_ATLAS_DEBUG_ORIGINS){
 		draw_vertex_colour(ULX,ULY,c_green,1); // origin
 		draw_vertex_colour(OX,OY,c_green,1);
 	}
 	draw_primitive_end();
-	if(argument5&sk_debug_atlas_regionKeys){
+	if(argument5&SK_ATLAS_DEBUG_KEYS){
 		draw_text(OX,OY,sk_region_key);
 	}
 	sk_region_key = ds_map_find_next(sk_atlas_subtextures,sk_region_key);

@@ -4,8 +4,8 @@
     "mvc": "1.1",
     "name": "90891fa1-da16-4e6d-a673-a15ce42c2578",
     "children": [
-        "a40c8feb-3738-4922-8f98-82c9a6698f5c",
-        "c74c8a0e-68ad-460d-927e-3cf62b30a125"
+        "9ea65f7d-dad2-4f74-a65d-a2f357a898ba",
+        "a85f2ea7-fc4a-42f9-bfed-73597a1d0a41"
     ],
     "filterType": "GMScript",
     "folderName": "Runtime",

@@ -1,5 +1,5 @@
 {
-    "id": "13063c8b-4fdf-431d-8894-db107a7bb333",
+    "id": "bb596e8d-2473-446c-9e8f-a67e5ab74652",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "sk_bone_ik",
