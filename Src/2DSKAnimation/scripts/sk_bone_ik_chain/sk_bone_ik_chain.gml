@@ -1,4 +1,4 @@
-SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
 /// @desc applys IK between a bone and an end effector
 /// @param bone
 /// @param targetx

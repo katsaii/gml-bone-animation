@@ -16,7 +16,7 @@ enum sk_data_bone{
 	poseLength = (sk_data_bone.setupEnd-sk_data_bone.setupStart)+1
 }
 /// @desc initialise
-/// @param bone
+/// @param variable
 sk_bone_set_name(argument0,undefined);
 sk_bone_set_parent(argument0,undefined);
 sk_bone_set_length(argument0,100);

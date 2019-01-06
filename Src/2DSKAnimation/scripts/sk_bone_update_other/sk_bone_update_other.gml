@@ -1,4 +1,4 @@
-SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
 gml_pragma("forceinline");
 /// @desc update world transform of supplied bone relative to a supplied parent
 /// @param bone

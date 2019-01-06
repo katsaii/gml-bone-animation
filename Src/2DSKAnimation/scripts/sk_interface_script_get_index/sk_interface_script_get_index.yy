@@ -1,8 +1,8 @@
 {
-    "id": "f45aa4ce-ea7b-4773-b2e6-c79e1ce824f3",
+    "id": "9891ee6b-fe96-407c-9d77-4bafd5581328",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "__sk_script_get_index",
+    "name": "sk_interface_script_get_index",
     "IsCompatibility": false,
     "IsDnD": false
 }

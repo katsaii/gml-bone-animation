@@ -1,4 +1,4 @@
-SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
 gml_pragma("forceinline");
 /// @desc sets the local transforms of the supplied bone
 /// @param bone

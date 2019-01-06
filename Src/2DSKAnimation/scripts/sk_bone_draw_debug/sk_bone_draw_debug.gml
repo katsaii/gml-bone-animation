@@ -1,4 +1,4 @@
-SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
 #macro SK_BONE_DEBUG_BONES (1<<0)
 #macro SK_BONE_DEBUG_INHERITANCE (1<<1)
 #macro SK_BONE_DEBUG_SIMPLE (1<<2)

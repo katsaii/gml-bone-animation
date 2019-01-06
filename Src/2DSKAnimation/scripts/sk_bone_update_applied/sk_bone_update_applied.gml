@@ -1,4 +1,4 @@
-SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
 /// @desc uses the world transform of the bone to aproximate the applied transform of the bone relative to the supplied parent
 /// @param bone
 var sk_mx = argument0[sk_data_bone.worldX];

@@ -1,4 +1,4 @@
-SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
 #macro SK_TRANSFORM_MODE_NONE 0
 #macro SK_TRANSFORM_MODE_SCALE (1<<0)
 #macro SK_TRANSFORM_MODE_ROTATE (1<<1)

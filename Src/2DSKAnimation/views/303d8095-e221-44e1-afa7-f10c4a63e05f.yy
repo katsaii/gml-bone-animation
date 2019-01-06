@@ -7,7 +7,7 @@
         
     ],
     "filterType": "GMScript",
-    "folderName": "Transform",
+    "folderName": "Transformation Constraint",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

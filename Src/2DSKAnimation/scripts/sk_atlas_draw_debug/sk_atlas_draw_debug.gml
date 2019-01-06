@@ -1,4 +1,4 @@
-SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
 #macro SK_ATLAS_DEBUG_TEXTURE (1<<0)
 #macro SK_ATLAS_DEBUG_REGIONS (1<<1)
 #macro SK_ATLAS_DEBUG_KEYS (1<<2)

@@ -1,4 +1,4 @@
-SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_bone_exists(argument0);
 /// @desc update world transform of supplied bone
 /// @param bone
 var sk_x = argument0[sk_data_bone.appliedX];

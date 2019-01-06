@@ -7,7 +7,7 @@
         
     ],
     "filterType": "GMScript",
-    "folderName": "Physics",
+    "folderName": "Physics Constraint",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

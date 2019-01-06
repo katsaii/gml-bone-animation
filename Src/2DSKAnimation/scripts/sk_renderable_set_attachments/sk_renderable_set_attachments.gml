@@ -1,0 +1,5 @@
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_renderable_exists(argument0);
+/// @desc calls an internal script
+/// @param variable
+/// @param ds_map
+script_execute(argument0[1,3],argument0,argument1);
