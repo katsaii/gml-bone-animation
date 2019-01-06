@@ -1,3 +1,4 @@
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_skin_exists(argument0);
 /// @desc append display data to the skin
 /// @param skin
 /// @param slot

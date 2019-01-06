@@ -1,3 +1,4 @@
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_slot_exists(argument0);
 /// @desc applies the slot to the vertex buffer
 /// @param slot
 /// @param vbuff

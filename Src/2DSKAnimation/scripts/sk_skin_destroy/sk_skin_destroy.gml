@@ -1,3 +1,4 @@
-/// @desc exists
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_skin_exists(argument0);
+/// @desc destroy
 /// @param skin
-return sk_object_exists(argument0,SK_TYPE_SKIN);
+sk_object_destroy(argument0);

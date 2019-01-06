@@ -1,3 +1,4 @@
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_slot_exists(argument0);
 /// @desc returns whether the slot has the supplied attachment in its map
 /// @param slot
 /// @param attachment

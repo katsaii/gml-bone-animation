@@ -1,3 +1,4 @@
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_skin_exists(argument0);
 /// @desc Attachments from the new skin are attached to the corresponding slots in the form of a list known as the "displayData"
 /// @param skin
 /// @param clear
