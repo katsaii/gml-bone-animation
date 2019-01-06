@@ -4,7 +4,7 @@ enum sk_data_armature{
 	constraints,
 	slots,
 	animations,
-	skins,
+	skins,defaultSkin,
 	attachments,
 	events,
 	updateOrder,
@@ -21,4 +21,3 @@ argument0[@ sk_data_armature.attachments] = ds_list_create();
 argument0[@ sk_data_armature.events] = ds_list_create();
 argument0[@ sk_data_armature.updateOrder] = ds_list_create();
 argument0[@ sk_data_armature.drawOrder] = ds_list_create();
-ds_list_add(argument0[sk_data_armature.skins],sk_skin_create("default"));

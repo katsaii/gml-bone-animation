@@ -10,7 +10,8 @@
         "cc925538-c07c-4198-bfb4-2f0cf6be6f71",
         "1c27b554-9ed9-4cc5-8848-526928420f67",
         "b26d7bdb-94cc-49c2-8a46-2d01c510669b",
-        "4d2bb62d-2e8a-4aab-b27a-7fe75719fa8b"
+        "4d2bb62d-2e8a-4aab-b27a-7fe75719fa8b",
+        "a56e9e9b-41a5-4d81-900b-508a1a391c02"
     ],
     "filterType": "GMScript",
     "folderName": "Set",

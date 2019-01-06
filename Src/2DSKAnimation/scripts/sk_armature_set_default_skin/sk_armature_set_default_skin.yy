@@ -1,8 +1,8 @@
 {
-    "id": "2c030717-9bd9-40dd-b16b-835d6f1e7a32",
+    "id": "a56e9e9b-41a5-4d81-900b-508a1a391c02",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "ds_list_find_index_sk_skin",
+    "name": "sk_armature_set_default_skin",
     "IsCompatibility": false,
     "IsDnD": false
 }

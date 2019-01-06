@@ -9,7 +9,7 @@
         "a0136d34-6e43-4e59-b9ba-90833d272a3c",
         "82a0a6a3-74fb-4607-90fb-ca05fb7eee11",
         "fa0e7cd8-1080-4234-9bc1-68704e43ad46",
-        "05cb30c5-8326-44de-b610-ccdb45be88ad"
+        "2c030717-9bd9-40dd-b16b-835d6f1e7a32"
     ],
     "filterType": "GMScript",
     "folderName": "Skin",
