@@ -1,8 +1,8 @@
 {
-    "id": "f359308d-13ab-4ed2-9445-bf8251ddb54d",
+    "id": "f06b8951-b478-43e9-8e3b-5d8c3e115f57",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_attachment_vertex_apply",
+    "name": "sk_slot_vertex_add",
     "IsCompatibility": false,
     "IsDnD": false
 }

@@ -11,3 +11,8 @@ att = sk_plane_attachment_create("");
 sk_plane_attachment_set_regionKey(att,"base_body");
 sk_plane_attachment_set_atlas(att,atlas);
 bone = sk_bone_create("");
+slot = sk_slot_create("");
+var m = ds_map_create();
+m[? "attachment1"] = att;
+sk_slot_set_attachments(slot,m);
+sk_slot_set_pose_applied(slot,c_white,1,bone,att);
