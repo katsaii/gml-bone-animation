@@ -1,14 +1,14 @@
 /// @desc dispose
 /// @param variable
-var sk_list_bones = argument0[sk_armature.bones];
-var sk_list_slots = argument0[sk_armature.slots];
-var sk_list_skins = argument0[sk_armature.skins];
-var sk_list_constraints = argument0[sk_armature.constraints];
-var sk_list_animations = argument0[sk_armature.animations];
-var sk_list_events = argument0[sk_armature.events];
-var sk_list_attachments = argument0[sk_armature.attachments];
-var sk_list_updateOrder = argument0[sk_armature.skins];
-var sk_list_drawOrder = argument0[sk_armature.drawOrder];
+var sk_list_bones = argument0[sk_data_armature.bones];
+var sk_list_slots = argument0[sk_data_armature.slots];
+var sk_list_skins = argument0[sk_data_armature.skins];
+var sk_list_constraints = argument0[sk_data_armature.constraints];
+var sk_list_animations = argument0[sk_data_armature.animations];
+var sk_list_events = argument0[sk_data_armature.events];
+var sk_list_attachments = argument0[sk_data_armature.attachments];
+var sk_list_updateOrder = argument0[sk_data_armature.skins];
+var sk_list_drawOrder = argument0[sk_data_armature.drawOrder];
 var sk_lists = [
 	sk_list_bones,
 	sk_list_slots,

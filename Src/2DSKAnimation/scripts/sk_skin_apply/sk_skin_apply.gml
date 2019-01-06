@@ -2,11 +2,10 @@ __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_skin_exists(argument0);
 /// @desc Attachments from the new skin are attached to the corresponding slots in the form of a list known as the "displayData"
 /// @param skin
 /// @param clear
-var sk_obj = argument[0];
-var sk_displays = sk_obj[sk_data_skin.displays];
+var sk_displays = argument0[sk_data_skin.displays];
 var sk_display_last = ds_list_size(sk_displays);
 var sk_display_id;
-if(argument[1]){
+if(argument1){
 	// clear previous slot attachments
 	var sk_empty_map = ds_map_create();
 	for(sk_display_id = 0; sk_display_id < sk_display_last; sk_display_id++){
