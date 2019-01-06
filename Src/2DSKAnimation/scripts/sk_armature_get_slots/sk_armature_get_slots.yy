@@ -1,8 +1,8 @@
 {
-    "id": "b348c601-ace3-43f8-8f9f-ec272b1f4e14",
+    "id": "086712a3-47ec-4d8f-8942-f748cd765f79",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_object_name",
+    "name": "sk_armature_get_slots",
     "IsCompatibility": false,
     "IsDnD": false
 }

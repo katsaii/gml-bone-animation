@@ -1,8 +1,8 @@
 {
-    "id": "8302a318-80e5-4f36-a498-20d04faf0a06",
+    "id": "39c98e3c-247f-4c5b-a948-0672d8c923a6",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_object_find",
+    "name": "__sk_armature_init",
     "IsCompatibility": false,
     "IsDnD": false
 }
