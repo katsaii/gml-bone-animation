@@ -6,3 +6,7 @@ arm = sk_armature_create_dragonbones("Palia_Skeleton_ske.json",0);
 vertex = vertex_create_buffer();
 
 sk_armature_set_atlas(arm,atlas);
+
+bones = ds_list_create();
+sk_armature_get_bones(arm,bones);
+bone = bones[| ds_list_find_index_sk_bone(bones,"b_ik_arm_left")];

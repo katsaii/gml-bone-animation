@@ -207,7 +207,7 @@ if(is_real(sk_db_skins)&&ds_exists(sk_db_skins,ds_type_list)){
 		}
 	}
 }
-/*// transfer IKConstraint data 
+// transfer IKConstraint data 
 if(is_real(sk_db_IK)&&ds_exists(sk_db_IK,ds_type_list)){
 	var sk_db_IK_count = ds_list_size(sk_db_IK);
 	for(var sk_db_IK_id = 0; sk_db_IK_id < sk_db_IK_count; sk_db_IK_id++){
@@ -216,19 +216,22 @@ if(is_real(sk_db_IK)&&ds_exists(sk_db_IK,ds_type_list)){
 			#region // add IK constraint
 			var sk_IK_name = string(sk_db_IK_record[? "name"]);
 			var sk_IK_chain = sk_db_IK_record[? "chain"]||false;
-	        var sk_IK_boneTarget = sk_armature_get_bone(sk_arm,sk_db_IK_record[? "target"]);
-			var sk_IK_boneJoint = sk_armature_get_bone(sk_arm,sk_db_IK_record[? "bone"]);
+	        var sk_IK_boneTarget = sk_bones[| ds_list_find_index_sk_bone(sk_bones,sk_db_IK_record[? "target"])];
+			var sk_IK_boneJoint = sk_bones[| ds_list_find_index_sk_bone(sk_bones,sk_db_IK_record[? "bone"])];
 			var sk_IK_positive = (is_undefined(sk_db_IK_record[? "bendPositive"])||sk_db_IK_record[? "bendPositive"]) ? SK_BEND_POSITIVE : SK_BEND_NEGATIVE;
 			var sk_IK_weight = is_real(sk_db_IK_record[? "weight"]) ? sk_db_IK_record[? "weight"] : 1;
 			// create new record and set data
-			var sk_constraint = sk_updatable_create_constraint_ik(sk_IK_name);
-			sk_updatable_constraint_ik_set_bones(sk_constraint,sk_IK_boneJoint,sk_IK_boneTarget,sk_IK_chain);
-			sk_updatable_constraint_ik_set_setupPose(sk_constraint,sk_IK_positive,sk_IK_weight);
-			sk_armature_add_constraint(sk_arm,sk_constraint);
+			var sk_constraint = sk_ik_constraint_create(sk_IK_name,sk_IK_boneJoint,sk_IK_boneTarget,sk_IK_chain);
+			sk_ik_constraint_set_pose(
+				sk_constraint,
+				sk_IK_positive,
+				sk_IK_weight
+			);
+			ds_list_add(sk_constraints,sk_constraint);
 			#endregion
 	    }
 	}
-}*/
+}
 /*// get slot list
 var sk_slots = ds_list_create();
 ds_map_add_list(sk_db_armature,"|sk_slots|",sk_slots);
