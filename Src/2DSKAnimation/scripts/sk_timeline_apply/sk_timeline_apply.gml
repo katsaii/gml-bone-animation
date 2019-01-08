@@ -10,4 +10,4 @@ gml_pragma("forceinline");
 /// @param amount
 /// @param mixPose
 /// @param alpha
-script_execute(argument0[1,0],argument0,argument1,argument2,argument3,argument4,argument5);
+script_execute(argument0[1,1],argument0,argument1,argument2,argument3,argument4,argument5);

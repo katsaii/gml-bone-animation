@@ -5,6 +5,9 @@ enum sk_data_animation{
 	mainline,
 	duration,loop
 }
+#macro SK_ANIMATION_MAINLINE_TIME 0
+#macro SK_ANIMATION_MAINLINE_TIMELINES 1
+#macro SK_ANIMATION_MAINLINE_ENTRIES 2
 /// @desc initialise
 /// @param variable
 argument0[@ sk_data_animation.timelines] = ds_list_create();

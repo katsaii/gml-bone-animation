@@ -24,16 +24,17 @@ if(sk_duration>0){
 // iterate through mainline
 var sk_mainline = argument0[sk_data_animation.mainline];
 var sk_mainline_size = ds_list_size(sk_mainline);
-if(sk_mainline_size<2) then return; // empty
+if(sk_mainline_size<SK_ANIMATION_MAINLINE_ENTRIES) then return; // empty
 var sk_mainline_keyframe_id = 0;
-if(sk_mainline_size>2){
-	// search for mainline keyframe using sk_time
+if(sk_mainline_size>SK_ANIMATION_MAINLINE_ENTRIES){
+	// search for mainline keyframe using sk_time + binary search
+	sk_mainline_keyframe_id = __sk_search_binary(sk_mainline,sk_time,SK_ANIMATION_MAINLINE_ENTRIES,0,sk_mainline_size-1);
 }
-var sk_mainline_time = sk_mainline[| sk_mainline_keyframe_id+0];
+var sk_mainline_time = sk_mainline[| sk_mainline_keyframe_id+SK_ANIMATION_MAINLINE_TIME];
 if(sk_time>=sk_mainline_time){
-	var sk_mainline_timelines = sk_mainline[| sk_mainline_keyframe_id+1];
-	var sk_mainline_timeline_last = ds_list_size(sk_mainline_timelines);
-	for(var sk_mainline_timeline_id = 0; sk_mainline_timeline_id<sk_mainline_timeline_last; sk_mainline_timeline_id+="x"){
+	var sk_mainline_timelines = sk_mainline[| sk_mainline_keyframe_id+SK_ANIMATION_MAINLINE_TIMELINES];
+	var sk_mainline_timeline_last = ds_list_size(sk_mainline_timelines)-5;
+	for(var sk_mainline_timeline_id = 0; sk_mainline_timeline_id<=sk_mainline_timeline_last; sk_mainline_timeline_id+=5){
 		var sk_mainline_timeline = sk_mainline_timelines[| sk_mainline_timeline_id+0];
 		var sk_mainline_keyframeA = sk_mainline_timelines[| sk_mainline_timeline_id+1];
 		var sk_mainline_keyframeB = sk_mainline_timelines[| sk_mainline_timeline_id+2];

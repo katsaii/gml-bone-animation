@@ -8,7 +8,9 @@ var yscale = 10;
 
 sk_armature_pose_setup(arm);
 //sk_bone_set_pose_applied(bone,(mouse_x-xx)/xscale,(mouse_y-yy)/yscale,1,1,0,0,0,SK_TRANSFORM_MODE_NORMAL);
-sk_translate_timeline_apply(timeline,0,1,mouse_x/room_width,SK_MIX_BLEND,1);
+//sk_translate_timeline_apply(timeline,0,1,mouse_x/room_width,SK_MIX_BLEND,1);
+var t = current_time*0.01;
+sk_animation_apply(anim,t,t,SK_MIX_ADD,1,true);
 sk_armature_pose_update(arm);
 
 vertex_begin_sk(vertex);
