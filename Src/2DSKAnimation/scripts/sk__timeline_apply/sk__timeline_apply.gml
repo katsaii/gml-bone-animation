@@ -26,10 +26,12 @@ var sk_y = lerp(
 // apply
 switch(argument4){
 	case SK_MIX_BLEND:
-		sk_target[@ sk_data_bone.appliedX] = lerp(sk_target[sk_data_bone.appliedX],sk_target[sk_data_bone.setupX]+sk_x,argument5);
-		sk_target[@ sk_data_bone.appliedY] = lerp(sk_target[sk_data_bone.appliedY],sk_target[sk_data_bone.setupY]+sk_y,argument5);
+		var sk_x = sk_target[sk_data_bone.appliedX];
+		var sk_y = sk_target[sk_data_bone.appliedY];
+		sk_target[@ sk_data_bone.appliedX] = sk_x-angle_difference(sk_x,sk_target[sk_data_bone.setupX]+sk_x)*argument5;
+		sk_target[@ sk_data_bone.appliedY] = sk_y-angle_difference(sk_y,sk_target[sk_data_bone.setupY]+sk_y)*argument5;
 	break;
-	case SK_MIX_ADD:
+	case SK_MIX_ADD: 
 		sk_target[@ sk_data_bone.appliedX] = sk_target[sk_data_bone.appliedX]+sk_x*argument5;
 		sk_target[@ sk_data_bone.appliedY] = sk_target[sk_data_bone.appliedY]+sk_y*argument5;
 	break;

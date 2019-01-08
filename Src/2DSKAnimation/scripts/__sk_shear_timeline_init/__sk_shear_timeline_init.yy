@@ -1,8 +1,8 @@
 {
-    "id": "53c94020-15b8-46f4-8da8-306a2a258513",
+    "id": "23548b19-2bea-4bc6-91a9-af2289f28cfb",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk__timeline_destroy",
+    "name": "__sk_shear_timeline_init",
     "IsCompatibility": false,
     "IsDnD": false
 }

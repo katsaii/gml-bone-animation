@@ -1,8 +1,8 @@
 {
-    "id": "53c94020-15b8-46f4-8da8-306a2a258513",
+    "id": "535c9ea5-2c0e-471f-a5a8-8c6e8e152e1d",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk__timeline_destroy",
+    "name": "sk_shear_timeline_get_keyframes",
     "IsCompatibility": false,
     "IsDnD": false
 }
