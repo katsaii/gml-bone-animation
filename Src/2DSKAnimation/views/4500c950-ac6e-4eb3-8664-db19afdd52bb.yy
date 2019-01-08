@@ -1,13 +1,13 @@
 {
-    "id": "cbb0a91c-3f2a-4493-8170-4053f5033b8f",
+    "id": "4500c950-ac6e-4eb3-8664-db19afdd52bb",
     "modelName": "GMFolder",
     "mvc": "1.1",
-    "name": "cbb0a91c-3f2a-4493-8170-4053f5033b8f",
+    "name": "4500c950-ac6e-4eb3-8664-db19afdd52bb",
     "children": [
         
     ],
     "filterType": "GMScript",
-    "folderName": "Default Event",
+    "folderName": "Methods",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

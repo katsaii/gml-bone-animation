@@ -1,13 +1,13 @@
 {
-    "id": "a371d4c3-8b40-4449-9638-66bb5e009283",
+    "id": "7a28cab3-336f-4d3b-af56-fb696ae70c83",
     "modelName": "GMFolder",
     "mvc": "1.1",
-    "name": "a371d4c3-8b40-4449-9638-66bb5e009283",
+    "name": "7a28cab3-336f-4d3b-af56-fb696ae70c83",
     "children": [
         
     ],
     "filterType": "GMScript",
-    "folderName": "Event",
+    "folderName": "Set",
     "isDefaultView": false,
     "localisedFolderName": ""
 }
