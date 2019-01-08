@@ -1,3 +1,3 @@
 /// @desc dispose
 /// @param variable
-ds_map_destroy(argument0[sk_atlas.subtextures]);
+ds_map_destroy(argument0[sk_data_atlas.subtextures]);

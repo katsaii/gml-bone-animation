@@ -70,4 +70,4 @@ sk_region[@ 8] = sk_uv_ox;
 sk_region[@ 9] = sk_uv_oy;
 sk_region[@ 10] = sk_uv_width;
 sk_region[@ 11] = sk_uv_height;
-ds_map_add(argument0[sk_atlas.subtextures],argument1,sk_region);
+ds_map_add(argument0[sk_data_atlas.subtextures],argument1,sk_region);

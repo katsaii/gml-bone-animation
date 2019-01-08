@@ -24,15 +24,15 @@ if(sprite_exists(sk_sprite)){
 	var sk_uv_kw = sk_uv_width/sk_w;
 	var sk_uv_kh = sk_uv_height/sk_h;
 	// set data
-	argument0[@ sk_atlas.texturePage] = sprite_get_texture(sk_sprite,sk_subimg);
-	argument0[@ sk_atlas.UVLeft] = sk_uv_u-sk_uv_dx*sk_uv_kw;
-	argument0[@ sk_atlas.UVTop] = sk_uv_v-sk_uv_dy*sk_uv_kh;
-	argument0[@ sk_atlas.UVRight] = argument0[sk_atlas.UVLeft]+sk_uv_width;
-	argument0[@ sk_atlas.UVBottom] = argument0[sk_atlas.UVTop]+sk_uv_height;
+	argument0[@ sk_data_atlas.texturePage] = sprite_get_texture(sk_sprite,sk_subimg);
+	argument0[@ sk_data_atlas.UVLeft] = sk_uv_u-sk_uv_dx*sk_uv_kw;
+	argument0[@ sk_data_atlas.UVTop] = sk_uv_v-sk_uv_dy*sk_uv_kh;
+	argument0[@ sk_data_atlas.UVRight] = argument0[sk_data_atlas.UVLeft]+sk_uv_width;
+	argument0[@ sk_data_atlas.UVBottom] = argument0[sk_data_atlas.UVTop]+sk_uv_height;
 }else{
-	argument0[@ sk_atlas.texturePage] = -1;
-	argument0[@ sk_atlas.UVLeft] = 0;
-	argument0[@ sk_atlas.UVTop] = 0;
-	argument0[@ sk_atlas.UVRight] = 1;
-	argument0[@ sk_atlas.UVBottom] = 1;
+	argument0[@ sk_data_atlas.texturePage] = -1;
+	argument0[@ sk_data_atlas.UVLeft] = 0;
+	argument0[@ sk_data_atlas.UVTop] = 0;
+	argument0[@ sk_data_atlas.UVRight] = 1;
+	argument0[@ sk_data_atlas.UVBottom] = 1;
 }

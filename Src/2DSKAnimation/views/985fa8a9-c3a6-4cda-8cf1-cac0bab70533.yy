@@ -11,7 +11,7 @@
         "663bbc60-5dc6-4b27-a8c6-3aec72bab398"
     ],
     "filterType": "GMScript",
-    "folderName": "Plane Attachment",
+    "folderName": "Plane",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

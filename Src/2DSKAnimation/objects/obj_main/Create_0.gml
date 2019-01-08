@@ -7,25 +7,6 @@ vertex = vertex_create_buffer();
 
 sk_armature_set_atlas(arm,atlas);
 
-bones = ds_list_create();
-sk_armature_get_bones(arm,bones);
-bone = bones[| ds_list_find_index_sk_bone(bones,"b_ik_arm_left")];
-bone2 = bones[| ds_list_find_index_sk_bone(bones,"b_hip")];
-
-timeline = sk_translate_timeline_create(bone);
-var keys = ds_list_create();
-ds_list_add(keys,5,-16,0,SK_EASE_SMOOTHSTEP_INV);
-ds_list_add(keys,15,-5,0,SK_EASE_SMOOTHSTEP_INV);
-sk_translate_timeline_set_keyframes(timeline,keys);
-
-timeline2 = sk_translate_timeline_create(bone2);
-var keys2 = ds_list_create();
-ds_list_add(keys2,0,0,0,SK_EASE_SMOOTHSTEP);
-ds_list_add(keys2,10,0,15,SK_EASE_SMOOTHSTEP);
-sk_translate_timeline_set_keyframes(timeline2,keys2);
-
-anim = sk_animation_create("",20,true);
-var timelines = ds_list_create();
-ds_list_add(timelines,timeline);
-ds_list_add(timelines,timeline2);
-sk_animation_set_timelines(anim,timelines);
+anims = ds_list_create();
+sk_armature_get_animations(arm,anims);
+anim = anims[| ds_list_find_index_sk_animation(anims,"anim_wallslide")];

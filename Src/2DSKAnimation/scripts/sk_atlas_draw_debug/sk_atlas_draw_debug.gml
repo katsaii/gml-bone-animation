@@ -12,8 +12,8 @@ __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
 /// @param w
 /// @param h
 /// @param debugArgs
-var sk_atlas_subtextures = argument0[sk_atlas.subtextures];
-var sk_atlas_texture = argument0[sk_atlas.texturePage];
+var sk_atlas_subtextures = argument0[sk_data_atlas.subtextures];
+var sk_atlas_texture = argument0[sk_data_atlas.texturePage];
 var sk_x1 = argument1;
 var sk_y1 = argument2;
 var sk_x2 = sk_x1+argument3;

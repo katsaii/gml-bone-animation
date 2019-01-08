@@ -7,7 +7,7 @@ ds_list_clear(sk_target_list);
 var sk_item_count = ds_list_size(argument1);
 for(var sk_item_id = 0; sk_item_id<sk_item_count; sk_item_id++){
 	var sk_item = argument1[| sk_item_id];
-	//if(sk_animation_exists(sk_item)){
-	//	ds_list_add(sk_target_list,sk_item);
-	//}
+	if(sk_animation_exists(sk_item)){
+		ds_list_add(sk_target_list,sk_item);
+	}
 }

@@ -11,7 +11,7 @@
         "72164e03-bcd5-4814-87c8-5913f6c74ff1"
     ],
     "filterType": "GMScript",
-    "folderName": "Translate Timeline",
+    "folderName": "Translate",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

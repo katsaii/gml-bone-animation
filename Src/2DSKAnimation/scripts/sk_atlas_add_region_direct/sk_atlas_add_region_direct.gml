@@ -27,4 +27,4 @@ sk_region[@ 8] = argument10; // this is relative to the top left of the region i
 sk_region[@ 9] = argument11;
 sk_region[@ 10] = argument12;
 sk_region[@ 11] = argument13;
-ds_map_add(argument0[sk_atlas.subtextures],argument1,sk_region);
+ds_map_add(argument0[sk_data_atlas.subtextures],argument1,sk_region);

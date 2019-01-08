@@ -232,10 +232,6 @@ if(is_real(sk_db_IK)&&ds_exists(sk_db_IK,ds_type_list)){
 	    }
 	}
 }
-/*// get slot list
-var sk_slots = ds_list_create();
-ds_map_add_list(sk_db_armature,"|sk_slots|",sk_slots);
-sk_armature_copy_slots(sk_arm,sk_slots);
 // transfer animation data
 if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 	var sk_db_anim_count = ds_list_size(sk_db_animations);
@@ -244,8 +240,9 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 	    if(is_real(sk_db_anim_record)&&ds_exists(sk_db_anim_record,ds_type_map)){
 			#region // add animation
 			var sk_anim = sk_animation_create(string(sk_db_anim_record[? "name"]));
-			sk_animation_set_duration(sk_anim,real(sk_db_anim_record[? "duration"])*sk_db_fps);
-			sk_armature_add_animation(sk_arm,sk_anim);
+			sk_animation_set_duration(sk_anim,real(sk_db_anim_record[? "duration"])*sk_db_fps,false);
+			ds_list_add(sk_animations,sk_anim);
+			var sk_anim_timelines = ds_list_create();
 			// compile timeline data
 			var sk_db_anim_bones = sk_db_anim_record[? "bone"];
 			var sk_db_anim_slots = sk_db_anim_record[? "slot"];
@@ -260,7 +257,7 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 	                if(is_real(sk_db_anim_bone_record)&&ds_exists(sk_db_anim_bone_record,ds_type_map)){
 						// add bone timeline data to animation
 						var sk_anim_timeline_boneName = string(sk_db_anim_bone_record[? "name"]);
-						var sk_anim_timeline_boneData = sk_armature_find_bone(sk_arm,sk_anim_timeline_boneName);
+						var sk_anim_timeline_boneData = sk_bones[| ds_list_find_index_sk_bone(sk_bones,sk_anim_timeline_boneName)];
 						var sk_db_anim_bone_translate = sk_db_anim_bone_record[? "translateFrame"];
 						var sk_db_anim_bone_scale = sk_db_anim_bone_record[? "scaleFrame"];
 						var sk_db_anim_bone_rotate = sk_db_anim_bone_record[? "rotateFrame"];
@@ -269,23 +266,24 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 	                        var sk_db_anim_frame_count = ds_list_size(sk_db_anim_bone_translate);
 							if(sk_db_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_timeline_create_translate(sk_anim_timeline_boneName+".TimelineTranslate",sk_anim_timeline_boneData);
-								sk_animation_add_timeline(sk_anim,sk_timelineData);
+								var sk_timelineData = sk_translate_timeline_create(sk_anim_timeline_boneData);
+								ds_list_add(sk_anim_timelines,sk_timelineData);
 								// compile frames
+								var sk_timeline_frames = ds_list_create();
 								var sk_anim_frame_time = 0;
 		                        for(var sk_db_anim_frame_id = 0; sk_db_anim_frame_id < sk_db_anim_frame_count; sk_db_anim_frame_id++){
 		                            var sk_db_anim_frame_record = sk_db_anim_bone_translate[| sk_db_anim_frame_id];
 		                            if(is_real(sk_db_anim_frame_record)&&ds_exists(sk_db_anim_frame_record,ds_type_map)){
 										// add frame
-		                                var sk_anim_frame_tween = sk_tweenEasing_none;
+		                                var sk_anim_frame_tween = SK_EASE_NONE;
 										if(is_real(sk_db_anim_frame_record[? "tweenEasing"])){
 											// linear interpolation
-											sk_anim_frame_tween = sk_tweenEasing_linear;
+											sk_anim_frame_tween = SK_EASE_LINEAR;
 										} else {
 											var sk_anim_frame_bezier = sk_db_anim_frame_record[? "curve"];
 											if(is_real(sk_anim_frame_bezier)&&ds_exists(sk_anim_frame_bezier,ds_type_list)){
 												// quadratic interpolation
-												sk_anim_frame_tween = sk_bezier_aproximateCurve(
+												sk_anim_frame_tween = sk_ease_function_from_bezier(
 													real(sk_anim_frame_bezier[| 0]),
 													real(sk_anim_frame_bezier[| 1]),
 													real(sk_anim_frame_bezier[| 2]),
@@ -294,17 +292,18 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 											}
 										}
 		                                // append keyframe data in format [time, dx, dy, tween]
-										sk_timeline_frame_add_translate(
-											sk_timelineData,
+										ds_list_add(
+											sk_timeline_frames,
 											sk_anim_frame_time,
-											real(sk_db_anim_frame_record[? "x"]),
-											real(sk_db_anim_frame_record[? "y"]),
+											sk_db_anim_frame_record[? "x"],
+											sk_db_anim_frame_record[? "y"],
 											sk_anim_frame_tween
 										);
 										// set next duration
 										sk_anim_frame_time += real(sk_db_anim_frame_record[? "duration"])*sk_db_fps;
 		                            }
 		                        }
+								sk_translate_timeline_set_keyframes(sk_timelineData,sk_timeline_frames);
 							}
 	                    }
 						#endregion
@@ -313,42 +312,44 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 	                        var sk_db_anim_frame_count = ds_list_size(sk_db_anim_bone_scale);
 							if(sk_db_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_timeline_create_scale(sk_anim_timeline_boneName+".TimelineScale",sk_anim_timeline_boneData);
-								sk_animation_add_timeline(sk_anim,sk_timelineData);
+								var sk_timelineData = sk_scale_timeline_create(sk_anim_timeline_boneData);
+								ds_list_add(sk_anim_timelines,sk_timelineData);
 								// compile frames
+								var sk_timeline_frames = ds_list_create();
 								var sk_anim_frame_time = 0;
 		                        for(var sk_db_anim_frame_id = 0; sk_db_anim_frame_id < sk_db_anim_frame_count; sk_db_anim_frame_id++){
 		                            var sk_db_anim_frame_record = sk_db_anim_bone_scale[| sk_db_anim_frame_id];
 		                            if(is_real(sk_db_anim_frame_record)&&ds_exists(sk_db_anim_frame_record,ds_type_map)){
 										// add frame
-		                                var sk_anim_frame_tween = sk_tweenEasing_none;
+		                                var sk_anim_frame_tween = SK_EASE_NONE;
 										if(is_real(sk_db_anim_frame_record[? "tweenEasing"])){
 											// linear interpolation
-											sk_anim_frame_tween = sk_tweenEasing_linear;
+											sk_anim_frame_tween = SK_EASE_LINEAR;
 										} else {
 											var sk_anim_frame_bezier = sk_db_anim_frame_record[? "curve"];
 											if(is_real(sk_anim_frame_bezier)&&ds_exists(sk_anim_frame_bezier,ds_type_list)){
 												// quadratic interpolation
-												sk_anim_frame_tween = sk_bezier_aproximateCurve(
-													sk_anim_frame_bezier[| 0],
-													sk_anim_frame_bezier[| 1],
-													sk_anim_frame_bezier[| 2],
-													sk_anim_frame_bezier[| 3]
+												sk_anim_frame_tween = sk_ease_function_from_bezier(
+													real(sk_anim_frame_bezier[| 0]),
+													real(sk_anim_frame_bezier[| 1]),
+													real(sk_anim_frame_bezier[| 2]),
+													real(sk_anim_frame_bezier[| 3])
 												);
 											}
 										}
 		                                // append keyframe data in format [time, dx, dy, tween]
-										sk_timeline_frame_add_scale(
-											sk_timelineData,
+										ds_list_add(
+											sk_timeline_frames,
 											sk_anim_frame_time,
-											is_real(sk_db_anim_frame_record[? "x"]) ? sk_db_anim_frame_record[? "x"] : 1,
-											is_real(sk_db_anim_frame_record[? "y"]) ? sk_db_anim_frame_record[? "y"] : 1,
+											sk_db_anim_frame_record[? "x"],
+											sk_db_anim_frame_record[? "y"],
 											sk_anim_frame_tween
 										);
 										// set next duration
 										sk_anim_frame_time += real(sk_db_anim_frame_record[? "duration"])*sk_db_fps;
 		                            }
 		                        }
+								sk_scale_timeline_set_keyframes(sk_timelineData,sk_timeline_frames);
 							}
 	                    }
 						#endregion
@@ -357,33 +358,34 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 	                        var sk_db_anim_frame_count = ds_list_size(sk_db_anim_bone_rotate);
 							if(sk_db_anim_frame_count>0){
 								// add timeline to animation
-								var sk_timelineData = sk_timeline_create_rotate(sk_anim_timeline_boneName+".TimelineRotate",sk_anim_timeline_boneData);
-								sk_animation_add_timeline(sk_anim,sk_timelineData);
+								var sk_timelineData = sk_rotate_timeline_create(sk_anim_timeline_boneData);
+								ds_list_add(sk_anim_timelines,sk_timelineData);
 								// compile frames
+								var sk_timeline_frames = ds_list_create();
 								var sk_anim_frame_time = 0;
 		                        for(var sk_db_anim_frame_id = 0; sk_db_anim_frame_id < sk_db_anim_frame_count; sk_db_anim_frame_id++){
 		                            var sk_db_anim_frame_record = sk_db_anim_bone_rotate[| sk_db_anim_frame_id];
 		                            if(is_real(sk_db_anim_frame_record)&&ds_exists(sk_db_anim_frame_record,ds_type_map)){
 										// add frame
-		                                var sk_anim_frame_tween = sk_tweenEasing_none;
+		                                var sk_anim_frame_tween = SK_EASE_NONE;
 										if(is_real(sk_db_anim_frame_record[? "tweenEasing"])){
 											// linear interpolation
-											sk_anim_frame_tween = sk_tweenEasing_linear;
+											sk_anim_frame_tween = SK_EASE_LINEAR;
 										} else {
 											var sk_anim_frame_bezier = sk_db_anim_frame_record[? "curve"];
 											if(is_real(sk_anim_frame_bezier)&&ds_exists(sk_anim_frame_bezier,ds_type_list)){
 												// quadratic interpolation
-												sk_anim_frame_tween = sk_bezier_aproximateCurve(
-													sk_anim_frame_bezier[| 0],
-													sk_anim_frame_bezier[| 1],
-													sk_anim_frame_bezier[| 2],
-													sk_anim_frame_bezier[| 3]
+												sk_anim_frame_tween = sk_ease_function_from_bezier(
+													real(sk_anim_frame_bezier[| 0]),
+													real(sk_anim_frame_bezier[| 1]),
+													real(sk_anim_frame_bezier[| 2]),
+													real(sk_anim_frame_bezier[| 3])
 												);
 											}
 										}
-		                                // append keyframe data in format [time, drotation, clockwiseMultiplier, tween]
-										sk_timeline_frame_add_rotate(
-											sk_timelineData,
+		                                // append keyframe data in format [time, dx, dy, tween]
+										ds_list_add(
+											sk_timeline_frames,
 											sk_anim_frame_time,
 											-real(sk_db_anim_frame_record[? "rotate"]),
 											-real(sk_db_anim_frame_record[? "clockwise"]), // this value is multiplied to the next frame to get the amount of extra periods of rotation
@@ -393,13 +395,14 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 										sk_anim_frame_time += real(sk_db_anim_frame_record[? "duration"])*sk_db_fps;
 		                            }
 		                        }
+								sk_rotate_timeline_set_keyframes(sk_timelineData,sk_timeline_frames);
 							}
 	                    }
 						#endregion
 					}
 				}
 			}
-			// iterate through slot data
+			/*// iterate through slot data
 			if(is_real(sk_db_anim_slots)&&ds_exists(sk_db_anim_slots,ds_type_list)){
 	            var sk_db_anim_slot_count = ds_list_size(sk_db_anim_slots);
 	            for(var sk_db_anim_slot_id = 0; sk_db_anim_slot_id < sk_db_anim_slot_count; sk_db_anim_slot_id++){
@@ -497,8 +500,8 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 						#endregion
 					}
 				}
-			}
-			// iterate through ik data
+			}*/
+			/*// iterate through ik data
 			if(is_real(sk_db_anim_ik)&&ds_exists(sk_db_anim_ik,ds_type_list)){
 	            var sk_db_anim_ik_count = ds_list_size(sk_db_anim_ik);
 	            for(var sk_db_anim_ik_id = 0; sk_db_anim_ik_id < sk_db_anim_ik_count; sk_db_anim_ik_id++){
@@ -554,8 +557,8 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 						#endregion
 					}
 				}
-			}
-			#region // compile event timelines
+			}*/
+			/*#region // compile event timelines
 			var DB_EVENT_TIMELINE_MAP = ds_map_create(); // create a map to keep track of the timelines for each event
 			ds_map_add_map(sk_db_anim_record,"|DB_EVENT_TIMELINE_MAP|",DB_EVENT_TIMELINE_MAP); // store it in the dragonbones json temporarily so it can be destroyed easily
 			if(is_real(sk_db_anim_events)&&ds_exists(sk_db_anim_events,ds_type_list)){
@@ -627,8 +630,8 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 					}
 				}
 			}
-			#endregion
-			#region // compile draw order timeline
+			#endregion*/
+			/*#region // compile draw order timeline
 			if(is_real(sk_db_anim_order)&&ds_exists(sk_db_anim_order,ds_type_map)){
 				var sk_db_anim_order_frames = sk_db_anim_order[? "frame"];
 				if(is_real(sk_db_anim_order_frames)&&ds_exists(sk_db_anim_order_frames,ds_type_list)){
@@ -677,11 +680,13 @@ if(is_real(sk_db_animations)&&ds_exists(sk_db_animations,ds_type_list)){
 					}
 				}
 			}
-			#endregion
+			#endregion*/
+			sk_animation_set_timelines(sk_anim,sk_anim_timelines);
+			ds_list_destroy(sk_anim_timelines);
 			#endregion
 		}
 	}
-}*/
+}
 // destroy dragonbones json
 ds_map_destroy(sk_db_arm);
 // create armature
