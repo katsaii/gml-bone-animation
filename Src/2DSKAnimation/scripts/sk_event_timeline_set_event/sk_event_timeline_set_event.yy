@@ -1,8 +1,8 @@
 {
-    "id": "6485564c-1094-404e-8c7d-6446df1ddece",
+    "id": "c72c2e67-cc65-42b6-ba4d-60f31d419dce",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "sk_event_call",
+    "name": "sk_event_timeline_set_event",
     "IsCompatibility": false,
     "IsDnD": false
 }

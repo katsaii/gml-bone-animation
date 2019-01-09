@@ -6,10 +6,15 @@ var yy = room_height -40;
 var xscale = 10;
 var yscale = 10;
 
+ds_list_clear(events);
+
 sk_armature_pose_setup(arm);
 var t = current_time*0.02;
-sk_animation_apply(anim,t,t,SK_MIX_ADD,1,true);
+sk_animation_apply(anim,last_time,t,SK_MIX_ADD,1,true,events);
+last_time = t;
 sk_armature_pose_update(arm);
+
+
 
 vertex_begin_sk(vertex);
 sk_armature_pose_vertex_add(arm,vertex);

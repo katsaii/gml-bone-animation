@@ -1,4 +1,5 @@
 __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_transformation_timeline_exists(argument0);
+if(false) then var sk_ignoreTheseArguments = [argument6,argument7];
 /// @desc apply the timeline between two keyframes
 /// @param timeline
 /// @param keyframeA
@@ -6,6 +7,8 @@ __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_transformation_timeline_exists(argument
 /// @param amount
 /// @param mixPose
 /// @param alpha
+/// @param events
+/// @param mixDirection
 var sk_target = argument0[sk_data_transformation_timeline.target];
 if(sk_target==undefined) then return;
 var sk_keyframeA_id = argument1*SK_TRANSFORMATION_KEYFRAME_ENTRIES;

@@ -6,20 +6,24 @@ __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_animation_exists(argument0);
 /// @param mixPose
 /// @param alpha
 /// @param wrap
+/// @param events
 if(argument4<0.001) then return;
 // wrap times
 var sk_duration = argument0[sk_data_animation.duration];
 var sk_timeLast = argument1;
 var sk_time = argument2;
+var sk_direction = sign(sk_time-sk_timeLast);
+var sk_events = argument6;
 if(sk_duration>0){
-	var sk_wrap = argument5;
-	if(sk_wrap){
-		sk_timeLast = sk_timeLast mod sk_duration;
-		sk_time = sk_time mod sk_duration;
-	} else {
-		if(sk_timeLast>sk_duration) then sk_timeLast = sk_duration;
-		if(sk_time>sk_duration) then sk_time = sk_duration;
+	var sk_t = sk_time;
+	if(argument5){
+		sk_t = ((sk_t%sk_duration)+sk_duration)%sk_duration;
+	} else if(sk_t>sk_duration){
+		sk_t = sk_duration;
 	}
+	var sk_dt = sk_t-sk_time;
+	sk_time += sk_dt;
+	sk_timeLast += sk_dt;
 }
 // iterate through mainline
 var sk_mainline = argument0[sk_data_animation.mainline];
@@ -41,6 +45,12 @@ if(sk_time>=sk_mainline_time){
 		var sk_mainline_timeA = sk_mainline_timelines[| sk_mainline_timeline_id+3];
 		var sk_mainline_timeB = sk_mainline_timelines[| sk_mainline_timeline_id+4];
 		var sk_interpolation = (sk_mainline_timeA==sk_mainline_timeB) ? 0 : clamp((sk_time-sk_mainline_timeA)/(sk_mainline_timeB-sk_mainline_timeA),0,1);
-		sk_timeline_apply(sk_mainline_timeline,sk_mainline_keyframeA,sk_mainline_keyframeB,sk_interpolation,argument3,argument4);
+		var sk_callEvents = 
+			(sk_time<sk_mainline_timeA)||
+			(sk_time>sk_mainline_timeB)||
+			(sk_timeLast<sk_mainline_timeA)||
+			(sk_timeLast>sk_mainline_timeB)
+		;
+		sk_timeline_apply(sk_mainline_timeline,sk_mainline_keyframeA,sk_mainline_keyframeB,sk_interpolation,argument3,argument4,sk_callEvents ? sk_events : undefined,sk_direction);
 	}
 }
