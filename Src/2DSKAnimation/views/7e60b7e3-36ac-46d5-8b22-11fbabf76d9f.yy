@@ -11,7 +11,7 @@
         "930b0243-055d-43f0-8f9c-b35a1e22cb1c"
     ],
     "filterType": "GMScript",
-    "folderName": "TEMPLATE",
+    "folderName": "Transformation",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

@@ -6,21 +6,21 @@ __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_scale_timeline_exists(argument0);
 /// @param amount
 /// @param mixPose
 /// @param alpha
-var sk_target = argument0[sk_data__timeline.target];
+var sk_target = argument0[sk_data_rotate_timeline.target];
 if(sk_target==undefined) then return;
-var sk_keyframeA_id = argument1*SK__KEYFRAME_ENTRIES;
-var sk_keyframeB_id = argument2*SK__KEYFRAME_ENTRIES;
-var sk_keyframes = argument0[sk_data__timeline.keyframes];
+var sk_keyframeA_id = argument1*SK_SCALE_KEYFRAME_ENTRIES;
+var sk_keyframeB_id = argument2*SK_SCALE_KEYFRAME_ENTRIES;
+var sk_keyframes = argument0[sk_data_rotate_timeline.keyframes];
 // interpolate
-var sk_interpolation = sk_ease(argument3,sk_keyframes[| sk_keyframeA_id+SK__KEYFRAME_EASE]);
+var sk_interpolation = sk_ease(argument3,sk_keyframes[| sk_keyframeA_id+SK_SCALE_KEYFRAME_EASE]);
 var sk_x = lerp(
-	sk_keyframes[| sk_keyframeA_id+SK__KEYFRAME_X],
-	sk_keyframes[| sk_keyframeB_id+SK__KEYFRAME_X],
+	sk_keyframes[| sk_keyframeA_id+SK_SCALE_KEYFRAME_X],
+	sk_keyframes[| sk_keyframeB_id+SK_SCALE_KEYFRAME_X],
 	sk_interpolation
 );
 var sk_y = lerp(
-	sk_keyframes[| sk_keyframeA_id+SK__KEYFRAME_Y],
-	sk_keyframes[| sk_keyframeB_id+SK__KEYFRAME_Y],
+	sk_keyframes[| sk_keyframeA_id+SK_SCALE_KEYFRAME_Y],
+	sk_keyframes[| sk_keyframeB_id+SK_SCALE_KEYFRAME_Y],
 	sk_interpolation
 );
 // apply

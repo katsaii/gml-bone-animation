@@ -9,4 +9,4 @@ sk_armature_set_atlas(arm,atlas);
 
 anims = ds_list_create();
 sk_armature_get_animations(arm,anims);
-anim = anims[| ds_list_find_index_sk_animation(anims,"anim_die")];
+anim = anims[| ds_list_find_index_sk_animation(anims,"anim_run")];
