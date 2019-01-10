@@ -1,4 +1,4 @@
-/// @desc 
+/// @desc 0
 //sk_atlas_draw_debug(atlas,0,0,room_width,room_height,SK_ATLAS_DEBUG_REGIONS|SK_ATLAS_DEBUG_TEXTURE|SK_ATLAS_DEBUG_ORIGINS|SK_ATLAS_DEBUG_KEYS);
 
 var xx = room_width div 2;
@@ -9,12 +9,19 @@ var yscale = 10;
 ds_list_clear(events);
 
 sk_armature_pose_setup(arm);
-var t = current_time*0.02;
+var t = current_time*0.04;
 sk_animation_apply(anim,last_time,t,SK_MIX_ADD,1,true,events);
+sk_animation_apply(anim_blink,current_time*0.005,current_time*0.005,SK_MIX_ADD,1,true,events);
 last_time = t;
 sk_armature_pose_update(arm);
 
-
+if(ds_list_find_index(events,event)!=-1){
+	var event_bone = sk_event_get_bone(event);
+	if(event_bone!=undefined){
+		var text = sk_bone_get_name(event_bone)=="b_ankle_left" ? "STOMP" : "CLINK"
+		draw_text(xx+xscale*sk_bone_get_x(event_bone),yy,text);
+	}
+}
 
 vertex_begin_sk(vertex);
 sk_armature_pose_vertex_add(arm,vertex);
@@ -27,4 +34,4 @@ matrix_set(matrix_world,m);
 
 //sk_armature_draw_debug(arm,xx,yy,10,10,0,SK_BONE_DEBUG_EX_DATA|SK_BONE_DEBUG_EX_STRUCTURE);
 
-draw_text(xx,yy,fps_real);
+draw_text(10,yy,fps_real);
