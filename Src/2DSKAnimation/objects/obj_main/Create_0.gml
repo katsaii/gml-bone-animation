@@ -13,7 +13,7 @@ anim = anims[| ds_list_find_index_sk_animation(anims,"anim_run")];
 anim_blink = anims[| ds_list_find_index_sk_animation(anims,"anim_blink")];
 
 last_time = 0;
-events = ds_list_create();
+thrownEvents = ds_list_create();
 
 events = ds_list_create();
 sk_armature_get_events(arm,events);
