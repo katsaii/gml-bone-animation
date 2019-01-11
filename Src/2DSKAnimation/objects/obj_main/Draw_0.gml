@@ -8,10 +8,11 @@ var yscale = 10;
 
 var time = current_time*0.04;
 
-if(keyboard_check(vk_enter)){
-	sk_animationState_play(state,"anim_skid",true);
-}else{
-	sk_animationState_play(state,"anim_run",true);
+if(keyboard_check_pressed(vk_enter)){
+	sk_animationState_play(state,"anim_skid",-1);
+}
+if(keyboard_check_released(vk_enter)){
+	sk_animationState_play(state,"anim_run",-1);
 }
 sk_animationState_update(state,0.5);
 

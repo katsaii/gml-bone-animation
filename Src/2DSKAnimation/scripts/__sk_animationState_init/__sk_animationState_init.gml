@@ -17,4 +17,4 @@ argument0[@ sk_data_animationState.animationQueue] = ds_list_create();
 argument0[@ sk_data_animationState.timerTimeLast] = -1;
 sk_animationState_set_timescale(argument0,1);
 sk_animationState_set_defaultMix(argument0,1);
-sk_animationState_play(argument0,undefined,false);
+sk_animationState_clear(argument0,undefined,false);

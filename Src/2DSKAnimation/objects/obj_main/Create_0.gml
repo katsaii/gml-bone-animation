@@ -14,6 +14,7 @@ blink = anims[| ds_list_find_index_sk_animation(anims,"anim_blink")];
 state = sk_animationState_create(arm);
 sk_animationState_set_defaultMix(state,0.1);
 sk_animationState_set_timescale(state,1);
+sk_animationState_clear(state,"anim_idle",-1);
 
 last_time = 0;
 thrownEvents = ds_list_create();
