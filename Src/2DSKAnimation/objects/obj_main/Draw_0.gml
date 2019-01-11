@@ -7,10 +7,18 @@ var xscale = 10;
 var yscale = 10;
 
 var time = current_time*0.04;
+
+if(keyboard_check(vk_enter)){
+	sk_animationState_play(state,"anim_skid",true);
+}else{
+	sk_animationState_play(state,"anim_run",true);
+}
+sk_animationState_update(state,0.5);
+
 repeat(1){
 ds_list_clear(thrownEvents);
 sk_armature_pose_setup(arm);
-sk_animation_apply(anim,last_time,time,SK_MIX_ADD,1,true,thrownEvents);
+sk_animationState_apply(state,1,thrownEvents);
 sk_armature_pose_update(arm);
 
 vertex_begin_sk(vertex);
@@ -22,9 +30,11 @@ last_time = time;
 
 for(var i = 0, c = ds_list_size(thrownEvents); i<c; i++){
 	var e = thrownEvents[| i];
-	var e_bone = e[1];
-	var text = sk_bone_get_name(e_bone)=="b_ankle_left" ? "STOMP" : "CLINK";
-	draw_text(xx+xscale*sk_bone_get_x(e_bone),yy,text);
+	if(e[0]=="ev_footstep"){
+		var e_bone = e[1];
+		var text = sk_bone_get_name(e_bone)=="b_ankle_left" ? "STOMP" : "CLINK";
+		draw_text(xx+xscale*sk_bone_get_x(e_bone),yy,text);
+	}
 }
 
 var m = matrix_get(matrix_world);

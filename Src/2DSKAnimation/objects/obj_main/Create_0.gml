@@ -9,21 +9,11 @@ sk_armature_set_atlas(arm,atlas);
 
 anims = ds_list_create();
 sk_armature_get_animations(arm,anims);
-anim = anims[| ds_list_find_index_sk_animation(anims,"anim_run")];
-anim_blink = anims[| ds_list_find_index_sk_animation(anims,"anim_blink")];
+blink = anims[| ds_list_find_index_sk_animation(anims,"anim_blink")];
+
+state = sk_animationState_create(arm);
+sk_animationState_set_defaultMix(state,0.1);
+sk_animationState_set_timescale(state,1);
 
 last_time = 0;
 thrownEvents = ds_list_create();
-
-events = ds_list_create();
-sk_armature_get_events(arm,events);
-event = events[| ds_list_find_index_sk_event(events,"ev_footstep")];
-
-sk_animation_apply(
-	anims[| ds_list_find_index_sk_animation(anims,"display_costume_bottom_classic")],
-	0,0,SK_MIX_OVERWRITE,1,false,undefined
-);
-sk_animation_apply(
-	anims[| ds_list_find_index_sk_animation(anims,"display_costume_top_classic")],
-	0,0,SK_MIX_OVERWRITE,1,false,undefined
-);
