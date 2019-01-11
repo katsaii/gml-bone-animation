@@ -887,14 +887,6 @@
             }
         },
         {
-            "Key": "3868d212-9795-4929-bc7a-9e2da64b520f",
-            "Value": {
-                "id": "9bcacd71-afbc-444f-b34a-43cb8909ab2a",
-                "resourcePath": "scripts\\sk_animation_resetEventState\\sk_animation_resetEventState.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "3873acc7-eea2-4063-aff8-6de0ea14618f",
             "Value": {
                 "id": "75349ec0-25fa-469f-826e-7002239f7c76",
@@ -4050,7 +4042,6 @@
         "944d839a-6043-4287-923f-17a66bf8e6c4",
         "02668f43-49bb-43db-866a-8424f77589c1",
         "024a0acb-6b36-4108-a169-0056e7a13587",
-        "3868d212-9795-4929-bc7a-9e2da64b520f",
         "66b6dcb9-cd8d-4ad4-b746-43ecf180fb4b",
         "f3155f7d-631f-4944-a1e5-f0f724ab06bf",
         "b2e438f8-db7c-41d9-81e2-1814045ec7f2",
