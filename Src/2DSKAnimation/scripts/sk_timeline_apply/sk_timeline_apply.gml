@@ -5,11 +5,11 @@ gml_pragma("forceinline");
 #macro SK_MIX_OVERWRITE 2 /* permanently overwrites the setup pose with the supplied animation, this is useful for changing colours and transforms globally - THIS IS NOT A REVERTABLE ACTION */
 /// @desc calls an internal script
 /// @param variable
+/// @param keyframe_previous
 /// @param keyframeA
 /// @param keyframeB
 /// @param amount
 /// @param mixPose
 /// @param alpha
 /// @param events
-/// @param mixDirection
 script_execute(argument0[1,1],argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7);

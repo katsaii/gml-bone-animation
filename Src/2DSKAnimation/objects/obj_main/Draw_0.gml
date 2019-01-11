@@ -6,14 +6,19 @@ var yy = room_height -40;
 var xscale = 10;
 var yscale = 10;
 
+var time = current_time*0.04;
+repeat(1){
 ds_list_clear(events);
-
 sk_armature_pose_setup(arm);
-var t = current_time*0.04;
-sk_animation_apply(anim,last_time,t,SK_MIX_ADD,1,true,events);
-sk_animation_apply(anim_blink,current_time*0.005,current_time*0.005,SK_MIX_ADD,1,true,events);
-last_time = t;
+sk_animation_apply(anim,last_time,time,SK_MIX_ADD,1,true,events);
 sk_armature_pose_update(arm);
+
+vertex_begin_sk(vertex);
+sk_armature_pose_vertex_add(arm,vertex);
+vertex_end_sk(vertex);
+
+}
+last_time = time;
 
 if(ds_list_find_index(events,event)!=-1){
 	var event_bone = sk_event_get_bone(event);
@@ -22,10 +27,6 @@ if(ds_list_find_index(events,event)!=-1){
 		draw_text(xx+xscale*sk_bone_get_x(event_bone),yy,text);
 	}
 }
-
-vertex_begin_sk(vertex);
-sk_armature_pose_vertex_add(arm,vertex);
-vertex_end_sk(vertex);
 
 var m = matrix_get(matrix_world);
 matrix_set(matrix_world,matrix_build(xx,yy,0,0,0,0,xscale,yscale,1));

@@ -3,7 +3,8 @@ enum sk_data_animation{
 	name,
 	timelines,
 	mainline,
-	duration,loop
+	duration,loop,
+	eventState
 }
 #macro SK_ANIMATION_MAINLINE_TIME 0
 #macro SK_ANIMATION_MAINLINE_TIMELINES 1
@@ -12,5 +13,6 @@ enum sk_data_animation{
 /// @param variable
 argument0[@ sk_data_animation.timelines] = ds_list_create();
 argument0[@ sk_data_animation.mainline] = ds_list_create();
+argument0[@ sk_data_animation.eventState] = ds_map_create();
 sk_animation_set_name(argument0,undefined);
 sk_animation_set_duration(argument0,0,false);

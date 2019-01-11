@@ -101,3 +101,4 @@ for(var sk_timeline_id = 0; sk_timeline_id<sk_timeline_count; sk_timeline_id++){
 	ds_map_destroy(sk_timeline_records);
 	ds_list_destroy(sk_timeline_times);
 }
+sk_animation_resetEventState(argument0);
