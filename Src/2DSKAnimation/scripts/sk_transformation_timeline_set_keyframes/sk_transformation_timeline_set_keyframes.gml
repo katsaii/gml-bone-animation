@@ -9,9 +9,9 @@ var sk_frame_last = ds_list_size(argument1)-SK_TRANSFORMATION_KEYFRAME_ENTRIES;
 for(var sk_frame_id = 0; sk_frame_id<=sk_frame_last; sk_frame_id += SK_TRANSFORMATION_KEYFRAME_ENTRIES){
 	var sk_keyframe_id = ds_list_size(sk_keyframes);
 	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_TIME] = real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_TIME]);
-	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_MIX_TRANSLATE] = real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_TRANSLATE]);
-	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_MIX_SCALE] = real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_SCALE]);
-	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_MIX_SHEAR] = real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_SHEAR]);
-	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_MIX_ROTATE] = real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_ROTATE]);
-	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_EASE] = real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_EASE]);
+	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_MIX_TRANSLATE] = is_real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_TRANSLATE]) ? argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_TRANSLATE] : 1;
+	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_MIX_SCALE] = is_real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_SCALE]) ? argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_SCALE] : 1;
+	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_MIX_SHEAR] = is_real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_SHEAR]) ? argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_SHEAR] : 1;
+	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_MIX_ROTATE] = is_real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_ROTATE]) ? argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_MIX_ROTATE] : 1;
+	sk_keyframes[| sk_keyframe_id+SK_TRANSFORMATION_KEYFRAME_EASE] = is_real(argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_EASE]) ?  argument1[| sk_frame_id+SK_TRANSFORMATION_KEYFRAME_EASE] : 1;
 }

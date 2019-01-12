@@ -3,20 +3,13 @@
 
 var xx = room_width div 2;
 var yy = room_height -40;
-var xscale = 10;
-var yscale = 10;
 
 var time = current_time*0.04;
 
-if(keyboard_check_pressed(vk_enter)){
-	sk_animationState_play(state,"anim_skid",-1);
-}
-if(keyboard_check_released(vk_enter)){
-	sk_animationState_play(state,"anim_run",-1);
-}
+if(keyboard_check_pressed(vk_enter)) then sk_animationState_play(state,anim2,-1);
+if(keyboard_check_released(vk_enter)) then sk_animationState_play(state,anim1,-1);
 sk_animationState_update(state,0.5);
 
-repeat(1){
 ds_list_clear(thrownEvents);
 sk_armature_pose_setup(arm);
 sk_animationState_apply(state,1,thrownEvents);
@@ -25,9 +18,6 @@ sk_armature_pose_update(arm);
 vertex_begin_sk(vertex);
 sk_armature_pose_vertex_add(arm,vertex);
 vertex_end_sk(vertex);
-
-}
-last_time = time;
 
 for(var i = 0, c = ds_list_size(thrownEvents); i<c; i++){
 	var e = thrownEvents[| i];
@@ -43,6 +33,6 @@ matrix_set(matrix_world,matrix_build(xx,yy,0,0,0,0,xscale,yscale,1));
 vertex_submit(vertex,pr_trianglelist,sk_atlas_get_texture(atlas));
 matrix_set(matrix_world,m);
 
-//sk_armature_draw_debug(arm,xx,yy,10,10,0,SK_BONE_DEBUG_EX_DATA|SK_BONE_DEBUG_EX_STRUCTURE);
+sk_armature_draw_debug(arm,xx,yy,xscale,yscale,0,SK_BONE_DEBUG_EX_DATA|SK_BONE_DEBUG_EX_STRUCTURE);
 
 draw_text(10,yy,fps_real);
