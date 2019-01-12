@@ -128,13 +128,11 @@ if(is_real(sk_sp_skins)&&ds_exists(sk_sp_skins,ds_type_map)){
 									case "mesh": case "linkedmesh": case "boundingbox": case "path": case "clipping": break; // not supported
 									case "point":
 										// create point attachment
-										/*var sk_attachment_x = real(sk_sp_skin_slot_attachment_record[? "x"]);
+										var sk_attachment_x = real(sk_sp_skin_slot_attachment_record[? "x"]);
 										var sk_attachment_y = -real(sk_sp_skin_slot_attachment_record[? "y"]);
 										var sk_attachment_rotation = real(sk_sp_skin_slot_attachment_record[? "rotation"]);
 										// create a new attachment and add it to the skin
-										sk_attachment = sk_attachment_create_point(sk_attachment_name);
-										sk_attachment_point_set_offsets(sk_attachment,sk_attachment_x,sk_attachment_y,sk_attachment_rotation);
-										sk_armature_add_attachment(sk_skel,sk_attachment);*/
+										sk_attachment = sk_point_attachment_create(sk_attachment_name,sk_attachment_x,sk_attachment_y,sk_attachment_rotation);
 									break;
 									case "region": default:
 										// create plane (region) attachment
