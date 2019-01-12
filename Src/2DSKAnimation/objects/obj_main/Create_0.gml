@@ -21,8 +21,8 @@ sk_armature_set_atlas(arm,atlas);
 
 anims = ds_list_create();
 sk_armature_get_animations(arm,anims);
-var a1 = anims[| 0];
-var a2 = anims[| 1];
+var a1 = anims[| 3];
+var a2 = anims[| 4];
 anim1 = sk_animation_exists(a1) ? sk_animation_get_name(a1) : undefined;
 anim2 = sk_animation_exists(a2) ? sk_animation_get_name(a2) : undefined;
 
