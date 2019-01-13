@@ -26,8 +26,6 @@ var a2 = anims[| 7];
 anim1 = sk_animation_exists(a1) ? sk_animation_get_name(a1) : undefined;
 anim2 = sk_animation_exists(a2) ? sk_animation_get_name(a2) : undefined;
 
-show_message([anim1,anim2]);
-
 state = sk_animationState_create(arm);
 sk_animationState_set_defaultMix(state,0.1);
 sk_animationState_set_timescale(state,1);
