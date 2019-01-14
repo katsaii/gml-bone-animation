@@ -1,5 +1,5 @@
 #macro SK_OBJECT_DEBUG_ASSERTIONS_ENABLED true
-#macro __SK_OBJECT_DEBUG_ASSERT_EXISTENCE if(SK_OBJECT_DEBUG_ASSERTIONS_ENABLED) then for(var __sk_assertion = undefined; ; { if(bool(__sk_assertion)) then show_error("Skeleton object with reference does not exist.",true); break; }) var __sk_assertion
+#macro __SK_OBJECT_DEBUG_ASSERT_EXISTENCE if(SK_OBJECT_DEBUG_ASSERTIONS_ENABLED) then for(var __sk_voidPtr = [], __sk_assertion = __sk_voidPtr; __sk_assertion==__sk_voidPtr; __sk_assertion = __sk_assert_skeletonObjectDoesNotExistException(__sk_assertion)) var __sk_assertion
 /// @desc returns whether the value is an object
 /// @param variable
 /// @param [type]

@@ -23,8 +23,8 @@ anims = ds_list_create();
 sk_armature_get_animations(arm,anims);
 var a1 = anims[| 6];
 var a2 = anims[| 7];
-anim1 = sk_animation_exists(a1) ? sk_animation_get_name(a1) : undefined;
-anim2 = sk_animation_exists(a2) ? sk_animation_get_name(a2) : undefined;
+anim1 = "anim_idle";//sk_animation_exists(a1) ? sk_animation_get_name(a1) : undefined;
+anim2 = "anim_run";//sk_animation_exists(a2) ? sk_animation_get_name(a2) : undefined;
 
 state = sk_animationState_create(arm);
 sk_animationState_set_defaultMix(state,0.1);
