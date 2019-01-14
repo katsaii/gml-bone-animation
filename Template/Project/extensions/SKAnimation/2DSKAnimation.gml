@@ -6824,6 +6824,11 @@ argument0[@ sk_data_armature.events] = ds_list_create();
 argument0[@ sk_data_armature.updateOrder] = ds_list_create();
 argument0[@ sk_data_armature.drawOrder] = ds_list_create();
 
+#define __sk_assert_skeletonObjectDoesNotExistException
+/// @desc shows an error message if the value is true
+/// @param assertion
+if(argument0) then show_error("Skeleton object with reference does not exist.",true);
+
 #define __sk_atlas_dispose
 /// @desc dispose
 /// @param variable

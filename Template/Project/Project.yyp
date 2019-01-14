@@ -55,6 +55,22 @@
             }
         },
         {
+            "Key": "41806630-05b1-49e3-bab0-537baaf2bb38",
+            "Value": {
+                "id": "9df2e810-a1e1-487d-8901-a1f8a117d642",
+                "resourcePath": "datafiles_yy\\Dragon_tex.json.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "5bbb740f-f3b1-4e6d-99ec-741c8d1a446c",
+            "Value": {
+                "id": "93aa335a-994c-4f96-be09-e7a25fd1fece",
+                "resourcePath": "sprites\\spr_dragon\\spr_dragon.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "60d240d8-005d-45f2-884f-cc63f2209ecc",
             "Value": {
                 "id": "963e7e29-e880-4b01-bdc5-7e58ac72a8b3",
@@ -143,6 +159,14 @@
             }
         },
         {
+            "Key": "b93c89e2-22ef-4a35-bb01-1e035ef44a06",
+            "Value": {
+                "id": "69c3cc80-f434-468c-a0a9-bba4859c504d",
+                "resourcePath": "datafiles_yy\\Dragon_ske.json.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "c31ad4e9-3eab-4187-a8b0-01e36016b8bf",
             "Value": {
                 "id": "d9612eaf-80d9-4809-bedd-3439a74cfb1e",
@@ -188,6 +212,14 @@
                 "id": "c8aeb53a-d4c4-4394-a333-14ee6a95356b",
                 "resourcePath": "views\\e132e49d-c099-4865-8a3c-6bc6757bfca0.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "f1550e63-e945-48a8-ad2d-f15433e47398",
+            "Value": {
+                "id": "39ef5c68-c18e-4115-b13a-a6bdc27ec348",
+                "resourcePath": "objects\\obj_armature\\obj_armature.yy",
+                "resourceType": "GMObject"
             }
         },
         {
