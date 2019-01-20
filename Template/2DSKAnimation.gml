@@ -3046,12 +3046,27 @@ var sk_x2 = sk_x1+argument3;
 var sk_y2 = sk_y1+argument4;
 if(argument5&SK_ATLAS_DEBUG_TEXTURE){
 	// draw texture
-	draw_primitive_begin_texture(pr_trianglestrip,sk_atlas_texture);
-	draw_vertex_texture_colour(sk_x1,sk_y1,0,0,c_white,1);
-	draw_vertex_texture_colour(sk_x1,sk_y2,0,1,c_white,1);
-	draw_vertex_texture_colour(sk_x2,sk_y1,1,0,c_white,1);
-	draw_vertex_texture_colour(sk_x2,sk_y2,1,1,c_white,1);
-	draw_primitive_end();
+	var sk_uvleft = argument0[sk_data_atlas.UVLeft];
+	var sk_uvtop = argument0[sk_data_atlas.UVTop];
+	var sk_uvright = argument0[sk_data_atlas.UVRight];
+	var sk_uvbottom = argument0[sk_data_atlas.UVBottom];
+	var sk_vbuff = vertex_create_buffer();
+	vertex_begin_sk(sk_vbuff);
+	vertex_position(sk_vbuff,sk_x1,sk_y1); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvleft,sk_uvtop);
+	vertex_position(sk_vbuff,sk_x2,sk_y1); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvright,sk_uvtop);
+	vertex_position(sk_vbuff,sk_x1,sk_y2); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvleft,sk_uvbottom);
+	vertex_position(sk_vbuff,sk_x1,sk_y2); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvleft,sk_uvbottom);
+	vertex_position(sk_vbuff,sk_x2,sk_y1); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvright,sk_uvtop);
+	vertex_position(sk_vbuff,sk_x2,sk_y2); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvright,sk_uvbottom);
+	vertex_end_sk(sk_vbuff);
+	vertex_submit(sk_vbuff,pr_trianglelist,sk_atlas_texture);
+	vertex_delete_buffer(sk_vbuff);
+	//draw_primitive_begin_texture(pr_trianglestrip,sk_atlas_texture);
+	//draw_vertex_texture_colour(sk_x1,sk_y1,0,0,c_white,1);
+	//draw_vertex_texture_colour(sk_x1,sk_y2,0,1,c_white,1);
+	//draw_vertex_texture_colour(sk_x2,sk_y1,1,0,c_white,1);
+	//draw_vertex_texture_colour(sk_x2,sk_y2,1,1,c_white,1);
+	//draw_primitive_end();
 }
 // draw regions
 var sk_region_count = ds_map_size(sk_atlas_subtextures);
@@ -3105,11 +3120,49 @@ __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
 /// @param key
 return ds_map_find_value(argument0[sk_data_atlas.subtextures],argument1);
 
+#define sk_atlas_get_region_normalised
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
+/// @desc returns the region array, but normalised to the texture uvs
+/// @param atlas
+/// @param key
+var sk_region = ds_map_find_value(argument0[sk_data_atlas.subtextures],argument1);
+if(sk_region!=undefined){
+	var sk_uvleft = argument0[sk_data_atlas.UVLeft];
+	var sk_uvtop = argument0[sk_data_atlas.UVTop];
+	var sk_uvright = argument0[sk_data_atlas.UVRight];
+	var sk_uvbottom = argument0[sk_data_atlas.UVBottom];
+	return [
+		lerp(sk_uvleft,sk_uvright,sk_region[0]),
+		lerp(sk_uvtop,sk_uvbottom,sk_region[1]),
+		lerp(sk_uvleft,sk_uvright,sk_region[2]),
+		lerp(sk_uvtop,sk_uvbottom,sk_region[3]),
+		lerp(sk_uvleft,sk_uvright,sk_region[4]),
+		lerp(sk_uvtop,sk_uvbottom,sk_region[5]),
+		lerp(sk_uvleft,sk_uvright,sk_region[6]),
+		lerp(sk_uvtop,sk_uvbottom,sk_region[7]),
+		sk_region[8],
+		sk_region[9],
+		sk_region[10],
+		sk_region[11]
+	];
+}	return undefined;
+
 #define sk_atlas_get_texture
 __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
 /// @desc returns a property
 /// @param atlas
 return argument0[sk_data_atlas.texturePage];
+
+#define sk_atlas_get_uvs
+__SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
+/// @desc returns a property
+/// @param atlas
+return[
+	argument0[sk_data_atlas.UVLeft],
+	argument0[sk_data_atlas.UVTop],
+	argument0[sk_data_atlas.UVRight],
+	argument0[sk_data_atlas.UVBottom]
+];
 
 #define sk_atlas_set_page
 __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
@@ -5416,7 +5469,7 @@ __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_plane_attachment_exists(argument0);
 /// @desc extracts region data from the supplied texture atlas
 /// @param attachment
 /// @param atlas
-argument0[@ sk_data_plane_attachment.regionData] = sk_atlas_get_region(argument1,argument0[sk_data_plane_attachment.regionKey]);
+argument0[@ sk_data_plane_attachment.regionData] = sk_atlas_get_region_normalised(argument1,argument0[sk_data_plane_attachment.regionKey]);
 
 #define sk_plane_attachment_set_matrix
 __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_plane_attachment_exists(argument0);
