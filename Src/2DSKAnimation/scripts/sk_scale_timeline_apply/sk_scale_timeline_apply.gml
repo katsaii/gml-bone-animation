@@ -37,11 +37,11 @@ switch(sk_mixPose){
 		sk_target[@ sk_data_bone.appliedYScale] = lerp(sk_target[sk_data_bone.appliedYScale],sk_target[sk_data_bone.setupYScale]+sk_y,sk_alpha);
 	break;
 	case SK_MIX_ADD:
-		sk_target[@ sk_data_bone.appliedXScale] = sk_target[sk_data_bone.appliedXScale]*lerp(1,sk_x,sk_alpha);
-		sk_target[@ sk_data_bone.appliedYScale] = sk_target[sk_data_bone.appliedYScale]*lerp(1,sk_y,sk_alpha);
+		sk_target[@ sk_data_bone.appliedXScale] *= lerp(1,sk_x,sk_alpha);
+		sk_target[@ sk_data_bone.appliedYScale] *= lerp(1,sk_y,sk_alpha);
 	break;
 	case SK_MIX_OVERWRITE:
-		sk_target[@ sk_data_bone.setupXScale] = sk_target[sk_data_bone.setupXScale]*lerp(1,sk_x,sk_alpha);
-		sk_target[@ sk_data_bone.setupYScale] = sk_target[sk_data_bone.setupYScale]*lerp(1,sk_y,sk_alpha);
+		sk_target[@ sk_data_bone.setupXScale] *= lerp(1,sk_x,sk_alpha);
+		sk_target[@ sk_data_bone.setupYScale] *= lerp(1,sk_y,sk_alpha);
 	break;
 }
