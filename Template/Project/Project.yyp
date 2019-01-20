@@ -47,6 +47,14 @@
             }
         },
         {
+            "Key": "302fac6c-a1c6-46aa-b16c-aeb38dadb23f",
+            "Value": {
+                "id": "5cf2f361-cbbb-4811-bc66-5d54a4bf7ac9",
+                "resourcePath": "datafiles_yy\\Santa_tex.json.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "33f68727-fe8f-49a8-85a4-e26ed4fa32ff",
             "Value": {
                 "id": "fbf81ae0-6735-4f32-83d6-edc50ed03ea6",
@@ -167,6 +175,14 @@
             }
         },
         {
+            "Key": "bf8160bc-615a-4433-a786-0bb4053389e2",
+            "Value": {
+                "id": "9c639731-b0f4-4da0-a7ea-ab8a9eaa144b",
+                "resourcePath": "datafiles_yy\\Santa_ske.json.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "c31ad4e9-3eab-4187-a8b0-01e36016b8bf",
             "Value": {
                 "id": "d9612eaf-80d9-4809-bedd-3439a74cfb1e",
@@ -212,6 +228,14 @@
                 "id": "c8aeb53a-d4c4-4394-a333-14ee6a95356b",
                 "resourcePath": "views\\e132e49d-c099-4865-8a3c-6bc6757bfca0.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "f05109ec-effd-4485-81d1-40194b458130",
+            "Value": {
+                "id": "36a98b5a-1343-4735-bbe2-d363b68473f7",
+                "resourcePath": "sprites\\spr_santa\\spr_santa.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
