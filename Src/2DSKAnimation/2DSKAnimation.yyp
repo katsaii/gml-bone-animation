@@ -439,6 +439,14 @@
             }
         },
         {
+            "Key": "152cc138-320e-46c7-95c3-f671e19235be",
+            "Value": {
+                "id": "c6d9352f-ce2c-430c-9bb1-46811b29b08c",
+                "resourcePath": "scripts\\sk_atlas_get_region_normalised\\sk_atlas_get_region_normalised.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "15c0267c-ffdc-455f-ac37-c032f517edc1",
             "Value": {
                 "id": "cb7afcca-0a27-4609-bcac-996005a9c6c3",
@@ -3447,6 +3455,14 @@
             }
         },
         {
+            "Key": "c37db577-7d72-4fd5-bee7-ace17c7eb0ea",
+            "Value": {
+                "id": "1d464093-e74f-4755-9dc5-2900ad2ed69b",
+                "resourcePath": "scripts\\sk_atlas_get_uvs\\sk_atlas_get_uvs.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "c3b13025-e4ff-41ae-a9dd-641a10d6656b",
             "Value": {
                 "id": "e2d77716-991e-44a3-a40d-4e3552eb1e92",
@@ -4821,12 +4837,14 @@
         "9c5b76c2-f906-4589-bd08-b40a03d2e5e3",
         "ebd8a639-957c-4865-86ca-9a270a8f4b9b",
         "993ef81c-373b-4777-92ce-d865fd6439e3",
+        "c37db577-7d72-4fd5-bee7-ace17c7eb0ea",
         "032ae436-829d-4302-b5a5-4a8e706243b5",
         "3b4d436d-53de-4ad8-84b6-3bfaa412a666",
         "465524b8-6680-4882-abbe-0c3c6447abc4",
         "eb55149c-7119-475f-b0bc-5830cbed4c94",
         "1419cf97-2fca-4716-b149-88846d4866ac",
         "195a0edb-e8bc-47e8-a142-15cf08dad99f",
+        "152cc138-320e-46c7-95c3-f671e19235be",
         "10d9901e-0270-4ad8-a74f-6928585c2ee7",
         "39c98e3c-247f-4c5b-a948-0672d8c923a6",
         "07172e57-85ad-46e1-8b4d-d988bab424d6",

@@ -3025,6 +3025,10 @@ sk_object_destroy(argument0);
 
 #define sk_atlas_draw_debug
 __SK_OBJECT_DEBUG_ASSERT_EXISTENCE = !sk_atlas_exists(argument0);
+#macro SK_ATLAS_DEBUG_TEXTURE (1<<0)
+#macro SK_ATLAS_DEBUG_REGIONS (1<<1)
+#macro SK_ATLAS_DEBUG_KEYS (1<<2)
+#macro SK_ATLAS_DEBUG_ORIGINS (1<<3)
 /// @desc draws the atlas and its regions
 ///		| NOTE: if you are using a texture which has been cropped or is not a power of two, then it will be incorrectly represented...
 ///		|		this does not mean that your UVs are incorrect, it just means that what is displayed is inaccurate.
@@ -3042,12 +3046,27 @@ var sk_x2 = sk_x1+argument3;
 var sk_y2 = sk_y1+argument4;
 if(argument5&SK_ATLAS_DEBUG_TEXTURE){
 	// draw texture
-	draw_primitive_begin_texture(pr_trianglestrip,sk_atlas_texture);
-	draw_vertex_texture_colour(sk_x1,sk_y1,0,0,c_white,1);
-	draw_vertex_texture_colour(sk_x1,sk_y2,0,1,c_white,1);
-	draw_vertex_texture_colour(sk_x2,sk_y1,1,0,c_white,1);
-	draw_vertex_texture_colour(sk_x2,sk_y2,1,1,c_white,1);
-	draw_primitive_end();
+	var sk_uvleft = argument0[sk_data_atlas.UVLeft];
+	var sk_uvtop = argument0[sk_data_atlas.UVTop];
+	var sk_uvright = argument0[sk_data_atlas.UVRight];
+	var sk_uvbottom = argument0[sk_data_atlas.UVBottom];
+	var sk_vbuff = vertex_create_buffer();
+	vertex_begin_sk(sk_vbuff);
+	vertex_position(sk_vbuff,sk_x1,sk_y1); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvleft,sk_uvtop);
+	vertex_position(sk_vbuff,sk_x2,sk_y1); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvright,sk_uvtop);
+	vertex_position(sk_vbuff,sk_x1,sk_y2); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvleft,sk_uvbottom);
+	vertex_position(sk_vbuff,sk_x1,sk_y2); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvleft,sk_uvbottom);
+	vertex_position(sk_vbuff,sk_x2,sk_y1); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvright,sk_uvtop);
+	vertex_position(sk_vbuff,sk_x2,sk_y2); vertex_colour(sk_vbuff,c_white,1); vertex_texcoord(sk_vbuff,sk_uvright,sk_uvbottom);
+	vertex_end_sk(sk_vbuff);
+	vertex_submit(sk_vbuff,pr_trianglelist,sk_atlas_texture);
+	vertex_delete_buffer(sk_vbuff);
+	//draw_primitive_begin_texture(pr_trianglestrip,sk_atlas_texture);
+	//draw_vertex_texture_colour(sk_x1,sk_y1,0,0,c_white,1);
+	//draw_vertex_texture_colour(sk_x1,sk_y2,0,1,c_white,1);
+	//draw_vertex_texture_colour(sk_x2,sk_y1,1,0,c_white,1);
+	//draw_vertex_texture_colour(sk_x2,sk_y2,1,1,c_white,1);
+	//draw_primitive_end();
 }
 // draw regions
 var sk_region_count = ds_map_size(sk_atlas_subtextures);
