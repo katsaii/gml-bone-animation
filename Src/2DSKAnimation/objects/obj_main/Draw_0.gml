@@ -6,8 +6,10 @@ var yy = room_height -40;
 
 var time = current_time*0.04;
 
-if(keyboard_check_pressed(vk_enter)) then sk_animationState_play(state,anim2,-1);
-if(keyboard_check_released(vk_enter)) then sk_animationState_play(state,anim1,-1);
+if(keyboard_check_pressed(vk_enter)) then sk_animationState_play(state,"anim_run",1);
+if(!sk_animationState_playing(state,"anim_run")){
+	sk_animationState_play(state,"anim_idle",-1);
+}
 sk_animationState_update(state,0.5);
 
 ds_list_clear(thrownEvents);

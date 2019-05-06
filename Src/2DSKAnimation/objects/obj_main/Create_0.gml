@@ -11,9 +11,12 @@ yscale = arm_scl;
 if(show_question("DragonBones?")){
 	atlas = sk_atlas_create_dragonbones(atlas_path,sprite_add(img_path,0,false,false,0,0),0,atlas_scl);
 	arm = sk_armature_create_dragonbones(arm_path,0);
-}else{
+}else if(show_question("Spine?")){
 	atlas = sk_atlas_create_libgdx(atlas_path,sprite_add(img_path,0,false,false,0,0),0,atlas_scl);
 	arm = sk_armature_create_spine(arm_path);
+}else{
+	atlas = sk_atlas_create_scon(atlas_path,sprite_add(img_path,0,false,false,0,0),0,atlas_scl);
+	arm = sk_armature_create();
 }
 
 vertex = vertex_create_buffer();
