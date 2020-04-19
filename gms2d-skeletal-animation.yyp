@@ -1,5 +1,6 @@
 {
   "resources": [
+    {"id":{"name":"scr_skeletal_animation","path":"scripts/scr_skeletal_animation/scr_skeletal_animation.yy",},"order":0,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "Options": [
