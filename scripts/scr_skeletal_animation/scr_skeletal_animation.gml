@@ -2,6 +2,16 @@
  * `https://github.com/NuxiiGit/gms2d-skeletal-animation`
  */
 
+/// @desc Represents world data.
+function WorldData() constructor {
+	ox = 0;
+	oy = 0;
+	a = 1;
+	b = 0;
+	c = 0;
+	d = 1;
+}
+
 /// @desc An enum which represents the available transformation modes of a bone when applying forward kinematics.
 enum BoneTransformMode {
 	NONE = 0,
@@ -42,10 +52,5 @@ function Bone(_parent, _length) constructor {
 	setupData = new BoneData();
 	localData = new BoneData();
 	invalidLocalData = false;
-	xWorld = 0;
-	yWorld = 0;
-	m00 = 0;
-	m01 = 0;
-	m10 = 0;
-	m11 = 0;
+	worldData = new WorldData();
 }
