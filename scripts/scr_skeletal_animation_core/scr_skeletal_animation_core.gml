@@ -59,7 +59,7 @@ function BoneData() constructor {
 	mode = BoneTransformMode.NORMAL;
 	/// @desc Copies the values of another `BoneData` into this.
 	/// @param {BoneData} _other The `BoneData` to copy from.
-	Copy = function(_other) {
+	copy = function(_other) {
 		xPos = _other.xPos;
 		yPos = _other.yPos;
 		xScale = _other.xScale;
@@ -87,8 +87,8 @@ function Bone(_parent, _length) constructor {
 	/// @desc The final world transform of the bone.
 	worldData = new WorldData();
 	/// @desc Resets the local transforms of the bone.
-	Setup = function() {
-		localData.Copy(setupData);
+	setup = function() {
+		localData.copy(setupData);
 		invalidLocalData = false;
 	}
 }
