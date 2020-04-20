@@ -60,6 +60,8 @@ function BoneData() constructor {
 }
 
 /// @desc Creates a new bone.
+/// @param {Bone} parent The parent of the bone.
+/// @param {Integer} length The length of the bone.
 function Bone(_parent, _length) constructor {
 	/// @desc The parent of the bone.
 	par = _parent;
