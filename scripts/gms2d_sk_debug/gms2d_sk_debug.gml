@@ -19,35 +19,34 @@ enum DebugKind {
 /// @param {real} angle The rotational offset.
 /// @param {DebugKind} debug_kind The debug arguments given by `DebugKind`.
 function bone_draw_debug(_bone, _x, _y, _xscale, _yscale, _angle, _debug_kind) {
-	var sine = _angle == 0.0 ? 0.0 : dsin(_angle);
-	var cosine = _angle == 0.0 ? 1.0 : dcos(_angle);
-	// transform by global scale
-	var world = _bone.worldTransform;
-	var local_x = world.xPos * _xscale;
-	var local_y = world.yPos * _yscale;
-	var local_m00 = world.m00 * _xscale; // x component of x basis
-	var local_m01 = world.m01 * _yscale; // y component of x basis
-	var local_m10 = world.m10 * _xscale; // x component of y basis
-	var local_m11 = world.m11 * _yscale; // y component of y basis
-	// transform by global rotation
-	var world_x = local_x * cosine + local_y * sine;
-	var world_y = local_x * -sine + local_y * cosine;
-	var world_m00 = local_m00 * cosine + local_m01 * sine;
-	var world_m01 = local_m00 * -sine + local_m01 * cosine;
-	var world_m10 = local_m10 * cosine + local_m11 * sine;
-	var world_m11 = local_m10 * -sine + local_m11 * cosine;
-	// transform by global translation
-	world_x += _x;
-	world_y += _y;
+	var rotation_space = new WorldTransform2D();
+	rotation_space.setRotationX(_angle, 1);
+	rotation_space.setRotationY(_angle + 90, 1);
+	var world_space = _bone.worldTransform;
+	var origin = rotation_space.transformVertex(
+			world_space.xPos * _xscale,
+			world_space.yPos * _yscale);
+	var x_basis = rotation_space.transformVertex(
+			world_space.m00 * _xscale,
+			world_space.m01 * _yscale);
+	var y_basis = rotation_space.transformVertex(
+			world_space.m10 * _xscale,
+			world_space.m11 * _yscale);
+	var debug_space = new WorldTransform2D();
+	debug_space.xPos = origin[0] + _x;
+	debug_space.yPos = origin[1] + _y;
+	debug_space.m00 = x_basis[0];
+	debug_space.m01 = x_basis[1];
+	debug_space.m10 = y_basis[0];
+	debug_space.m11 = y_basis[1];
 	// render bone
 	if (_debug_kind	& DebugKind.STRUCTURE) {
 		var len = _bone.len;
 		if (_debug_kind	& DebugKind.SIMPLE) {
-			var x1 = world_x;
-			var y1 = world_y;
-			var x2 = x1 + len * world_m00;
-			var y2 = y1 + len * world_m01;
-			draw_line(x1, y1, x2, y2);
+			var ox = debug_space.xPos;
+			var oy = debug_space.yPos;
+			var tip = debug_space.transformVertex(len, 0);
+			draw_line(ox, oy, tip[0], tip[1]);
 		}
 	}
 }

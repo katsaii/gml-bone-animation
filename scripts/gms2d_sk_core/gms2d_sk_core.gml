@@ -9,7 +9,7 @@
 ///       X | m00 m01 xPos |
 ///       Y | m10 m11 yPos |
 ///       ```
-function WorldData() constructor {
+function WorldTransform2D() constructor {
 	/// @desc The x position of the transformation matrix.
 	xPos = 0;
 	/// @desc The y position of the transformation matrix.
@@ -29,16 +29,27 @@ function WorldData() constructor {
 		xPos = _x;
 		yPos = _y;
 	}
-	/// @desc Sets the rotation of the transformation matrix.
-	/// @param {real} xangle The angle of the x basis vectors.
-	/// @param {real} yangle The angle of the y basis vectors.
-	/// @param {real} xscale The size of the x basis vector.
-	/// @param {real} yscale The size of the y basis vector.
-	static setRotation = function(_x_angle, _y_angle, _x_scale, _y_scale) {
-		m00 = dcos(_x_angle) * _x_scale;
-		m01 = -dsin(_x_angle) * _x_scale;
-		m10 = dcos(_y_angle) * -_y_scale;
-		m11 = -dsin(_y_angle) * -_y_scale;
+	/// @desc Sets the rotation of the x basis vector
+	/// @param {real} angle The angle of the x basis vector.
+	/// @param {real} scale The length of the x basis vector.
+	static setRotationX = function(_angle, _scale) {
+		m00 = dcos(_angle) * _scale;
+		m01 = -dsin(_angle) * _scale;
+	}
+	/// @desc Sets the rotation of the y basis vector
+	/// @param {real} angle The angle of the y basis vector.
+	/// @param {real} scale The length of the y basis vector.
+	static setRotationY = function(_angle, _scale) {
+		m10 = dcos(_angle) * -_scale;
+		m11 = -dsin(_angle) * -_scale;
+	}
+	/// @desc Applies the linear transformation to this vertex and returns a vec2.
+	/// @param {real} x The x position to transform.
+	/// @param {real} y The y position to transform.
+	static transformVertex = function(_x, _y) {
+		var vx = _x * m00 + _y * m01 + xPos;
+		var vy = _x * m10 + _y * m11 + yPos;
+		return [vx, vy];
 	}
 }
 
@@ -109,7 +120,7 @@ function Bone(_parent, _length) constructor {
 	localPose = new BoneData();
 	invalidLocalPose = false;
 	/// @desc The final world transform of the bone.
-	worldTransform = new WorldData();
+	worldTransform = new WorldTransform2D();
 	/// @desc Resets the local transforms of the bone.
 	static setup = function() {
 		localPose.copy(setupPose);
@@ -130,10 +141,9 @@ function Bone(_parent, _length) constructor {
 			
 		} else {
 			// parent does not exist
-			var x_angle = angle + x_shear;
-			var y_angle = angle + y_shear + 90;
 			worldTransform.setPosition(x_pos, y_pos);
-			worldTransform.setRotation(x_angle, y_angle, x_scale, y_scale);
+			worldTransform.setRotationX(angle + x_shear, x_scale);
+			worldTransform.setRotationY(angle + y_shear + 90, y_scale);
 		}
 		invalidLocalPose = false;
 	}
