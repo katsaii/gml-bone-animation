@@ -5,4 +5,4 @@ bone.setupPose.xScale = 2;
 bone2 = new Bone(bone, 50);
 bone2.setupPose.xPos = 50;
 bone2.setupPose.xScale = 2;
-bone2.setupPose.mode = BoneTransformMode.NO_SCALE;
+bone2.setupPose.mode = BoneTransformMode.NO_ROTATION;

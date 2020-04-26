@@ -195,6 +195,19 @@ function Bone(_parent, _length) constructor {
 				world_space.setRotationX(x_angle, x_scale);
 				world_space.setRotationY(y_angle, y_scale);
 				return;
+			case BoneTransformMode.SCALE:
+				// same as normal, except parent rotation is cancelled out
+				var angle_final = angle - parent_space.getRotationX();
+				var x_angle = angle_final + x_shear;
+				var y_angle = angle_final + y_shear + 90;
+				if (parent_space.getDeterminant() < 0) {
+					x_angle = -x_angle;
+					y_angle = -y_angle;
+				}
+				world_space.setRotationX(x_angle, x_scale);
+				world_space.setRotationY(y_angle, y_scale);
+				world_space.multiply(parent_space);
+				return;
 			}
 		} else {
 			world_space.setPosition(x_pos, y_pos);
