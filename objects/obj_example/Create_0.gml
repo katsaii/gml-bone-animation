@@ -1,7 +1,8 @@
 /// @desc Initialise bones.
-bone = new Bone(undefined, 100);
+bone = new Bone(undefined, 50);
 bone.setupPose.xScale = 2;
 
-bone2 = new Bone(bone, 100);
-bone2.setupPose.xPos = 100;
-bone2.setupPose.mode &= ~BoneTransformMode.SCALE;
+bone2 = new Bone(bone, 50);
+bone2.setupPose.xPos = 50;
+bone2.setupPose.xScale = 2;
+bone2.setupPose.mode = BoneTransformMode.NO_SCALE;

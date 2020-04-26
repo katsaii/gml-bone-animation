@@ -43,6 +43,26 @@ function WorldTransform2D() constructor {
 		m10 = dcos(_angle) * -_scale;
 		m11 = -dsin(_angle) * -_scale;
 	}
+	/// @desc Gets the rotation of the x basis vector
+	static getRotationX = function() {
+		return -darctan2(m01, m00);
+	}
+	/// @desc Gets the rotation of the y basis vector
+	static getRotationY = function() {
+		return -darctan2(m11, m10);
+	}
+	/// @desc Gets the magnitude of the x basis vector
+	static getScaleX = function() {
+		return point_distance(0, 0, m00, m01);
+	}
+	/// @desc Gets the magnitude of the y basis vector
+	static getScaleY = function() {
+		return point_distance(0, 0, m10, m11);
+	}
+	/// @desc Gets the magnitude of the y basis vector
+	static getDeterminant = function() {
+		return m00 * m11 - m01 * m10;
+	}
 	/// @desc Multiplies this matrix by some parent.
 	/// @param {WorldTransform2D} parent The parent transform to multiply by
 	static multiply = function(_parent) {
@@ -68,22 +88,18 @@ function WorldTransform2D() constructor {
 /// @desc An enum which represents the available transformation modes of a bone when applying forward kinematics.
 enum BoneTransformMode {
 	NONE = 0,
-	SCALE = 1 << 0,
-	ROTATE = 1 << 1,
-	TRANSLATE = 1 << 2,
-	SKEW = 1 << 3,
+	SCALE = 0x01,
+	ROTATE = BoneTransformMode.SCALE << 1,
+	TRANSLATE = BoneTransformMode.ROTATE << 2,
 	NORMAL = BoneTransformMode.SCALE |
 			BoneTransformMode.ROTATE |
-			BoneTransformMode.TRANSLATE |
-			BoneTransformMode.SKEW,
+			BoneTransformMode.TRANSLATE,
 	NO_ROTATION = BoneTransformMode.NORMAL &
 			~BoneTransformMode.ROTATE,
 	NO_SCALE = BoneTransformMode.NORMAL &
 			~BoneTransformMode.SCALE,
 	NO_ROTATION_OR_SCALE = BoneTransformMode.NORMAL &
 			~(BoneTransformMode.ROTATE | BoneTransformMode.SCALE),
-	NO_SKEW = BoneTransformMode.NORMAL &
-			~BoneTransformMode.SKEW,
 }
 
 /// @desc Creates an empty bone transformation.
@@ -155,17 +171,12 @@ function Bone(_parent, _length) constructor {
 			var parent_space = par.worldTransform;
 			// inherit translation
 			if (mode & BoneTransformMode.TRANSLATE) {
+				mode &= ~BoneTransformMode.TRANSLATE;
 				var pos = parent_space.transformVertex(x_pos, y_pos);
 				world_space.setPosition(pos[0], pos[1]);
-				mode &= ~BoneTransformMode.TRANSLATE;
 			} else {
 				// don't
 				world_space.setPosition(x_pos, y_pos);
-			}
-			// inherit skew
-			var has_skew = bool(mode & BoneTransformMode.SKEW);
-			if (has_skew) {
-				mode &= ~BoneTransformMode.SKEW;
 			}
 			// inherit other transform methods
 			switch (mode) {
@@ -177,17 +188,8 @@ function Bone(_parent, _length) constructor {
 				world_space.multiply(parent_space);
 				return;
 			case BoneTransformMode.ROTATE:
-				// same as normal, except cancel out the scale
-				var angle_final;
-				if (has_skew) {
-					var cosine = dcos(angle);
-					var sine = -dsin(angle);
-					angle_final = -darctan2(
-							parent_space.m01 * cosine + parent_space.m11 * sine,
-							parent_space.m00 * cosine + parent_space.m10 * sine);
-				} else {
-					angle_final = angle - darctan2(parent_space.m01, parent_space.m10);
-				}
+				// same as normal, except parent scale is cancelled out
+				var angle_final = angle + parent_space.getRotationX();
 				var x_angle = angle_final + x_shear;
 				var y_angle = angle_final + y_shear + 90;
 				world_space.setRotationX(x_angle, x_scale);
