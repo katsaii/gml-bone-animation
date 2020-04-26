@@ -1,5 +1,6 @@
-/* Skeletal animation runtime by Kat @Katsaii
+/* Skeletal animation runtime
  * `https://github.com/NuxiiGit/gms2d-skeletal-animation`
+ * Kat @Katsaii
  */
 
 /// @desc Represents world data.
