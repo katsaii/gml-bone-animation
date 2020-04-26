@@ -22,7 +22,7 @@ function bone_draw_debug(_bone, _x, _y, _xscale, _yscale, _angle, _debug_kind) {
 	var sine = _angle == 0.0 ? 0.0 : dsin(_angle);
 	var cosine = _angle == 0.0 ? 1.0 : dcos(_angle);
 	// transform by global scale
-	var world = _bone.worldData;
+	var world = _bone.worldTransform;
 	var local_x = world.xPos * _xscale;
 	var local_y = world.yPos * _yscale;
 	var local_m00 = world.m00 * _xscale; // x component of x basis

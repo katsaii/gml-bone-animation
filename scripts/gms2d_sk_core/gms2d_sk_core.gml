@@ -4,23 +4,24 @@
  */
 
 /// @desc Represents world data.
-function WorldData() constructor {
-	/// @desc the x position of the world object.
+///       ```
+///            X   Y   T
+///       X | m00 m01 xPos |
+///       Y | m10 m11 yPos |
+///       ```
+function Transform2D() constructor {
+	/// @desc The x position of the transformation matrix.
 	xPos = 0;
-	/// @desc the y position of the world object.
+	/// @desc The y position of the transformation matrix.
 	yPos = 0;
-	/// @desc the top-left element of the transformation matrix.
+	/// @desc The top-left element of the transformation matrix.
 	m00 = 1;
-	/// @desc the top-right element of the transformation matrix.
+	/// @desc The top-right element of the transformation matrix.
 	m01 = 0;
-	/// @desc the bottom-left element of the transformation matrix.
+	/// @desc The bottom-left element of the transformation matrix.
 	m10 = 0;
-	/// @desc the bottom-right element of the transformation matrix.
+	/// @desc The bottom-right element of the transformation matrix.
 	m11 = 1;
-	/*      X   Y   T
-	 * X | m00 m01 xPos |
-	 * Y | m10 m11 yPos |
-	 */
 }
 
 /// @desc An enum which represents the available transformation modes of a bone when applying forward kinematics.
@@ -85,27 +86,27 @@ function Bone(_parent, _length) constructor {
 	/// @desc The length of the bone.
 	len = _length;
 	/// @desc The setup pose of the bone.
-	setupData = new BoneData();
+	setupPose = new BoneData();
 	/// @desc The pose of the bone after animations are applied.
-	localData = new BoneData();
-	invalidLocalData = false;
+	localPose = new BoneData();
+	invalidLocalPose = false;
 	/// @desc The final world transform of the bone.
-	worldData = new WorldData();
+	worldTransform = new Transform2D();
 	/// @desc Resets the local transforms of the bone.
 	static setup = function() {
-		localData.copy(setupData);
-		invalidLocalData = false;
+		localPose.copy(setupPose);
+		invalidLocalPose = false;
 	}
 	/// @desc Updates the world transform of the bone.
 	static update = function() {
-		var x_pos = localData.xPos;
-		var y_pos = localData.yPos;
-		var x_scale = localData.xScale;
-		var y_scale = localData.yScale;
-		var x_shear = localData.xShear;
-		var y_shear = localData.yShear;
-		var angle = localData.angle;
-		var mode = localData.mode;
+		var x_pos = localPose.xPos;
+		var y_pos = localPose.yPos;
+		var x_scale = localPose.xScale;
+		var y_scale = localPose.yScale;
+		var x_shear = localPose.xShear;
+		var y_shear = localPose.yShear;
+		var angle = localPose.angle;
+		var mode = localPose.mode;
 		// get parent data
 		if (par != undefined) {
 			
@@ -113,13 +114,13 @@ function Bone(_parent, _length) constructor {
 			// parent does not exist
 			var x_angle = angle + x_shear;
 			var y_angle = angle + y_shear + 90;
-			worldData.xPos = x_pos;
-			worldData.yPos = y_pos;
-			worldData.m00 = dcos(x_angle) * x_scale;
-			worldData.m01 = -dsin(x_angle) * x_scale;
-			worldData.m10 = dcos(y_angle) * -y_scale;
-			worldData.m11 = -dsin(y_angle) * -y_scale;
+			worldTransform.xPos = x_pos;
+			worldTransform.yPos = y_pos;
+			worldTransform.m00 = dcos(x_angle) * x_scale;
+			worldTransform.m01 = -dsin(x_angle) * x_scale;
+			worldTransform.m10 = dcos(y_angle) * -y_scale;
+			worldTransform.m11 = -dsin(y_angle) * -y_scale;
 		}
-		invalidLocalData = false;
+		invalidLocalPose = false;
 	}
 }
