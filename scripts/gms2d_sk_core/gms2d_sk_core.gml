@@ -147,8 +147,7 @@ function Bone(_parent, _length) constructor {
 		var y_scale = localPose.yScale;
 		var x_shear = localPose.xShear;
 		var y_shear = localPose.yShear;
-		var x_angle = localPose.angle + x_shear;
-		var y_angle = localPose.angle + y_shear + 90;
+		var angle = localPose.angle;
 		var mode = localPose.mode;
 		// get parent data
 		var world_space = worldTransform;
@@ -164,21 +163,43 @@ function Bone(_parent, _length) constructor {
 				world_space.setPosition(x_pos, y_pos);
 			}
 			// inherit skew
-			if (mode & BoneTransformMode.SKEW) {
+			var has_skew = bool(mode & BoneTransformMode.SKEW);
+			if (has_skew) {
 				mode &= ~BoneTransformMode.SKEW;
 			}
 			// inherit other transform methods
 			switch (mode) {
 			case BoneTransformMode.SCALE | BoneTransformMode.ROTATE:
+				var x_angle = angle + x_shear;
+				var y_angle = angle + y_shear + 90;
 				world_space.setRotationX(x_angle, x_scale);
 				world_space.setRotationY(y_angle, y_scale);
 				world_space.multiply(parent_space);
+				return;
+			case BoneTransformMode.ROTATE:
+				// same as normal, except cancel out the scale
+				var angle_final;
+				if (has_skew) {
+					var cosine = dcos(angle);
+					var sine = -dsin(angle);
+					angle_final = -darctan2(
+							parent_space.m01 * cosine + parent_space.m11 * sine,
+							parent_space.m00 * cosine + parent_space.m10 * sine);
+				} else {
+					angle_final = angle - darctan2(parent_space.m01, parent_space.m10);
+				}
+				var x_angle = angle_final + x_shear;
+				var y_angle = angle_final + y_shear + 90;
+				world_space.setRotationX(x_angle, x_scale);
+				world_space.setRotationY(y_angle, y_scale);
 				return;
 			}
 		} else {
 			world_space.setPosition(x_pos, y_pos);
 		}
 		// don't inherit anything, use applied transform
+		var x_angle = angle + x_shear;
+		var y_angle = angle + y_shear + 90;
 		world_space.setRotationX(x_angle, x_scale);
 		world_space.setRotationY(y_angle, y_scale);
 	}
