@@ -17,6 +17,10 @@ function WorldData() constructor {
 	m10 = 0;
 	/// @desc the bottom-right element of the transformation matrix.
 	m11 = 1;
+	/*      X   Y   T
+	 * X | m00 m01 xPos |
+	 * Y | m10 m11 yPos |
+	 */
 }
 
 /// @desc An enum which represents the available transformation modes of a bone when applying forward kinematics.
@@ -60,7 +64,7 @@ function BoneData() constructor {
 	mode = BoneTransformMode.NORMAL;
 	/// @desc Copies the values of another `BoneData` into this.
 	/// @param {BoneData} _other The `BoneData` to copy from.
-	copy = function(_other) {
+	static copy = function(_other) {
 		xPos = _other.xPos;
 		yPos = _other.yPos;
 		xScale = _other.xScale;
@@ -88,7 +92,7 @@ function Bone(_parent, _length) constructor {
 	/// @desc The final world transform of the bone.
 	worldData = new WorldData();
 	/// @desc Resets the local transforms of the bone.
-	setup = function() {
+	static setup = function() {
 		localData.copy(setupData);
 		invalidLocalData = false;
 	}

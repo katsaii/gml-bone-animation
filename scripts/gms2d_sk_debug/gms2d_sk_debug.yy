@@ -6,7 +6,7 @@
     "path": "folders/Skeletal Animation.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_skeletal_animation_core",
+  "name": "gms2d_sk_debug",
   "tags": [],
   "resourceType": "GMScript",
 }
