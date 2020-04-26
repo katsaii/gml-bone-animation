@@ -9,7 +9,7 @@
 ///       X | m00 m01 xPos |
 ///       Y | m10 m11 yPos |
 ///       ```
-function Transform2D() constructor {
+function WorldData() constructor {
 	/// @desc The x position of the transformation matrix.
 	xPos = 0;
 	/// @desc The y position of the transformation matrix.
@@ -22,6 +22,24 @@ function Transform2D() constructor {
 	m10 = 0;
 	/// @desc The bottom-right element of the transformation matrix.
 	m11 = 1;
+	/// @desc Sets the position of the transformation matrix.
+	/// @param {real} x The x position to set.
+	/// @param {real} y The y position to set.
+	static setPosition = function(_x, _y) {
+		xPos = _x;
+		yPos = _y;
+	}
+	/// @desc Sets the rotation of the transformation matrix.
+	/// @param {real} xangle The angle of the x basis vectors.
+	/// @param {real} yangle The angle of the y basis vectors.
+	/// @param {real} xscale The size of the x basis vector.
+	/// @param {real} yscale The size of the y basis vector.
+	static setRotation = function(_x_angle, _y_angle, _x_scale, _y_scale) {
+		m00 = dcos(_x_angle) * _x_scale;
+		m01 = -dsin(_x_angle) * _x_scale;
+		m10 = dcos(_y_angle) * -_y_scale;
+		m11 = -dsin(_y_angle) * -_y_scale;
+	}
 }
 
 /// @desc An enum which represents the available transformation modes of a bone when applying forward kinematics.
@@ -91,7 +109,7 @@ function Bone(_parent, _length) constructor {
 	localPose = new BoneData();
 	invalidLocalPose = false;
 	/// @desc The final world transform of the bone.
-	worldTransform = new Transform2D();
+	worldTransform = new WorldData();
 	/// @desc Resets the local transforms of the bone.
 	static setup = function() {
 		localPose.copy(setupPose);
@@ -114,12 +132,8 @@ function Bone(_parent, _length) constructor {
 			// parent does not exist
 			var x_angle = angle + x_shear;
 			var y_angle = angle + y_shear + 90;
-			worldTransform.xPos = x_pos;
-			worldTransform.yPos = y_pos;
-			worldTransform.m00 = dcos(x_angle) * x_scale;
-			worldTransform.m01 = -dsin(x_angle) * x_scale;
-			worldTransform.m10 = dcos(y_angle) * -y_scale;
-			worldTransform.m11 = -dsin(y_angle) * -y_scale;
+			worldTransform.setPosition(x_pos, y_pos);
+			worldTransform.setRotation(x_angle, y_angle, x_scale, y_scale);
 		}
 		invalidLocalPose = false;
 	}
