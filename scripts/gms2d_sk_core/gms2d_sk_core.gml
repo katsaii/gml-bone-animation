@@ -43,7 +43,19 @@ function WorldTransform2D() constructor {
 		m10 = dcos(_angle) * -_scale;
 		m11 = -dsin(_angle) * -_scale;
 	}
-	/// @desc Applies the linear transformation to this vertex and returns a vec2.
+	/// @desc Multiplies this matrix by some parent.
+	/// @param {WorldTransform2D} parent The parent transform to multiply by
+	static multiply = function(_parent) {
+		var my_m00 = m00;
+		var my_m01 = m01;
+		var my_m10 = m10;
+		var my_m11 = m11;
+		m00 = my_m00 * _parent.m00 + my_m01 * _parent.m10;
+		m01 = my_m00 * _parent.m01 + my_m01 * _parent.m11;
+		m10 = my_m10 * _parent.m00 + my_m11 * _parent.m10;
+		m11 = my_m10 * _parent.m01 + my_m11 * _parent.m11;
+	}
+	/// @desc Applies the linear transformation to this vertex and returns a `vec2`.
 	/// @param {real} x The x position to transform.
 	/// @param {real} y The y position to transform.
 	static transformVertex = function(_x, _y) {
@@ -128,23 +140,46 @@ function Bone(_parent, _length) constructor {
 	}
 	/// @desc Updates the world transform of the bone.
 	static update = function() {
+		invalidLocalPose = false;
 		var x_pos = localPose.xPos;
 		var y_pos = localPose.yPos;
 		var x_scale = localPose.xScale;
 		var y_scale = localPose.yScale;
 		var x_shear = localPose.xShear;
 		var y_shear = localPose.yShear;
-		var angle = localPose.angle;
+		var x_angle = localPose.angle + x_shear;
+		var y_angle = localPose.angle + y_shear + 90;
 		var mode = localPose.mode;
 		// get parent data
+		var world_space = worldTransform;
 		if (par != undefined) {
-			
+			var parent_space = par.worldTransform;
+			// inherit translation
+			if (mode & BoneTransformMode.TRANSLATE) {
+				var pos = parent_space.transformVertex(x_pos, y_pos);
+				world_space.setPosition(pos[0], pos[1]);
+				mode &= ~BoneTransformMode.TRANSLATE;
+			} else {
+				// don't
+				world_space.setPosition(x_pos, y_pos);
+			}
+			// inherit skew
+			if (mode & BoneTransformMode.SKEW) {
+				mode &= ~BoneTransformMode.SKEW;
+			}
+			// inherit other transform methods
+			switch (mode) {
+			case BoneTransformMode.SCALE | BoneTransformMode.ROTATE:
+				world_space.setRotationX(x_angle, x_scale);
+				world_space.setRotationY(y_angle, y_scale);
+				world_space.multiply(parent_space);
+				return;
+			}
 		} else {
-			// parent does not exist
-			worldTransform.setPosition(x_pos, y_pos);
-			worldTransform.setRotationX(angle + x_shear, x_scale);
-			worldTransform.setRotationY(angle + y_shear + 90, y_scale);
+			world_space.setPosition(x_pos, y_pos);
 		}
-		invalidLocalPose = false;
+		// don't inherit anything, use applied transform
+		world_space.setRotationX(x_angle, x_scale);
+		world_space.setRotationY(y_angle, y_scale);
 	}
 }

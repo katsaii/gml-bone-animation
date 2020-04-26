@@ -1,4 +1,8 @@
 /// @desc Update bones.
 bone.setup();
-bone.localPose.angle = 180 * dsin(current_time * 0.1);
+bone.localPose.angle = 90 * dsin(current_time * 0.1);
 bone.update();
+
+bone2.setup();
+bone2.localPose.angle = 90 * dsin(current_time * 0.1);
+bone2.update();
