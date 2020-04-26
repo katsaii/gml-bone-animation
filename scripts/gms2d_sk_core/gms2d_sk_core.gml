@@ -96,4 +96,30 @@ function Bone(_parent, _length) constructor {
 		localData.copy(setupData);
 		invalidLocalData = false;
 	}
+	/// @desc Updates the world transform of the bone.
+	static update = function() {
+		var x_pos = localData.xPos;
+		var y_pos = localData.yPos;
+		var x_scale = localData.xScale;
+		var y_scale = localData.yScale;
+		var x_shear = localData.xShear;
+		var y_shear = localData.yShear;
+		var angle = localData.angle;
+		var mode = localData.mode;
+		// get parent data
+		if (par != undefined) {
+			
+		} else {
+			// parent does not exist
+			var x_angle = angle + x_shear;
+			var y_angle = angle + y_shear + 90;
+			worldData.xPos = x_pos;
+			worldData.yPos = y_pos;
+			worldData.m00 = dcos(x_angle) * x_scale;
+			worldData.m01 = -dsin(x_angle) * x_scale;
+			worldData.m10 = dcos(y_angle) * -y_scale;
+			worldData.m11 = -dsin(y_angle) * -y_scale;
+		}
+		invalidLocalData = false;
+	}
 }

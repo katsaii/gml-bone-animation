@@ -1,2 +1,5 @@
 /// @desc Initialise bones.
-var bone = new Bone(undefined, 100);
+bone = new Bone(undefined, 100);
+bone.setup();
+bone.localData.angle = 45;
+bone.update();
