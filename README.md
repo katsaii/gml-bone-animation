@@ -1,3 +1,3 @@
 # gms2d-skeletal-animation
 
-TBA
+Project currying being refactored for GameMaker version 2.3, see releases for old binaries and source code.
