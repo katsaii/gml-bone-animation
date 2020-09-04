@@ -6,7 +6,7 @@
     "path": "folders/2D Skeletal Animation.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_bone_transform",
+  "name": "scr_bone",
   "tags": [],
   "resourceType": "GMScript",
 }
