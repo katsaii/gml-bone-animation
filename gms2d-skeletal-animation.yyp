@@ -1,7 +1,7 @@
 {
   "resources": [
     {"id":{"name":"gms2d_sk_debug","path":"scripts/gms2d_sk_debug/gms2d_sk_debug.yy",},"order":1,},
-    {"id":{"name":"obj_example","path":"objects/obj_example/obj_example.yy",},"order":0,},
+    {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},"order":1,},
     {"id":{"name":"gms2d_sk_core","path":"scripts/gms2d_sk_core/gms2d_sk_core.yy",},"order":0,},
     {"id":{"name":"rm_environment","path":"rooms/rm_environment/rm_environment.yy",},"order":0,},
   ],
@@ -22,9 +22,8 @@
     {"name":"rm_environment","path":"rooms/rm_environment/rm_environment.yy",},
   ],
   "Folders": [
-    {"folderPath":"folders/Rooms.yy","order":10,"resourceVersion":"1.0","name":"Rooms","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Skeletal Animation.yy","order":11,"resourceVersion":"1.0","name":"Skeletal Animation","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Examples.yy","order":12,"resourceVersion":"1.0","name":"Examples","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Test.yy","order":12,"resourceVersion":"1.0","name":"Test","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":461609314234257646,"resourceVersion":"1.0","name":"audiogroup_default","resourceType":"GMAudioGroup",},

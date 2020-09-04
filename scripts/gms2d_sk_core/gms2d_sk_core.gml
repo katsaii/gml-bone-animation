@@ -3,6 +3,7 @@
  * Kat @Katsaii
  */
 
+/*
 /// @desc Represents world data.
 ///       ```
 ///            X   Y   T

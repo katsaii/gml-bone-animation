@@ -3,6 +3,7 @@
  * Kat @Katsaii
  */
 
+/*
 /// @desc Represents the debug arguments of the various debug tools.
 enum DebugKind {
 	DATA = 0x01,
